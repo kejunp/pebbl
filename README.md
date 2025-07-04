@@ -28,7 +28,7 @@ Then run the generated Makefile
 make
 ```
 
-[!NOTE]
+> [!NOTE]
 > If cmake outputs the ninja build system,  
 > you need to use
 >```sh
