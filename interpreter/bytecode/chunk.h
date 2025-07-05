@@ -31,16 +31,15 @@ typedef struct {
   int* line_run_lines;       ///< Source line numbers for each run
   size_t line_run_count;     ///< Number of line runs
   size_t line_run_capacity;  ///< Allocated capacity for line runs
-
   ValueArray constants;
 } Chunk;
 
 
-#define OPCODE(name) OP_##name,
 typedef enum {
-  #include "opcodes.inc"
+  OP_CONSTANT,
+  OP_CONSTANT_LONG,
+  OP_RETURN
 } OpCode;
-#undef OPCODE
 
 #ifdef __cplusplus
 }
