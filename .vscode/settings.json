@@ -64,6 +64,5 @@
     "variant": "cpp",
     "cstring": "cpp",
     "cinttypes": "cpp",
-    "memory.h": "c"
   }
 }
