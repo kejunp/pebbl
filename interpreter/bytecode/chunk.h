@@ -28,18 +28,61 @@ typedef struct {
   uint8_t* code;
 
   size_t* line_run_starts;   ///< Offsets in code[] where line runs start (array indices)
-  int* line_run_lines;       ///< Source line numbers for each run
+  size_t* line_run_lines;       ///< Source line numbers for each run
   size_t line_run_count;     ///< Number of line runs
   size_t line_run_capacity;  ///< Allocated capacity for line runs
   ValueArray constants;
 } Chunk;
-
 
 typedef enum {
   OP_CONSTANT,
   OP_CONSTANT_LONG,
   OP_RETURN
 } OpCode;
+
+/**
+ * @brief Initializes a Chunk struct
+ * @param chunk Pointer to uninitialized chunk 
+ */
+void init_chunk(Chunk* chunk);
+
+/**
+ * @brief Deallocates any allocated memory and resets struct
+ * @param chunk Chunk to be freed
+ */
+void free_chunk(Chunk* chunk);
+
+/**
+ * @brief Writes a opcode to a Chunk struct
+ * @param chunk The chunk to write to
+ * @param byte Opcode to write
+ * @param line The line to write the opcode to (for debugging)
+ */
+void write_to_chunk(Chunk* chunk, uint8_t byte, size_t line);
+
+/**
+ * @brief Adds a constant to the constant pool of a chunk
+ * @param chunk The chunk to add the constant to
+ * @param constant The constant to write
+ * @return Index of the constant written
+ */
+size_t add_constant(Chunk* chunk, Value constant);
+
+/**
+ * @brief Writes the opcodes for a constant (does not just write to pool)
+ * @param chunk Chunk to write the opcodes to
+ * @param value Constant to write
+ * @param line The line in which the opcodes will be stored
+ */
+void write_constant(Chunk* chunk, Value value, size_t line);
+
+/**
+ * @brief Finds the line of a given instruction offset
+ * @param chunk The chunk in which to search
+ * @param instruction The offset of the instruction
+ * @return The line number
+ */
+size_t get_line(Chunk* chunk, size_t instruction);
 
 #ifdef __cplusplus
 }
