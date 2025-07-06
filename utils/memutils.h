@@ -22,7 +22,7 @@
 
 #define GROW_ARRAY(type, ptr, new_count) (type*)Realloc(ptr, sizeof(type) * new_count)
 
-#define FREE_ARRAY(type, ptr) Realloc(ptr, 0)
+#define FREE_ARRAY(ptr) Realloc(ptr, 0)
 
 #ifdef __cplusplus
 extern "C" {

@@ -64,5 +64,6 @@
     "variant": "cpp",
     "cstring": "cpp",
     "cinttypes": "cpp",
+    "memutils.h": "c"
   }
 }

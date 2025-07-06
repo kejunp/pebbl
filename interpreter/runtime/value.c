@@ -34,7 +34,7 @@ void write_value_array(ValueArray* value_array, Value value) {
 }
 
 void free_value_array(ValueArray* value_array) {
-  FREE_ARRAY(Value, value_array->values);
+  FREE_ARRAY(value_array->values);
   init_value_array(value_array);
 }
 

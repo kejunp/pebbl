@@ -58,7 +58,7 @@ void free_chunk(Chunk* chunk);
  * @param byte Opcode to write
  * @param line The line to write the opcode to (for debugging)
  */
-void write_to_chunk(Chunk* chunk, uint8_t byte, size_t line);
+void emit(Chunk* chunk, uint8_t byte, size_t line);
 
 /**
  * @brief Adds a constant to the constant pool of a chunk
@@ -71,10 +71,10 @@ size_t add_constant(Chunk* chunk, Value constant);
 /**
  * @brief Writes the opcodes for a constant (does not just write to pool)
  * @param chunk Chunk to write the opcodes to
- * @param value Constant to write
+ * @param constant Constant to write
  * @param line The line in which the opcodes will be stored
  */
-void write_constant(Chunk* chunk, Value value, size_t line);
+void write_constant(Chunk* chunk, Value constant, size_t line);
 
 /**
  * @brief Finds the line of a given instruction offset
