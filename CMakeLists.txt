@@ -9,7 +9,6 @@ set(SOURCES
   interpreter/runtime/value.c
   interpreter/runtime/vm.c
   interpreter/main.c
-  utils/debug.c
 )
 
 set(HEADER_DIRS
