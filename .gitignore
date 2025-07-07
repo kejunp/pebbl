@@ -1,3 +1,7 @@
+# IDE/Text Editor specific files/folders
+.vscode/
+.idea/
+.swp
 
 cmake-build-*/
 build/
