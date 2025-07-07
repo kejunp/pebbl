@@ -1,7 +1,6 @@
-# IDE/Text Editor specific files/folders
-.vscode/
-.idea/
-.swp
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 cmake-build-*/
 build/

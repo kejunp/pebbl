@@ -1,0 +1,44 @@
+{
+  "name": "PEBBL Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/cmake:1": {},
+    "ghcr.io/devcontainers/features/gcc:1": {},
+    "ghcr.io/devcontainers/features/gdb:1": {}
+  },
+  "onCreateCommand": "apt-get update && apt-get install -y doxygen graphviz",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "C_Cpp.intelliSenseEngine": "default",
+        "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+        "C_Cpp.default.cStandard": "c11",
+        "C_Cpp.default.cppStandard": "c++17",
+        "C_Cpp.default.includePath": [
+          "${workspaceFolder}/interpreter/bytecode",
+          "${workspaceFolder}/interpreter/runtime",
+          "${workspaceFolder}/utils"
+        ],
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.associations": {
+          "*.h": "c"
+        },
+        "files.eol": "\n",
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        }
+      },
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "xaver.clang-format"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
