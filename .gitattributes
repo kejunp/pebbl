@@ -1,0 +1,10 @@
+* text=auto
+
+*.sh text eol=lf
+
+*.png binary
+*.jpg binary
+
+/docs/* export-ignore
+
+*.json diff=json
