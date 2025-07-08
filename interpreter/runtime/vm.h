@@ -19,7 +19,7 @@
 
 #include "chunk.h"
 
-#define STACK_MAX 2048
+#define STACK_MAX 1024
 
 #ifdef __cplusplus
 extern "C" {
