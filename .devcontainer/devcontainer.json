@@ -1,7 +1,8 @@
 {
   "name": "PEBBL Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "onCreateCommand": "sudo apt-get update && sudo apt-get install doxygen graphviz cmake gcc g++ gdb",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "customizations": {
     "vscode": {
       "settings": {
