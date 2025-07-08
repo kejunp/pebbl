@@ -4,7 +4,8 @@ project(pebbl C)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-set(SOURCES 
+set(SOURCES
+  utils/debug.c
   interpreter/bytecode/chunk.c
   interpreter/runtime/value.c
   interpreter/runtime/vm.c

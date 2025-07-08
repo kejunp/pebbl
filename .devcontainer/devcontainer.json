@@ -39,6 +39,6 @@
         "xaver.clang-format"
       ]
     }
-  },
-  "remoteUser": "vscode"
+  }
+  // "remoteUser": "vscode"
 }
