@@ -1,12 +1,7 @@
 {
   "name": "PEBBL Dev Container",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-    "ghcr.io/devcontainers/features/cmake:1": {},
-    "ghcr.io/devcontainers/features/gcc:1": {},
-    "ghcr.io/devcontainers/features/gdb:1": {}
-  },
-  "onCreateCommand": "apt-get update && apt-get install -y doxygen graphviz",
+  "onCreateCommand": "sudo apt-get update && sudo apt-get install doxygen graphviz cmake gcc g++ gdb",
   "customizations": {
     "vscode": {
       "settings": {
