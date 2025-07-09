@@ -18,7 +18,7 @@ void disassemble_chunk(Chunk* chunk, const char* name);
  * @param chunk Chunk where the instruction resides
  * @param offset Offset of the instruction in the chunk (instruction at chunk->code[offset])
  */
-void disassemble_instruction(Chunk* chunk, size_t offset);
+size_t disassemble_instruction(Chunk* chunk, size_t offset);
 
 #ifdef __cplusplus
 }

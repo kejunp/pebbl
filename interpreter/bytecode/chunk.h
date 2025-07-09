@@ -34,11 +34,12 @@ typedef struct {
   ValueArray constants;
 } Chunk;
 
+#define OPCODE(op) op,
 typedef enum {
-  OP_CONSTANT,
-  OP_CONSTANT_LONG,
-  OP_RETURN
+  DUMMY,                  // To shut up intelliSense about needing a identifier
+  #include "opcodes.inc"
 } OpCode;
+#undef OPCODE
 
 /**
  * @brief Initializes a Chunk struct
