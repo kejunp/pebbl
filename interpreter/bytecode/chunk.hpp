@@ -71,6 +71,6 @@ public:
    */
   template <IsOpcode... Bytes>
   inline void emit_many(Bytes... bytes, size_t line) {
-    (emit(bytes, line)...);
+    (emit(bytes, line), ...);
   }
 };
