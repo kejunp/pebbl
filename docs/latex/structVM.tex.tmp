@@ -10,14 +10,14 @@ Collaboration diagram for VM\+:
 \Hypertarget{structVM_a445823b327e6ad0c98101de60ae9a91d}\label{structVM_a445823b327e6ad0c98101de60ae9a91d} 
 \mbox{\hyperlink{structChunk}{Chunk}} \texorpdfstring{$\ast$}{*} {\bfseries chunk}
 \item 
-\Hypertarget{structVM_a7c8dc41a0f9b22b6fcf02ccaaf98727e}\label{structVM_a7c8dc41a0f9b22b6fcf02ccaaf98727e} 
-uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries ip}
+\Hypertarget{structVM_a7e997b9d5a6343b8b26e990d0dbc12eb}\label{structVM_a7e997b9d5a6343b8b26e990d0dbc12eb} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries instr\+\_\+ptr}
 \item 
 \Hypertarget{structVM_a80c90565f4a8e102a01d1ba7db90aa87}\label{structVM_a80c90565f4a8e102a01d1ba7db90aa87} 
 Value {\bfseries stack} \mbox{[}STACK\+\_\+\+MAX\mbox{]}
 \item 
-\Hypertarget{structVM_a7d2cc9def8838afa4a2a614263bacf99}\label{structVM_a7d2cc9def8838afa4a2a614263bacf99} 
-Value \texorpdfstring{$\ast$}{*} {\bfseries stack\+\_\+top}
+\Hypertarget{structVM_a016ccfc828421638c64336bfe5e7f233}\label{structVM_a016ccfc828421638c64336bfe5e7f233} 
+Value \texorpdfstring{$\ast$}{*} {\bfseries stack\+\_\+ptr}
 \end{DoxyCompactItemize}
 
 
