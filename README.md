@@ -25,8 +25,8 @@ for Linux
 ```zsh
 brew install cmake
 ```
-for MacOS  
-and download the installer from cmake.org for Windows
+for macOS  
+and download the installer from [cmake.org](https://cmake.org/) for Windows
 )  
 
 Then run the generated Makefile
