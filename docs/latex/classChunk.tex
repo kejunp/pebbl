@@ -1,0 +1,121 @@
+\doxysection{Chunk Class Reference}
+\hypertarget{classChunk}{}\label{classChunk}\index{Chunk@{Chunk}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}{add\+\_\+constant}} (Value constant)
+\begin{DoxyCompactList}\small\item\em Adds a constant to the constant pool of this (\doxylink{classChunk}{Chunk} class) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}{write\+\_\+constant}} (Value constant, size\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Writes the opcodes for a constant (does not just write to pool) \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classChunk_a2db627587cd44332ac57545627de1713}{get\+\_\+line}} (size\+\_\+t instruction) const
+\begin{DoxyCompactList}\small\item\em Finds the line of a given instruction offset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChunk_ac9f904f686583189e15d2bde149e56b6}{emit}} (uint8\+\_\+t byte, size\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Writes a opcode this (\doxylink{classChunk}{Chunk} class) \end{DoxyCompactList}\item 
+{\footnotesize template$<$Is\+Opcode... Bytes$>$ }\\void \mbox{\hyperlink{classChunk_ad88a54b82dcb53a09830b5498b4626f5}{emit\+\_\+many}} (Bytes... bytes, size\+\_\+t line)
+\begin{DoxyCompactList}\small\item\em Writes many opcodes to this (\doxylink{classChunk}{Chunk} class) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classChunk_afaae71340f63b6a29d5f8a49d93116d5}\label{classChunk_afaae71340f63b6a29d5f8a49d93116d5} 
+std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries code}
+\item 
+\Hypertarget{classChunk_a6ef3ac2a64667a4635b414daca1196af}\label{classChunk_a6ef3ac2a64667a4635b414daca1196af} 
+Value\+Array {\bfseries constants}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}\label{classChunk_a3f2cc4c1b0850244f93a8aae26766d22} 
+\index{Chunk@{Chunk}!add\_constant@{add\_constant}}
+\index{add\_constant@{add\_constant}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{add\_constant()}{add\_constant()}}
+{\footnotesize\ttfamily size\+\_\+t Chunk\+::add\+\_\+constant (\begin{DoxyParamCaption}\item[{Value}]{constant }\end{DoxyParamCaption})}
+
+
+
+Adds a constant to the constant pool of this (\doxylink{classChunk}{Chunk} class) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em constant} & The constant to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Index of the constant written 
+\end{DoxyReturn}
+\Hypertarget{classChunk_ac9f904f686583189e15d2bde149e56b6}\label{classChunk_ac9f904f686583189e15d2bde149e56b6} 
+\index{Chunk@{Chunk}!emit@{emit}}
+\index{emit@{emit}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{emit()}{emit()}}
+{\footnotesize\ttfamily void Chunk\+::emit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte,  }\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})}
+
+
+
+Writes a opcode this (\doxylink{classChunk}{Chunk} class) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & Opcode to write \\
+\hline
+{\em line} & The line to write the opcode to (for debugging) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classChunk_ad88a54b82dcb53a09830b5498b4626f5}\label{classChunk_ad88a54b82dcb53a09830b5498b4626f5} 
+\index{Chunk@{Chunk}!emit\_many@{emit\_many}}
+\index{emit\_many@{emit\_many}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{emit\_many()}{emit\_many()}}
+{\footnotesize\ttfamily template$<$Is\+Opcode... Bytes$>$ \\
+void Chunk\+::emit\+\_\+many (\begin{DoxyParamCaption}\item[{Bytes...}]{bytes,  }\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writes many opcodes to this (\doxylink{classChunk}{Chunk} class) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bytes} & Bytes to write to the code \\
+\hline
+{\em line} & Line to emit to \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classChunk_a2db627587cd44332ac57545627de1713}\label{classChunk_a2db627587cd44332ac57545627de1713} 
+\index{Chunk@{Chunk}!get\_line@{get\_line}}
+\index{get\_line@{get\_line}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{get\_line()}{get\_line()}}
+{\footnotesize\ttfamily size\+\_\+t Chunk\+::get\+\_\+line (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{instruction }\end{DoxyParamCaption}) const}
+
+
+
+Finds the line of a given instruction offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instruction} & The offset of the instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The line number 
+\end{DoxyReturn}
+\Hypertarget{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}\label{classChunk_adf7e7ba1595c105d018c0f9b86c98d68} 
+\index{Chunk@{Chunk}!write\_constant@{write\_constant}}
+\index{write\_constant@{write\_constant}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{write\_constant()}{write\_constant()}}
+{\footnotesize\ttfamily void Chunk\+::write\+\_\+constant (\begin{DoxyParamCaption}\item[{Value}]{constant,  }\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})}
+
+
+
+Writes the opcodes for a constant (does not just write to pool) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em constant} & Constant to write \\
+\hline
+{\em line} & The line in which the opcodes will be stored \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+interpreter/bytecode/chunk.\+hpp\item 
+interpreter/bytecode/chunk.\+cpp\end{DoxyCompactItemize}

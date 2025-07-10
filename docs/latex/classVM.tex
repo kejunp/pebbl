@@ -1,0 +1,99 @@
+\doxysection{VM Class Reference}
+\hypertarget{classVM}{}\label{classVM}\index{VM@{VM}}
+
+
+Virtual Machine for interpreting bytecode in a \doxylink{classChunk}{Chunk}.  
+
+
+
+
+{\ttfamily \#include $<$vm.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classVM_a1d317e9453b7f5ac6299fd5c46ced08b}{VM}} (\mbox{\hyperlink{classChunk}{Chunk}} \&chunk\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classVM}{VM} operating on the given \doxylink{classChunk}{Chunk}. \end{DoxyCompactList}\item 
+\Hypertarget{classVM_aceaf97e828b0c0a5a52e10047515e780}\label{classVM_aceaf97e828b0c0a5a52e10047515e780} 
+{\bfseries VM} (const \mbox{\hyperlink{classVM}{VM}} \&)=delete
+\item 
+\Hypertarget{classVM_a44586142358a21fc96e74ff071abcd52}\label{classVM_a44586142358a21fc96e74ff071abcd52} 
+\mbox{\hyperlink{classVM}{VM}} \& {\bfseries operator=} (const \mbox{\hyperlink{classVM}{VM}} \&)=delete
+\item 
+\Hypertarget{classVM_a98bd8e555fc104c231e834a3cd88e427}\label{classVM_a98bd8e555fc104c231e834a3cd88e427} 
+{\bfseries VM} (\mbox{\hyperlink{classVM}{VM}} \&\&)=default
+\item 
+\Hypertarget{classVM_a7bc6b8cafa6e45636cb523e47e189ac2}\label{classVM_a7bc6b8cafa6e45636cb523e47e189ac2} 
+\mbox{\hyperlink{classVM}{VM}} \& {\bfseries operator=} (\mbox{\hyperlink{classVM}{VM}} \&\&)=default
+\item 
+void \mbox{\hyperlink{classVM_ab11e352f441abd2fef16eb5f591ca0c5}{push}} (const Value \&value)
+\begin{DoxyCompactList}\small\item\em Pushes a value onto the \doxylink{classVM}{VM} stack. \end{DoxyCompactList}\item 
+Value \mbox{\hyperlink{classVM_af5f97f93ca522dd02dbaba309fd1706c}{pop}} ()
+\begin{DoxyCompactList}\small\item\em Pops a value from the \doxylink{classVM}{VM} stack. \end{DoxyCompactList}\item 
+\Hypertarget{classVM_a32a498c68a38c387e9b95c41a825d322}\label{classVM_a32a498c68a38c387e9b95c41a825d322} 
+std\+::size\+\_\+t {\bfseries stack\+\_\+size} () const
+\begin{DoxyCompactList}\small\item\em Gets the current stack size. \end{DoxyCompactList}\item 
+\Hypertarget{classVM_af3472c92119a55b30848bce95395fb85}\label{classVM_af3472c92119a55b30848bce95395fb85} 
+const \mbox{\hyperlink{classChunk}{Chunk}} \& {\bfseries get\+\_\+chunk} () const
+\begin{DoxyCompactList}\small\item\em Gets a const reference to the chunk. \end{DoxyCompactList}\item 
+\Hypertarget{classVM_a9dfe7c9aa89d1af4ca643e195ba3cd72}\label{classVM_a9dfe7c9aa89d1af4ca643e195ba3cd72} 
+std\+::vector$<$ uint8\+\_\+t $>$\+::const\+\_\+iterator {\bfseries get\+\_\+instr\+\_\+ptr} () const
+\begin{DoxyCompactList}\small\item\em Gets the instruction pointer (iterator). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Virtual Machine for interpreting bytecode in a \doxylink{classChunk}{Chunk}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classVM_a1d317e9453b7f5ac6299fd5c46ced08b}\label{classVM_a1d317e9453b7f5ac6299fd5c46ced08b} 
+\index{VM@{VM}!VM@{VM}}
+\index{VM@{VM}!VM@{VM}}
+\doxysubsubsection{\texorpdfstring{VM()}{VM()}}
+{\footnotesize\ttfamily VM\+::\+VM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classChunk}{Chunk}} \&}]{chunk\+\_\+ref }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{classVM}{VM} operating on the given \doxylink{classChunk}{Chunk}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chunk\+\_\+ref} & Reference to the bytecode chunk to execute. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classVM_af5f97f93ca522dd02dbaba309fd1706c}\label{classVM_af5f97f93ca522dd02dbaba309fd1706c} 
+\index{VM@{VM}!pop@{pop}}
+\index{pop@{pop}!VM@{VM}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily Value VM\+::pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Pops a value from the \doxylink{classVM}{VM} stack. 
+
+\begin{DoxyReturn}{Returns}
+The popped value. 
+\end{DoxyReturn}
+\Hypertarget{classVM_ab11e352f441abd2fef16eb5f591ca0c5}\label{classVM_ab11e352f441abd2fef16eb5f591ca0c5} 
+\index{VM@{VM}!push@{push}}
+\index{push@{push}!VM@{VM}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily void VM\+::push (\begin{DoxyParamCaption}\item[{const Value \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Pushes a value onto the \doxylink{classVM}{VM} stack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to push. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+interpreter/runtime/vm.\+hpp\item 
+interpreter/runtime/vm.\+cpp\end{DoxyCompactItemize}

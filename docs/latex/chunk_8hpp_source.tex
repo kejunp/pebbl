@@ -1,0 +1,57 @@
+\doxysection{chunk.\+hpp}
+\hypertarget{chunk_8hpp_source}{}\label{chunk_8hpp_source}\index{interpreter/bytecode/chunk.hpp@{interpreter/bytecode/chunk.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Copyright\ 2025\ Kejun\ Pan}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}value.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}opcodes.hpp"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classChunk}{Chunk}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ std::vector<size\_t>\ line\_run\_starts;}
+\DoxyCodeLine{00028\ \ \ std::vector<size\_t>\ line\_run\_lines;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ std::vector<uint8\_t>\ code;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ ValueArray\ constants;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{classChunk}{Chunk}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{classChunk}{\string~Chunk}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}{add\_constant}}(Value\ constant);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}{write\_constant}}(Value\ constant,\ \textcolor{keywordtype}{size\_t}\ line);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classChunk_a2db627587cd44332ac57545627de1713}{get\_line}}(\textcolor{keywordtype}{size\_t}\ instruction)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classChunk_ac9f904f686583189e15d2bde149e56b6}{emit}}(uint8\_t\ \textcolor{keywordtype}{byte},\ \textcolor{keywordtype}{size\_t}\ line);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{template}\ <\mbox{\hyperlink{conceptIsOpcode}{IsOpcode}}...\ Bytes>}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classChunk_ad88a54b82dcb53a09830b5498b4626f5}{emit\_many}}(Bytes...\ bytes,\ \textcolor{keywordtype}{size\_t}\ line)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ (\mbox{\hyperlink{classChunk_ac9f904f686583189e15d2bde149e56b6}{emit}}(bytes,\ line)...);}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ \};}
+
+\end{DoxyCode}

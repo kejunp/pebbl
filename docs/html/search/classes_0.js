@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chunk_0',['Chunk',['../structChunk.html',1,'']]]
+  ['chunk_0',['Chunk',['../classChunk.html',1,'']]]
 ];
