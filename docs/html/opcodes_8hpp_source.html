@@ -99,7 +99,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="conceptIsOpcode.html">   17</a></span><span class="keyword">concept </span><a class="code hl_concept" href="conceptIsOpcode.html">IsOpcode</a> = std::same_as&lt;T, uint8_t&gt;;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>std::string_view opcode_to_string(uint8_t opcode) {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">inline</span> std::string_view opcode_to_string(uint8_t opcode) {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">switch</span> (<span class="keyword">static_cast&lt;</span>Opcode<span class="keyword">&gt;</span>(opcode)) {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">case</span> Opcode::OP_CONSTANT:       <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_CONSTANT&quot;</span>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordflow">case</span> Opcode::OP_CONSTANT_LONG:  <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_CONSTANT_LONG&quot;</span>;</div>
