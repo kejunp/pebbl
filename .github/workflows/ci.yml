@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up CMake
-      uses: lukka/get-cmake@v3
+      uses: jwlawson/actions-setup-cmake@v1
     - name: Configure
       run: cmake -S . -B build
     - name: Build
