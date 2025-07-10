@@ -21,11 +21,11 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
 endif()
 
-add_executable(pebbl ${SOURCES})
-target_include_directories(pebbl PRIVATE ${HEADER_DIRS})
+add_executable(pebbli ${SOURCES})
+target_include_directories(pebbli PRIVATE ${HEADER_DIRS})
 
 if (MSVC)
-  target_compile_options(pebbl PRIVATE
+  target_compile_options(pebbli PRIVATE
     /W4
     /WX
     $<$<CONFIG:Release>:/O2>
@@ -33,7 +33,7 @@ if (MSVC)
     $<$<CONFIG:Debug>:/Zi>
   )
 else()
-  target_compile_options(pebbl PRIVATE
+  target_compile_options(pebbli PRIVATE
     -Wall
     -Wextra
     -Wpedantic

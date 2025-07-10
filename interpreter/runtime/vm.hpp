@@ -28,9 +28,9 @@ constexpr std::size_t STACK_MAX = 1024;
  * @brief Possible results from interpreting code.
  */
 enum class InterpretResult {
-    Ok,
-    CompileError,
-    RuntimeError
+    OK,
+    COMPILE_ERROR,
+    RUNTIME_ERROR
 };
 
 /**

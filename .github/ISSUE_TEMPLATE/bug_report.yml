@@ -1,0 +1,18 @@
+name: Bug report
+description: File a bug report to help improve PEBBL
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      placeholder: What went wrong?
+    validations:
+      required: true
+
+  - type: input
+    id: repro
+    attributes:
+      label: How to reproduce
+      placeholder: e.g. run `pebbli myfile.peb`
