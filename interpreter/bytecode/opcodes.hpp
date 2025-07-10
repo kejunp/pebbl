@@ -16,7 +16,7 @@ enum class Opcode : uint8_t {
 template <typename T>
 concept IsOpcode = std::same_as<T, uint8_t>;
 
-std::string_view opcode_to_string(uint8_t opcode) {
+inline std::string_view opcode_to_string(uint8_t opcode) {
     switch (static_cast<Opcode>(opcode)) {
         case Opcode::OP_CONSTANT:       return "OP_CONSTANT";
         case Opcode::OP_CONSTANT_LONG:  return "OP_CONSTANT_LONG";
