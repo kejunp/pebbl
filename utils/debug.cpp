@@ -19,8 +19,8 @@ std::size_t disassemble_instruction(const Chunk& chunk, std::size_t offset) {
     else
         std::cout << std::setw(4) << chunk.get_line(offset) << " ";
 
-    uint8_t opcode_byte = chunk.code[offset];
-    std::string_view mnemonic = opcode_to_string(opcode_byte);
+    auto opcode_byte = chunk.code[offset];
+    auto mnemonic = opcode_to_string(opcode_byte);
 
     std::cout << mnemonic;
 
@@ -38,7 +38,7 @@ std::size_t disassemble_instruction(const Chunk& chunk, std::size_t offset) {
         }
         case Opcode::OP_CONSTANT_LONG: {
             // Read 3 bytes big-endian
-            std::size_t idx =
+            auto idx =
                 (static_cast<std::size_t>(chunk.code[offset + 1]) << 16) |
                 (static_cast<std::size_t>(chunk.code[offset + 2]) << 8) |
                 static_cast<std::size_t>(chunk.code[offset + 3]);
