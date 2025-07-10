@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.20)
-project(pebbl C)
+project(pebbl)
 
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCES
-  utils/debug.c
-  interpreter/bytecode/chunk.c
-  interpreter/runtime/value.c
-  interpreter/runtime/vm.c
-  interpreter/main.c
+  utils/debug.cpp
+  interpreter/bytecode/chunk.cpp
+  interpreter/runtime/value.cpp
+  interpreter/runtime/vm.cpp
+  interpreter/main.cpp
 )
 
 set(HEADER_DIRS

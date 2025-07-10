@@ -16,9 +16,8 @@
 
 #pragma once
 
-#include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstddef>
+#include <cstdint>
+#include <iostream>
 
 #define DEBUG_TRACE_EXECUTION

@@ -14,20 +14,11 @@
    limitations under the License.
 */
 
-#include "vm.h"
+#pragma once
 
-VM vm;
+#include "common.hpp"
+#include <vector>
 
-void init_vm() {
-  vm.stack_ptr = vm.stack;
-}
+using Value = double;
 
-void free_vm() {}
-
-void push(Value value) {
-  *vm.stack_ptr++ = value;
-}
-
-Value pop() {
-  return *vm.stack_ptr--;
-}
+using ValueArray = std::vector<Value>;
