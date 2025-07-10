@@ -18,45 +18,42 @@
 \DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}chunk.hpp"{}}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cstddef>}}
 \DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <cstddef>}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{constexpr}\ std::size\_t\ STACK\_MAX\ =\ 1024;}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00030\ \textcolor{keyword}{enum\ class}\ InterpretResult\ \{}
-\DoxyCodeLine{00031\ \ \ \ \ OK,}
-\DoxyCodeLine{00032\ \ \ \ \ COMPILE\_ERROR,}
-\DoxyCodeLine{00033\ \ \ \ \ RUNTIME\_ERROR}
-\DoxyCodeLine{00034\ \};}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVM}{VM}}\ \{}
-\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVM}{VM}}(\mbox{\hyperlink{classChunk}{Chunk}}\&\ chunk\_ref);}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Rule\ of\ five,\ as\ copy\ is\ not\ allowed\ (references\ can't\ be\ rebound).}}
-\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classVM}{VM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVM}{VM}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classVM}{VM}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVM}{VM}}\&)\ =\ \textcolor{keyword}{delete};}
-\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classVM}{VM}}(\mbox{\hyperlink{classVM}{VM}}\&\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classVM}{VM}}\&\ operator=(\mbox{\hyperlink{classVM}{VM}}\&\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classVM}{\string~VM}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVM_ab11e352f441abd2fef16eb5f591ca0c5}{push}}(\textcolor{keyword}{const}\ Value\&\ value);}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00064\ \ \ \ \ Value\ \mbox{\hyperlink{classVM_af5f97f93ca522dd02dbaba309fd1706c}{pop}}();}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00069\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classVM_a32a498c68a38c387e9b95c41a825d322}{stack\_size}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classChunk}{Chunk}}\&\ \mbox{\hyperlink{classVM_af3472c92119a55b30848bce95395fb85}{get\_chunk}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00079\ \ \ \ \ std::vector<uint8\_t>::const\_iterator\ \mbox{\hyperlink{classVM_a9dfe7c9aa89d1af4ca643e195ba3cd72}{get\_instr\_ptr}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classChunk}{Chunk}}\&\ chunk;}
-\DoxyCodeLine{00083\ \ \ \ \ std::vector<uint8\_t>::const\_iterator\ instr\_ptr;}
-\DoxyCodeLine{00084\ \ \ \ \ std::array<Value,\ STACK\_MAX>\ stack;}
-\DoxyCodeLine{00085\ \ \ \ \ std::array<Value,\ STACK\_MAX>::iterator\ stack\_ptr;}
-\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}chunk.hpp"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{constexpr}\ std::size\_t\ STACK\_MAX\ =\ 1024;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{enum\ class}\ InterpretResult\ \{\ OK,\ COMPILE\_ERROR,\ RUNTIME\_ERROR\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVM}{VM}}\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classVM}{VM}}(\mbox{\hyperlink{classChunk}{Chunk}}\&\ chunk\_ref);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//\ Rule\ of\ five,\ as\ copy\ is\ not\ allowed\ (references\ can't\ be\ rebound).}}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{classVM}{VM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVM}{VM}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{classVM}{VM}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classVM}{VM}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{classVM}{VM}}(\mbox{\hyperlink{classVM}{VM}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{classVM}{VM}}\&\ operator=(\mbox{\hyperlink{classVM}{VM}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{classVM}{\string~VM}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVM_ab11e352f441abd2fef16eb5f591ca0c5}{push}}(\textcolor{keyword}{const}\ Value\&\ value);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ Value\ \mbox{\hyperlink{classVM_af5f97f93ca522dd02dbaba309fd1706c}{pop}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ std::size\_t\ \mbox{\hyperlink{classVM_a32a498c68a38c387e9b95c41a825d322}{stack\_size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classChunk}{Chunk}}\&\ \mbox{\hyperlink{classVM_af3472c92119a55b30848bce95395fb85}{get\_chunk}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ std::vector<uint8\_t>::const\_iterator\ \mbox{\hyperlink{classVM_a9dfe7c9aa89d1af4ca643e195ba3cd72}{get\_instr\_ptr}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{classChunk}{Chunk}}\&\ chunk;}
+\DoxyCodeLine{00080\ \ \ std::vector<uint8\_t>::const\_iterator\ instr\_ptr;}
+\DoxyCodeLine{00081\ \ \ std::array<Value,\ STACK\_MAX>\ stack;}
+\DoxyCodeLine{00082\ \ \ std::array<Value,\ STACK\_MAX>::iterator\ stack\_ptr;}
+\DoxyCodeLine{00083\ \};}
 
 \end{DoxyCode}

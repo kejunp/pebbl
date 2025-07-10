@@ -2,7 +2,7 @@
 \hypertarget{opcodes_8hpp_source}{}\label{opcodes_8hpp_source}\index{interpreter/bytecode/opcodes.hpp@{interpreter/bytecode/opcodes.hpp}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ \ once}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}common.hpp"{}}}
 \DoxyCodeLine{00004\ }
@@ -21,17 +21,26 @@
 \DoxyCodeLine{00017\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptIsOpcode}{IsOpcode}}\ =\ std::same\_as<T,\ uint8\_t>;}
 \DoxyCodeLine{00018\ }
 \DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ std::string\_view\ opcode\_to\_string(uint8\_t\ opcode)\ \{}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keyword}{static\_cast<}Opcode\textcolor{keyword}{>}(opcode))\ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_CONSTANT:\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT"{}};}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_CONSTANT\_LONG:\ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT\_LONG"{}};}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_NEGATE:\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_NEGATE"{}};}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_ADD:\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_ADD"{}};}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_SUBTRACT:\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_SUBTRACT"{}};}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_MULTIPLY:\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_MULTIPLY"{}};}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_DIVIDE:\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_DIVIDE"{}};}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_RETURN:\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_RETURN"{}};}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}UNKNOWN"{}};}
-\DoxyCodeLine{00030\ \ \ \ \ \}}
-\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keyword}{static\_cast<}Opcode\textcolor{keyword}{>}(opcode))\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_CONSTANT:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_CONSTANT\_LONG:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT\_LONG"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_NEGATE:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_NEGATE"{}};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_ADD:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_ADD"{}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_SUBTRACT:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_SUBTRACT"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_MULTIPLY:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_MULTIPLY"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_DIVIDE:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_DIVIDE"{}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_RETURN:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_RETURN"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}UNKNOWN"{}};}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ \}}
 
 \end{DoxyCode}

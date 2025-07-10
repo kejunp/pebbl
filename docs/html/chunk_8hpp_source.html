@@ -99,19 +99,19 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;value.hpp&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;opcodes.hpp&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classChunk.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="classChunk.html">Chunk</a> {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;value.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classChunk.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="classChunk.html">Chunk</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  std::vector&lt;size_t&gt; line_run_starts;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  std::vector&lt;size_t&gt; line_run_lines;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  std::vector&lt;uint8_t&gt; code;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  ValueArray constants;</div>
@@ -136,12 +136,12 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
 </div>
-<div class="ttc" id="aclassChunk_html"><div class="ttname"><a href="classChunk.html">Chunk</a></div><div class="ttdef"><b>Definition</b> chunk.hpp:24</div></div>
-<div class="ttc" id="aclassChunk_html_a2db627587cd44332ac57545627de1713"><div class="ttname"><a href="classChunk.html#a2db627587cd44332ac57545627de1713">Chunk::get_line</a></div><div class="ttdeci">size_t get_line(size_t instruction) const</div><div class="ttdoc">Finds the line of a given instruction offset.</div><div class="ttdef"><b>Definition</b> chunk.cpp:40</div></div>
-<div class="ttc" id="aclassChunk_html_a3f2cc4c1b0850244f93a8aae26766d22"><div class="ttname"><a href="classChunk.html#a3f2cc4c1b0850244f93a8aae26766d22">Chunk::add_constant</a></div><div class="ttdeci">size_t add_constant(Value constant)</div><div class="ttdoc">Adds a constant to the constant pool of this (Chunk class)</div><div class="ttdef"><b>Definition</b> chunk.cpp:20</div></div>
-<div class="ttc" id="aclassChunk_html_ac9f904f686583189e15d2bde149e56b6"><div class="ttname"><a href="classChunk.html#ac9f904f686583189e15d2bde149e56b6">Chunk::emit</a></div><div class="ttdeci">void emit(uint8_t byte, size_t line)</div><div class="ttdoc">Writes a opcode this (Chunk class)</div><div class="ttdef"><b>Definition</b> chunk.cpp:50</div></div>
+<div class="ttc" id="aclassChunk_html"><div class="ttname"><a href="classChunk.html">Chunk</a></div><div class="ttdef"><b>Definition</b> chunk.hpp:25</div></div>
+<div class="ttc" id="aclassChunk_html_a2db627587cd44332ac57545627de1713"><div class="ttname"><a href="classChunk.html#a2db627587cd44332ac57545627de1713">Chunk::get_line</a></div><div class="ttdeci">size_t get_line(size_t instruction) const</div><div class="ttdoc">Finds the line of a given instruction offset.</div><div class="ttdef"><b>Definition</b> chunk.cpp:41</div></div>
+<div class="ttc" id="aclassChunk_html_a3f2cc4c1b0850244f93a8aae26766d22"><div class="ttname"><a href="classChunk.html#a3f2cc4c1b0850244f93a8aae26766d22">Chunk::add_constant</a></div><div class="ttdeci">size_t add_constant(Value constant)</div><div class="ttdoc">Adds a constant to the constant pool of this (Chunk class)</div><div class="ttdef"><b>Definition</b> chunk.cpp:21</div></div>
+<div class="ttc" id="aclassChunk_html_ac9f904f686583189e15d2bde149e56b6"><div class="ttname"><a href="classChunk.html#ac9f904f686583189e15d2bde149e56b6">Chunk::emit</a></div><div class="ttdeci">void emit(uint8_t byte, size_t line)</div><div class="ttdoc">Writes a opcode this (Chunk class)</div><div class="ttdef"><b>Definition</b> chunk.cpp:51</div></div>
 <div class="ttc" id="aclassChunk_html_ad88a54b82dcb53a09830b5498b4626f5"><div class="ttname"><a href="classChunk.html#ad88a54b82dcb53a09830b5498b4626f5">Chunk::emit_many</a></div><div class="ttdeci">void emit_many(Bytes... bytes, size_t line)</div><div class="ttdoc">Writes many opcodes to this (Chunk class)</div><div class="ttdef"><b>Definition</b> chunk.hpp:73</div></div>
-<div class="ttc" id="aclassChunk_html_adf7e7ba1595c105d018c0f9b86c98d68"><div class="ttname"><a href="classChunk.html#adf7e7ba1595c105d018c0f9b86c98d68">Chunk::write_constant</a></div><div class="ttdeci">void write_constant(Value constant, size_t line)</div><div class="ttdoc">Writes the opcodes for a constant (does not just write to pool)</div><div class="ttdef"><b>Definition</b> chunk.cpp:25</div></div>
+<div class="ttc" id="aclassChunk_html_adf7e7ba1595c105d018c0f9b86c98d68"><div class="ttname"><a href="classChunk.html#adf7e7ba1595c105d018c0f9b86c98d68">Chunk::write_constant</a></div><div class="ttdeci">void write_constant(Value constant, size_t line)</div><div class="ttdoc">Writes the opcodes for a constant (does not just write to pool)</div><div class="ttdef"><b>Definition</b> chunk.cpp:26</div></div>
 <div class="ttc" id="aconceptIsOpcode_html"><div class="ttname"><a href="conceptIsOpcode.html">IsOpcode</a></div><div class="ttdef"><b>Definition</b> opcodes.hpp:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

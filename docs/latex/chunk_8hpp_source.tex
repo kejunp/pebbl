@@ -20,18 +20,18 @@
 \DoxyCodeLine{00016\ }
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}value.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <concepts>}}
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00021\ }
 \DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}opcodes.hpp"{}}}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classChunk}{Chunk}}\ \{}
-\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}value.hpp"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classChunk}{Chunk}}\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00027\ \ \ std::vector<size\_t>\ line\_run\_starts;}
 \DoxyCodeLine{00028\ \ \ std::vector<size\_t>\ line\_run\_lines;}
 \DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00031\ \ \ std::vector<uint8\_t>\ code;}
 \DoxyCodeLine{00032\ }
 \DoxyCodeLine{00033\ \ \ ValueArray\ constants;}
