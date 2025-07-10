@@ -119,27 +119,28 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>} <a class="code hl_struct" href="structChunk.html">Chunk</a>;</div>
 </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  OP_CONSTANT,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  OP_CONSTANT_LONG,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  OP_RETURN</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define OPCODE(op) op,</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  DUMMY,                  <span class="comment">// To shut up intelliSense about needing a identifier</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">  #include &quot;opcodes.inc&quot;</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} OpCode;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">void</span> init_chunk(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">void</span> free_chunk(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">void</span> write_to_chunk(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, uint8_t <span class="keywordtype">byte</span>, <span class="keywordtype">size_t</span> line);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keywordtype">size_t</span> add_constant(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, Value constant);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> write_constant(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, Value value, <span class="keywordtype">size_t</span> line);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keywordtype">size_t</span> get_line(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, <span class="keywordtype">size_t</span> instruction);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#undef OPCODE</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> init_chunk(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">void</span> free_chunk(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keywordtype">void</span> emit(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, uint8_t <span class="keywordtype">byte</span>, <span class="keywordtype">size_t</span> line);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keywordtype">size_t</span> add_constant(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, Value constant);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keywordtype">void</span> write_constant(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, Value constant, <span class="keywordtype">size_t</span> line);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keywordtype">size_t</span> get_line(<a class="code hl_struct" href="structChunk.html">Chunk</a>* chunk, <span class="keywordtype">size_t</span> instruction);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructChunk_html"><div class="ttname"><a href="structChunk.html">Chunk</a></div><div class="ttdef"><b>Definition</b> chunk.h:25</div></div>
 <div class="ttc" id="astructChunk_html_a284820c0d9d9341781f0943c4cc51871"><div class="ttname"><a href="structChunk.html#a284820c0d9d9341781f0943c4cc51871">Chunk::line_run_starts</a></div><div class="ttdeci">size_t * line_run_starts</div><div class="ttdoc">Offsets in code[] where line runs start (array indices)</div><div class="ttdef"><b>Definition</b> chunk.h:30</div></div>
 <div class="ttc" id="astructChunk_html_a6ed4037f0388652284d6a4561118ef6b"><div class="ttname"><a href="structChunk.html#a6ed4037f0388652284d6a4561118ef6b">Chunk::line_run_lines</a></div><div class="ttdeci">size_t * line_run_lines</div><div class="ttdoc">Source line numbers for each run.</div><div class="ttdef"><b>Definition</b> chunk.h:31</div></div>

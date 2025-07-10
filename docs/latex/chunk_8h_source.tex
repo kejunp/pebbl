@@ -38,26 +38,27 @@
 \DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{structValueArray}{ValueArray}}\ constants;}
 \DoxyCodeLine{00035\ \}\ \mbox{\hyperlink{structChunk}{Chunk}};}
 \DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
-\DoxyCodeLine{00038\ \ \ OP\_CONSTANT,}
-\DoxyCodeLine{00039\ \ \ OP\_CONSTANT\_LONG,}
-\DoxyCodeLine{00040\ \ \ OP\_RETURN}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ OPCODE(op)\ op,}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00039\ \ \ DUMMY,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ shut\ up\ intelliSense\ about\ needing\ a\ identifier}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \#include\ "{}opcodes.inc"{}}}
 \DoxyCodeLine{00041\ \}\ OpCode;}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ init\_chunk(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk);}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ free\_chunk(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk);}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ write\_to\_chunk(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ uint8\_t\ \textcolor{keywordtype}{byte},\ \textcolor{keywordtype}{size\_t}\ line);}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00069\ \textcolor{keywordtype}{size\_t}\ add\_constant(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ Value\ constant);}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ write\_constant(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ Value\ value,\ \textcolor{keywordtype}{size\_t}\ line);}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00085\ \textcolor{keywordtype}{size\_t}\ get\_line(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ \textcolor{keywordtype}{size\_t}\ instruction);}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
-\DoxyCodeLine{00088\ \}}
-\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#undef\ OPCODE}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ init\_chunk(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ free\_chunk(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{void}\ emit(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ uint8\_t\ \textcolor{keywordtype}{byte},\ \textcolor{keywordtype}{size\_t}\ line);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{size\_t}\ add\_constant(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ Value\ constant);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ write\_constant(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ Value\ constant,\ \textcolor{keywordtype}{size\_t}\ line);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{size\_t}\ get\_line(\mbox{\hyperlink{structChunk}{Chunk}}*\ chunk,\ \textcolor{keywordtype}{size\_t}\ instruction);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}
