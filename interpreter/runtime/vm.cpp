@@ -14,30 +14,27 @@
 
 #include "vm.hpp"
 
-VM::VM(Chunk& chunk_ref)
-    : chunk(chunk_ref),
-      instr_ptr(chunk_ref.code.begin()),
-      stack_ptr(stack.begin())
-{}
+VM::VM(Chunk& chunk_ref) : chunk(chunk_ref), instr_ptr(chunk_ref.code.begin()), stack_ptr(stack.begin()) {
+}
 
 void VM::push(const Value& value) {
-    *stack_ptr = value;
-    ++stack_ptr;
+  *stack_ptr = value;
+  ++stack_ptr;
 }
 
 Value VM::pop() {
-    --stack_ptr;
-    return *stack_ptr;
+  --stack_ptr;
+  return *stack_ptr;
 }
 
 std::size_t VM::stack_size() const {
-    return static_cast<std::size_t>(stack_ptr - stack.begin());
+  return static_cast<std::size_t>(stack_ptr - stack.begin());
 }
 
 const Chunk& VM::get_chunk() const {
-    return chunk;
+  return chunk;
 }
 
 std::vector<uint8_t>::const_iterator VM::get_instr_ptr() const {
-    return instr_ptr;
+  return instr_ptr;
 }

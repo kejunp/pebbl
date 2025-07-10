@@ -1,0 +1,32 @@
+name: Clang Format Check
+
+on:
+  pull_request:
+    paths:
+      - '**.cpp'
+      - '**.cc'
+      - '**.c'
+      - '**.h'
+      - '**.hpp'
+      - '.clang-format'
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install clang-format
+        run: sudo apt-get install -y clang-format
+
+      - name: Check formatting
+        run: |
+          UNFORMATTED=$(find . \( -name '*.cpp' -o -name '*.cc' -o -name '*.h' -o -name '*.hpp' \) \
+            -exec clang-format --dry-run --Werror {} +)
+
+          if [ $? -ne 0 ]; then
+            echo "::error ::Code not formatted properly. Please run clang-format."
+            exit 1
+          fi

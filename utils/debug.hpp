@@ -1,7 +1,8 @@
 #pragma once
 
-#include "chunk.hpp"
 #include <string_view>
+
+#include "chunk.hpp"
 
 /**
  * @brief Disassembles opcodes and prints out their mnemonics.

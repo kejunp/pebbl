@@ -16,8 +16,9 @@
 
 #pragma once
 
-#include "common.hpp"
 #include <vector>
+
+#include "common.hpp"
 
 using Value = double;
 

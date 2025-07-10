@@ -16,18 +16,18 @@
 
 #pragma once
 
-#include "value.hpp"
-#include <vector>
 #include <concepts>
+#include <vector>
+
 #include "opcodes.hpp"
+#include "value.hpp"
 
 class Chunk {
-private:
-
+  private:
   std::vector<size_t> line_run_starts;
   std::vector<size_t> line_run_lines;
 
-public:
+  public:
   std::vector<uint8_t> code;
 
   ValueArray constants;
