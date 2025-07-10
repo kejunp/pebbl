@@ -27,9 +27,9 @@ extern "C" {
 
 typedef struct {
   Chunk* chunk;
-  uint8_t* ip;
+  uint8_t* instr_ptr;
   Value stack[STACK_MAX];
-  Value* stack_top;
+  Value* stack_ptr;
 } VM;
 
 typedef enum {
