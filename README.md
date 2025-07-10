@@ -1,4 +1,5 @@
 # THE PEBBLE PROGRAMMING LANGUAGE
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE.txt)
 
 PEBBL is a minimal hobby programming language
 
