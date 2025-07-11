@@ -1,4 +1,4 @@
-name: Doxygen Docs
+name: Generate Docs
 
 on:
   push:
