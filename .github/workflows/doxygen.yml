@@ -27,15 +27,15 @@ jobs:
 
       - name: Copy generated docs to target location
         run: |
-          rm -rf ../gh-pages/docs/pebbl
-          mkdir -p ../gh-pages/docs/pebbl
-          cp -r docs/html/* ../gh-pages/docs/pebbl/
+          rm -rf ../gh-pages/pebbl/docs
+          mkdir -p ../gh-pages/pebbl/docs
+          cp -r docs/html/* ../gh-pages/pebbl/docs
 
       - name: Commit and push docs
         run: |
           cd ../gh-pages
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/pebbl
+          git add pebbl/docs
           git diff --cached --quiet || git commit -m "Update pebbl Doxygen docs"
           git push
