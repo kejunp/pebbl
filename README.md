@@ -1,5 +1,8 @@
 # THE PEBBLE PROGRAMMING LANGUAGE
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE.txt)
+[![Tests](https://github.com/kejunp/pebbl/actions/workflows/tests.yml/badge.svg)](https://github.com/kejunp/pebbl/actions/workflows/tests.yml)
+[![Format Check](https://github.com/kejunp/pebbl/actions/workflows/clang-format.yml/badge.svg)](https://github.com/kejunp/pebbl/actions/workflows/clang-format.yml)
+[![Generate Docs](https://github.com/kejunp/pebbl/actions/workflows/doxygen.yml/badge.svg)](https://github.com/kejunp/pebbl/actions/workflows/doxygen.yml)
 
 PEBBL is a minimal hobby programming language
 
