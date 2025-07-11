@@ -1,11 +1,18 @@
 name: Clang Format Check
 
 on:
+  push:
+    paths:
+      - '**.cpp'
+      - '**.cc'
+      - '**.h'
+      - '**.hpp'
+      - '.clang-format'
+
   pull_request:
     paths:
       - '**.cpp'
       - '**.cc'
-      - '**.c'
       - '**.h'
       - '**.hpp'
       - '.clang-format'
