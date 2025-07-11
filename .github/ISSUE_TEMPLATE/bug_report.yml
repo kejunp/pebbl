@@ -2,6 +2,7 @@ name: Bug report (new)
 description: File a bug report to help improve PEBBL
 title: "[Bug] "
 labels: [bug]
+assignees: []
 body:
   - type: textarea
     id: description
@@ -16,3 +17,5 @@ body:
     attributes:
       label: How to reproduce
       placeholder: e.g. run `pebbli myfile.peb`
+    validations:
+      required: true
