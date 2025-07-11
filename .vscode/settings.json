@@ -64,7 +64,13 @@
     "variant": "cpp",
     "cstring": "cpp",
     "cinttypes": "cpp",
-    "memutils.h": "c"
+    "*.h": "c",
+    "memutils.h": "c",
+    "charconv": "cpp",
+    "chrono": "cpp",
+    "ratio": "cpp",
+    "format": "cpp",
+    "span": "cpp"
   },
   "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
