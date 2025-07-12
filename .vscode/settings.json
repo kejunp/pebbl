@@ -65,7 +65,7 @@
     "cstring": "cpp",
     "cinttypes": "cpp",
     "*.h": "c",
-    "memutils.h": "c",
+    "*.hpp": "cpp",
     "charconv": "cpp",
     "chrono": "cpp",
     "ratio": "cpp",
