@@ -16,8 +16,6 @@
 
 #include "chunk.hpp"
 
-#include <stdexcept>
-
 size_t Chunk::add_constant(Value constant) {
   constants.push_back(constant);
   return constants.size() - 1;
