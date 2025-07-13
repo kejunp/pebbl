@@ -75,7 +75,7 @@ class VM {
    */
   std::vector<uint8_t>::const_iterator get_instr_ptr() const;
 
-private:
+  private:
   Chunk& chunk;
   std::vector<uint8_t>::const_iterator instr_ptr;
   std::array<Value, STACK_MAX> stack;
