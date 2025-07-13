@@ -1,4 +1,5 @@
 BasedOnStyle: Google
+AccessModifierOffset: -2
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 BreakConstructorInitializers: BeforeComma
 ConstructorInitializerIndentWidth: 4
@@ -8,7 +9,6 @@ AlignAfterOpenBracket: DontAlign
 BinPackParameters: false
 BinPackArguments: false
 AllowAllParametersOfDeclarationOnNextLine: true
-AccessModifierOffset: 0
 PenaltyReturnTypeOnItsOwnLine: 200
 PenaltyIndentedWhitespace: 1
 AllowShortFunctionsOnASingleLine: None

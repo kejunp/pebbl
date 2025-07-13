@@ -34,7 +34,7 @@ enum class InterpretResult { OK, COMPILE_ERROR, RUNTIME_ERROR };
  * @brief Virtual Machine for interpreting bytecode in a Chunk.
  */
 class VM {
-  public:
+public:
   /**
    * @brief Constructs a VM operating on the given Chunk.
    * @param chunk_ref Reference to the bytecode chunk to execute.
@@ -75,7 +75,7 @@ class VM {
    */
   std::vector<uint8_t>::const_iterator get_instr_ptr() const;
 
-  private:
+private:
   Chunk& chunk;
   std::vector<uint8_t>::const_iterator instr_ptr;
   std::array<Value, STACK_MAX> stack;

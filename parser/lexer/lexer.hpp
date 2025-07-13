@@ -4,12 +4,12 @@
 #include "tokens.hpp"
 
 class Lexer {
-  public:
+public:
   explicit Lexer(std::string&& input) noexcept;
 
   Token next_token();
 
-  private:
+private:
   std::string input_;
   std::size_t position_;
   std::size_t read_position_;
