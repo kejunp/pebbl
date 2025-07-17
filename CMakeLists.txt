@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SOURCES
   utils/debug.cpp
   interpreter/bytecode/chunk.cpp
-  interpreter/runtime/vm.cpp
   interpreter/main.cpp
 )
 

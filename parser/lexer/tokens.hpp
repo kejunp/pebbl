@@ -1,53 +1,54 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
 
 enum class TokenType {
   // Operators
-  TOKEN_LPAREN,
-  TOKEN_RPAREN,
-  TOKEN_LBRACE,
-  TOKEN_RBRACE,
-  TOKEN_COMMA,
-  TOKEN_DOT,
-  TOKEN_SEMICOLON,
-  TOKEN_PLUS,
-  TOKEN_MINUS,
-  TOKEN_ASTERISK,
-  TOKEN_SLASH,
-  TOKEN_BANG,
-  TOKEN_NOT_EQUAL,
-  TOKEN_ASSIGN,
-  TOKEN_EQUAL,
-  TOKEN_LESS,
-  TOKEN_GREATER,
-  TOKEN_LESS_EQUAL,
-  TOKEN_GREATER_EQUAL,
+  LPAREN,
+  RPAREN,
+  LBRACE,
+  RBRACE,
+  COMMA,
+  DOT,
+  SEMICOLON,
+  PLUS,
+  MINUS,
+  ASTERISK,
+  SLASH,
+  BANG,
+  NOT_EQUAL,
+  ASSIGN,
+  EQUAL,
+  LESS,
+  GREATER,
+  LESS_EQUAL,
+  GREATER_EQUAL,
 
   // Literals
-  TOKEN_IDENTIFIER,
-  TOKEN_STRING,
-  TOKEN_NUMBER,
+  IDENTIFIER,
+  STRING,
+  NUMBER,
 
   // Keywords
-  TOKEN_AND,
-  TOKEN_OR,
-  TOKEN_IF,
-  TOKEN_ELSE,
-  TOKEN_TRUE,
-  TOKEN_FALSE,
-  TOKEN_FOR,
-  TOKEN_WHILE,
-  TOKEN_FUNC,
-  TOKEN_RETURN,
-  TOKEN_LET,
-  TOKEN_PRINT,
-  TOKEN_CLASS,
-  TOKEN_SUPER,
-  TOKEN_THIS,
-  TOKEN_NIL,
-  TOKEN_ERROR,
-  TOKEN_EOF
+  AND,
+  OR,
+  IF,
+  ELSE,
+  TRUE,
+  FALSE,
+  FOR,
+  WHILE,
+  FUNC,
+  RETURN,
+  LET,
+  INHERITS,
+  CLASS,
+  SUPER,
+  THIS,
+  NIL,
+  ERROR,
+  EOF_TYPE
 };
 
 struct Token {
@@ -55,3 +56,28 @@ struct Token {
   std::string lexeme;  ///< The literal (The actual source code that translates to the token)
   std::size_t line;    ///< The line that the token was on
 };
+
+inline TokenType lookup_identifier(const std::string& name) {
+  static const std::unordered_map<std::string, TokenType> keywords = {
+      {"and", TokenType::AND},
+      {"or", TokenType::OR},
+      {"if", TokenType::IF},
+      {"else", TokenType::ELSE},
+      {"true", TokenType::TRUE},
+      {"false", TokenType::FALSE},
+      {"for", TokenType::FOR},
+      {"while", TokenType::WHILE},
+      {"func", TokenType::FUNC},
+      {"return", TokenType::RETURN},
+      {"let", TokenType::LET},
+      {"inherits", TokenType::INHERITS},
+      {"class", TokenType::CLASS},
+      {"super", TokenType::SUPER},
+      {"this", TokenType::THIS},
+      {"nil", TokenType::NIL}};
+  if (auto it = keywords.find(name); it != keywords.end()) {
+    return it->second;
+  } else {
+    return TokenType::IDENTIFIER;
+  }
+}

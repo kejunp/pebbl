@@ -12,12 +12,17 @@ public:
    */
   Token next_token();
 
+  inline Lexer& operator>>(Token& token) {
+    token = next_token();
+    return *this;
+  }
+
 private:
   std::string input_;          ///< Source code
   std::size_t position_;       ///< Index that the lexer is at currently in the source code
   std::size_t read_position_;  ///< The next position the lexer is going to read
   std::size_t line_;           ///< The current line of the source code
-  char current_;               ///< The current character (input_[position_])
+  char current_char_;          ///< The current character (input_[position_])
 
   /**
    * @brief Consumes a character and goes to the next one
@@ -31,12 +36,14 @@ private:
   char peek_char() const;
 
   /**
-   * @brief Consumes the characters until the section isn't a valid identifier, then returns the identifier
+   * @brief Consumes the characters until the section isn't a valid identifier,
+   * then returns the identifier
    */
   std::string read_identifier();
 
   /**
-   * @brief Consumes the characters until the section isn't a valid number, then returns the number
+   * @brief Consumes the characters until the section isn't a valid number, then
+   * returns the number
    */
   std::string read_number();
 
