@@ -150,15 +150,15 @@ void Lexer::consume_whitespace() {
   while (true) {
     switch (peek_char()) {
       case '\n':
-      ++line_;
-    [[fallthrough]]
-    case ' ':
-    case '\t':
-    case '\r':
-      consume_char();
-      break;
-    default:
-      return;
+        ++line_;
+      [[fallthrough]]
+      case ' ':
+      case '\t':
+      case '\r':
+        consume_char();
+        break;
+      default:
+        return;
+    }
   }
-}
 }

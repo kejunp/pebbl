@@ -24,7 +24,7 @@ add_executable(pebbli ${SOURCES})
 target_include_directories(pebbli PRIVATE ${HEADER_DIRS})
 
 if (MSVC)
-  target_compile_options(pebbli PRIVATE
+  target_compile_options(pebbli PRIVATE  
     /W4
     /WX
     $<$<CONFIG:Release>:/O2>
