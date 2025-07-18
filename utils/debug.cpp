@@ -39,9 +39,9 @@ std::size_t disassemble_instruction(const Chunk& chunk, std::size_t offset) {
     }
     case Opcode::OP_CONSTANT_LONG: {
       // Read 3 bytes big-endian
-      auto idx =
-          (static_cast<std::size_t>(chunk.code[offset + 1]) << 16) |
-          (static_cast<std::size_t>(chunk.code[offset + 2]) << 8) | static_cast<std::size_t>(chunk.code[offset + 3]);
+      auto idx = (static_cast<std::size_t>(chunk.code[offset + 1]) << 16) |
+                 (static_cast<std::size_t>(chunk.code[offset + 2]) << 8) |
+                 static_cast<std::size_t>(chunk.code[offset + 3]);
       std::cout << " " << std::setw(4) << idx << " ";
       std::cout << "[";
       if (idx < chunk.constants.size())
