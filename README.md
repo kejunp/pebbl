@@ -8,43 +8,37 @@ PEBBL is a minimal hobby programming language
 
 ## HOW TO COMPILE
 
-To compile, first create a build directory, like so:
+To compile, use the cmake CLI tool (you need to have **CMake** and **Ninja** installed on your machine, see instructions below):
 ```sh
-mkdir -p build && cd build
+mkdir -p build
+cmake -S . -B build -G "Ninja"
+cmake --build build
 ```
-Next, use the cmake command 
+The executable will be pebbli in the build directory
 
-```sh
-cmake ..
-```
-
-(If you haven't installed cmake,  
-use  
-```bash
-sudo apt update
-sudo apt install cmake
-```
-for Linux  
-```zsh
-brew install cmake
-```
-for macOS  
-and download the installer from [cmake.org](https://cmake.org/) for Windows
-)  
-
-Then run the generated Makefile
-
-```sh
-make
-```
-
+## PREREQUISITES
 > [!NOTE]
-> If cmake outputs the ninja build system,  
-> you need to use
->```sh
-> ninja
->```
-> Instead of
->```sh
-> make
->```
+> You need to install Ninja and CMake on your system if you haven't already:  
+> **For Windows**:  
+> 1: go to [cmake.org](https://cmake.org) and download the installer.  
+> 2: go to the [official Ninja releases page](https://github.com/ninja-build/ninja/releases) and download ```ninja-win.zip```  
+> 3: Extract it somewhere (e.g., ```C:\Tools\ninja```)
+> 4: Add that directory to your **PATH**:
+> - Press ```Win + R```, type ```sysdm.cpl```, go to **Advanced → Environment Variables**
+> - Edit ```Path```, add: ```C:\Tools\ninja``` (or wherever you extracted the .zip file)
+> 5: Test it:
+> ```ps1
+> ninja --version
+> ```
+>  
+> **For macOS**:
+> ```zsh
+> brew install ninja
+> ninja --version
+> ```
+>  
+> **For Ubuntu/Debian based Linux**:
+> ```bash
+> sudo apt install ninja-build
+> ninja --version
+> ```
