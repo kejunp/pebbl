@@ -1,0 +1,186 @@
+\doxysection{Lexer Class Reference}
+\hypertarget{classLexer}{}\label{classLexer}\index{Lexer@{Lexer}}
+
+
+\doxylink{structToken}{Token} stream implementation.  
+
+
+
+
+{\ttfamily \#include $<$lexer.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLexer_ab17bc9afbdba18af789b8a8da98044b5}{Lexer}} (std\+::string \&\&input) noexcept
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}{next\+\_\+token}} ()
+\begin{DoxyCompactList}\small\item\em Returns next token in the source code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLexer}{Lexer}} \& \mbox{\hyperlink{classLexer_ac2a7c376612cd061da1d01c8543ea821}{operator$>$$>$}} (\mbox{\hyperlink{structToken}{Token}} \&token)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classLexer_a57a2fac872bf34cac35dee09d7333141}{consume\+\_\+char}} ()
+\begin{DoxyCompactList}\small\item\em Consumes a character and goes to the next one. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{classLexer_abc2bd6b00b8481e13a76810b7f24b985}{peek\+\_\+char}} () const
+\begin{DoxyCompactList}\small\item\em Returns the next character from the source code. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classLexer_a90997b73a74196097baa4c88ea2512ce}{read\+\_\+identifier}} ()
+\begin{DoxyCompactList}\small\item\em Consumes the characters until the section isn\textquotesingle{}t a valid identifier, then returns the identifier. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classLexer_a81d7def7173e9451a55936bf30186b3b}{read\+\_\+number}} ()
+\begin{DoxyCompactList}\small\item\em Consumes the characters until the section isn\textquotesingle{}t a valid number, then returns the number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLexer_a80fec456cf22a51ad96eac59894bbda6}{consume\+\_\+whitespace}} ()
+\begin{DoxyCompactList}\small\item\em Skips all whitespace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classLexer_a51abb9473a2b9e613ac54d9c2ad0813b}{input\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Source code. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classLexer_a2f69348cf62831ecba6d1803e683a22c}{position\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Index that the lexer is at currently in the source code. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classLexer_a57a7f02b2e483ae54041e7ccc29f143b}{read\+\_\+position\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The next position the lexer is going to read. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classLexer_add5cb6f5a87a005b09d9587895280913}{line\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The current line of the source code. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{classLexer_ad458f3280a7cc36dd092f111ca5f1e7a}{current\+\_\+char\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The current character (input\+\_\+\mbox{[}position\+\_\+\mbox{]}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structToken}{Token} stream implementation. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classLexer_ab17bc9afbdba18af789b8a8da98044b5}\label{classLexer_ab17bc9afbdba18af789b8a8da98044b5} 
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{Lexer()}{Lexer()}}
+{\footnotesize\ttfamily Lexer\+::\+Lexer (\begin{DoxyParamCaption}\item[{std\+::string \&\&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLexer_a57a2fac872bf34cac35dee09d7333141}\label{classLexer_a57a2fac872bf34cac35dee09d7333141} 
+\index{Lexer@{Lexer}!consume\_char@{consume\_char}}
+\index{consume\_char@{consume\_char}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{consume\_char()}{consume\_char()}}
+{\footnotesize\ttfamily void Lexer\+::consume\+\_\+char (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Consumes a character and goes to the next one. 
+
+\Hypertarget{classLexer_a80fec456cf22a51ad96eac59894bbda6}\label{classLexer_a80fec456cf22a51ad96eac59894bbda6} 
+\index{Lexer@{Lexer}!consume\_whitespace@{consume\_whitespace}}
+\index{consume\_whitespace@{consume\_whitespace}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{consume\_whitespace()}{consume\_whitespace()}}
+{\footnotesize\ttfamily void Lexer\+::consume\+\_\+whitespace (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Skips all whitespace. 
+
+\Hypertarget{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}\label{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c} 
+\index{Lexer@{Lexer}!next\_token@{next\_token}}
+\index{next\_token@{next\_token}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{next\_token()}{next\_token()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Lexer\+::next\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns next token in the source code. 
+
+\Hypertarget{classLexer_ac2a7c376612cd061da1d01c8543ea821}\label{classLexer_ac2a7c376612cd061da1d01c8543ea821} 
+\index{Lexer@{Lexer}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{operator$>$$>$()}{operator>>()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classLexer}{Lexer}} \& Lexer\+::operator$>$$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structToken}{Token}} \&}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classLexer_abc2bd6b00b8481e13a76810b7f24b985}\label{classLexer_abc2bd6b00b8481e13a76810b7f24b985} 
+\index{Lexer@{Lexer}!peek\_char@{peek\_char}}
+\index{peek\_char@{peek\_char}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{peek\_char()}{peek\_char()}}
+{\footnotesize\ttfamily char Lexer\+::peek\+\_\+char (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Returns the next character from the source code. 
+
+\Hypertarget{classLexer_a90997b73a74196097baa4c88ea2512ce}\label{classLexer_a90997b73a74196097baa4c88ea2512ce} 
+\index{Lexer@{Lexer}!read\_identifier@{read\_identifier}}
+\index{read\_identifier@{read\_identifier}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{read\_identifier()}{read\_identifier()}}
+{\footnotesize\ttfamily std\+::string Lexer\+::read\+\_\+identifier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Consumes the characters until the section isn\textquotesingle{}t a valid identifier, then returns the identifier. 
+
+\Hypertarget{classLexer_a81d7def7173e9451a55936bf30186b3b}\label{classLexer_a81d7def7173e9451a55936bf30186b3b} 
+\index{Lexer@{Lexer}!read\_number@{read\_number}}
+\index{read\_number@{read\_number}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{read\_number()}{read\_number()}}
+{\footnotesize\ttfamily std\+::string Lexer\+::read\+\_\+number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Consumes the characters until the section isn\textquotesingle{}t a valid number, then returns the number. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classLexer_ad458f3280a7cc36dd092f111ca5f1e7a}\label{classLexer_ad458f3280a7cc36dd092f111ca5f1e7a} 
+\index{Lexer@{Lexer}!current\_char\_@{current\_char\_}}
+\index{current\_char\_@{current\_char\_}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{current\_char\_}{current\_char\_}}
+{\footnotesize\ttfamily char Lexer\+::current\+\_\+char\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current character (input\+\_\+\mbox{[}position\+\_\+\mbox{]}) 
+
+\Hypertarget{classLexer_a51abb9473a2b9e613ac54d9c2ad0813b}\label{classLexer_a51abb9473a2b9e613ac54d9c2ad0813b} 
+\index{Lexer@{Lexer}!input\_@{input\_}}
+\index{input\_@{input\_}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{input\_}{input\_}}
+{\footnotesize\ttfamily std\+::string Lexer\+::input\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Source code. 
+
+\Hypertarget{classLexer_add5cb6f5a87a005b09d9587895280913}\label{classLexer_add5cb6f5a87a005b09d9587895280913} 
+\index{Lexer@{Lexer}!line\_@{line\_}}
+\index{line\_@{line\_}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{line\_}{line\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Lexer\+::line\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current line of the source code. 
+
+\Hypertarget{classLexer_a2f69348cf62831ecba6d1803e683a22c}\label{classLexer_a2f69348cf62831ecba6d1803e683a22c} 
+\index{Lexer@{Lexer}!position\_@{position\_}}
+\index{position\_@{position\_}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{position\_}{position\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Lexer\+::position\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index that the lexer is at currently in the source code. 
+
+\Hypertarget{classLexer_a57a7f02b2e483ae54041e7ccc29f143b}\label{classLexer_a57a7f02b2e483ae54041e7ccc29f143b} 
+\index{Lexer@{Lexer}!read\_position\_@{read\_position\_}}
+\index{read\_position\_@{read\_position\_}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{read\_position\_}{read\_position\_}}
+{\footnotesize\ttfamily std\+::size\+\_\+t Lexer\+::read\+\_\+position\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The next position the lexer is going to read. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+parser/lexer/\mbox{\hyperlink{lexer_8hpp}{lexer.\+hpp}}\item 
+parser/lexer/\mbox{\hyperlink{lexer_8cpp}{lexer.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,105 @@
+\doxysection{tokens.\+hpp}
+\hypertarget{tokens_8hpp_source}{}\label{tokens_8hpp_source}\index{parser/lexer/tokens.hpp@{parser/lexer/tokens.hpp}}
+\mbox{\hyperlink{tokens_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Copyright\ 2025\ Kejun\ Pan}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{TokenType}}\ \{}
+\DoxyCodeLine{00023\ \ \ \textcolor{comment}{//\ Operators}}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286}{LPAREN}},}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1}{RPAREN}},}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a}{LBRACE}},}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290}{RBRACE}},}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}{COMMA}},}
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782}{DOT}},}
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5}{SEMICOLON}},}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7}{PLUS}},}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81}{MINUS}},}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63}{ASTERISK}},}
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a646da671ca01bb5d84dbb5fb2238dc8e}{SLASH}},}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a489b3c14da5e92c8b256b195e92ae93a}{BANG}},}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce}{NOT\_EQUAL}},}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1}{ASSIGN}},}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a969f331a87d8c958473c32b4d0e61a44}{EQUAL}},}
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000}{LESS}},}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b}{GREATER}},}
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4}{LESS\_EQUAL}},}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a}{GREATER\_EQUAL}},}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//\ Literals}}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}{IDENTIFIER}},}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}{STRING}},}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396}{NUMBER}},}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{comment}{//\ Keywords}}
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532}{AND}},}
+\DoxyCodeLine{00051\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616}{OR}},}
+\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93}{IF}},}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a778537b0acce06229cb78d5f72c907ab}{ELSE}},}
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0d83f0b82a6b30de8811e69e6d95c61}{TRUE}},}
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a946003f97ccc52d5d3b54ac0ec31bbfc}{FALSE}},}
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588}{FOR}},}
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15}{WHILE}},}
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b}{FUNC}},}
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5}{RETURN}},}
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5}{LET}},}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510}{INHERITS}},}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb}{CLASS}},}
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea}{SUPER}},}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5}{THIS}},}
+\DoxyCodeLine{00065\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255}{NIL}},}
+\DoxyCodeLine{00066\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5}{ERROR}},}
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb}{EOF\_TYPE}}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structToken}{Token}}\ \{}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{TokenType}}\ \mbox{\hyperlink{structToken_a67919af9f3a80dc0b28a0ab1e6d5bf8a}{type}};\ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ std::string\ \mbox{\hyperlink{structToken_abbff29ede445ed4a8520580f12490832}{lexeme}};\ \ }
+\DoxyCodeLine{00073\ \ \ std::size\_t\ \mbox{\hyperlink{structToken_ade6deee497c3814a319db092bc0f4f7f}{line}};\ \ \ \ }
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{TokenType}}\ \mbox{\hyperlink{tokens_8hpp_a3986510f97a5d35792bb5bd57d07efbe}{lookup\_identifier}}(\textcolor{keyword}{const}\ std::string\&\ name)\ \{}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ TokenType>\ keywords\ =\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}and"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532}{TokenType::AND}}\},}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}or"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616}{TokenType::OR}}\},}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}if"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93}{TokenType::IF}}\},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}else"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a778537b0acce06229cb78d5f72c907ab}{TokenType::ELSE}}\},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}true"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0d83f0b82a6b30de8811e69e6d95c61}{TokenType::TRUE}}\},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}false"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a946003f97ccc52d5d3b54ac0ec31bbfc}{TokenType::FALSE}}\},}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}for"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588}{TokenType::FOR}}\},}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}while"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15}{TokenType::WHILE}}\},}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}func"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b}{TokenType::FUNC}}\},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}return"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5}{TokenType::RETURN}}\},}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}let"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5}{TokenType::LET}}\},}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}inherits"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510}{TokenType::INHERITS}}\},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}class"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb}{TokenType::CLASS}}\},}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}super"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea}{TokenType::SUPER}}\},}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}this"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5}{TokenType::THIS}}\},}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \{\textcolor{stringliteral}{"{}nil"{}},\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255}{TokenType::NIL}}\}\};}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}\ it\ =\ keywords.find(name);\ it\ !=\ keywords.end())\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ it-\/>second;}
+\DoxyCodeLine{00096\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}{TokenType::IDENTIFIER}};}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ \}}
+
+\end{DoxyCode}

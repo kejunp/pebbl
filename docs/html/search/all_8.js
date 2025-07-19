@@ -1,14 +1,17 @@
 var searchData=
 [
-  ['op_5fadd_0',['OP_ADD',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb',1,'opcodes.hpp']]],
-  ['op_5fconstant_1',['OP_CONSTANT',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc',1,'opcodes.hpp']]],
-  ['op_5fconstant_5flong_2',['OP_CONSTANT_LONG',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92',1,'opcodes.hpp']]],
-  ['op_5fdivide_3',['OP_DIVIDE',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c',1,'opcodes.hpp']]],
-  ['op_5fmultiply_4',['OP_MULTIPLY',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368',1,'opcodes.hpp']]],
-  ['op_5fnegate_5',['OP_NEGATE',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad',1,'opcodes.hpp']]],
-  ['op_5freturn_6',['OP_RETURN',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a',1,'opcodes.hpp']]],
-  ['op_5fsubtract_7',['OP_SUBTRACT',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6',1,'opcodes.hpp']]],
-  ['opcode_8',['Opcode',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1',1,'opcodes.hpp']]],
-  ['opcode_5fto_5fstring_9',['opcode_to_string',['../opcodes_8hpp.html#afc649788bf0d2c1f996b29a2c112bdb4',1,'opcodes.hpp']]],
-  ['opcodes_2ehpp_10',['opcodes.hpp',['../opcodes_8hpp.html',1,'']]]
+  ['lbrace_0',['LBRACE',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a',1,'tokens.hpp']]],
+  ['less_1',['LESS',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000',1,'tokens.hpp']]],
+  ['less_5fequal_2',['LESS_EQUAL',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4',1,'tokens.hpp']]],
+  ['let_3',['LET',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5',1,'tokens.hpp']]],
+  ['lexeme_4',['lexeme',['../structToken.html#abbff29ede445ed4a8520580f12490832',1,'Token']]],
+  ['lexer_5',['lexer',['../classLexer.html',1,'Lexer'],['../classLexer.html#ab17bc9afbdba18af789b8a8da98044b5',1,'Lexer::Lexer()']]],
+  ['lexer_2ecpp_6',['lexer.cpp',['../lexer_8cpp.html',1,'']]],
+  ['lexer_2ehpp_7',['lexer.hpp',['../lexer_8hpp.html',1,'']]],
+  ['line_8',['line',['../structToken.html#ade6deee497c3814a319db092bc0f4f7f',1,'Token']]],
+  ['line_5f_9',['line_',['../classLexer.html#add5cb6f5a87a005b09d9587895280913',1,'Lexer']]],
+  ['line_5frun_5flines_10',['line_run_lines',['../classChunk.html#ac375007c99af9a90d9c36a28745d3e3d',1,'Chunk']]],
+  ['line_5frun_5fstarts_11',['line_run_starts',['../classChunk.html#a0940895c82396f6b4ca53e0c9f657439',1,'Chunk']]],
+  ['lookup_5fidentifier_12',['lookup_identifier',['../tokens_8hpp.html#a3986510f97a5d35792bb5bd57d07efbe',1,'tokens.hpp']]],
+  ['lparen_13',['LPAREN',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286',1,'tokens.hpp']]]
 ];

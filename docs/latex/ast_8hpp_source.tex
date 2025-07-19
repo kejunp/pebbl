@@ -1,0 +1,43 @@
+\doxysection{ast.\+hpp}
+\hypertarget{ast_8hpp_source}{}\label{ast_8hpp_source}\index{parser/ast\_generation/ast.hpp@{parser/ast\_generation/ast.hpp}}
+\mbox{\hyperlink{ast_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Copyright\ 2025\ Kejun\ Pan}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tokens_8hpp}{tokens.hpp}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structASTNode}{ASTNode}}\ \{}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\string~ASTNode}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}}\ \mbox{\hyperlink{structASTNode_a7c95573c2712fd7c0c57002f854343dd}{type}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structToken}{Token}}*\ \mbox{\hyperlink{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff}{get\_token}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structStatementNode}{StatementNode}}\ :\ \mbox{\hyperlink{structASTNode}{ASTNode}}\ \{\};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structExpressionNode}{ExpressionNode}}\ :\ \mbox{\hyperlink{structASTNode}{ASTNode}}\ \{\};}
+
+\end{DoxyCode}

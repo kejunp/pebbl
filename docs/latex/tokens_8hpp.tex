@@ -1,0 +1,265 @@
+\doxysection{parser/lexer/tokens.hpp File Reference}
+\hypertarget{tokens_8hpp}{}\label{tokens_8hpp}\index{parser/lexer/tokens.hpp@{parser/lexer/tokens.hpp}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+Include dependency graph for tokens.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{tokens_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{tokens_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structToken}{Token}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} \{ \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286}{LPAREN}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1}{RPAREN}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a}{LBRACE}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290}{RBRACE}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}{COMMA}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782}{DOT}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5}{SEMICOLON}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7}{PLUS}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81}{MINUS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63}{ASTERISK}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a646da671ca01bb5d84dbb5fb2238dc8e}{SLASH}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a489b3c14da5e92c8b256b195e92ae93a}{BANG}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce}{NOT\+\_\+\+EQUAL}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1}{ASSIGN}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a969f331a87d8c958473c32b4d0e61a44}{EQUAL}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000}{LESS}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b}{GREATER}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4}{LESS\+\_\+\+EQUAL}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a}{GREATER\+\_\+\+EQUAL}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}{IDENTIFIER}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}{STRING}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396}{NUMBER}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532}{AND}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616}{OR}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93}{IF}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a778537b0acce06229cb78d5f72c907ab}{ELSE}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0d83f0b82a6b30de8811e69e6d95c61}{TRUE}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a946003f97ccc52d5d3b54ac0ec31bbfc}{FALSE}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588}{FOR}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15}{WHILE}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b}{FUNC}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5}{RETURN}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5}{LET}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510}{INHERITS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb}{CLASS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea}{SUPER}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5}{THIS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255}{NIL}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5}{ERROR}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb}{EOF\+\_\+\+TYPE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} \mbox{\hyperlink{tokens_8hpp_a3986510f97a5d35792bb5bd57d07efbe}{lookup\+\_\+identifier}} (const std\+::string \&name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921} 
+\index{tokens.hpp@{tokens.hpp}!TokenType@{TokenType}}
+\index{TokenType@{TokenType}!tokens.hpp@{tokens.hpp}}
+\doxysubsubsection{\texorpdfstring{TokenType}{TokenType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LPAREN@{LPAREN}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!LPAREN@{LPAREN}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286} 
+LPAREN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RPAREN@{RPAREN}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!RPAREN@{RPAREN}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1} 
+RPAREN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LBRACE@{LBRACE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!LBRACE@{LBRACE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a} 
+LBRACE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RBRACE@{RBRACE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!RBRACE@{RBRACE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290} 
+RBRACE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMMA@{COMMA}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!COMMA@{COMMA}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751} 
+COMMA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOT@{DOT}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!DOT@{DOT}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782} 
+DOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEMICOLON@{SEMICOLON}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!SEMICOLON@{SEMICOLON}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5} 
+SEMICOLON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLUS@{PLUS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!PLUS@{PLUS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7} 
+PLUS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MINUS@{MINUS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!MINUS@{MINUS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81} 
+MINUS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASTERISK@{ASTERISK}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!ASTERISK@{ASTERISK}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63} 
+ASTERISK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SLASH@{SLASH}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!SLASH@{SLASH}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a646da671ca01bb5d84dbb5fb2238dc8e}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a646da671ca01bb5d84dbb5fb2238dc8e} 
+SLASH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BANG@{BANG}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!BANG@{BANG}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a489b3c14da5e92c8b256b195e92ae93a}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a489b3c14da5e92c8b256b195e92ae93a} 
+BANG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_EQUAL@{NOT\_EQUAL}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!NOT\_EQUAL@{NOT\_EQUAL}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce} 
+NOT\+\_\+\+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASSIGN@{ASSIGN}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!ASSIGN@{ASSIGN}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1} 
+ASSIGN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EQUAL@{EQUAL}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!EQUAL@{EQUAL}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a969f331a87d8c958473c32b4d0e61a44}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a969f331a87d8c958473c32b4d0e61a44} 
+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LESS@{LESS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!LESS@{LESS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000} 
+LESS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREATER@{GREATER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!GREATER@{GREATER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b} 
+GREATER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LESS\_EQUAL@{LESS\_EQUAL}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!LESS\_EQUAL@{LESS\_EQUAL}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4} 
+LESS\+\_\+\+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREATER\_EQUAL@{GREATER\_EQUAL}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!GREATER\_EQUAL@{GREATER\_EQUAL}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a} 
+GREATER\+\_\+\+EQUAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDENTIFIER@{IDENTIFIER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!IDENTIFIER@{IDENTIFIER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a} 
+IDENTIFIER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!STRING@{STRING}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949} 
+STRING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NUMBER@{NUMBER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!NUMBER@{NUMBER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396} 
+NUMBER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AND@{AND}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!AND@{AND}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532} 
+AND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OR@{OR}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!OR@{OR}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616} 
+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IF@{IF}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!IF@{IF}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93} 
+IF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ELSE@{ELSE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!ELSE@{ELSE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a778537b0acce06229cb78d5f72c907ab}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a778537b0acce06229cb78d5f72c907ab} 
+ELSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRUE@{TRUE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!TRUE@{TRUE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0d83f0b82a6b30de8811e69e6d95c61}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0d83f0b82a6b30de8811e69e6d95c61} 
+TRUE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FALSE@{FALSE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!FALSE@{FALSE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a946003f97ccc52d5d3b54ac0ec31bbfc}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a946003f97ccc52d5d3b54ac0ec31bbfc} 
+FALSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FOR@{FOR}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!FOR@{FOR}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588} 
+FOR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WHILE@{WHILE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!WHILE@{WHILE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15} 
+WHILE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FUNC@{FUNC}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!FUNC@{FUNC}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b} 
+FUNC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RETURN@{RETURN}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!RETURN@{RETURN}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5} 
+RETURN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LET@{LET}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!LET@{LET}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5} 
+LET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INHERITS@{INHERITS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!INHERITS@{INHERITS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510} 
+INHERITS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLASS@{CLASS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!CLASS@{CLASS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb} 
+CLASS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUPER@{SUPER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!SUPER@{SUPER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea} 
+SUPER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THIS@{THIS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!THIS@{THIS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5} 
+THIS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NIL@{NIL}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!NIL@{NIL}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255} 
+NIL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERROR@{ERROR}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!ERROR@{ERROR}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5} 
+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EOF\_TYPE@{EOF\_TYPE}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!EOF\_TYPE@{EOF\_TYPE}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb} 
+EOF\+\_\+\+TYPE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tokens_8hpp_a3986510f97a5d35792bb5bd57d07efbe}\label{tokens_8hpp_a3986510f97a5d35792bb5bd57d07efbe} 
+\index{tokens.hpp@{tokens.hpp}!lookup\_identifier@{lookup\_identifier}}
+\index{lookup\_identifier@{lookup\_identifier}!tokens.hpp@{tokens.hpp}}
+\doxysubsubsection{\texorpdfstring{lookup\_identifier()}{lookup\_identifier()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} lookup\+\_\+identifier (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

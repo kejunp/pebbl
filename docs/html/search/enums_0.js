@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['opcode_0',['Opcode',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1',1,'opcodes.hpp']]]
+  ['asttype_0',['ASTType',['../ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1',1,'ast.hpp']]]
 ];

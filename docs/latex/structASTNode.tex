@@ -1,0 +1,76 @@
+\doxysection{ASTNode Struct Reference}
+\hypertarget{structASTNode}{}\label{structASTNode}\index{ASTNode@{ASTNode}}
+
+
+Base class of all AST nodes.  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for ASTNode\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{structASTNode__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\item 
+virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structASTNode_a7c95573c2712fd7c0c57002f854343dd}{type}} () const =0
+\begin{DoxyCompactList}\small\item\em Gives the type of the AST node. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff}{get\+\_\+token}} () const
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class of all AST nodes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structASTNode_a578124183c58a444f3fd7668848ea887}\label{structASTNode_a578124183c58a444f3fd7668848ea887} 
+\index{ASTNode@{ASTNode}!````~ASTNode@{\texorpdfstring{$\sim$}{\string~}ASTNode}}
+\index{````~ASTNode@{\texorpdfstring{$\sim$}{\string~}ASTNode}!ASTNode@{ASTNode}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ASTNode()}{\string~ASTNode()}}
+{\footnotesize\ttfamily virtual ASTNode\+::\texorpdfstring{$\sim$}{\string~}\+ASTNode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff}\label{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff} 
+\index{ASTNode@{ASTNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!ASTNode@{ASTNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} ASTNode\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (Binary\+Expression\+Node will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+\Hypertarget{structASTNode_a7c95573c2712fd7c0c57002f854343dd}\label{structASTNode_a7c95573c2712fd7c0c57002f854343dd} 
+\index{ASTNode@{ASTNode}!type@{type}}
+\index{type@{type}!ASTNode@{ASTNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} ASTNode\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Gives the type of the AST node. 
+
+\begin{DoxyReturn}{Returns}
+Returns a scoped enum called ASTType (e.\+g., Let\+Statement -\/\texorpdfstring{$>$}{>} ASTTYPE\+\_\+\+LET\+\_\+\+STATEMENT) 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}
