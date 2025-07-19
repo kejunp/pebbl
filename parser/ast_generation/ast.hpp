@@ -18,7 +18,8 @@ struct ASTNode {
 
   /**
    * @brief Gives a pointer to the token, if no meaningful token, return nullptr
-   * @return Returns a pointer to the token of the AST node (BinaryExpressionNode will return whatever the operator is, etc.)
+   * @return Returns a pointer to the token of the AST node (BinaryExpressionNode will return
+   * whatever the operator is, etc.)
    */
   virtual const Token* get_token() const {
     return nullptr;
@@ -30,4 +31,3 @@ struct StatementNode : ASTNode {};
 
 /// @brief Base class for all expressions
 struct ExpressionNode : ASTNode {};
-
