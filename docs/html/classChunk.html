@@ -72,17 +72,24 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classChunk-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Chunk Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="chunk_8hpp_source.html">chunk.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3f2cc4c1b0850244f93a8aae26766d22" id="r_a3f2cc4c1b0850244f93a8aae26766d22"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a3f2cc4c1b0850244f93a8aae26766d22">add_constant</a> (Value constant)</td></tr>
+<tr class="memitem:a41a7fb3fcdb7521e16cd72a65ed090c5" id="r_a41a7fb3fcdb7521e16cd72a65ed090c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a41a7fb3fcdb7521e16cd72a65ed090c5">Chunk</a> ()=default</td></tr>
+<tr class="separator:a41a7fb3fcdb7521e16cd72a65ed090c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37ac71c006fe0c7ac620f375ea5d5b5" id="r_ab37ac71c006fe0c7ac620f375ea5d5b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#ab37ac71c006fe0c7ac620f375ea5d5b5">~Chunk</a> ()=default</td></tr>
+<tr class="separator:ab37ac71c006fe0c7ac620f375ea5d5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2cc4c1b0850244f93a8aae26766d22" id="r_a3f2cc4c1b0850244f93a8aae26766d22"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a3f2cc4c1b0850244f93a8aae26766d22">add_constant</a> (<a class="el" href="value_8hpp.html#a26310d1d7e0f767c02bf4dc71c929bcc">Value</a> constant)</td></tr>
 <tr class="memdesc:a3f2cc4c1b0850244f93a8aae26766d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a constant to the constant pool of this (<a class="el" href="classChunk.html">Chunk</a> class)  <br /></td></tr>
 <tr class="separator:a3f2cc4c1b0850244f93a8aae26766d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf7e7ba1595c105d018c0f9b86c98d68" id="r_adf7e7ba1595c105d018c0f9b86c98d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#adf7e7ba1595c105d018c0f9b86c98d68">write_constant</a> (Value constant, size_t line)</td></tr>
+<tr class="memitem:adf7e7ba1595c105d018c0f9b86c98d68" id="r_adf7e7ba1595c105d018c0f9b86c98d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#adf7e7ba1595c105d018c0f9b86c98d68">write_constant</a> (<a class="el" href="value_8hpp.html#a26310d1d7e0f767c02bf4dc71c929bcc">Value</a> constant, size_t line)</td></tr>
 <tr class="memdesc:adf7e7ba1595c105d018c0f9b86c98d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the opcodes for a constant (does not just write to pool)  <br /></td></tr>
 <tr class="separator:adf7e7ba1595c105d018c0f9b86c98d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2db627587cd44332ac57545627de1713" id="r_a2db627587cd44332ac57545627de1713"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a2db627587cd44332ac57545627de1713">get_line</a> (size_t instruction) const</td></tr>
@@ -98,13 +105,69 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:afaae71340f63b6a29d5f8a49d93116d5" id="r_afaae71340f63b6a29d5f8a49d93116d5"><td class="memItemLeft" align="right" valign="top"><a id="afaae71340f63b6a29d5f8a49d93116d5" name="afaae71340f63b6a29d5f8a49d93116d5"></a>
-std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>code</b></td></tr>
+<tr class="memitem:afaae71340f63b6a29d5f8a49d93116d5" id="r_afaae71340f63b6a29d5f8a49d93116d5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#afaae71340f63b6a29d5f8a49d93116d5">code</a></td></tr>
 <tr class="separator:afaae71340f63b6a29d5f8a49d93116d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ef3ac2a64667a4635b414daca1196af" id="r_a6ef3ac2a64667a4635b414daca1196af"><td class="memItemLeft" align="right" valign="top"><a id="a6ef3ac2a64667a4635b414daca1196af" name="a6ef3ac2a64667a4635b414daca1196af"></a>
-ValueArray&#160;</td><td class="memItemRight" valign="bottom"><b>constants</b></td></tr>
+<tr class="memitem:a6ef3ac2a64667a4635b414daca1196af" id="r_a6ef3ac2a64667a4635b414daca1196af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="value_8hpp.html#a1e6770aaf6473182f0496e97cc7d8ac0">ValueArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a6ef3ac2a64667a4635b414daca1196af">constants</a></td></tr>
 <tr class="separator:a6ef3ac2a64667a4635b414daca1196af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0940895c82396f6b4ca53e0c9f657439" id="r_a0940895c82396f6b4ca53e0c9f657439"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a0940895c82396f6b4ca53e0c9f657439">line_run_starts</a></td></tr>
+<tr class="separator:a0940895c82396f6b4ca53e0c9f657439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac375007c99af9a90d9c36a28745d3e3d" id="r_ac375007c99af9a90d9c36a28745d3e3d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#ac375007c99af9a90d9c36a28745d3e3d">line_run_lines</a></td></tr>
+<tr class="separator:ac375007c99af9a90d9c36a28745d3e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a41a7fb3fcdb7521e16cd72a65ed090c5" name="a41a7fb3fcdb7521e16cd72a65ed090c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a7fb3fcdb7521e16cd72a65ed090c5">&#9670;&#160;</a></span>Chunk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Chunk::Chunk </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab37ac71c006fe0c7ac620f375ea5d5b5" name="ab37ac71c006fe0c7ac620f375ea5d5b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab37ac71c006fe0c7ac620f375ea5d5b5">&#9670;&#160;</a></span>~Chunk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Chunk::~Chunk </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3f2cc4c1b0850244f93a8aae26766d22" name="a3f2cc4c1b0850244f93a8aae26766d22"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f2cc4c1b0850244f93a8aae26766d22">&#9670;&#160;</a></span>add_constant()</h2>
@@ -115,7 +178,7 @@ ValueArray&#160;</td><td class="memItemRight" valign="bottom"><b>constants</b></
         <tr>
           <td class="memname">size_t Chunk::add_constant </td>
           <td>(</td>
-          <td class="paramtype">Value&#160;</td>
+          <td class="paramtype"><a class="el" href="value_8hpp.html#a26310d1d7e0f767c02bf4dc71c929bcc">Value</a>&#160;</td>
           <td class="paramname"><em>constant</em></td><td>)</td>
           <td></td>
         </tr>
@@ -253,7 +316,7 @@ template&lt;IsOpcode... Bytes&gt; </div>
         <tr>
           <td class="memname">void Chunk::write_constant </td>
           <td>(</td>
-          <td class="paramtype">Value&#160;</td>
+          <td class="paramtype"><a class="el" href="value_8hpp.html#a26310d1d7e0f767c02bf4dc71c929bcc">Value</a>&#160;</td>
           <td class="paramname"><em>constant</em>, </td>
         </tr>
         <tr>
@@ -281,9 +344,82 @@ template&lt;IsOpcode... Bytes&gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afaae71340f63b6a29d5f8a49d93116d5" name="afaae71340f63b6a29d5f8a49d93116d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaae71340f63b6a29d5f8a49d93116d5">&#9670;&#160;</a></span>code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;uint8_t&gt; Chunk::code</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ef3ac2a64667a4635b414daca1196af" name="a6ef3ac2a64667a4635b414daca1196af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ef3ac2a64667a4635b414daca1196af">&#9670;&#160;</a></span>constants</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="value_8hpp.html#a1e6770aaf6473182f0496e97cc7d8ac0">ValueArray</a> Chunk::constants</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac375007c99af9a90d9c36a28745d3e3d" name="ac375007c99af9a90d9c36a28745d3e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac375007c99af9a90d9c36a28745d3e3d">&#9670;&#160;</a></span>line_run_lines</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;size_t&gt; Chunk::line_run_lines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0940895c82396f6b4ca53e0c9f657439" name="a0940895c82396f6b4ca53e0c9f657439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0940895c82396f6b4ca53e0c9f657439">&#9670;&#160;</a></span>line_run_starts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;size_t&gt; Chunk::line_run_starts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>interpreter/bytecode/<a class="el" href="chunk_8hpp_source.html">chunk.hpp</a></li>
-<li>interpreter/bytecode/<b>chunk.cpp</b></li>
+<li>interpreter/bytecode/<a class="el" href="chunk_8cpp.html">chunk.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

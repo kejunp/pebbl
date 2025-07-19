@@ -81,47 +81,78 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">opcodes.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;common.hpp&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">enum class</span> Opcode : uint8_t {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  OP_CONSTANT = 1,</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  OP_CONSTANT_LONG,</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  OP_NEGATE,</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  OP_ADD,</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  OP_SUBTRACT,</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  OP_MULTIPLY,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  OP_DIVIDE,</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  OP_RETURN</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>};</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="conceptIsOpcode.html">   17</a></span><span class="keyword">concept </span><a class="code hl_concept" href="conceptIsOpcode.html">IsOpcode</a> = std::same_as&lt;T, uint8_t&gt;;</div>
+<a href="opcodes_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">   Copyright 2025 Kejun Pan</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"></span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">   you may not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">   You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"></span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">       http://www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"></span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">   Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">   See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">   limitations under the License.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">inline</span> std::string_view opcode_to_string(uint8_t opcode) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordflow">switch</span> (<span class="keyword">static_cast&lt;</span>Opcode<span class="keyword">&gt;</span>(opcode)) {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">case</span> Opcode::OP_CONSTANT:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_CONSTANT&quot;</span>;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">case</span> Opcode::OP_CONSTANT_LONG:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_CONSTANT_LONG&quot;</span>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">case</span> Opcode::OP_NEGATE:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_NEGATE&quot;</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">case</span> Opcode::OP_ADD:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_ADD&quot;</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">case</span> Opcode::OP_SUBTRACT:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_SUBTRACT&quot;</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">case</span> Opcode::OP_MULTIPLY:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_MULTIPLY&quot;</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">case</span> Opcode::OP_DIVIDE:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_DIVIDE&quot;</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">case</span> Opcode::OP_RETURN:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_RETURN&quot;</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
-<div class="ttc" id="aconceptIsOpcode_html"><div class="ttname"><a href="conceptIsOpcode.html">IsOpcode</a></div><div class="ttdef"><b>Definition</b> opcodes.hpp:17</div></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">common.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1">   21</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1">Opcode</a> : uint8_t {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc">OP_CONSTANT</a> = 1,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92">OP_CONSTANT_LONG</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad">OP_NEGATE</a>,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb">OP_ADD</a>,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6">OP_SUBTRACT</a>,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368">OP_MULTIPLY</a>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c">OP_DIVIDE</a>,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a">OP_RETURN</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="conceptIsOpcode.html">   33</a></span><span class="keyword">concept </span><a class="code hl_concept" href="conceptIsOpcode.html">IsOpcode</a> = std::same_as&lt;T, uint8_t&gt;;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="opcodes_8hpp.html#afc649788bf0d2c1f996b29a2c112bdb4">   35</a></span><span class="keyword">inline</span> std::string_view <a class="code hl_function" href="opcodes_8hpp.html#afc649788bf0d2c1f996b29a2c112bdb4">opcode_to_string</a>(uint8_t opcode) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordflow">switch</span> (<span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1">Opcode</a><span class="keyword">&gt;</span>(opcode)) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc">Opcode::OP_CONSTANT</a>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_CONSTANT&quot;</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92">Opcode::OP_CONSTANT_LONG</a>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_CONSTANT_LONG&quot;</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad">Opcode::OP_NEGATE</a>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_NEGATE&quot;</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb">Opcode::OP_ADD</a>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_ADD&quot;</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6">Opcode::OP_SUBTRACT</a>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_SUBTRACT&quot;</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368">Opcode::OP_MULTIPLY</a>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_MULTIPLY&quot;</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c">Opcode::OP_DIVIDE</a>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_DIVIDE&quot;</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a">Opcode::OP_RETURN</a>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;OP_RETURN&quot;</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+</div>
+<div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div></div>
+<div class="ttc" id="aconceptIsOpcode_html"><div class="ttname"><a href="conceptIsOpcode.html">IsOpcode</a></div><div class="ttdef"><b>Definition</b> opcodes.hpp:33</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1">Opcode</a></div><div class="ttdeci">Opcode</div><div class="ttdef"><b>Definition</b> opcodes.hpp:21</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a">Opcode::OP_RETURN</a></div><div class="ttdeci">@ OP_RETURN</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc">Opcode::OP_CONSTANT</a></div><div class="ttdeci">@ OP_CONSTANT</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c">Opcode::OP_DIVIDE</a></div><div class="ttdeci">@ OP_DIVIDE</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92">Opcode::OP_CONSTANT_LONG</a></div><div class="ttdeci">@ OP_CONSTANT_LONG</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368">Opcode::OP_MULTIPLY</a></div><div class="ttdeci">@ OP_MULTIPLY</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad">Opcode::OP_NEGATE</a></div><div class="ttdeci">@ OP_NEGATE</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6">Opcode::OP_SUBTRACT</a></div><div class="ttdeci">@ OP_SUBTRACT</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb"><div class="ttname"><a href="opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb">Opcode::OP_ADD</a></div><div class="ttdeci">@ OP_ADD</div></div>
+<div class="ttc" id="aopcodes_8hpp_html_afc649788bf0d2c1f996b29a2c112bdb4"><div class="ttname"><a href="opcodes_8hpp.html#afc649788bf0d2c1f996b29a2c112bdb4">opcode_to_string</a></div><div class="ttdeci">std::string_view opcode_to_string(uint8_t opcode)</div><div class="ttdef"><b>Definition</b> opcodes.hpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

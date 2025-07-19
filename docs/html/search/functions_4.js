@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stack_5fsize_0',['stack_size',['../classVM.html#a32a498c68a38c387e9b95c41a825d322',1,'VM']]]
+  ['get_5fline_0',['get_line',['../classChunk.html#a2db627587cd44332ac57545627de1713',1,'Chunk']]]
 ];

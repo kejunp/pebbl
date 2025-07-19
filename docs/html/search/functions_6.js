@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['write_5fconstant_0',['write_constant',['../classChunk.html#adf7e7ba1595c105d018c0f9b86c98d68',1,'Chunk']]]
+  ['opcode_5fto_5fstring_0',['opcode_to_string',['../opcodes_8hpp.html#afc649788bf0d2c1f996b29a2c112bdb4',1,'opcodes.hpp']]]
 ];

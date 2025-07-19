@@ -1,46 +1,62 @@
 \doxysection{opcodes.\+hpp}
 \hypertarget{opcodes_8hpp_source}{}\label{opcodes_8hpp_source}\index{interpreter/bytecode/opcodes.hpp@{interpreter/bytecode/opcodes.hpp}}
-
+\mbox{\hyperlink{opcodes_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ }
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}common.hpp"{}}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{enum\ class}\ Opcode\ :\ uint8\_t\ \{}
-\DoxyCodeLine{00006\ \ \ OP\_CONSTANT\ =\ 1,}
-\DoxyCodeLine{00007\ \ \ OP\_CONSTANT\_LONG,}
-\DoxyCodeLine{00008\ \ \ OP\_NEGATE,}
-\DoxyCodeLine{00009\ \ \ OP\_ADD,}
-\DoxyCodeLine{00010\ \ \ OP\_SUBTRACT,}
-\DoxyCodeLine{00011\ \ \ OP\_MULTIPLY,}
-\DoxyCodeLine{00012\ \ \ OP\_DIVIDE,}
-\DoxyCodeLine{00013\ \ \ OP\_RETURN}
-\DoxyCodeLine{00014\ \};}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00017\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptIsOpcode}{IsOpcode}}\ =\ std::same\_as<T,\ uint8\_t>;}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Copyright\ 2025\ Kejun\ Pan}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ std::string\_view\ opcode\_to\_string(uint8\_t\ opcode)\ \{}
-\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keyword}{static\_cast<}Opcode\textcolor{keyword}{>}(opcode))\ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_CONSTANT:}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT"{}};}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_CONSTANT\_LONG:}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT\_LONG"{}};}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_NEGATE:}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_NEGATE"{}};}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_ADD:}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_ADD"{}};}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_SUBTRACT:}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_SUBTRACT"{}};}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_MULTIPLY:}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_MULTIPLY"{}};}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_DIVIDE:}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_DIVIDE"{}};}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{case}\ Opcode::OP\_RETURN:}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_RETURN"{}};}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}UNKNOWN"{}};}
-\DoxyCodeLine{00039\ \ \ \}}
-\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8hpp}{common.hpp}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1}{Opcode}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc}{OP\_CONSTANT}}\ =\ 1,}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92}{OP\_CONSTANT\_LONG}},}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad}{OP\_NEGATE}},}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb}{OP\_ADD}},}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6}{OP\_SUBTRACT}},}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368}{OP\_MULTIPLY}},}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c}{OP\_DIVIDE}},}
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a}{OP\_RETURN}}}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptIsOpcode}{IsOpcode}}\ =\ std::same\_as<T,\ uint8\_t>;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{inline}\ std::string\_view\ \mbox{\hyperlink{opcodes_8hpp_afc649788bf0d2c1f996b29a2c112bdb4}{opcode\_to\_string}}(uint8\_t\ opcode)\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{switch}\ (\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1}{Opcode}}\textcolor{keyword}{>}(opcode))\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc}{Opcode::OP\_CONSTANT}}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92}{Opcode::OP\_CONSTANT\_LONG}}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_CONSTANT\_LONG"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad}{Opcode::OP\_NEGATE}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_NEGATE"{}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb}{Opcode::OP\_ADD}}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_ADD"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6}{Opcode::OP\_SUBTRACT}}:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_SUBTRACT"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368}{Opcode::OP\_MULTIPLY}}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_MULTIPLY"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c}{Opcode::OP\_DIVIDE}}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_DIVIDE"{}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a}{Opcode::OP\_RETURN}}:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}OP\_RETURN"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}UNKNOWN"{}};}
+\DoxyCodeLine{00055\ \ \ \}}
+\DoxyCodeLine{00056\ \}}
 
 \end{DoxyCode}

@@ -1,11 +1,19 @@
 \doxysection{Chunk Class Reference}
 \hypertarget{classChunk}{}\label{classChunk}\index{Chunk@{Chunk}}
+
+
+{\ttfamily \#include $<$chunk.\+hpp$>$}
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-size\+\_\+t \mbox{\hyperlink{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}{add\+\_\+constant}} (Value constant)
+\mbox{\hyperlink{classChunk_a41a7fb3fcdb7521e16cd72a65ed090c5}{Chunk}} ()=default
+\item 
+\mbox{\hyperlink{classChunk_ab37ac71c006fe0c7ac620f375ea5d5b5}{\texorpdfstring{$\sim$}{\string~}\+Chunk}} ()=default
+\item 
+size\+\_\+t \mbox{\hyperlink{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}{add\+\_\+constant}} (\mbox{\hyperlink{value_8hpp_a26310d1d7e0f767c02bf4dc71c929bcc}{Value}} constant)
 \begin{DoxyCompactList}\small\item\em Adds a constant to the constant pool of this (\doxylink{classChunk}{Chunk} class) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}{write\+\_\+constant}} (Value constant, size\+\_\+t line)
+void \mbox{\hyperlink{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}{write\+\_\+constant}} (\mbox{\hyperlink{value_8hpp_a26310d1d7e0f767c02bf4dc71c929bcc}{Value}} constant, size\+\_\+t line)
 \begin{DoxyCompactList}\small\item\em Writes the opcodes for a constant (does not just write to pool) \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classChunk_a2db627587cd44332ac57545627de1713}{get\+\_\+line}} (size\+\_\+t instruction) const
 \begin{DoxyCompactList}\small\item\em Finds the line of a given instruction offset. \end{DoxyCompactList}\item 
@@ -16,12 +24,32 @@ void \mbox{\hyperlink{classChunk_ac9f904f686583189e15d2bde149e56b6}{emit}} (uint
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classChunk_afaae71340f63b6a29d5f8a49d93116d5}\label{classChunk_afaae71340f63b6a29d5f8a49d93116d5} 
-std\+::vector$<$ uint8\+\_\+t $>$ {\bfseries code}
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{classChunk_afaae71340f63b6a29d5f8a49d93116d5}{code}}
 \item 
-\Hypertarget{classChunk_a6ef3ac2a64667a4635b414daca1196af}\label{classChunk_a6ef3ac2a64667a4635b414daca1196af} 
-Value\+Array {\bfseries constants}
+\mbox{\hyperlink{value_8hpp_a1e6770aaf6473182f0496e97cc7d8ac0}{Value\+Array}} \mbox{\hyperlink{classChunk_a6ef3ac2a64667a4635b414daca1196af}{constants}}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classChunk_a0940895c82396f6b4ca53e0c9f657439}{line\+\_\+run\+\_\+starts}}
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classChunk_ac375007c99af9a90d9c36a28745d3e3d}{line\+\_\+run\+\_\+lines}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classChunk_a41a7fb3fcdb7521e16cd72a65ed090c5}\label{classChunk_a41a7fb3fcdb7521e16cd72a65ed090c5} 
+\index{Chunk@{Chunk}!Chunk@{Chunk}}
+\index{Chunk@{Chunk}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{Chunk()}{Chunk()}}
+{\footnotesize\ttfamily Chunk\+::\+Chunk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{classChunk_ab37ac71c006fe0c7ac620f375ea5d5b5}\label{classChunk_ab37ac71c006fe0c7ac620f375ea5d5b5} 
+\index{Chunk@{Chunk}!````~Chunk@{\texorpdfstring{$\sim$}{\string~}Chunk}}
+\index{````~Chunk@{\texorpdfstring{$\sim$}{\string~}Chunk}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Chunk()}{\string~Chunk()}}
+{\footnotesize\ttfamily Chunk\+::\texorpdfstring{$\sim$}{\string~}\+Chunk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
 
 
 \doxysubsection{Member Function Documentation}
@@ -29,7 +57,7 @@ Value\+Array {\bfseries constants}
 \index{Chunk@{Chunk}!add\_constant@{add\_constant}}
 \index{add\_constant@{add\_constant}!Chunk@{Chunk}}
 \doxysubsubsection{\texorpdfstring{add\_constant()}{add\_constant()}}
-{\footnotesize\ttfamily size\+\_\+t Chunk\+::add\+\_\+constant (\begin{DoxyParamCaption}\item[{Value}]{constant }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily size\+\_\+t Chunk\+::add\+\_\+constant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{value_8hpp_a26310d1d7e0f767c02bf4dc71c929bcc}{Value}}}]{constant }\end{DoxyParamCaption})}
 
 
 
@@ -100,7 +128,7 @@ The line number
 \index{Chunk@{Chunk}!write\_constant@{write\_constant}}
 \index{write\_constant@{write\_constant}!Chunk@{Chunk}}
 \doxysubsubsection{\texorpdfstring{write\_constant()}{write\_constant()}}
-{\footnotesize\ttfamily void Chunk\+::write\+\_\+constant (\begin{DoxyParamCaption}\item[{Value}]{constant,  }\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Chunk\+::write\+\_\+constant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{value_8hpp_a26310d1d7e0f767c02bf4dc71c929bcc}{Value}}}]{constant,  }\item[{size\+\_\+t}]{line }\end{DoxyParamCaption})}
 
 
 
@@ -115,7 +143,34 @@ Writes the opcodes for a constant (does not just write to pool)
 \end{DoxyParams}
 
 
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classChunk_afaae71340f63b6a29d5f8a49d93116d5}\label{classChunk_afaae71340f63b6a29d5f8a49d93116d5} 
+\index{Chunk@{Chunk}!code@{code}}
+\index{code@{code}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily std\+::vector$<$uint8\+\_\+t$>$ Chunk\+::code}
+
+\Hypertarget{classChunk_a6ef3ac2a64667a4635b414daca1196af}\label{classChunk_a6ef3ac2a64667a4635b414daca1196af} 
+\index{Chunk@{Chunk}!constants@{constants}}
+\index{constants@{constants}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{constants}{constants}}
+{\footnotesize\ttfamily \mbox{\hyperlink{value_8hpp_a1e6770aaf6473182f0496e97cc7d8ac0}{Value\+Array}} Chunk\+::constants}
+
+\Hypertarget{classChunk_ac375007c99af9a90d9c36a28745d3e3d}\label{classChunk_ac375007c99af9a90d9c36a28745d3e3d} 
+\index{Chunk@{Chunk}!line\_run\_lines@{line\_run\_lines}}
+\index{line\_run\_lines@{line\_run\_lines}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{line\_run\_lines}{line\_run\_lines}}
+{\footnotesize\ttfamily std\+::vector$<$size\+\_\+t$>$ Chunk\+::line\+\_\+run\+\_\+lines\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classChunk_a0940895c82396f6b4ca53e0c9f657439}\label{classChunk_a0940895c82396f6b4ca53e0c9f657439} 
+\index{Chunk@{Chunk}!line\_run\_starts@{line\_run\_starts}}
+\index{line\_run\_starts@{line\_run\_starts}!Chunk@{Chunk}}
+\doxysubsubsection{\texorpdfstring{line\_run\_starts}{line\_run\_starts}}
+{\footnotesize\ttfamily std\+::vector$<$size\+\_\+t$>$ Chunk\+::line\+\_\+run\+\_\+starts\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-interpreter/bytecode/chunk.\+hpp\item 
-interpreter/bytecode/chunk.\+cpp\end{DoxyCompactItemize}
+interpreter/bytecode/\mbox{\hyperlink{chunk_8hpp}{chunk.\+hpp}}\item 
+interpreter/bytecode/\mbox{\hyperlink{chunk_8cpp}{chunk.\+cpp}}\end{DoxyCompactItemize}

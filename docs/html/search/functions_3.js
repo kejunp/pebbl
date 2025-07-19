@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pop_0',['pop',['../classVM.html#af5f97f93ca522dd02dbaba309fd1706c',1,'VM']]],
-  ['push_1',['push',['../classVM.html#ab11e352f441abd2fef16eb5f591ca0c5',1,'VM']]]
+  ['emit_0',['emit',['../classChunk.html#ac9f904f686583189e15d2bde149e56b6',1,'Chunk']]],
+  ['emit_5fmany_1',['emit_many',['../classChunk.html#ad88a54b82dcb53a09830b5498b4626f5',1,'Chunk']]]
 ];

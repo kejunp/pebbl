@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['get_5fchunk_0',['get_chunk',['../classVM.html#af3472c92119a55b30848bce95395fb85',1,'VM']]],
-  ['get_5finstr_5fptr_1',['get_instr_ptr',['../classVM.html#a9dfe7c9aa89d1af4ca643e195ba3cd72',1,'VM']]],
-  ['get_5fline_2',['get_line',['../classChunk.html#a2db627587cd44332ac57545627de1713',1,'Chunk']]]
+  ['disassemble_5fchunk_0',['disassemble_chunk',['../debug_8cpp.html#a030860b33406b661f5033013d8f373fc',1,'disassemble_chunk(const Chunk &amp;chunk, std::string_view name):&#160;debug.cpp'],['../debug_8hpp.html#a030860b33406b661f5033013d8f373fc',1,'disassemble_chunk(const Chunk &amp;chunk, std::string_view name):&#160;debug.cpp']]],
+  ['disassemble_5finstruction_1',['disassemble_instruction',['../debug_8cpp.html#a8c17fac80c56964926d0214a79661c61',1,'disassemble_instruction(const Chunk &amp;chunk, std::size_t offset):&#160;debug.cpp'],['../debug_8hpp.html#a8c17fac80c56964926d0214a79661c61',1,'disassemble_instruction(const Chunk &amp;chunk, std::size_t offset):&#160;debug.cpp']]]
 ];

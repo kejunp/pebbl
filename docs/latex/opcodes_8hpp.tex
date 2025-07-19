@@ -1,0 +1,96 @@
+\doxysection{interpreter/bytecode/opcodes.hpp File Reference}
+\hypertarget{opcodes_8hpp}{}\label{opcodes_8hpp}\index{interpreter/bytecode/opcodes.hpp@{interpreter/bytecode/opcodes.hpp}}
+{\ttfamily \#include "{}common.\+hpp"{}}\newline
+Include dependency graph for opcodes.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{opcodes_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{opcodes_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Concepts}
+\begin{DoxyCompactItemize}
+\item 
+concept \mbox{\hyperlink{conceptIsOpcode}{Is\+Opcode}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1}{Opcode}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc}{OP\+\_\+\+CONSTANT}} = 1
+, \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92}{OP\+\_\+\+CONSTANT\+\_\+\+LONG}}
+, \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad}{OP\+\_\+\+NEGATE}}
+, \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb}{OP\+\_\+\+ADD}}
+, \newline
+\mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6}{OP\+\_\+\+SUBTRACT}}
+, \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368}{OP\+\_\+\+MULTIPLY}}
+, \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c}{OP\+\_\+\+DIVIDE}}
+, \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a}{OP\+\_\+\+RETURN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string\+\_\+view \mbox{\hyperlink{opcodes_8hpp_afc649788bf0d2c1f996b29a2c112bdb4}{opcode\+\_\+to\+\_\+string}} (uint8\+\_\+t opcode)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1} 
+\index{opcodes.hpp@{opcodes.hpp}!Opcode@{Opcode}}
+\index{Opcode@{Opcode}!opcodes.hpp@{opcodes.hpp}}
+\doxysubsubsection{\texorpdfstring{Opcode}{Opcode}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1}{Opcode}} \+: uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_CONSTANT@{OP\_CONSTANT}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_CONSTANT@{OP\_CONSTANT}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc} 
+OP\+\_\+\+CONSTANT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_CONSTANT\_LONG@{OP\_CONSTANT\_LONG}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_CONSTANT\_LONG@{OP\_CONSTANT\_LONG}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92} 
+OP\+\_\+\+CONSTANT\+\_\+\+LONG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_NEGATE@{OP\_NEGATE}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_NEGATE@{OP\_NEGATE}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad} 
+OP\+\_\+\+NEGATE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_ADD@{OP\_ADD}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_ADD@{OP\_ADD}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb} 
+OP\+\_\+\+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_SUBTRACT@{OP\_SUBTRACT}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_SUBTRACT@{OP\_SUBTRACT}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6} 
+OP\+\_\+\+SUBTRACT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_MULTIPLY@{OP\_MULTIPLY}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_MULTIPLY@{OP\_MULTIPLY}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368} 
+OP\+\_\+\+MULTIPLY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_DIVIDE@{OP\_DIVIDE}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_DIVIDE@{OP\_DIVIDE}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c} 
+OP\+\_\+\+DIVIDE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OP\_RETURN@{OP\_RETURN}!opcodes.hpp@{opcodes.hpp}}\index{opcodes.hpp@{opcodes.hpp}!OP\_RETURN@{OP\_RETURN}}}\Hypertarget{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a}\label{opcodes_8hpp_a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a} 
+OP\+\_\+\+RETURN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{opcodes_8hpp_afc649788bf0d2c1f996b29a2c112bdb4}\label{opcodes_8hpp_afc649788bf0d2c1f996b29a2c112bdb4} 
+\index{opcodes.hpp@{opcodes.hpp}!opcode\_to\_string@{opcode\_to\_string}}
+\index{opcode\_to\_string@{opcode\_to\_string}!opcodes.hpp@{opcodes.hpp}}
+\doxysubsubsection{\texorpdfstring{opcode\_to\_string()}{opcode\_to\_string()}}
+{\footnotesize\ttfamily std\+::string\+\_\+view opcode\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{opcode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

@@ -1,0 +1,61 @@
+\doxysection{utils/debug.cpp File Reference}
+\hypertarget{debug_8cpp}{}\label{debug_8cpp}\index{utils/debug.cpp@{utils/debug.cpp}}
+{\ttfamily \#include "{}debug.\+hpp"{}}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string\+\_\+view$>$}\newline
+Include dependency graph for debug.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{debug_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{debug_8cpp_a030860b33406b661f5033013d8f373fc}{disassemble\+\_\+chunk}} (const \mbox{\hyperlink{classChunk}{Chunk}} \&chunk, std\+::string\+\_\+view name)
+\begin{DoxyCompactList}\small\item\em Disassembles opcodes and prints out their mnemonics. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{debug_8cpp_a8c17fac80c56964926d0214a79661c61}{disassemble\+\_\+instruction}} (const \mbox{\hyperlink{classChunk}{Chunk}} \&chunk, std\+::size\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Disassembles a single instruction and prints its mnemonic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{debug_8cpp_a030860b33406b661f5033013d8f373fc}\label{debug_8cpp_a030860b33406b661f5033013d8f373fc} 
+\index{debug.cpp@{debug.cpp}!disassemble\_chunk@{disassemble\_chunk}}
+\index{disassemble\_chunk@{disassemble\_chunk}!debug.cpp@{debug.cpp}}
+\doxysubsubsection{\texorpdfstring{disassemble\_chunk()}{disassemble\_chunk()}}
+{\footnotesize\ttfamily void disassemble\+\_\+chunk (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classChunk}{Chunk}} \&}]{chunk,  }\item[{std\+::string\+\_\+view}]{name }\end{DoxyParamCaption})}
+
+
+
+Disassembles opcodes and prints out their mnemonics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chunk} & Reference to the chunk of opcodes to disassemble. \\
+\hline
+{\em name} & Name of the chunk to disassemble (prints as "{}-\/-\/-\/name-\/-\/-\/"{}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{debug_8cpp_a8c17fac80c56964926d0214a79661c61}\label{debug_8cpp_a8c17fac80c56964926d0214a79661c61} 
+\index{debug.cpp@{debug.cpp}!disassemble\_instruction@{disassemble\_instruction}}
+\index{disassemble\_instruction@{disassemble\_instruction}!debug.cpp@{debug.cpp}}
+\doxysubsubsection{\texorpdfstring{disassemble\_instruction()}{disassemble\_instruction()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t disassemble\+\_\+instruction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classChunk}{Chunk}} \&}]{chunk,  }\item[{std\+::size\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+
+
+Disassembles a single instruction and prints its mnemonic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chunk} & Reference to the chunk containing the instruction. \\
+\hline
+{\em offset} & Offset of the instruction in the chunk (instruction at chunk.\+code\mbox{[}offset\mbox{]}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The offset of the next instruction after the disassembled one. 
+\end{DoxyReturn}

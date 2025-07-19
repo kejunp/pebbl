@@ -1,6 +1,6 @@
 \doxysection{chunk.\+hpp}
 \hypertarget{chunk_8hpp_source}{}\label{chunk_8hpp_source}\index{interpreter/bytecode/chunk.hpp@{interpreter/bytecode/chunk.hpp}}
-
+\mbox{\hyperlink{chunk_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{/*}}
 \DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Copyright\ 2025\ Kejun\ Pan}}
@@ -23,26 +23,26 @@
 \DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <concepts>}}
 \DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
 \DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}opcodes.hpp"{}}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}value.hpp"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{opcodes_8hpp}{opcodes.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{value_8hpp}{value.hpp}}"{}}}
 \DoxyCodeLine{00024\ }
 \DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classChunk}{Chunk}}\ \{}
-\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00027\ \ \ std::vector<size\_t>\ line\_run\_starts;}
-\DoxyCodeLine{00028\ \ \ std::vector<size\_t>\ line\_run\_lines;}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classChunk_a0940895c82396f6b4ca53e0c9f657439}{line\_run\_starts}};}
+\DoxyCodeLine{00028\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classChunk_ac375007c99af9a90d9c36a28745d3e3d}{line\_run\_lines}};}
 \DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00031\ \ \ std::vector<uint8\_t>\ code;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{classChunk_afaae71340f63b6a29d5f8a49d93116d5}{code}};}
 \DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ ValueArray\ constants;}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{value_8hpp_a1e6770aaf6473182f0496e97cc7d8ac0}{ValueArray}}\ \mbox{\hyperlink{classChunk_a6ef3ac2a64667a4635b414daca1196af}{constants}};}
 \DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{classChunk}{Chunk}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{classChunk_a41a7fb3fcdb7521e16cd72a65ed090c5}{Chunk}}()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{classChunk}{\string~Chunk}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{classChunk_ab37ac71c006fe0c7ac620f375ea5d5b5}{\string~Chunk}}()\ =\ \textcolor{keywordflow}{default};}
 \DoxyCodeLine{00038\ }
-\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}{add\_constant}}(Value\ constant);}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classChunk_a3f2cc4c1b0850244f93a8aae26766d22}{add\_constant}}(\mbox{\hyperlink{value_8hpp_a26310d1d7e0f767c02bf4dc71c929bcc}{Value}}\ constant);}
 \DoxyCodeLine{00045\ }
-\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}{write\_constant}}(Value\ constant,\ \textcolor{keywordtype}{size\_t}\ line);}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classChunk_adf7e7ba1595c105d018c0f9b86c98d68}{write\_constant}}(\mbox{\hyperlink{value_8hpp_a26310d1d7e0f767c02bf4dc71c929bcc}{Value}}\ constant,\ \textcolor{keywordtype}{size\_t}\ line);}
 \DoxyCodeLine{00052\ }
 \DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classChunk_a2db627587cd44332ac57545627de1713}{get\_line}}(\textcolor{keywordtype}{size\_t}\ instruction)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00059\ }
