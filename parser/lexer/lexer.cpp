@@ -21,20 +21,13 @@
 namespace {
 
 Token make_token(TokenType type, std::string&& lexeme, std::size_t line) {
-  Token token;
-  token.type = type;
-  token.lexeme = std::move(lexeme);
-  token.line = line;
-  return token;
+  return Token{type, std::move(lexeme), line};
 }
 
 Token make_token(TokenType type, const std::string& lexeme, std::size_t line) {
-  Token token;
-  token.type = type;
-  token.lexeme = lexeme;
-  token.line = line;
-  return token;
+  return Token{type, lexeme, line};
 }
+
 }  // namespace
 
 Lexer::Lexer(std::string&& input) noexcept :
@@ -43,112 +36,109 @@ Lexer::Lexer(std::string&& input) noexcept :
 }
 
 Token Lexer::next_token() {
-  Token token;
   consume_whitespace();
+
+  if (current_char_ == '\0') {
+    return make_token(TokenType::EOF_TYPE, "", line_);
+  }
+
   switch (current_char_) {
     case '(':
-      token = make_token(TokenType::LPAREN, "(", line_);
-      break;
+      return make_token(TokenType::LPAREN, "(", line_);
     case ')':
-      token = make_token(TokenType::RPAREN, ")", line_);
-      break;
+      return make_token(TokenType::RPAREN, ")", line_);
     case '{':
-      token = make_token(TokenType::LBRACE, "{", line_);
-      break;
+      return make_token(TokenType::LBRACE, "{", line_);
     case '}':
-      token = make_token(TokenType::RBRACE, "}", line_);
-      break;
+      return make_token(TokenType::RBRACE, "}", line_);
     case '[':
-      token = make_token(TokenType::LBRACKET, "[", line_);
-      break;
+      return make_token(TokenType::LBRACKET, "[", line_);
     case ']':
-      token = make_token(TokenType::RBRACKET, "]", line_);
-      break;
+      return make_token(TokenType::RBRACKET, "]", line_);
     case ',':
-      token = make_token(TokenType::COMMA, ",", line_);
-      break;
+      return make_token(TokenType::COMMA, ",", line_);
     case '.':
-      token = make_token(TokenType::DOT, ".", line_);
-      break;
+      return make_token(TokenType::DOT, ".", line_);
     case ';':
-      token = make_token(TokenType::SEMICOLON, ";", line_);
-      break;
+      return make_token(TokenType::SEMICOLON, ";", line_);
     case '+':
-      token = make_token(TokenType::PLUS, "+", line_);
-      break;
+      return make_token(TokenType::PLUS, "+", line_);
     case '-':
-      token = make_token(TokenType::MINUS, "-", line_);
-      break;
+      return make_token(TokenType::MINUS, "-", line_);
     case '*':
-      token = make_token(TokenType::ASTERISK, "*", line_);
-      break;
+      return make_token(TokenType::ASTERISK, "*", line_);
     case '/':
-      token = make_token(TokenType::SLASH, "/", line_);
-      break;
+      return make_token(TokenType::SLASH, "/", line_);
     case '!':
       if (peek_char() == '=') {
         consume_char();
-        token = make_token(TokenType::NOT_EQUAL, "!=", line_);
-      } else {
-        token = make_token(TokenType::BANG, "!", line_);
+        consume_char();
+        return make_token(TokenType::NOT_EQUAL, "!=", line_);
       }
-      break;
+      consume_char();
+      return make_token(TokenType::BANG, "!", line_);
     case '=':
       if (peek_char() == '=') {
         consume_char();
-        token = make_token(TokenType::EQUAL, "==", line_);
-      } else {
-        token = make_token(TokenType::ASSIGN, "=", line_);
+        consume_char();
+        return make_token(TokenType::EQUAL, "==", line_);
       }
-      break;
+      consume_char();
+      return make_token(TokenType::ASSIGN, "=", line_);
     case '<':
       if (peek_char() == '=') {
         consume_char();
-        token = make_token(TokenType::LESS_EQUAL, "<=", line_);
-      } else {
-        token = make_token(TokenType::LESS, "<", line_);
+        consume_char();
+        return make_token(TokenType::LESS_EQUAL, "<=", line_);
       }
-      break;
+      consume_char();
+      return make_token(TokenType::LESS, "<", line_);
     case '>':
       if (peek_char() == '=') {
         consume_char();
-        token = make_token(TokenType::GREATER_EQUAL, ">=", line_);
-      } else {
-        token = make_token(TokenType::GREATER, ">", line_);
+        consume_char();
+        return make_token(TokenType::GREATER_EQUAL, ">=", line_);
       }
-      break;
+      consume_char();
+      return make_token(TokenType::GREATER, ">", line_);
     default:
       if (std::isalpha(current_char_) || current_char_ == '_') {
         const std::string lexeme = read_identifier();
         const TokenType type = lookup_identifier(lexeme);
-        token = make_token(type, lexeme, line_);
-      } else if (std::isdigit(current_char_)) {
+        return make_token(type, lexeme, line_);
+      } else if (
+          std::isdigit(current_char_) || (current_char_ == '.' && std::isdigit(peek_char()))) {
         const auto [type, lexeme] = read_number();
-        token = make_token(type, lexeme, line_);
+        return make_token(type, lexeme, line_);
       } else {
+        const char unknown = current_char_;
         consume_char();
-        token = make_token(TokenType::ERROR, std::string(1, current_char_), line_);
+        return make_token(TokenType::ERROR, std::string(1, unknown), line_);
       }
-      return token;
   }
-  consume_char();
-  return token;
 }
 
 std::pair<TokenType, std::string> Lexer::read_number() {
   const auto start_position = position_;
-  auto result = std::pair<TokenType, std::string>(TokenType::INTEGER, "");
-  while (true) {
-    if (current_char_ == '.') {
-      result.first = TokenType::FLOAT;
-    } else if (std::isdigit(current_char_)) {
-      consume_char();
-    } else {
-      break;
-    }
+  auto type = TokenType::INTEGER;
+  auto has_dot = false;
+
+  if (current_char_ == '.') {
+    has_dot = true;
+    type = TokenType::FLOAT;
+    consume_char();
   }
-  result.second = input_.substr(start_position, read_position_ - start_position);
-  return result;
+
+  while (std::isdigit(current_char_) || (!has_dot && current_char_ == '.')) {
+    if (current_char_ == '.') {
+      has_dot = true;
+      type = TokenType::FLOAT;
+    }
+    consume_char();
+  }
+
+  auto lexeme = input_.substr(start_position, read_position_ - start_position);
+  return {type, lexeme};
 }
 
 void Lexer::consume_char() {
@@ -176,14 +166,12 @@ std::string Lexer::read_identifier() {
   return input_.substr(start_position, read_position_ - start_position);
 }
 
-
-
 void Lexer::consume_whitespace() {
   while (true) {
     switch (peek_char()) {
       case '\n':
         ++line_;
-      [[fallthrough]]
+        [[fallthrough]];
       case ' ':
       case '\t':
       case '\r':
