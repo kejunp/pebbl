@@ -22,6 +22,7 @@
 #include "opcodes.hpp"
 #include "value.hpp"
 
+/// @brief The class for storing bytecode
 class Chunk {
 private:
   std::vector<size_t> line_run_starts;
