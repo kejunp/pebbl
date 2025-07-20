@@ -16,6 +16,9 @@
 
 #pragma once
 
+#include <utility>
+#include <string>
+
 #include "common.hpp"
 #include "tokens.hpp"
 
@@ -62,7 +65,7 @@ private:
    * @brief Consumes the characters until the section isn't a valid number, then
    * returns the number
    */
-  std::string read_number();
+  std::pair<TokenType, std::string> read_number();
 
   /**
    * @brief Skips all whitespace

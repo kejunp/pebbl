@@ -46,7 +46,8 @@ enum class TokenType {
   // Literals
   IDENTIFIER,
   STRING,
-  NUMBER,
+  INTEGER,
+  FLOAT,
 
   // Keywords
   AND,

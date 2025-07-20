@@ -123,8 +123,8 @@ Token Lexer::next_token() {
         const TokenType type = lookup_identifier(lexeme);
         token = make_token(type, lexeme, line_);
       } else if (std::isdigit(current_char_)) {
-        const std::string lexeme = read_number();
-        token = make_token(TokenType::NUMBER, lexeme, line_);
+        const auto [type, lexeme] = read_number();
+        token = make_token(type, lexeme, line_);
       } else {
         consume_char();
         token = make_token(TokenType::ERROR, std::string(1, current_char_), line_);
@@ -133,6 +133,22 @@ Token Lexer::next_token() {
   }
   consume_char();
   return token;
+}
+
+std::pair<TokenType, std::string> Lexer::read_number() {
+  const auto start_position = position_;
+  auto result = std::pair<TokenType, std::string>(TokenType::INTEGER, "");
+  while (true) {
+    if (current_char_ == '.') {
+      result.first = TokenType::FLOAT;
+    } else if (std::isdigit(current_char_)) {
+      consume_char();
+    } else {
+      break;
+    }
+  }
+  result.second = input_.substr(start_position, read_position_ - start_position);
+  return result;
 }
 
 void Lexer::consume_char() {
@@ -153,20 +169,14 @@ char Lexer::peek_char() const {
 }
 
 std::string Lexer::read_identifier() {
-  const std::size_t start_position = read_position_;
+  const std::size_t start_position = position_;
   while (std::isalnum(current_char_) || current_char_ == '_') {
     consume_char();
   }
   return input_.substr(start_position, read_position_ - start_position);
 }
 
-std::string Lexer::read_number() {
-  const std::size_t start_position = read_position_;
-  while (std::isdigit(current_char_)) {
-    consume_char();
-  }
-  return input_.substr(start_position, read_position_ - start_position);
-}
+
 
 void Lexer::consume_whitespace() {
   while (true) {
