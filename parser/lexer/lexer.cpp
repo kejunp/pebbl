@@ -18,18 +18,6 @@
 
 #include <cctype>
 
-namespace {
-
-Token make_token(TokenType type, std::string&& lexeme, std::size_t line) {
-  return Token{type, std::move(lexeme), line};
-}
-
-Token make_token(TokenType type, const std::string& lexeme, std::size_t line) {
-  return Token{type, lexeme, line};
-}
-
-}  // namespace
-
 Lexer::Lexer(std::string&& input) noexcept :
     input_(std::move(input)), position_{}, read_position_{0}, current_char_{'\0'} {
   consume_char();
@@ -39,81 +27,67 @@ Token Lexer::next_token() {
   consume_whitespace();
 
   if (current_char_ == '\0') {
-    return make_token(TokenType::EOF_TYPE, "", line_);
+    return make_token(TokenType::EOF_TYPE, "");
   }
 
   switch (current_char_) {
     case '(':
-      return make_token(TokenType::LPAREN, "(", line_);
+      return make_token(TokenType::LPAREN, "(");
     case ')':
-      return make_token(TokenType::RPAREN, ")", line_);
+      return make_token(TokenType::RPAREN, ")");
     case '{':
-      return make_token(TokenType::LBRACE, "{", line_);
+      return make_token(TokenType::LBRACE, "{");
     case '}':
-      return make_token(TokenType::RBRACE, "}", line_);
+      return make_token(TokenType::RBRACE, "}");
     case '[':
-      return make_token(TokenType::LBRACKET, "[", line_);
+      return make_token(TokenType::LBRACKET, "[");
     case ']':
-      return make_token(TokenType::RBRACKET, "]", line_);
+      return make_token(TokenType::RBRACKET, "]");
     case ',':
-      return make_token(TokenType::COMMA, ",", line_);
+      return make_token(TokenType::COMMA, ",");
     case '.':
-      return make_token(TokenType::DOT, ".", line_);
+      return make_token(TokenType::DOT, ".");
     case ';':
-      return make_token(TokenType::SEMICOLON, ";", line_);
+      return make_token(TokenType::SEMICOLON, ";");
     case '+':
-      return make_token(TokenType::PLUS, "+", line_);
+      return make_token(TokenType::PLUS, "+");
     case '-':
-      return make_token(TokenType::MINUS, "-", line_);
+      return make_token(TokenType::MINUS, "-");
     case '*':
-      return make_token(TokenType::ASTERISK, "*", line_);
+      return make_token(TokenType::ASTERISK, "*");
     case '/':
-      return make_token(TokenType::SLASH, "/", line_);
+      return make_token(TokenType::SLASH, "/");
     case '!':
       if (peek_char() == '=') {
-        consume_char();
-        consume_char();
-        return make_token(TokenType::NOT_EQUAL, "!=", line_);
+        return make_token(TokenType::NOT_EQUAL, "!=");
       }
-      consume_char();
-      return make_token(TokenType::BANG, "!", line_);
+      return make_token(TokenType::BANG, "!");
     case '=':
       if (peek_char() == '=') {
-        consume_char();
-        consume_char();
-        return make_token(TokenType::EQUAL, "==", line_);
+        return make_token(TokenType::EQUAL, "==");
       }
-      consume_char();
-      return make_token(TokenType::ASSIGN, "=", line_);
+      return make_token(TokenType::ASSIGN, "=");
     case '<':
       if (peek_char() == '=') {
-        consume_char();
-        consume_char();
-        return make_token(TokenType::LESS_EQUAL, "<=", line_);
+        return make_token(TokenType::LESS_EQUAL, "<=");
       }
-      consume_char();
-      return make_token(TokenType::LESS, "<", line_);
+      return make_token(TokenType::LESS, "<");
     case '>':
       if (peek_char() == '=') {
-        consume_char();
-        consume_char();
-        return make_token(TokenType::GREATER_EQUAL, ">=", line_);
+        return make_token(TokenType::GREATER_EQUAL, ">=");
       }
-      consume_char();
-      return make_token(TokenType::GREATER, ">", line_);
+      return make_token(TokenType::GREATER, ">");
     default:
       if (std::isalpha(current_char_) || current_char_ == '_') {
         const std::string lexeme = read_identifier();
         const TokenType type = lookup_identifier(lexeme);
-        return make_token(type, lexeme, line_);
+        return Token{.type = type, .lexeme = lexeme, .line = line_};
       } else if (
           std::isdigit(current_char_) || (current_char_ == '.' && std::isdigit(peek_char()))) {
         const auto [type, lexeme] = read_number();
-        return make_token(type, lexeme, line_);
+        return Token{.type = type, .lexeme = lexeme, .line = line_};
       } else {
-        const char unknown = current_char_;
-        consume_char();
-        return make_token(TokenType::ERROR, std::string(1, unknown), line_);
+        return make_token(TokenType::ERROR, std::string(1, current_char_));
       }
   }
 }

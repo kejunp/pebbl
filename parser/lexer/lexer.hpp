@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <utility>
 #include <string>
+#include <utility>
 
 #include "common.hpp"
 #include "tokens.hpp"
@@ -71,4 +71,24 @@ private:
    * @brief Skips all whitespace
    */
   void consume_whitespace();
+
+  /**
+   * @brief Creates a token
+   */
+  inline Token make_token(TokenType type, std::string&& lexeme) {
+    for (size_t i = 0; i < lexeme.length(); ++i) {
+      consume_char();
+    }
+    return Token{.type=type, .lexeme=std::move(lexeme), .line=line_};
+  }
+
+  /**
+   * @overload
+   */
+  Token make_token(TokenType type, const std::string& lexeme) {
+    for (size_t i = 0; i < lexeme.length(); ++i) {
+      consume_char();
+    }
+    return Token{.type=type, .lexeme=lexeme, .line=line_};
+  }
 };
