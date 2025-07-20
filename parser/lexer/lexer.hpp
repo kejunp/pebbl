@@ -79,7 +79,7 @@ private:
     for (size_t i = 0; i < lexeme.length(); ++i) {
       consume_char();
     }
-    return Token{.type=type, .lexeme=std::move(lexeme), .line=line_};
+    return Token{.type = type, .lexeme = std::move(lexeme), .line = line_};
   }
 
   /**
@@ -89,6 +89,6 @@ private:
     for (size_t i = 0; i < lexeme.length(); ++i) {
       consume_char();
     }
-    return Token{.type=type, .lexeme=lexeme, .line=line_};
+    return Token{.type = type, .lexeme = lexeme, .line = line_};
   }
 };
