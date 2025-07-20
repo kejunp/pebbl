@@ -86,6 +86,8 @@ Token Lexer::next_token() {
           std::isdigit(current_char_) || (current_char_ == '.' && std::isdigit(peek_char()))) {
         const auto [type, lexeme] = read_number();
         return Token{.type = type, .lexeme = lexeme, .line = line_};
+      } else if (current_char_ == '"') {
+        
       } else {
         return make_token(TokenType::ERROR, std::string(1, current_char_));
       }

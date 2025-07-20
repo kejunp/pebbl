@@ -63,9 +63,15 @@ private:
 
   /**
    * @brief Consumes the characters until the section isn't a valid number, then
-   * returns the number
+   * returns the type of the number (a TokenType::INTEGER or TokenType::FLOAT) and the number
    */
   std::pair<TokenType, std::string> read_number();
+
+  /**
+   * @brief Consumes the characters until the section isn't a valid string, then
+   * returns the string
+   */
+  std::string read_string();
 
   /**
    * @brief Skips all whitespace
