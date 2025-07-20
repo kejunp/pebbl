@@ -25,6 +25,8 @@ enum class TokenType {
   RPAREN,
   LBRACE,
   RBRACE,
+  LBRACKET,
+  RBRACKET,
   COMMA,
   DOT,
   SEMICOLON,

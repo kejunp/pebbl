@@ -58,6 +58,12 @@ Token Lexer::next_token() {
     case '}':
       token = make_token(TokenType::RBRACE, "}", line_);
       break;
+    case '[':
+      token = make_token(TokenType::LBRACKET, "[", line_);
+      break;
+    case ']':
+      token = make_token(TokenType::RBRACKET, "]", line_);
+      break;
     case ',':
       token = make_token(TokenType::COMMA, ",", line_);
       break;
