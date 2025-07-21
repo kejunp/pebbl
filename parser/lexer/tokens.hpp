@@ -61,6 +61,7 @@ enum class TokenType {
   FUNC,
   RETURN,
   LET,
+  VAR,
   NIL,
   ERROR,
   EOF_TYPE
@@ -85,6 +86,7 @@ inline TokenType lookup_identifier(const std::string& name) {
       {"func", TokenType::FUNC},
       {"return", TokenType::RETURN},
       {"let", TokenType::LET},
+      {"var", TokenType::VAR},
       {"nil", TokenType::NIL}};
   if (auto it = keywords.find(name); it != keywords.end()) {
     return it->second;
