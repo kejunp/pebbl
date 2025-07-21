@@ -55,6 +55,9 @@ struct IdentifierNode final : ExpressionNode {
   Token token;
   std::string name;
 
+  /**
+   * @brief Returns ASTType::IDENTIFIER
+   */
   ASTType type() const noexcept override {
     return ASTType::IDENTIFIER;
   }
