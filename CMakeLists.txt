@@ -13,6 +13,8 @@ set(SOURCES
 set(HEADER_DIRS
   interpreter/bytecode
   interpreter/runtime
+  parser/lexer
+  parser/ast_generation
   utils
 )
 

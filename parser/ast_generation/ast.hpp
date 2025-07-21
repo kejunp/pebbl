@@ -16,9 +16,11 @@
 
 #pragma once
 
+#include <memory>
+
 #include "tokens.hpp"
 
-enum class ASTType { IDENTIFIER };
+enum class ASTType { IDENTIFIER, VARIABLE_STATEMENT };
 
 /// @brief Base class of all AST nodes
 struct ASTNode {
@@ -26,7 +28,8 @@ struct ASTNode {
 
   /**
    * @brief Gives the type of the AST node
-   * @return Returns a scoped enum called ASTType (e.g., LetStatement -> AstType::LET_STATEMENT)
+   * @return Returns a scoped enum called ASTType (e.g., VariableStatement ->
+   * AstType::VARIABLE_STATEMENT)
    */
   virtual ASTType type() const noexcept = 0;
 
@@ -54,16 +57,29 @@ struct IdentifierNode final : ExpressionNode {
   std::string name;
 
   /**
-   * @brief Returns ASTType::IDENTIFIER
+   * @return Returns ASTType::IDENTIFIER
    */
   ASTType type() const noexcept override {
     return ASTType::IDENTIFIER;
   }
 
   /**
-   * @brief Returns pointer to a identifier token
+   * @return Returns pointer to a identifier token
    */
   const Token* get_token() const noexcept override {
     return &token;
+  }
+};
+
+struct VariableStatement final : StatementNode {
+  bool is_mutable;
+  std::unique_ptr<IdentifierNode> name;
+  std::unique_ptr<ExpressionNode> value;
+
+  /**
+   * @return Returns ASTType::VARIABLE_STATEMENT
+   */
+  ASTType type() const noexcept override {
+    return ASTType::VARIABLE_STATEMENT;
   }
 };
