@@ -18,9 +18,7 @@
 
 #include "tokens.hpp"
 
-enum class ASTType {
-  IDENTIFIER
-};
+enum class ASTType { IDENTIFIER };
 
 /// @brief Base class of all AST nodes
 struct ASTNode {
@@ -62,6 +60,9 @@ struct IdentifierNode final : ExpressionNode {
     return ASTType::IDENTIFIER;
   }
 
+  /**
+   * @brief Returns pointer to a identifier token
+   */
   const Token* get_token() const noexcept override {
     return &token;
   }
