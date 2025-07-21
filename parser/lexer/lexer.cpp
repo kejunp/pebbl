@@ -87,7 +87,6 @@ Token Lexer::next_token() {
         const auto [type, lexeme] = read_number();
         return Token{.type = type, .lexeme = lexeme, .line = line_};
       } else if (current_char_ == '"') {
-        
       } else {
         return make_token(TokenType::ERROR, std::string(1, current_char_));
       }
@@ -135,10 +134,19 @@ char Lexer::peek_char() const {
 }
 
 std::string Lexer::read_identifier() {
-  const std::size_t start_position = position_;
+  const auto start_position = position_;
   while (std::isalnum(current_char_) || current_char_ == '_') {
     consume_char();
   }
+  return input_.substr(start_position, read_position_ - start_position);
+}
+
+std::string Lexer::read_string() {
+  const auto start_position = position_;
+  do {
+    consume_char();
+  } while (current_char_ != '"');
+  consume_char();
   return input_.substr(start_position, read_position_ - start_position);
 }
 
