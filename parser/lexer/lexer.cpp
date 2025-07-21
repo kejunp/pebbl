@@ -87,6 +87,8 @@ Token Lexer::next_token() {
         const auto [type, lexeme] = read_number();
         return Token{.type = type, .lexeme = lexeme, .line = line_};
       } else if (current_char_ == '"') {
+        const auto lexeme = read_string();
+        return Token{.type = TokenType::STRING, .lexeme = lexeme, .line = line_};
       } else {
         return make_token(TokenType::ERROR, std::string(1, current_char_));
       }
