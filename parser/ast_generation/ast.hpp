@@ -19,7 +19,7 @@
 #include "tokens.hpp"
 
 enum class ASTType {
-
+  IDENTIFIER
 };
 
 /// @brief Base class of all AST nodes
@@ -28,16 +28,16 @@ struct ASTNode {
 
   /**
    * @brief Gives the type of the AST node
-   * @return Returns a scoped enum called ASTType (e.g., LetStatement -> ASTTYPE_LET_STATEMENT)
+   * @return Returns a scoped enum called ASTType (e.g., LetStatement -> AstType::LET_STATEMENT)
    */
-  virtual ASTType type() const = 0;
+  virtual ASTType type() const noexcept = 0;
 
   /**
    * @brief Gives a pointer to the token, if no meaningful token, return nullptr
    * @return Returns a pointer to the token of the AST node (BinaryExpressionNode will return
    * whatever the operator is, etc.)
    */
-  virtual const Token* get_token() const {
+  virtual const Token* get_token() const noexcept {
     return nullptr;
   }
 };
@@ -47,3 +47,19 @@ struct StatementNode : ASTNode {};
 
 /// @brief Base class for all expressions
 struct ExpressionNode : ASTNode {};
+
+/// @brief Base class for all literals
+struct LiteralNode : ExpressionNode {};
+
+struct IdentifierNode final : ExpressionNode {
+  Token token;
+  std::string name;
+
+  ASTType type() const noexcept override {
+    return ASTType::IDENTIFIER;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
