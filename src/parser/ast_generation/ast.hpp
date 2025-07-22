@@ -20,7 +20,7 @@
 
 #include "tokens.hpp"
 
-enum class ASTType { IDENTIFIER, VARIABLE_STATEMENT };
+enum class ASTType { IDENTIFIER, VARIABLE_STATEMENT, RETURN_STATEMENT };
 
 /// @brief Base class of all AST nodes
 struct ASTNode {
@@ -28,7 +28,7 @@ struct ASTNode {
 
   /**
    * @brief Gives the type of the AST node
-   * @return Returns a scoped enum called ASTType (e.g., VariableStatement ->
+   * @return Returns a scoped enum called ASTType (e.g., VariableStatementNode ->
    * AstType::VARIABLE_STATEMENT)
    */
   virtual ASTType type() const noexcept = 0;
@@ -71,7 +71,7 @@ struct IdentifierNode final : ExpressionNode {
   }
 };
 
-struct VariableStatement final : StatementNode {
+struct VariableStatementNode final : StatementNode {
   Token token;  ///< Either let or var
 
   std::unique_ptr<IdentifierNode> name;  ///< The identifier ( let [name] = 25;)
@@ -89,7 +89,27 @@ struct VariableStatement final : StatementNode {
     return &token;
   }
 
+  /**
+   * @brief Is the variable mutable?
+   * @return True if the variable is mutable, and vise versa
+   */
   bool is_mutible() const noexcept {
     return token.type == TokenType::VAR;
+  }
+};
+
+struct ReturnStatementNode final : StatementNode {
+  Token token;  ///< Always a token with type RETURN, lexeme of return, kept here for line number
+  std::unique_ptr<ExpressionNode> return_value;  ///< Expression to return
+
+  /**
+   * @return Returns ASTType::RETURN_STATEMENT
+   */
+  virtual ASTType type() const noexcept override {
+    return ASTType::RETURN_STATEMENT;
+  }
+
+  virtual const Token* get_token() const noexcept override {
+    return &token;
   }
 };
