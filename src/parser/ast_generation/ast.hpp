@@ -53,8 +53,8 @@ struct ExpressionNode : ASTNode {};
 struct LiteralNode : ExpressionNode {};
 
 struct IdentifierNode final : ExpressionNode {
-  Token token;      ///< A Identifier token
-  std::string name; ///< The name of the identifier
+  Token token;       ///< A Identifier token
+  std::string name;  ///< The name of the identifier
 
   /**
    * @return Returns ASTType::IDENTIFIER
@@ -74,8 +74,9 @@ struct IdentifierNode final : ExpressionNode {
 struct VariableStatement final : StatementNode {
   Token token;  ///< Either let or var
 
-  std::unique_ptr<IdentifierNode> name; ///< The identifier ( let [name] = 25;)
-  std::unique_ptr<ExpressionNode> value; ///< The expression that you are assigning to ( let x = [value])
+  std::unique_ptr<IdentifierNode> name;  ///< The identifier ( let [name] = 25;)
+  std::unique_ptr<ExpressionNode>
+      value;  ///< The expression that you are assigning to ( let x = [value])
 
   /**
    * @return Returns ASTType::VARIABLE_STATEMENT
