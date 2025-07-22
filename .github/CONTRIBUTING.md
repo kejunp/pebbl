@@ -13,6 +13,7 @@ This document outlines how to build, test, and contribute code to the project.
 - `utils/` — Useful utilities such as debug.hpp/.cpp, and common.hpp
 - `.github/` — GitHub Actions, issue templates, and PR templates
 
+(All source code will be in the src/ directory)
 ---
 
 ## How to Build (Linux / macOS / Windows)

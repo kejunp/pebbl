@@ -5,17 +5,17 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCES
-  utils/debug.cpp
-  interpreter/bytecode/chunk.cpp
-  interpreter/main.cpp
+  src/utils/debug.cpp
+  src/interpreter/bytecode/chunk.cpp
+  src/interpreter/main.cpp
 )
 
 set(HEADER_DIRS
-  interpreter/bytecode
-  interpreter/runtime
-  parser/lexer
-  parser/ast_generation
-  utils
+  src/interpreter/bytecode
+  src/interpreter/runtime
+  src/parser/lexer
+  src/parser/ast_generation
+  src/utils
 )
 
 if(NOT CMAKE_BUILD_TYPE)

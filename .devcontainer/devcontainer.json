@@ -11,9 +11,9 @@
         "C_Cpp.default.cStandard": "c11",
         "C_Cpp.default.cppStandard": "c++17",
         "C_Cpp.default.includePath": [
-          "${workspaceFolder}/interpreter/bytecode",
-          "${workspaceFolder}/interpreter/runtime",
-          "${workspaceFolder}/utils"
+          "${workspaceFolder}/src/interpreter/bytecode",
+          "${workspaceFolder}/src/interpreter/runtime",
+          "${workspaceFolder}/src/utils"
         ],
         "editor.tabSize": 2,
         "editor.insertSpaces": true,
