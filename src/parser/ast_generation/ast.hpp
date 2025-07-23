@@ -20,7 +20,7 @@
 
 #include "tokens.hpp"
 
-enum class ASTType { IDENTIFIER, VARIABLE_STATEMENT, RETURN_STATEMENT };
+enum class ASTType { IDENTIFIER, VARIABLE_STATEMENT, RETURN_STATEMENT, EXPRESSION_STATEMENT };
 
 /// @brief Base class of all AST nodes
 struct ASTNode {
@@ -105,11 +105,26 @@ struct ReturnStatementNode final : StatementNode {
   /**
    * @return Returns ASTType::RETURN_STATEMENT
    */
-  virtual ASTType type() const noexcept override {
+  ASTType type() const noexcept override {
     return ASTType::RETURN_STATEMENT;
   }
 
-  virtual const Token* get_token() const noexcept override {
+  const Token* get_token() const noexcept override {
     return &token;
+  }
+};
+
+struct ExpressionStatementNode final : StatementNode {
+  std::unique_ptr<ExpressionNode> expression;
+
+  /**
+   * @return Returns ASTType::EXPRESSION_STATEMENT
+   */
+  ASTType type() const noexcept override {
+    return ASTType::EXPRESSION_STATEMENT;
+  }
+
+  const Token* get_token() const noexcept override {
+    return expression->get_token();
   }
 };
