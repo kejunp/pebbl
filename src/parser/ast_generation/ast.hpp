@@ -61,6 +61,7 @@ struct ExpressionNode : ASTNode {};
 /// @brief Base class for all literals
 struct LiteralNode : ExpressionNode {};
 
+/// @brief The root of all ASTs (sorta like a block statement, but the block is global)
 struct ProgramNode final : ASTNode {
   std::vector<std::unique_ptr<StatementNode>> statements;
 
@@ -72,6 +73,7 @@ struct ProgramNode final : ASTNode {
   }
 };
 
+/// @brief A identifier
 struct IdentifierNode final : ExpressionNode {
   Token token;       ///< A Identifier token
   std::string name;  ///< The name of the identifier
@@ -91,6 +93,7 @@ struct IdentifierNode final : ExpressionNode {
   }
 };
 
+/// @brief A variable declaration/definition: let immut = 5; var mut = 5; etc.
 struct VariableStatementNode final : StatementNode {
   Token token;  ///< Either let or var
 
@@ -118,6 +121,11 @@ struct VariableStatementNode final : StatementNode {
   }
 };
 
+/**
+ * @brief A return statement (different from a implicit return, e.g. 5; will become a expression
+ * statement, return 5; will become this)
+ */
+
 struct ReturnStatementNode final : StatementNode {
   Token token;  ///< Always a token with type RETURN, lexeme of return, kept here for line number
   std::unique_ptr<ExpressionNode> return_value;  ///< Expression to return
@@ -134,10 +142,11 @@ struct ReturnStatementNode final : StatementNode {
   }
 };
 
+/// @brief A while loop (e.g., while x < y { let x = 5 let y = 4;})
 struct WhileLoopStatementNode final : StatementNode {
   Token token;  ///< Always a token with TokenType::WHILE and lexeme "while"
-  std::unique_ptr<ExpressionNode> condition;
-  std::unique_ptr<BlockStatementNode> block;
+  std::unique_ptr<ExpressionNode> condition;  ///< The condition
+  std::unique_ptr<BlockStatementNode> block;  ///< If the condition is true, this happens
 
   /**
    * @return Returns ASTType::WHILE_STATEMENT
@@ -151,6 +160,7 @@ struct WhileLoopStatementNode final : StatementNode {
   }
 };
 
+/// @brief A block statement { [statements... ] }
 struct BlockStatementNode final : StatementNode {
   std::vector<std::unique_ptr<StatementNode>> statements;
 
@@ -162,6 +172,7 @@ struct BlockStatementNode final : StatementNode {
   }
 };
 
+/// @brief A wrapper around a expression (but it is a statement)
 struct ExpressionStatementNode final : StatementNode {
   std::unique_ptr<ExpressionNode> expression;
 
