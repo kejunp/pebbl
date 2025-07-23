@@ -51,6 +51,8 @@ After building, run the interpreter
 ```sh
 ./pebbli ../examples/hello.peb
 ```
+(or .\pebbli.exe on Windows)
+
 You can also run tests manually (if added):
 ```sh
 ctest
