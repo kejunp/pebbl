@@ -6,13 +6,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCES
   src/utils/debug.cpp
-  src/interpreter/bytecode/chunk.cpp
-  src/interpreter/main.cpp
+  src/parser/lexer/lexer.cpp
 )
 
 set(HEADER_DIRS
-  src/interpreter/bytecode
-  src/interpreter/runtime
   src/parser/lexer
   src/parser/ast_generation
   src/utils
