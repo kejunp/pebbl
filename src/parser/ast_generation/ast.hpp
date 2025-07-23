@@ -17,10 +17,19 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "tokens.hpp"
 
-enum class ASTType { IDENTIFIER, VARIABLE_STATEMENT, RETURN_STATEMENT, EXPRESSION_STATEMENT };
+enum class ASTType {
+  IDENTIFIER,
+  VARIABLE_STATEMENT,
+  RETURN_STATEMENT,
+  EXPRESSION_STATEMENT,
+  PROGRAM_ROOT,
+  BLOCK_STATEMENT,
+  WHILE_STATEMENT
+};
 
 /// @brief Base class of all AST nodes
 struct ASTNode {
@@ -51,6 +60,17 @@ struct ExpressionNode : ASTNode {};
 
 /// @brief Base class for all literals
 struct LiteralNode : ExpressionNode {};
+
+struct ProgramNode final : ASTNode {
+  std::vector<std::unique_ptr<StatementNode>> statements;
+
+  /**
+   * @return Returns ASTType::PROGRAM_ROOT
+   */
+  ASTType type() const noexcept override {
+    return ASTType::PROGRAM_ROOT;
+  }
+};
 
 struct IdentifierNode final : ExpressionNode {
   Token token;       ///< A Identifier token
@@ -111,6 +131,34 @@ struct ReturnStatementNode final : StatementNode {
 
   const Token* get_token() const noexcept override {
     return &token;
+  }
+};
+
+struct WhileLoopStatementNode final : StatementNode {
+  Token token;  ///< Always a token with TokenType::WHILE and lexeme "while"
+  std::unique_ptr<ExpressionNode> condition;
+  std::unique_ptr<BlockStatementNode> block;
+
+  /**
+   * @return Returns ASTType::WHILE_STATEMENT
+   */
+  ASTType type() const noexcept override {
+    return ASTType::WHILE_STATEMENT;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+struct BlockStatementNode final : StatementNode {
+  std::vector<std::unique_ptr<StatementNode>> statements;
+
+  /**
+   * @return Returns ASTType::BLOCK_STATEMENT
+   */
+  ASTType type() const noexcept override {
+    return ASTType::BLOCK_STATEMENT;
   }
 };
 
