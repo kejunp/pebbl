@@ -12,7 +12,7 @@ set(SOURCES
 set(HEADER_DIRS
   src/parser/lexer
   src/parser/ast_generation
-  src/utils
+  src/
 )
 
 if(NOT CMAKE_BUILD_TYPE)
