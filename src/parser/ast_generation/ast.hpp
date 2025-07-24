@@ -125,7 +125,6 @@ struct VariableStatementNode final : StatementNode {
  * @brief A return statement (different from a implicit return, e.g. 5; will become a expression
  * statement, return 5; will become this)
  */
-
 struct ReturnStatementNode final : StatementNode {
   Token token;  ///< Always a token with type RETURN, lexeme of return, kept here for line number
   std::unique_ptr<ExpressionNode> return_value;  ///< Expression to return
@@ -140,6 +139,13 @@ struct ReturnStatementNode final : StatementNode {
   const Token* get_token() const noexcept override {
     return &token;
   }
+};
+
+struct ForLoopStatementNode final : StatementNode {
+  Token token; ///< Always a token with TokenType::FOR and lexeme "for"
+  std::unique_ptr<IdentifierNode> identifier;
+  std::unique_ptr<ExpressionNode> iterable;
+  
 };
 
 /// @brief A while loop (e.g., while x < y { let x = 5 let y = 4;})
