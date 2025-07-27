@@ -19,8 +19,12 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
 endif()
 
+find_package(Boost REQUIRED)
+
 add_executable(pebbli ${SOURCES})
-target_include_directories(pebbli PRIVATE ${HEADER_DIRS})
+target_include_directories(pebbli PRIVATE ${HEADER_DIRS} ${Boost_INCLUDE_DIRS})
+
+target_link_libraries(pebbli ${Boost_LIBRARIES})
 
 if (MSVC)
   target_compile_options(pebbli PRIVATE  

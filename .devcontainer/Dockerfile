@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     gh   \
+    libboost-all-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && curl -LO https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip \
