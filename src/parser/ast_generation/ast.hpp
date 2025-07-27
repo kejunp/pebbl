@@ -28,7 +28,8 @@ enum class ASTType {
   EXPRESSION_STATEMENT,
   PROGRAM_ROOT,
   BLOCK_STATEMENT,
-  WHILE_STATEMENT
+  WHILE_LOOP_STATEMENT,
+  FOR_LOOP_STATEMENT
 };
 
 /// @brief Base class of all AST nodes
@@ -142,10 +143,9 @@ struct ReturnStatementNode final : StatementNode {
 };
 
 struct ForLoopStatementNode final : StatementNode {
-  Token token; ///< Always a token with TokenType::FOR and lexeme "for"
-  std::unique_ptr<IdentifierNode> identifier;
-  std::unique_ptr<ExpressionNode> iterable;
-  
+  Token token;  ///< Always a token with TokenType::FOR and lexeme "for"
+  std::unique_ptr<IdentifierNode> identifier;  ///< The iterator (e.g. for [identifier] in range..)
+  std::unique_ptr<ExpressionNode> iterable;    ///< The thing to iterate over (e.g., a list)
 };
 
 /// @brief A while loop (e.g., while x < y { let x = 5 let y = 4;})
@@ -155,10 +155,10 @@ struct WhileLoopStatementNode final : StatementNode {
   std::unique_ptr<BlockStatementNode> block;  ///< If the condition is true, this happens
 
   /**
-   * @return Returns ASTType::WHILE_STATEMENT
+   * @return Returns ASTType::WHILE_LOOP_STATEMENT
    */
   ASTType type() const noexcept override {
-    return ASTType::WHILE_STATEMENT;
+    return ASTType::WHILE_LOOP_STATEMENT;
   }
 
   const Token* get_token() const noexcept override {
