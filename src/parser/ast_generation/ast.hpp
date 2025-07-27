@@ -18,6 +18,7 @@
 
 #include <memory>
 #include <vector>
+#include <boost/multiprecision/cpp_int.hpp>
 
 #include "tokens.hpp"
 
@@ -29,7 +30,8 @@ enum class ASTType {
   PROGRAM_ROOT,
   BLOCK_STATEMENT,
   WHILE_LOOP_STATEMENT,
-  FOR_LOOP_STATEMENT
+  FOR_LOOP_STATEMENT,
+  INTEGER_LITERAL
 };
 
 /// @brief Base class of all AST nodes
@@ -202,5 +204,22 @@ struct ExpressionStatementNode final : StatementNode {
 
   const Token* get_token() const noexcept override {
     return expression->get_token();
+  }
+};
+
+/// @brief A integer literal
+struct IntegerLiteralNode : LiteralNode {
+  Token token;
+  boost::multiprecision::cpp_int value;
+
+  /**
+   * @return Returns ASTType::INTEGER_LITERAL
+   */
+  ASTType type() const noexcept override {
+    return ASTType::INTEGER_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
   }
 };
