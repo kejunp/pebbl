@@ -146,6 +146,17 @@ struct ForLoopStatementNode final : StatementNode {
   Token token;  ///< Always a token with TokenType::FOR and lexeme "for"
   std::unique_ptr<IdentifierNode> identifier;  ///< The iterator (e.g. for [identifier] in range..)
   std::unique_ptr<ExpressionNode> iterable;    ///< The thing to iterate over (e.g., a list)
+
+  /**
+   * @return Returns ASTType::FOR_LOOP_STATEMENT
+   */
+  ASTType type() const noexcept override {
+    return ASTType::FOR_LOOP_STATEMENT;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
 };
 
 /// @brief A while loop (e.g., while x < y { let x = 5 let y = 4;})
