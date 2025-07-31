@@ -31,7 +31,8 @@ enum class ASTType {
   BLOCK_STATEMENT,
   WHILE_LOOP_STATEMENT,
   FOR_LOOP_STATEMENT,
-  INTEGER_LITERAL
+  INTEGER_LITERAL,
+  STRING_LITERAL
 };
 
 /// @brief Base class of all AST nodes
@@ -217,6 +218,19 @@ struct IntegerLiteralNode : LiteralNode {
    */
   ASTType type() const noexcept override {
     return ASTType::INTEGER_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+struct StringLiteralNode : LiteralNode {
+  Token token;
+  std::string value;
+
+  ASTType type() const noexcept override {
+    return ASTType::STRING_LITERAL;
   }
 
   const Token* get_token() const noexcept override {
