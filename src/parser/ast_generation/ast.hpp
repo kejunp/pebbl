@@ -16,9 +16,9 @@
 
 #pragma once
 
+#include <boost/multiprecision/cpp_int.hpp>
 #include <memory>
 #include <vector>
-#include <boost/multiprecision/cpp_int.hpp>
 
 #include "tokens.hpp"
 
@@ -225,10 +225,14 @@ struct IntegerLiteralNode : LiteralNode {
   }
 };
 
+/// @brief A string literal
 struct StringLiteralNode : LiteralNode {
   Token token;
   std::string value;
 
+  /**
+   * @return Returns ASTType::STRING_LITERAL
+   */
   ASTType type() const noexcept override {
     return ASTType::STRING_LITERAL;
   }
