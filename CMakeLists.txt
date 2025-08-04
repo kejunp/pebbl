@@ -19,6 +19,9 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
 endif()
 
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 OLD)
+endif()
 find_package(Boost REQUIRED)
 
 add_executable(pebbli ${SOURCES})
