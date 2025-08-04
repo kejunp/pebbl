@@ -32,7 +32,13 @@ enum class ASTType {
   WHILE_LOOP_STATEMENT,
   FOR_LOOP_STATEMENT,
   INTEGER_LITERAL,
-  STRING_LITERAL
+  STRING_LITERAL,
+  FLOAT_LITERAL,
+  BOOLEAN_LITERAL,
+  BINARY_EXPRESSION,
+  UNARY_EXPRESSION,
+  IF_ELSE_EXPRESSION,
+  ASSIGNMENT_EXPRESSION
 };
 
 /// @brief Base class of all AST nodes
@@ -64,6 +70,9 @@ struct ExpressionNode : ASTNode {};
 
 /// @brief Base class for all literals
 struct LiteralNode : ExpressionNode {};
+
+// Forward declarations
+struct BlockStatementNode;
 
 /// @brief The root of all ASTs (sorta like a block statement, but the block is global)
 struct ProgramNode final : ASTNode {
@@ -235,6 +244,112 @@ struct StringLiteralNode : LiteralNode {
    */
   ASTType type() const noexcept override {
     return ASTType::STRING_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+/// @brief A float literal
+struct FloatLiteralNode : LiteralNode {
+  Token token;  ///< A FLOAT token
+  double value; ///< The floating-point value
+
+  /**
+   * @return Returns ASTType::FLOAT_LITERAL
+   */
+  ASTType type() const noexcept override {
+    return ASTType::FLOAT_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+/// @brief A boolean literal (true or false)
+struct BooleanLiteralNode : LiteralNode {
+  Token token; ///< A TRUE or FALSE token
+  bool value;  ///< The boolean value
+
+  /**
+   * @return Returns ASTType::BOOLEAN_LITERAL
+   */
+  ASTType type() const noexcept override {
+    return ASTType::BOOLEAN_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+/// @brief A binary expression (e.g., a + b, x == y, etc.)
+struct BinaryExpressionNode : ExpressionNode {
+  Token operator_token;                       ///< The operator token (+, -, *, /, ==, etc.)
+  std::unique_ptr<ExpressionNode> left;       ///< Left operand
+  std::unique_ptr<ExpressionNode> right;      ///< Right operand
+
+  /**
+   * @return Returns ASTType::BINARY_EXPRESSION
+   */
+  ASTType type() const noexcept override {
+    return ASTType::BINARY_EXPRESSION;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &operator_token;
+  }
+};
+
+/// @brief A unary expression (e.g., !x, -y, etc.)
+struct UnaryExpressionNode : ExpressionNode {
+  Token operator_token;                     ///< The operator token (!, -, etc.)
+  std::unique_ptr<ExpressionNode> operand;  ///< The operand
+
+  /**
+   * @return Returns ASTType::UNARY_EXPRESSION
+   */
+  ASTType type() const noexcept override {
+    return ASTType::UNARY_EXPRESSION;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &operator_token;
+  }
+};
+
+/// @brief An if-else expression (e.g., if condition { then_expr } else { else_expr })
+struct IfElseExpressionNode : ExpressionNode {
+  Token token;                                        ///< The IF token
+  std::unique_ptr<ExpressionNode> condition;         ///< The condition to evaluate
+  std::unique_ptr<ExpressionNode> then_expression;   ///< Expression to evaluate if condition is true
+  std::unique_ptr<ExpressionNode> else_expression;   ///< Expression to evaluate if condition is false (optional)
+
+  /**
+   * @return Returns ASTType::IF_ELSE_EXPRESSION
+   */
+  ASTType type() const noexcept override {
+    return ASTType::IF_ELSE_EXPRESSION;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+/// @brief An assignment expression (e.g., x = 5, y = func())
+struct AssignmentExpressionNode : ExpressionNode {
+  Token token;                                  ///< The ASSIGN token (=)
+  std::unique_ptr<ExpressionNode> target;      ///< The target to assign to (usually an identifier)
+  std::unique_ptr<ExpressionNode> value;       ///< The value to assign
+
+  /**
+   * @return Returns ASTType::ASSIGNMENT_EXPRESSION
+   */
+  ASTType type() const noexcept override {
+    return ASTType::ASSIGNMENT_EXPRESSION;
   }
 
   const Token* get_token() const noexcept override {
