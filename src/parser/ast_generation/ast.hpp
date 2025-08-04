@@ -253,8 +253,8 @@ struct StringLiteralNode : LiteralNode {
 
 /// @brief A float literal
 struct FloatLiteralNode : LiteralNode {
-  Token token;  ///< A FLOAT token
-  double value; ///< The floating-point value
+  Token token;   ///< A FLOAT token
+  double value;  ///< The floating-point value
 
   /**
    * @return Returns ASTType::FLOAT_LITERAL
@@ -270,8 +270,8 @@ struct FloatLiteralNode : LiteralNode {
 
 /// @brief A boolean literal (true or false)
 struct BooleanLiteralNode : LiteralNode {
-  Token token; ///< A TRUE or FALSE token
-  bool value;  ///< The boolean value
+  Token token;  ///< A TRUE or FALSE token
+  bool value;   ///< The boolean value
 
   /**
    * @return Returns ASTType::BOOLEAN_LITERAL
@@ -287,9 +287,9 @@ struct BooleanLiteralNode : LiteralNode {
 
 /// @brief A binary expression (e.g., a + b, x == y, etc.)
 struct BinaryExpressionNode : ExpressionNode {
-  Token operator_token;                       ///< The operator token (+, -, *, /, ==, etc.)
-  std::unique_ptr<ExpressionNode> left;       ///< Left operand
-  std::unique_ptr<ExpressionNode> right;      ///< Right operand
+  Token operator_token;                   ///< The operator token (+, -, *, /, ==, etc.)
+  std::unique_ptr<ExpressionNode> left;   ///< Left operand
+  std::unique_ptr<ExpressionNode> right;  ///< Right operand
 
   /**
    * @return Returns ASTType::BINARY_EXPRESSION
@@ -322,10 +322,11 @@ struct UnaryExpressionNode : ExpressionNode {
 
 /// @brief An if-else expression (e.g., if condition { then_expr } else { else_expr })
 struct IfElseExpressionNode : ExpressionNode {
-  Token token;                                        ///< The IF token
-  std::unique_ptr<ExpressionNode> condition;         ///< The condition to evaluate
-  std::unique_ptr<ExpressionNode> then_expression;   ///< Expression to evaluate if condition is true
-  std::unique_ptr<ExpressionNode> else_expression;   ///< Expression to evaluate if condition is false (optional)
+  Token token;                                      ///< The IF token
+  std::unique_ptr<ExpressionNode> condition;        ///< The condition to evaluate
+  std::unique_ptr<ExpressionNode> then_expression;  ///< Expression to evaluate if condition is true
+  std::unique_ptr<ExpressionNode>
+      else_expression;  ///< Expression to evaluate if condition is false (optional)
 
   /**
    * @return Returns ASTType::IF_ELSE_EXPRESSION
@@ -341,9 +342,9 @@ struct IfElseExpressionNode : ExpressionNode {
 
 /// @brief An assignment expression (e.g., x = 5, y = func())
 struct AssignmentExpressionNode : ExpressionNode {
-  Token token;                                  ///< The ASSIGN token (=)
-  std::unique_ptr<ExpressionNode> target;      ///< The target to assign to (usually an identifier)
-  std::unique_ptr<ExpressionNode> value;       ///< The value to assign
+  Token token;                             ///< The ASSIGN token (=)
+  std::unique_ptr<ExpressionNode> target;  ///< The target to assign to (usually an identifier)
+  std::unique_ptr<ExpressionNode> value;   ///< The value to assign
 
   /**
    * @return Returns ASTType::ASSIGNMENT_EXPRESSION
