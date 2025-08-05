@@ -23,7 +23,7 @@ jobs:
     # Run Dev Container CI
     - uses: devcontainers/ci@v0.3
       with:
-        imageName: ghcr.io/kejunp/pebbl-devcontainer:latest
+        imageName: ghcr.io/kejunp/pebbl-devcontainer
         push: never  # Skip pushing unless you want to update the image
         noCache: false
 
