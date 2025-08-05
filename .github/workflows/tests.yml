@@ -10,16 +10,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      packages: read # Needed to pull from GHCR
+
     steps:
     - uses: actions/checkout@v4
+
+    # Authenticate to GitHub Container Registry (GHCR)
+    - name: Log in to GHCR
+      run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    # Run Dev Container CI
     - uses: devcontainers/ci@v0.3
       with:
         imageName: ghcr.io/kejunp/pebbl-devcontainer:latest
+        push: never  # Skip pushing unless you want to update the image
+        noCache: false
+
+    # CMake and Test steps inside container
     - name: Set up CMake
       uses: jwlawson/actions-setup-cmake@v1
+
     - name: Configure
       run: cmake -S . -B build
+
     - name: Build
       run: cmake --build build
+
     - name: Test
       run: ctest --test-dir build
