@@ -12,6 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: devcontainers/ci@v0.3
+      with:
+        imageName: ghcr.io/kejunp/pebbl-devcontainer:latest
     - name: Set up CMake
       uses: jwlawson/actions-setup-cmake@v1
     - name: Configure
