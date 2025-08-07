@@ -29,6 +29,7 @@ enum class TokenType {
   RBRACKET,
   COMMA,
   DOT,
+  COLON,
   SEMICOLON,
   PLUS,
   MINUS,

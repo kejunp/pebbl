@@ -49,6 +49,8 @@ Token Lexer::next_token() {
       return make_token(TokenType::DOT, ".");
     case ';':
       return make_token(TokenType::SEMICOLON, ";");
+    case ':':
+      return make_token(TokenType::COLON, ":");
     case '+':
       return make_token(TokenType::PLUS, "+");
     case '-':
