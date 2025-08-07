@@ -16,7 +16,7 @@ set(HEADER_DIRS
 )
 
 if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type")
 endif()
 
 if(POLICY CMP0167)
@@ -48,3 +48,5 @@ else()
     $<$<CONFIG:Debug>:-g>
   )
 endif()
+
+install(TARGETS pebbli DESTINATION bin)
