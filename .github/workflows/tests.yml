@@ -27,6 +27,10 @@ jobs:
         push: never  # Skip pushing unless you want to update the image
         noCache: false
 
+    # Don't know why I need to do this, because this is already in the dev container, but this is a workaround
+    - name: Install Boost
+      run: sudo apt install libboost-all-dev
+
     # CMake and Test steps inside container
     - name: Set up CMake
       uses: jwlawson/actions-setup-cmake@v1
