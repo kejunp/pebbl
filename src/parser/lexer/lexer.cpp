@@ -19,7 +19,7 @@
 #include <cctype>
 
 Lexer::Lexer(std::string&& input) noexcept :
-    input_(std::move(input)), position_{}, read_position_{0}, current_char_{'\0'} {
+    input_(std::move(input)), position_{}, read_position_{0}, line_{1}, current_char_{'\0'} {
   consume_char();
 }
 
@@ -156,7 +156,7 @@ std::string Lexer::read_string() {
 
 void Lexer::consume_whitespace() {
   while (true) {
-    switch (peek_char()) {
+    switch (current_char_) {
       case '\n':
         ++line_;
         [[fallthrough]];

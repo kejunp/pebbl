@@ -64,6 +64,24 @@ private:
    */
   void report_error(const std::string& message) const;
 
+  /**
+   * @brief Checks if the program parsing is complete
+   * @return True if no more meaningful tokens remain
+   */
+  bool is_program_complete() const;
+
+  /**
+   * @brief Checks if parsing should terminate due to unrecoverable tokens
+   * @return True if parsing should stop cleanly
+   */
+  bool should_terminate_parsing() const;
+
+  /**
+   * @brief Checks if current token is a leftover separator from array/dict parsing
+   * @return True if token is a separator that can't start a statement
+   */
+  bool is_leftover_separator_token() const;
+
   // Statement parsing methods
   /**
    * @brief Parses a statement
@@ -204,4 +222,16 @@ private:
    * @return Identifier AST node
    */
   std::unique_ptr<IdentifierNode> parse_identifier();
+
+  /**
+   * @brief Parses an array literal
+   * @return Array literal AST node
+   */
+  std::unique_ptr<ArrayLiteralNode> parse_array_literal();
+
+  /**
+   * @brief Parses a dictionary literal
+   * @return Dictionary literal AST node
+   */
+  std::unique_ptr<DictLiteralNode> parse_dict_literal();
 };

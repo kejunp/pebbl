@@ -35,6 +35,8 @@ enum class ASTType {
   STRING_LITERAL,
   FLOAT_LITERAL,
   BOOLEAN_LITERAL,
+  ARRAY_LITERAL,
+  DICT_LITERAL,
   BINARY_EXPRESSION,
   UNARY_EXPRESSION,
   IF_ELSE_EXPRESSION,
@@ -278,6 +280,46 @@ struct BooleanLiteralNode : LiteralNode {
    */
   ASTType type() const noexcept override {
     return ASTType::BOOLEAN_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+/// @brief An array literal (e.g., [1, 2, 3])
+struct ArrayLiteralNode : LiteralNode {
+  Token token;  ///< LBRACKET token ([)
+  std::vector<std::unique_ptr<ExpressionNode>> elements;  ///< Array elements
+
+  /**
+   * @return Returns ASTType::ARRAY_LITERAL
+   */
+  ASTType type() const noexcept override {
+    return ASTType::ARRAY_LITERAL;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+/// @brief Key-value pair for dictionary literals
+struct DictEntry {
+  std::unique_ptr<ExpressionNode> key;    ///< Dictionary key
+  std::unique_ptr<ExpressionNode> value;  ///< Dictionary value
+};
+
+/// @brief A dictionary literal (e.g., {key: value, key2: value2})
+struct DictLiteralNode : LiteralNode {
+  Token token;  ///< LBRACE token ({)
+  std::vector<DictEntry> entries;  ///< Dictionary entries
+
+  /**
+   * @return Returns ASTType::DICT_LITERAL
+   */
+  ASTType type() const noexcept override {
+    return ASTType::DICT_LITERAL;
   }
 
   const Token* get_token() const noexcept override {

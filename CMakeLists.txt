@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SOURCES
   src/main.cpp
   src/parser/lexer/lexer.cpp
+  src/parser/ast_generation/ast_generator.cpp
 )
 
 set(HEADER_DIRS
