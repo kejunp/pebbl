@@ -48,11 +48,25 @@ private:
 };
 
 class GCHeap {
-  GCHeap() = default;
+public:
+  GCHeap();
   ~GCHeap();
 
   template <typename T, typename... Args>
-  GCRef<T> allocate(Args&&... args);
+  GCRef<T> allocate(Args&&... args) {
+    static_assert(std::is_base_of_v<GCObject, T>, "pebbli: Fatal: T in GCHeap::allocate must be a GCObject or derived from a GCObject");
+    
+    T* obj = new T(std::forward<Args>(args)...);
+    obj->next = objects_;
+    objects_ = obj;
+    object_count_++;
+    
+    if (object_count_ >= next_gc_) {
+      collect();
+    }
+    
+    return obj;
+  }
 
   void add_root(GCObject** ref);
   void remove_root(GCObject** ref);
