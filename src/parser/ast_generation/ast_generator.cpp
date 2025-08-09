@@ -119,8 +119,8 @@ void ASTGenerator::report_error(const std::string& message) const {
     return;
   }
   
-  std::cerr << "Parse error at line " << current_token_.line << ": " << message << " (got '"
-            << current_token_.lexeme << "')" << std::endl;
+  std::cerr << "\033[31mpebbli: Error: Parse error at line " << current_token_.line << ": " << message << " (got '"
+            << current_token_.lexeme << "')\033[0m" << std::endl;
 }
 
 std::unique_ptr<StatementNode> ASTGenerator::parse_statement() {
