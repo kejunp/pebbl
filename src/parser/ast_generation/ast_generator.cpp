@@ -591,11 +591,9 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
       break;
     }
     
-    DictEntry entry;
-    
     // Parse key
-    entry.key = parse_expression();
-    if (!entry.key) {
+    auto key = parse_expression();
+    if (!key) {
       report_error("Expected dictionary key");
       // Skip to next comma, colon, or end
       while (!check_token(TokenType::COMMA) && 
@@ -629,8 +627,8 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
     }
     
     // Parse value
-    entry.value = parse_expression();
-    if (!entry.value) {
+    auto value = parse_expression();
+    if (!value) {
       report_error("Expected dictionary value");
       // Skip to next comma or end
       while (!check_token(TokenType::COMMA) && 
@@ -646,7 +644,9 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
     }
 
     // Successfully parsed key-value pair
-    dict->entries.push_back(std::move(entry));
+    ExpressionNode* key_ptr = key.get();
+    dict->keys.push_back(std::move(key));
+    dict->entries[key_ptr] = std::move(value);
 
     // Handle comma separator
     if (check_token(TokenType::COMMA)) {

@@ -19,6 +19,7 @@
 #include <boost/multiprecision/cpp_int.hpp>
 #include <memory>
 #include <vector>
+#include <unordered_map>
 
 #include "tokens.hpp"
 
@@ -304,16 +305,11 @@ struct ArrayLiteralNode : LiteralNode {
   }
 };
 
-/// @brief Key-value pair for dictionary literals
-struct DictEntry {
-  std::unique_ptr<ExpressionNode> key;    ///< Dictionary key
-  std::unique_ptr<ExpressionNode> value;  ///< Dictionary value
-};
-
 /// @brief A dictionary literal (e.g., {key: value, key2: value2})
 struct DictLiteralNode : LiteralNode {
   Token token;  ///< LBRACE token ({)
-  std::vector<DictEntry> entries;  ///< Dictionary entries
+  std::unordered_map<ExpressionNode*, std::unique_ptr<ExpressionNode>> entries;  ///< Dictionary entries (raw pointer key -> unique_ptr value)
+  std::vector<std::unique_ptr<ExpressionNode>> keys;  ///< Storage for the key expressions
 
   /**
    * @return Returns ASTType::DICT_LITERAL
