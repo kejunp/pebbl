@@ -1,0 +1,17 @@
+<map id="src/runtime/gc.cpp" name="src/runtime/gc.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the garbage collection system." alt="" coords="208,5,351,31"/>
+<area shape="rect" id="Node000002" href="$gc_8hpp.html" title="Garbage collection system for the PEBBL runtime." alt="" coords="197,79,263,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,33,248,69,244,66,269,29"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="287,79,373,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="290,29,316,66,312,69,286,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,107,85,149,84,144,199,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="216,106,162,146,159,141,213,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="191,152,269,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="233,104,233,138,227,138,227,104"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="293,152,385,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="249,102,311,142,308,147,246,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="409,152,472,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="264,101,397,146,395,151,262,106"/>
+</map>

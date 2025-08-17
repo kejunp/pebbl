@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['lexeme_0',['lexeme',['../structToken.html#abbff29ede445ed4a8520580f12490832',1,'Token']]],
-  ['line_1',['line',['../structToken.html#ade6deee497c3814a319db092bc0f4f7f',1,'Token']]],
-  ['line_5f_2',['line_',['../classLexer.html#add5cb6f5a87a005b09d9587895280913',1,'Lexer']]],
-  ['line_5frun_5flines_3',['line_run_lines',['../classChunk.html#ac375007c99af9a90d9c36a28745d3e3d',1,'Chunk']]],
-  ['line_5frun_5fstarts_4',['line_run_starts',['../classChunk.html#a0940895c82396f6b4ca53e0c9f657439',1,'Chunk']]]
+  ['elements_0',['elements',['../structArrayLiteralNode.html#aeba52523f3a53a6605a6582a56f1da42',1,'ArrayLiteralNode']]],
+  ['else_5fexpression_1',['else_expression',['../structIfElseExpressionNode.html#aea623096627b6d2d3e6ce374d6515147',1,'IfElseExpressionNode']]],
+  ['entries_2',['entries',['../structDictLiteralNode.html#a192106e3a074bc10f4c190902a8a92c9',1,'DictLiteralNode']]],
+  ['exp_5fmask_3',['EXP_MASK',['../structPEBBLObject.html#aaed043729e302c5cb065e9fa40827830',1,'PEBBLObject']]],
+  ['expression_4',['expression',['../structExpressionStatementNode.html#a75d342aefc9dab12a0ea81d314a9a66b',1,'ExpressionStatementNode']]]
 ];

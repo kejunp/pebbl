@@ -1,5 +1,10 @@
-\doxysection{parser/lexer/tokens.hpp File Reference}
-\hypertarget{tokens_8hpp}{}\label{tokens_8hpp}\index{parser/lexer/tokens.hpp@{parser/lexer/tokens.hpp}}
+\doxysection{src/parser/lexer/tokens.hpp File Reference}
+\hypertarget{tokens_8hpp}{}\label{tokens_8hpp}\index{src/parser/lexer/tokens.hpp@{src/parser/lexer/tokens.hpp}}
+
+
+\doxylink{structToken}{Token} definitions and utilities for the PEBBL lexer.  
+
+
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
 Include dependency graph for tokens.\+hpp\+:
@@ -7,7 +12,7 @@ Include dependency graph for tokens.\+hpp\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=236pt]{tokens_8hpp__incl}
+\includegraphics[width=245pt]{tokens_8hpp__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:
@@ -15,7 +20,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=344pt]{tokens_8hpp__dep__incl}
+\includegraphics[width=350pt]{tokens_8hpp__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Classes}
@@ -32,28 +37,33 @@ enum class \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a}{LBRACE}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290}{RBRACE}}
 , \newline
-\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}{COMMA}}
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad500138bf8f61d4b0b80413f4b76a82a}{LBRACKET}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a270adbd249f9997adc3208e92a57e066}{RBRACKET}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}{COMMA}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782}{DOT}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921af65f22e75defc168edfc6444e6aaf4f8}{COLON}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5}{SEMICOLON}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7}{PLUS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81}{MINUS}}
 , \newline
-\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81}{MINUS}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63}{ASTERISK}}
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63}{ASTERISK}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a646da671ca01bb5d84dbb5fb2238dc8e}{SLASH}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a489b3c14da5e92c8b256b195e92ae93a}{BANG}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce}{NOT\+\_\+\+EQUAL}}
 , \newline
-\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce}{NOT\+\_\+\+EQUAL}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1}{ASSIGN}}
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1}{ASSIGN}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a969f331a87d8c958473c32b4d0e61a44}{EQUAL}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000}{LESS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b}{GREATER}}
 , \newline
-\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b}{GREATER}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4}{LESS\+\_\+\+EQUAL}}
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4}{LESS\+\_\+\+EQUAL}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a}{GREATER\+\_\+\+EQUAL}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}{IDENTIFIER}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}{STRING}}
 , \newline
-\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}{STRING}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396}{NUMBER}}
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c}{INTEGER}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}{FLOAT}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532}{AND}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616}{OR}}
 , \newline
@@ -68,14 +78,11 @@ enum class \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5}{RETURN}}
 , \newline
 \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5}{LET}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510}{INHERITS}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb}{CLASS}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea}{SUPER}}
-, \newline
-\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5}{THIS}}
+, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad6f4440b8633f973d33c78928bdac2e1}{VAR}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255}{NIL}}
 , \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5}{ERROR}}
-, \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb}{EOF\+\_\+\+TYPE}}
+, \newline
+\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb}{EOF\+\_\+\+TYPE}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
@@ -83,6 +90,11 @@ enum class \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token
 \item 
 \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} \mbox{\hyperlink{tokens_8hpp_a3986510f97a5d35792bb5bd57d07efbe}{lookup\+\_\+identifier}} (const std\+::string \&name)
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structToken}{Token} definitions and utilities for the PEBBL lexer. 
+
 
 
 \doxysubsection{Enumeration Type Documentation}
@@ -109,12 +121,24 @@ LBRACE&\\
 RBRACE&\\
 \hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LBRACKET@{LBRACKET}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!LBRACKET@{LBRACKET}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad500138bf8f61d4b0b80413f4b76a82a}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad500138bf8f61d4b0b80413f4b76a82a} 
+LBRACKET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RBRACKET@{RBRACKET}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!RBRACKET@{RBRACKET}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a270adbd249f9997adc3208e92a57e066}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a270adbd249f9997adc3208e92a57e066} 
+RBRACKET&\\
+\hline
+
 \raisebox{\heightof{T}}[0pt][0pt]{\index{COMMA@{COMMA}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!COMMA@{COMMA}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751} 
 COMMA&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{DOT@{DOT}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!DOT@{DOT}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782} 
 DOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COLON@{COLON}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!COLON@{COLON}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921af65f22e75defc168edfc6444e6aaf4f8}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921af65f22e75defc168edfc6444e6aaf4f8} 
+COLON&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{SEMICOLON@{SEMICOLON}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!SEMICOLON@{SEMICOLON}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5} 
@@ -177,8 +201,12 @@ IDENTIFIER&\\
 STRING&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{NUMBER@{NUMBER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!NUMBER@{NUMBER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396} 
-NUMBER&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INTEGER@{INTEGER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!INTEGER@{INTEGER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c} 
+INTEGER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOAT@{FLOAT}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!FLOAT@{FLOAT}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6} 
+FLOAT&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{AND@{AND}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!AND@{AND}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532} 
@@ -225,20 +253,8 @@ RETURN&\\
 LET&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INHERITS@{INHERITS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!INHERITS@{INHERITS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510} 
-INHERITS&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CLASS@{CLASS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!CLASS@{CLASS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb} 
-CLASS&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SUPER@{SUPER}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!SUPER@{SUPER}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea} 
-SUPER&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{THIS@{THIS}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!THIS@{THIS}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5} 
-THIS&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VAR@{VAR}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!VAR@{VAR}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad6f4440b8633f973d33c78928bdac2e1}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ad6f4440b8633f973d33c78928bdac2e1} 
+VAR&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NIL@{NIL}!tokens.hpp@{tokens.hpp}}\index{tokens.hpp@{tokens.hpp}!NIL@{NIL}}}\Hypertarget{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255}\label{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255} 

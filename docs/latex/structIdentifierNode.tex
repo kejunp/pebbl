@@ -1,0 +1,110 @@
+\doxysection{Identifier\+Node Struct Reference}
+\hypertarget{structIdentifierNode}{}\label{structIdentifierNode}\index{IdentifierNode@{IdentifierNode}}
+
+
+A identifier.  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Identifier\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{structIdentifierNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Identifier\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{structIdentifierNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structIdentifierNode_a29f9d987eeb0aa61b369a023b12446a5}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structIdentifierNode_a0349a14514d6e236ebefff3d6ee266f5}{get\+\_\+token}} () const noexcept override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structIdentifierNode_a67de89452731f7d90472847eb04232a5}{token}}
+\begin{DoxyCompactList}\small\item\em A Identifier token. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structIdentifierNode_a89c89491b7ac033d60258d074526ba45}{name}}
+\begin{DoxyCompactList}\small\item\em The name of the identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A identifier. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structIdentifierNode_a0349a14514d6e236ebefff3d6ee266f5}\label{structIdentifierNode_a0349a14514d6e236ebefff3d6ee266f5} 
+\index{IdentifierNode@{IdentifierNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!IdentifierNode@{IdentifierNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} Identifier\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns pointer to a identifier token 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structIdentifierNode_a29f9d987eeb0aa61b369a023b12446a5}\label{structIdentifierNode_a29f9d987eeb0aa61b369a023b12446a5} 
+\index{IdentifierNode@{IdentifierNode}!type@{type}}
+\index{type@{type}!IdentifierNode@{IdentifierNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} Identifier\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a}{ASTType\+::\+IDENTIFIER} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structIdentifierNode_a89c89491b7ac033d60258d074526ba45}\label{structIdentifierNode_a89c89491b7ac033d60258d074526ba45} 
+\index{IdentifierNode@{IdentifierNode}!name@{name}}
+\index{name@{name}!IdentifierNode@{IdentifierNode}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Identifier\+Node\+::name}
+
+
+
+The name of the identifier. 
+
+\Hypertarget{structIdentifierNode_a67de89452731f7d90472847eb04232a5}\label{structIdentifierNode_a67de89452731f7d90472847eb04232a5} 
+\index{IdentifierNode@{IdentifierNode}!token@{token}}
+\index{token@{token}!IdentifierNode@{IdentifierNode}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Identifier\+Node\+::token}
+
+
+
+A Identifier token. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

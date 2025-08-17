@@ -1,0 +1,114 @@
+\doxysection{Unary\+Expression\+Node Struct Reference}
+\hypertarget{structUnaryExpressionNode}{}\label{structUnaryExpressionNode}\index{UnaryExpressionNode@{UnaryExpressionNode}}
+
+
+A unary expression (e.\+g., !x, -\/y, etc.)  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Unary\+Expression\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{structUnaryExpressionNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Unary\+Expression\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{structUnaryExpressionNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structUnaryExpressionNode_a2304dc5ec27d8cde89cb6e3a3d2b4aa4}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structUnaryExpressionNode_a67f2c394ec057abc68c41b1ef876e694}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structUnaryExpressionNode_a367e4296b727c16e635d798af207c6bc}{operator\+\_\+token}}
+\begin{DoxyCompactList}\small\item\em The operator token (!, -\/, etc.) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structUnaryExpressionNode_a0a8520c976bd8f7a98bfd00016f72525}{operand}}
+\begin{DoxyCompactList}\small\item\em The operand. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A unary expression (e.\+g., !x, -\/y, etc.) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structUnaryExpressionNode_a67f2c394ec057abc68c41b1ef876e694}\label{structUnaryExpressionNode_a67f2c394ec057abc68c41b1ef876e694} 
+\index{UnaryExpressionNode@{UnaryExpressionNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!UnaryExpressionNode@{UnaryExpressionNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} Unary\+Expression\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structUnaryExpressionNode_a2304dc5ec27d8cde89cb6e3a3d2b4aa4}\label{structUnaryExpressionNode_a2304dc5ec27d8cde89cb6e3a3d2b4aa4} 
+\index{UnaryExpressionNode@{UnaryExpressionNode}!type@{type}}
+\index{type@{type}!UnaryExpressionNode@{UnaryExpressionNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} Unary\+Expression\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46}{ASTType\+::\+UNARY\+\_\+\+EXPRESSION} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structUnaryExpressionNode_a0a8520c976bd8f7a98bfd00016f72525}\label{structUnaryExpressionNode_a0a8520c976bd8f7a98bfd00016f72525} 
+\index{UnaryExpressionNode@{UnaryExpressionNode}!operand@{operand}}
+\index{operand@{operand}!UnaryExpressionNode@{UnaryExpressionNode}}
+\doxysubsubsection{\texorpdfstring{operand}{operand}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ Unary\+Expression\+Node\+::operand}
+
+
+
+The operand. 
+
+\Hypertarget{structUnaryExpressionNode_a367e4296b727c16e635d798af207c6bc}\label{structUnaryExpressionNode_a367e4296b727c16e635d798af207c6bc} 
+\index{UnaryExpressionNode@{UnaryExpressionNode}!operator\_token@{operator\_token}}
+\index{operator\_token@{operator\_token}!UnaryExpressionNode@{UnaryExpressionNode}}
+\doxysubsubsection{\texorpdfstring{operator\_token}{operator\_token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Unary\+Expression\+Node\+::operator\+\_\+token}
+
+
+
+The operator token (!, -\/, etc.) 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,7 @@
+<map id="VariableStatementNode" name="VariableStatementNode">
+<area shape="rect" id="Node000001" title="A variable declaration/definition: let immut = 5; var mut = 5; etc." alt="" coords="5,152,183,177"/>
+<area shape="rect" id="Node000002" href="$structStatementNode.html" title="Base class for all statements." alt="" coords="32,79,156,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,118,97,152,91,152,91,118"/>
+<area shape="rect" id="Node000003" href="$structASTNode.html" title="Base class of all AST nodes." alt="" coords="53,5,135,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,44,97,79,91,79,91,44"/>
+</map>

@@ -1,20 +1,15 @@
-<map id="utils/common.hpp" name="utils/common.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="188,5,327,31"/>
-<area shape="rect" id="Node000002" href="$opcodes_8hpp.html" title=" " alt="" coords="5,79,160,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,39,126,81,124,76,218,34"/>
-<area shape="rect" id="Node000007" href="$value_8hpp.html" title=" " alt="" coords="184,79,331,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="260,44,260,79,255,79,255,44"/>
-<area shape="rect" id="Node000008" href="$lexer_8hpp.html" title=" " alt="" coords="355,86,517,111"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="297,34,411,84,409,88,295,39"/>
-<area shape="rect" id="Node000003" href="$chunk_8hpp.html" title=" " alt="" coords="91,167,245,207"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,127,151,165,147,168,109,130"/>
-<area shape="rect" id="Node000004" href="$chunk_8cpp.html" title=" " alt="" coords="9,255,164,295"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="142,219,107,256,103,253,139,215"/>
-<area shape="rect" id="Node000005" href="$debug_8hpp.html" title=" " alt="" coords="188,262,311,287"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="198,215,240,260,236,263,194,219"/>
-<area shape="rect" id="Node000006" href="$debug_8cpp.html" title=" " alt="" coords="189,343,310,368"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="252,301,252,342,247,342,247,301"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="229,130,190,168,186,165,226,127"/>
-<area shape="rect" id="Node000009" href="$lexer_8cpp.html" title=" " alt="" coords="355,174,517,199"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="439,125,439,173,433,173,433,125"/>
+<map id="src/common.hpp" name="src/common.hpp">
+<area shape="rect" id="Node000001" title="Common definitions and utilities used throughout the PEBBL project." alt="" coords="53,5,184,31"/>
+<area shape="rect" id="Node000002" href="$ast__generator_8cpp.html" title="Implementation of the recursive descent parser for generating ASTs." alt="" coords="5,240,192,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,44,87,111,80,151,81,192,94,239,89,240,76,192,75,151,82,109,105,42"/>
+<area shape="rect" id="Node000003" href="$lexer_8hpp.html" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="157,79,342,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="153,35,229,76,227,81,151,40"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html" title="Main entry point and testing for the PEBBL language compiler." alt="" coords="239,247,345,273"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="271,113,283,131,292,151,298,178,299,205,296,247,291,247,294,205,292,178,287,153,278,134,267,116"/>
+<area shape="rect" id="Node000005" href="$ast__generator_8hpp.html" title="Recursive descent parser for generating Abstract Syntax Trees from tokens." alt="" coords="91,152,277,192"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="233,116,202,154,198,150,229,113"/>
+<area shape="rect" id="Node000006" href="$lexer_8cpp.html" title="Implementation of the lexical analyzer for PEBBL source code." alt="" coords="352,159,536,185"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="291,107,417,157,415,162,289,112"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="157,204,119,242,116,238,154,200"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="220,198,279,245,275,249,217,203"/>
 </map>

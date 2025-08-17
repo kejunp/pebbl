@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pebbl: parser/lexer/lexer.cpp File Reference</title>
+<title>pebbl: src/parser/lexer/lexer.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,58 +69,50 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_572890c148f68441e050f6560d78312b.html">parser</a></li><li class="navelem"><a class="el" href="dir_7ad20b283e5b50d73f94074a40c54377.html">lexer</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6cd8491d143eb218b70983dbdb3c58bc.html">parser</a></li><li class="navelem"><a class="el" href="dir_7a43006265ec3b3dc577f500dd09a803.html">lexer</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">lexer.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the lexical analyzer for PEBBL source code.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="lexer_8hpp_source.html">lexer.hpp</a>&quot;</code><br />
 <code>#include &lt;cctype&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for lexer.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="lexer_8cpp__incl.png" border="0" usemap="#aparser_2lexer_2lexer_8cpp" alt=""/></div>
-<map name="aparser_2lexer_2lexer_8cpp" id="aparser_2lexer_2lexer_8cpp">
-<area shape="rect" title=" " alt="" coords="196,5,357,31"/>
-<area shape="rect" href="lexer_8hpp.html" title=" " alt="" coords="188,79,269,104"/>
-<area shape="poly" title=" " alt="" coords="271,33,246,69,242,66,267,30"/>
-<area shape="rect" title=" " alt="" coords="293,79,359,104"/>
-<area shape="poly" title=" " alt="" coords="287,29,312,66,308,69,283,33"/>
-<area shape="rect" href="common_8hpp.html" title=" " alt="" coords="114,152,221,177"/>
-<area shape="poly" title=" " alt="" coords="221,106,188,143,184,140,217,103"/>
-<area shape="rect" href="tokens_8hpp.html" title=" " alt="" coords="278,152,371,177"/>
-<area shape="poly" title=" " alt="" coords="246,102,299,141,296,146,243,106"/>
-<area shape="rect" title=" " alt="" coords="5,225,76,251"/>
-<area shape="poly" title=" " alt="" coords="148,180,75,221,72,216,146,175"/>
-<area shape="rect" title=" " alt="" coords="101,225,167,251"/>
-<area shape="poly" title=" " alt="" coords="164,179,148,214,143,212,159,177"/>
-<area shape="rect" title=" " alt="" coords="191,225,271,251"/>
-<area shape="poly" title=" " alt="" coords="180,176,214,213,210,217,176,179"/>
-<area shape="rect" title=" " alt="" coords="295,225,354,251"/>
-<area shape="poly" title=" " alt="" coords="327,178,327,212,322,212,322,178"/>
-<area shape="rect" title=" " alt="" coords="379,225,503,251"/>
-<area shape="poly" title=" " alt="" coords="345,175,411,216,409,220,342,180"/>
+<div class="center"><img src="lexer_8cpp__incl.png" border="0" usemap="#asrc_2parser_2lexer_2lexer_8cpp" alt=""/></div>
+<map name="asrc_2parser_2lexer_2lexer_8cpp" id="asrc_2parser_2lexer_2lexer_8cpp">
+<area shape="rect" title="Implementation of the lexical analyzer for PEBBL source code." alt="" coords="84,5,268,31"/>
+<area shape="rect" href="lexer_8hpp.html" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="87,79,169,104"/>
+<area shape="poly" title=" " alt="" coords="170,33,146,69,141,66,166,30"/>
+<area shape="rect" title=" " alt="" coords="193,79,258,104"/>
+<area shape="poly" title=" " alt="" coords="186,29,212,66,207,69,182,33"/>
+<area shape="rect" title=" " alt="" coords="5,225,64,251"/>
+<area shape="poly" title=" " alt="" coords="96,106,63,125,48,138,37,153,29,182,31,211,26,212,24,182,32,151,44,134,60,121,94,102"/>
+<area shape="rect" title=" " alt="" coords="47,152,107,177"/>
+<area shape="poly" title=" " alt="" coords="122,106,96,142,91,139,117,103"/>
+<area shape="rect" href="common_8hpp.html" title="Common definitions and utilities used throughout the PEBBL project." alt="" coords="287,152,393,177"/>
+<area shape="poly" title=" " alt="" coords="163,101,294,145,292,150,161,107"/>
+<area shape="rect" href="tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="132,152,225,177"/>
+<area shape="poly" title=" " alt="" coords="139,103,165,139,160,142,134,106"/>
+<area shape="rect" title=" " alt="" coords="355,225,426,251"/>
+<area shape="poly" title=" " alt="" coords="351,176,377,213,372,216,346,179"/>
+<area shape="rect" title=" " alt="" coords="451,225,517,251"/>
+<area shape="poly" title=" " alt="" coords="364,175,449,217,447,221,362,180"/>
+<area shape="rect" title=" " alt="" coords="251,225,331,251"/>
+<area shape="poly" title=" " alt="" coords="334,179,309,216,304,213,330,176"/>
+<area shape="poly" title=" " alt="" coords="157,180,72,221,69,217,154,175"/>
+<area shape="rect" title=" " alt="" coords="102,225,226,251"/>
+<area shape="poly" title=" " alt="" coords="179,178,172,212,167,211,174,177"/>
 </map>
 </div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespaceanonymous__namespace_02lexer_8cpp_03" id="r_namespaceanonymous__namespace_02lexer_8cpp_03"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02lexer_8cpp_03.html">anonymous_namespace{lexer.cpp}</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a194259bda3959be953153fbd2b6421d7" id="r_a194259bda3959be953153fbd2b6421d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structToken.html">Token</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02lexer_8cpp_03.html#a194259bda3959be953153fbd2b6421d7">anonymous_namespace{lexer.cpp}::make_token</a> (<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921">TokenType</a> type, std::string &amp;&amp;lexeme, std::size_t line)</td></tr>
-<tr class="separator:a194259bda3959be953153fbd2b6421d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaed871dd2b861673eaeec7fbd7540ba" id="r_adaed871dd2b861673eaeec7fbd7540ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structToken.html">Token</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02lexer_8cpp_03.html#adaed871dd2b861673eaeec7fbd7540ba">anonymous_namespace{lexer.cpp}::make_token</a> (<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921">TokenType</a> type, const std::string &amp;lexeme, std::size_t line)</td></tr>
-<tr class="separator:adaed871dd2b861673eaeec7fbd7540ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-</div><!-- contents -->
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the lexical analyzer for PEBBL source code. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

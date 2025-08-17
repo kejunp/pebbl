@@ -1,0 +1,28 @@
+\doxysection{GCManaged Concept Reference}
+\hypertarget{conceptGCManaged}{}\label{conceptGCManaged}\index{GCManaged@{GCManaged}}
+
+
+Concept to ensure types are garbage-\/collectible.  
+
+
+
+
+{\ttfamily \#include $<$gc.\+hpp$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptGCManaged}{GCManaged}}\ =\ \ std::is\_base\_of\_v<GCObject,\ T>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Concept to ensure types are garbage-\/collectible. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to check \\
+\hline
+\end{DoxyTemplParams}

@@ -1,0 +1,598 @@
+\doxysection{ASTGenerator Class Reference}
+\hypertarget{classASTGenerator}{}\label{classASTGenerator}\index{ASTGenerator@{ASTGenerator}}
+
+
+Recursive descent parser for generating AST from tokens.  
+
+
+
+
+{\ttfamily \#include $<$ast\+\_\+generator.\+hpp$>$}
+
+
+
+Collaboration diagram for ASTGenerator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classASTGenerator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classASTGenerator_a64a4b3ba53946e528536e9fcb0a5bef6}{ASTGenerator}} (\mbox{\hyperlink{classLexer}{Lexer}} \&lexer)
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structProgramNode}{Program\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a79e78dfefc01a8f869f2c6a90f2e10ee}{parse\+\_\+program}} ()
+\begin{DoxyCompactList}\small\item\em Parses the entire program and returns the root AST node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classASTGenerator_a067700f70b06592f3336c4e6690d2a1c}{advance\+\_\+token}} ()
+\begin{DoxyCompactList}\small\item\em Advances to the next token. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classASTGenerator_a88db79b5a1fbee3cc6c06ef4ef2fd012}{check\+\_\+token}} (\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} type) const
+\begin{DoxyCompactList}\small\item\em Checks if current token matches expected type. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classASTGenerator_ae1d3dfffc3e0d3304ecfbf63e4531344}{consume\+\_\+token}} (\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} type, const std\+::string \&error\+\_\+message)
+\begin{DoxyCompactList}\small\item\em Consumes token if it matches expected type, otherwise reports error. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classASTGenerator_aec8d2e24433de89ac2c647cb69763192}{report\+\_\+error}} (const std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Reports a parse error. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classASTGenerator_af3b3c9affbbbe331a176a6950ae2f487}{is\+\_\+program\+\_\+complete}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the program parsing is complete. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classASTGenerator_a480ccecd5683b0429002ae0d263c0f67}{should\+\_\+terminate\+\_\+parsing}} () const
+\begin{DoxyCompactList}\small\item\em Checks if parsing should terminate due to unrecoverable tokens. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classASTGenerator_a9135c44a6c049703299965b52bdaeca1}{is\+\_\+leftover\+\_\+separator\+\_\+token}} () const
+\begin{DoxyCompactList}\small\item\em Checks if current token is a leftover separator from array/dict parsing. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structStatementNode}{Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a555417ea3222d42dd22e63b4ecd766e3}{parse\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses a statement. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structVariableStatementNode}{Variable\+Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a7931599a081cb90fda1ad8970f2679bc}{parse\+\_\+variable\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses a variable declaration statement (let/var) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structReturnStatementNode}{Return\+Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_ab53e055f4e2c474d8a596626c677448d}{parse\+\_\+return\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses a return statement. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structBlockStatementNode}{Block\+Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_aa090322e49f5fde5ae04959363111f06}{parse\+\_\+block\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses a block statement (\{ statements... \}) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structWhileLoopStatementNode}{While\+Loop\+Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a167eb1a5c0f6a0d4afec02b70d9227ae}{parse\+\_\+while\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses a while loop statement. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structForLoopStatementNode}{For\+Loop\+Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_adb2542f0b0f4d23ac4bf69168b0cf049}{parse\+\_\+for\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses a for loop statement. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionStatementNode}{Expression\+Statement\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_aaa87901bf8a299679cd9161dad7fda60}{parse\+\_\+expression\+\_\+statement}} ()
+\begin{DoxyCompactList}\small\item\em Parses an expression statement. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a71d6562a45d3dd3bd06d6a807757c7ee}{parse\+\_\+expression}} ()
+\begin{DoxyCompactList}\small\item\em Parses an expression. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_ac09a70d0731827a085a61e38a2534208}{parse\+\_\+assignment}} ()
+\begin{DoxyCompactList}\small\item\em Parses an assignment expression. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a537c5acfe4f0c67293446d82a27c1c47}{parse\+\_\+if\+\_\+else}} ()
+\begin{DoxyCompactList}\small\item\em Parses an if-\/else expression. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a5961598195b10eb5d8fd8ad6ae7cb515}{parse\+\_\+logical\+\_\+or}} ()
+\begin{DoxyCompactList}\small\item\em Parses a logical OR expression. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_ad475ffb938edab5bb5db861b8efea731}{parse\+\_\+logical\+\_\+and}} ()
+\begin{DoxyCompactList}\small\item\em Parses a logical AND expression. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a79085d822e2bcb62cea2e70bdf423477}{parse\+\_\+equality}} ()
+\begin{DoxyCompactList}\small\item\em Parses an equality expression (== !=) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a18789bde45f89ad01b03742e50094f91}{parse\+\_\+comparison}} ()
+\begin{DoxyCompactList}\small\item\em Parses a comparison expression (\texorpdfstring{$<$}{<} \texorpdfstring{$<$}{<}= \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>}=) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a65dd83bab0ab56f4e65a4c43dea66ca2}{parse\+\_\+term}} ()
+\begin{DoxyCompactList}\small\item\em Parses a term expression (+ -\/) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a924a23aa0a341d5d722175145b0d9ffc}{parse\+\_\+factor}} ()
+\begin{DoxyCompactList}\small\item\em Parses a factor expression (\texorpdfstring{$\ast$}{*} /) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a05f0e50b5479d3b4685bbefc8a897810}{parse\+\_\+unary}} ()
+\begin{DoxyCompactList}\small\item\em Parses a unary expression (! -\/) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a575669dd97110a27c707aa637a23395f}{parse\+\_\+primary}} ()
+\begin{DoxyCompactList}\small\item\em Parses a primary expression (literals, identifiers, parentheses) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structIntegerLiteralNode}{Integer\+Literal\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a37ff6327e3c77b258ea2a01a07580e2b}{parse\+\_\+integer\+\_\+literal}} ()
+\begin{DoxyCompactList}\small\item\em Parses an integer literal. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structFloatLiteralNode}{Float\+Literal\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_ade7f3de8474cd64b48a00839dd0da6eb}{parse\+\_\+float\+\_\+literal}} ()
+\begin{DoxyCompactList}\small\item\em Parses a float literal. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structStringLiteralNode}{String\+Literal\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a64a9f141acba51948cf730a60931f531}{parse\+\_\+string\+\_\+literal}} ()
+\begin{DoxyCompactList}\small\item\em Parses a string literal. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structBooleanLiteralNode}{Boolean\+Literal\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_ac612a9303acf94b01fb86b52b8feaa35}{parse\+\_\+boolean\+\_\+literal}} ()
+\begin{DoxyCompactList}\small\item\em Parses a boolean literal. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_aca54450a058149f4b265609d2731d363}{parse\+\_\+identifier}} ()
+\begin{DoxyCompactList}\small\item\em Parses an identifier. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structArrayLiteralNode}{Array\+Literal\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_a95495589089ee593e4511fe5ad4614b3}{parse\+\_\+array\+\_\+literal}} ()
+\begin{DoxyCompactList}\small\item\em Parses an array literal. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structDictLiteralNode}{Dict\+Literal\+Node}} $>$ \mbox{\hyperlink{classASTGenerator_aae3f253f1611fef0843846deed81458d}{parse\+\_\+dict\+\_\+literal}} ()
+\begin{DoxyCompactList}\small\item\em Parses a dictionary literal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLexer}{Lexer}} \& \mbox{\hyperlink{classASTGenerator_a92e43cfb57ac8178e55bb0e6a6dac939}{lexer\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Reference to the lexer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{classASTGenerator_a6b36211abe3f5065e1428646bbfd8068}{current\+\_\+token\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Current token being processed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{classASTGenerator_a47df81679949183e9bba35b4dcb8b556}{peek\+\_\+token\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Next token for lookahead. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Recursive descent parser for generating AST from tokens. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classASTGenerator_a64a4b3ba53946e528536e9fcb0a5bef6}\label{classASTGenerator_a64a4b3ba53946e528536e9fcb0a5bef6} 
+\index{ASTGenerator@{ASTGenerator}!ASTGenerator@{ASTGenerator}}
+\index{ASTGenerator@{ASTGenerator}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{ASTGenerator()}{ASTGenerator()}}
+{\footnotesize\ttfamily ASTGenerator\+::\+ASTGenerator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classLexer}{Lexer}} \&}]{lexer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classASTGenerator_a067700f70b06592f3336c4e6690d2a1c}\label{classASTGenerator_a067700f70b06592f3336c4e6690d2a1c} 
+\index{ASTGenerator@{ASTGenerator}!advance\_token@{advance\_token}}
+\index{advance\_token@{advance\_token}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{advance\_token()}{advance\_token()}}
+{\footnotesize\ttfamily void ASTGenerator\+::advance\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Advances to the next token. 
+
+\Hypertarget{classASTGenerator_a88db79b5a1fbee3cc6c06ef4ef2fd012}\label{classASTGenerator_a88db79b5a1fbee3cc6c06ef4ef2fd012} 
+\index{ASTGenerator@{ASTGenerator}!check\_token@{check\_token}}
+\index{check\_token@{check\_token}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{check\_token()}{check\_token()}}
+{\footnotesize\ttfamily bool ASTGenerator\+::check\+\_\+token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}}]{type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if current token matches expected type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Expected token type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if current token matches expected type 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_ae1d3dfffc3e0d3304ecfbf63e4531344}\label{classASTGenerator_ae1d3dfffc3e0d3304ecfbf63e4531344} 
+\index{ASTGenerator@{ASTGenerator}!consume\_token@{consume\_token}}
+\index{consume\_token@{consume\_token}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{consume\_token()}{consume\_token()}}
+{\footnotesize\ttfamily bool ASTGenerator\+::consume\+\_\+token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}}]{type,  }\item[{const std\+::string \&}]{error\+\_\+message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Consumes token if it matches expected type, otherwise reports error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Expected token type \\
+\hline
+{\em error\+\_\+message} & Error message if token doesn\textquotesingle{}t match \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if token was successfully consumed 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a9135c44a6c049703299965b52bdaeca1}\label{classASTGenerator_a9135c44a6c049703299965b52bdaeca1} 
+\index{ASTGenerator@{ASTGenerator}!is\_leftover\_separator\_token@{is\_leftover\_separator\_token}}
+\index{is\_leftover\_separator\_token@{is\_leftover\_separator\_token}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{is\_leftover\_separator\_token()}{is\_leftover\_separator\_token()}}
+{\footnotesize\ttfamily bool ASTGenerator\+::is\+\_\+leftover\+\_\+separator\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if current token is a leftover separator from array/dict parsing. 
+
+\begin{DoxyReturn}{Returns}
+True if token is a separator that can\textquotesingle{}t start a statement 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_af3b3c9affbbbe331a176a6950ae2f487}\label{classASTGenerator_af3b3c9affbbbe331a176a6950ae2f487} 
+\index{ASTGenerator@{ASTGenerator}!is\_program\_complete@{is\_program\_complete}}
+\index{is\_program\_complete@{is\_program\_complete}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{is\_program\_complete()}{is\_program\_complete()}}
+{\footnotesize\ttfamily bool ASTGenerator\+::is\+\_\+program\+\_\+complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the program parsing is complete. 
+
+\begin{DoxyReturn}{Returns}
+True if no more meaningful tokens remain 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a95495589089ee593e4511fe5ad4614b3}\label{classASTGenerator_a95495589089ee593e4511fe5ad4614b3} 
+\index{ASTGenerator@{ASTGenerator}!parse\_array\_literal@{parse\_array\_literal}}
+\index{parse\_array\_literal@{parse\_array\_literal}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_array\_literal()}{parse\_array\_literal()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structArrayLiteralNode}{Array\+Literal\+Node}} $>$ ASTGenerator\+::parse\+\_\+array\+\_\+literal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an array literal. 
+
+\begin{DoxyReturn}{Returns}
+Array literal AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_ac09a70d0731827a085a61e38a2534208}\label{classASTGenerator_ac09a70d0731827a085a61e38a2534208} 
+\index{ASTGenerator@{ASTGenerator}!parse\_assignment@{parse\_assignment}}
+\index{parse\_assignment@{parse\_assignment}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_assignment()}{parse\_assignment()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+assignment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an assignment expression. 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_aa090322e49f5fde5ae04959363111f06}\label{classASTGenerator_aa090322e49f5fde5ae04959363111f06} 
+\index{ASTGenerator@{ASTGenerator}!parse\_block\_statement@{parse\_block\_statement}}
+\index{parse\_block\_statement@{parse\_block\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_block\_statement()}{parse\_block\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structBlockStatementNode}{Block\+Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+block\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a block statement (\{ statements... \}) 
+
+\begin{DoxyReturn}{Returns}
+Block statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_ac612a9303acf94b01fb86b52b8feaa35}\label{classASTGenerator_ac612a9303acf94b01fb86b52b8feaa35} 
+\index{ASTGenerator@{ASTGenerator}!parse\_boolean\_literal@{parse\_boolean\_literal}}
+\index{parse\_boolean\_literal@{parse\_boolean\_literal}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_boolean\_literal()}{parse\_boolean\_literal()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structBooleanLiteralNode}{Boolean\+Literal\+Node}} $>$ ASTGenerator\+::parse\+\_\+boolean\+\_\+literal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a boolean literal. 
+
+\begin{DoxyReturn}{Returns}
+Boolean literal AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a18789bde45f89ad01b03742e50094f91}\label{classASTGenerator_a18789bde45f89ad01b03742e50094f91} 
+\index{ASTGenerator@{ASTGenerator}!parse\_comparison@{parse\_comparison}}
+\index{parse\_comparison@{parse\_comparison}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_comparison()}{parse\_comparison()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+comparison (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a comparison expression (\texorpdfstring{$<$}{<} \texorpdfstring{$<$}{<}= \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>}=) 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_aae3f253f1611fef0843846deed81458d}\label{classASTGenerator_aae3f253f1611fef0843846deed81458d} 
+\index{ASTGenerator@{ASTGenerator}!parse\_dict\_literal@{parse\_dict\_literal}}
+\index{parse\_dict\_literal@{parse\_dict\_literal}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_dict\_literal()}{parse\_dict\_literal()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structDictLiteralNode}{Dict\+Literal\+Node}} $>$ ASTGenerator\+::parse\+\_\+dict\+\_\+literal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a dictionary literal. 
+
+\begin{DoxyReturn}{Returns}
+Dictionary literal AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a79085d822e2bcb62cea2e70bdf423477}\label{classASTGenerator_a79085d822e2bcb62cea2e70bdf423477} 
+\index{ASTGenerator@{ASTGenerator}!parse\_equality@{parse\_equality}}
+\index{parse\_equality@{parse\_equality}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_equality()}{parse\_equality()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+equality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an equality expression (== !=) 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a71d6562a45d3dd3bd06d6a807757c7ee}\label{classASTGenerator_a71d6562a45d3dd3bd06d6a807757c7ee} 
+\index{ASTGenerator@{ASTGenerator}!parse\_expression@{parse\_expression}}
+\index{parse\_expression@{parse\_expression}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_expression()}{parse\_expression()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an expression. 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_aaa87901bf8a299679cd9161dad7fda60}\label{classASTGenerator_aaa87901bf8a299679cd9161dad7fda60} 
+\index{ASTGenerator@{ASTGenerator}!parse\_expression\_statement@{parse\_expression\_statement}}
+\index{parse\_expression\_statement@{parse\_expression\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_expression\_statement()}{parse\_expression\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionStatementNode}{Expression\+Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+expression\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an expression statement. 
+
+\begin{DoxyReturn}{Returns}
+Expression statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a924a23aa0a341d5d722175145b0d9ffc}\label{classASTGenerator_a924a23aa0a341d5d722175145b0d9ffc} 
+\index{ASTGenerator@{ASTGenerator}!parse\_factor@{parse\_factor}}
+\index{parse\_factor@{parse\_factor}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_factor()}{parse\_factor()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a factor expression (\texorpdfstring{$\ast$}{*} /) 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_ade7f3de8474cd64b48a00839dd0da6eb}\label{classASTGenerator_ade7f3de8474cd64b48a00839dd0da6eb} 
+\index{ASTGenerator@{ASTGenerator}!parse\_float\_literal@{parse\_float\_literal}}
+\index{parse\_float\_literal@{parse\_float\_literal}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_float\_literal()}{parse\_float\_literal()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structFloatLiteralNode}{Float\+Literal\+Node}} $>$ ASTGenerator\+::parse\+\_\+float\+\_\+literal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a float literal. 
+
+\begin{DoxyReturn}{Returns}
+Float literal AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_adb2542f0b0f4d23ac4bf69168b0cf049}\label{classASTGenerator_adb2542f0b0f4d23ac4bf69168b0cf049} 
+\index{ASTGenerator@{ASTGenerator}!parse\_for\_statement@{parse\_for\_statement}}
+\index{parse\_for\_statement@{parse\_for\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_for\_statement()}{parse\_for\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structForLoopStatementNode}{For\+Loop\+Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+for\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a for loop statement. 
+
+\begin{DoxyReturn}{Returns}
+For loop statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_aca54450a058149f4b265609d2731d363}\label{classASTGenerator_aca54450a058149f4b265609d2731d363} 
+\index{ASTGenerator@{ASTGenerator}!parse\_identifier@{parse\_identifier}}
+\index{parse\_identifier@{parse\_identifier}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_identifier()}{parse\_identifier()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}} $>$ ASTGenerator\+::parse\+\_\+identifier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an identifier. 
+
+\begin{DoxyReturn}{Returns}
+Identifier AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a537c5acfe4f0c67293446d82a27c1c47}\label{classASTGenerator_a537c5acfe4f0c67293446d82a27c1c47} 
+\index{ASTGenerator@{ASTGenerator}!parse\_if\_else@{parse\_if\_else}}
+\index{parse\_if\_else@{parse\_if\_else}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_if\_else()}{parse\_if\_else()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+if\+\_\+else (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an if-\/else expression. 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a37ff6327e3c77b258ea2a01a07580e2b}\label{classASTGenerator_a37ff6327e3c77b258ea2a01a07580e2b} 
+\index{ASTGenerator@{ASTGenerator}!parse\_integer\_literal@{parse\_integer\_literal}}
+\index{parse\_integer\_literal@{parse\_integer\_literal}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_integer\_literal()}{parse\_integer\_literal()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structIntegerLiteralNode}{Integer\+Literal\+Node}} $>$ ASTGenerator\+::parse\+\_\+integer\+\_\+literal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses an integer literal. 
+
+\begin{DoxyReturn}{Returns}
+Integer literal AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_ad475ffb938edab5bb5db861b8efea731}\label{classASTGenerator_ad475ffb938edab5bb5db861b8efea731} 
+\index{ASTGenerator@{ASTGenerator}!parse\_logical\_and@{parse\_logical\_and}}
+\index{parse\_logical\_and@{parse\_logical\_and}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_logical\_and()}{parse\_logical\_and()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+logical\+\_\+and (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a logical AND expression. 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a5961598195b10eb5d8fd8ad6ae7cb515}\label{classASTGenerator_a5961598195b10eb5d8fd8ad6ae7cb515} 
+\index{ASTGenerator@{ASTGenerator}!parse\_logical\_or@{parse\_logical\_or}}
+\index{parse\_logical\_or@{parse\_logical\_or}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_logical\_or()}{parse\_logical\_or()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+logical\+\_\+or (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a logical OR expression. 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a575669dd97110a27c707aa637a23395f}\label{classASTGenerator_a575669dd97110a27c707aa637a23395f} 
+\index{ASTGenerator@{ASTGenerator}!parse\_primary@{parse\_primary}}
+\index{parse\_primary@{parse\_primary}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_primary()}{parse\_primary()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+primary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a primary expression (literals, identifiers, parentheses) 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a79e78dfefc01a8f869f2c6a90f2e10ee}\label{classASTGenerator_a79e78dfefc01a8f869f2c6a90f2e10ee} 
+\index{ASTGenerator@{ASTGenerator}!parse\_program@{parse\_program}}
+\index{parse\_program@{parse\_program}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_program()}{parse\_program()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structProgramNode}{Program\+Node}} $>$ ASTGenerator\+::parse\+\_\+program (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Parses the entire program and returns the root AST node. 
+
+\begin{DoxyReturn}{Returns}
+Program AST node containing all statements 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_ab53e055f4e2c474d8a596626c677448d}\label{classASTGenerator_ab53e055f4e2c474d8a596626c677448d} 
+\index{ASTGenerator@{ASTGenerator}!parse\_return\_statement@{parse\_return\_statement}}
+\index{parse\_return\_statement@{parse\_return\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_return\_statement()}{parse\_return\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structReturnStatementNode}{Return\+Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+return\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a return statement. 
+
+\begin{DoxyReturn}{Returns}
+Return statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a555417ea3222d42dd22e63b4ecd766e3}\label{classASTGenerator_a555417ea3222d42dd22e63b4ecd766e3} 
+\index{ASTGenerator@{ASTGenerator}!parse\_statement@{parse\_statement}}
+\index{parse\_statement@{parse\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_statement()}{parse\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structStatementNode}{Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a statement. 
+
+\begin{DoxyReturn}{Returns}
+Statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a64a9f141acba51948cf730a60931f531}\label{classASTGenerator_a64a9f141acba51948cf730a60931f531} 
+\index{ASTGenerator@{ASTGenerator}!parse\_string\_literal@{parse\_string\_literal}}
+\index{parse\_string\_literal@{parse\_string\_literal}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_string\_literal()}{parse\_string\_literal()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structStringLiteralNode}{String\+Literal\+Node}} $>$ ASTGenerator\+::parse\+\_\+string\+\_\+literal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a string literal. 
+
+\begin{DoxyReturn}{Returns}
+String literal AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a65dd83bab0ab56f4e65a4c43dea66ca2}\label{classASTGenerator_a65dd83bab0ab56f4e65a4c43dea66ca2} 
+\index{ASTGenerator@{ASTGenerator}!parse\_term@{parse\_term}}
+\index{parse\_term@{parse\_term}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_term()}{parse\_term()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+term (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a term expression (+ -\/) 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a05f0e50b5479d3b4685bbefc8a897810}\label{classASTGenerator_a05f0e50b5479d3b4685bbefc8a897810} 
+\index{ASTGenerator@{ASTGenerator}!parse\_unary@{parse\_unary}}
+\index{parse\_unary@{parse\_unary}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_unary()}{parse\_unary()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ ASTGenerator\+::parse\+\_\+unary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a unary expression (! -\/) 
+
+\begin{DoxyReturn}{Returns}
+Expression AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a7931599a081cb90fda1ad8970f2679bc}\label{classASTGenerator_a7931599a081cb90fda1ad8970f2679bc} 
+\index{ASTGenerator@{ASTGenerator}!parse\_variable\_statement@{parse\_variable\_statement}}
+\index{parse\_variable\_statement@{parse\_variable\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_variable\_statement()}{parse\_variable\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structVariableStatementNode}{Variable\+Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+variable\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a variable declaration statement (let/var) 
+
+\begin{DoxyReturn}{Returns}
+Variable statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_a167eb1a5c0f6a0d4afec02b70d9227ae}\label{classASTGenerator_a167eb1a5c0f6a0d4afec02b70d9227ae} 
+\index{ASTGenerator@{ASTGenerator}!parse\_while\_statement@{parse\_while\_statement}}
+\index{parse\_while\_statement@{parse\_while\_statement}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_while\_statement()}{parse\_while\_statement()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structWhileLoopStatementNode}{While\+Loop\+Statement\+Node}} $>$ ASTGenerator\+::parse\+\_\+while\+\_\+statement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parses a while loop statement. 
+
+\begin{DoxyReturn}{Returns}
+While loop statement AST node 
+\end{DoxyReturn}
+\Hypertarget{classASTGenerator_aec8d2e24433de89ac2c647cb69763192}\label{classASTGenerator_aec8d2e24433de89ac2c647cb69763192} 
+\index{ASTGenerator@{ASTGenerator}!report\_error@{report\_error}}
+\index{report\_error@{report\_error}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{report\_error()}{report\_error()}}
+{\footnotesize\ttfamily void ASTGenerator\+::report\+\_\+error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reports a parse error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Error message \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classASTGenerator_a480ccecd5683b0429002ae0d263c0f67}\label{classASTGenerator_a480ccecd5683b0429002ae0d263c0f67} 
+\index{ASTGenerator@{ASTGenerator}!should\_terminate\_parsing@{should\_terminate\_parsing}}
+\index{should\_terminate\_parsing@{should\_terminate\_parsing}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{should\_terminate\_parsing()}{should\_terminate\_parsing()}}
+{\footnotesize\ttfamily bool ASTGenerator\+::should\+\_\+terminate\+\_\+parsing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if parsing should terminate due to unrecoverable tokens. 
+
+\begin{DoxyReturn}{Returns}
+True if parsing should stop cleanly 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classASTGenerator_a6b36211abe3f5065e1428646bbfd8068}\label{classASTGenerator_a6b36211abe3f5065e1428646bbfd8068} 
+\index{ASTGenerator@{ASTGenerator}!current\_token\_@{current\_token\_}}
+\index{current\_token\_@{current\_token\_}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{current\_token\_}{current\_token\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} ASTGenerator\+::current\+\_\+token\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current token being processed. 
+
+\Hypertarget{classASTGenerator_a92e43cfb57ac8178e55bb0e6a6dac939}\label{classASTGenerator_a92e43cfb57ac8178e55bb0e6a6dac939} 
+\index{ASTGenerator@{ASTGenerator}!lexer\_@{lexer\_}}
+\index{lexer\_@{lexer\_}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{lexer\_}{lexer\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classLexer}{Lexer}}\& ASTGenerator\+::lexer\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the lexer. 
+
+\Hypertarget{classASTGenerator_a47df81679949183e9bba35b4dcb8b556}\label{classASTGenerator_a47df81679949183e9bba35b4dcb8b556} 
+\index{ASTGenerator@{ASTGenerator}!peek\_token\_@{peek\_token\_}}
+\index{peek\_token\_@{peek\_token\_}!ASTGenerator@{ASTGenerator}}
+\doxysubsubsection{\texorpdfstring{peek\_token\_}{peek\_token\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} ASTGenerator\+::peek\+\_\+token\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Next token for lookahead. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast__generator_8hpp}{ast\+\_\+generator.\+hpp}}\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast__generator_8cpp}{ast\+\_\+generator.\+cpp}}\end{DoxyCompactItemize}

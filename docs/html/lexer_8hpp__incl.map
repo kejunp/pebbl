@@ -1,17 +1,20 @@
-<map id="parser/lexer/lexer.hpp" name="parser/lexer/lexer.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="147,5,310,31"/>
-<area shape="rect" id="Node000002" href="$common_8hpp.html" title=" " alt="" coords="114,79,221,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,33,188,70,184,66,217,29"/>
-<area shape="rect" id="Node000006" href="$tokens_8hpp.html" title=" " alt="" coords="278,79,371,104"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="246,29,299,68,296,72,243,33"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,106,75,147,72,143,146,102"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="101,152,167,177"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="164,105,148,141,143,139,159,103"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="191,152,271,177"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="180,103,214,140,210,144,176,106"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="295,152,354,177"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="327,104,327,138,322,138,322,104"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="379,152,503,177"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="345,102,411,142,409,147,342,106"/>
+<map id="src/parser/lexer/lexer.hpp" name="src/parser/lexer/lexer.hpp">
+<area shape="rect" id="Node000001" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="35,5,221,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,152,64,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,33,63,52,48,64,37,80,29,109,31,138,26,138,24,108,32,78,44,61,60,47,94,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="47,79,107,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,33,96,69,91,66,117,29"/>
+<area shape="rect" id="Node000004" href="$common_8hpp.html" title="Common definitions and utilities used throughout the PEBBL project." alt="" coords="287,79,393,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,28,294,72,292,77,161,33"/>
+<area shape="rect" id="Node000008" href="$tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="132,79,225,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="139,29,165,66,160,69,134,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="355,152,426,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="351,103,377,139,372,142,346,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="451,152,517,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="364,102,449,143,447,148,362,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="251,152,331,177"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="334,106,309,142,304,139,330,103"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="157,106,72,148,69,143,154,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="102,152,226,177"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="179,105,172,139,167,138,174,104"/>
 </map>

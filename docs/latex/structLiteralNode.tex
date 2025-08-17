@@ -1,0 +1,49 @@
+\doxysection{Literal\+Node Struct Reference}
+\hypertarget{structLiteralNode}{}\label{structLiteralNode}\index{LiteralNode@{LiteralNode}}
+
+
+Base class for all literals.  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Literal\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structLiteralNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Literal\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{structLiteralNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\item 
+virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{type}} () const noexcept=0
+\begin{DoxyCompactList}\small\item\em Gives the type of the AST node. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{get\+\_\+token}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all literals. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

@@ -1,12 +1,29 @@
-\doxysection{parser/ast\+\_\+generation/ast.hpp File Reference}
-\hypertarget{ast_8hpp}{}\label{ast_8hpp}\index{parser/ast\_generation/ast.hpp@{parser/ast\_generation/ast.hpp}}
+\doxysection{src/parser/ast\+\_\+generation/ast.hpp File Reference}
+\hypertarget{ast_8hpp}{}\label{ast_8hpp}\index{src/parser/ast\_generation/ast.hpp@{src/parser/ast\_generation/ast.hpp}}
+
+
+Abstract Syntax Tree node definitions for the PEBBL language.  
+
+
+{\ttfamily \#include $<$boost/multiprecision/cpp\+\_\+int.\+hpp$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
 {\ttfamily \#include "{}tokens.\+hpp"{}}\newline
 Include dependency graph for ast.\+hpp\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=236pt]{ast_8hpp__incl}
+\includegraphics[width=350pt]{ast_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{ast_8hpp__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Classes}
@@ -17,12 +34,78 @@ struct \mbox{\hyperlink{structASTNode}{ASTNode}}
 struct \mbox{\hyperlink{structStatementNode}{Statement\+Node}}
 \begin{DoxyCompactList}\small\item\em Base class for all statements. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structExpressionNode}{Expression\+Node}}
-\begin{DoxyCompactList}\small\item\em Base class for all expressions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Base class for all expressions. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structLiteralNode}{Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em Base class for all literals. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structProgramNode}{Program\+Node}}
+\begin{DoxyCompactList}\small\item\em The root of all ASTs (sorta like a block statement, but the block is global) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}}
+\begin{DoxyCompactList}\small\item\em A identifier. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structVariableStatementNode}{Variable\+Statement\+Node}}
+\begin{DoxyCompactList}\small\item\em A variable declaration/definition\+: let immut = 5; var mut = 5; etc. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structReturnStatementNode}{Return\+Statement\+Node}}
+\begin{DoxyCompactList}\small\item\em A return statement (different from a implicit return, e.\+g. 5; will become a expression statement, return 5; will become this) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structForLoopStatementNode}{For\+Loop\+Statement\+Node}}
+\item 
+struct \mbox{\hyperlink{structWhileLoopStatementNode}{While\+Loop\+Statement\+Node}}
+\begin{DoxyCompactList}\small\item\em A while loop (e.\+g., while x \texorpdfstring{$<$}{<} y \{ let x = 5 let y = 4;\}) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structBlockStatementNode}{Block\+Statement\+Node}}
+\begin{DoxyCompactList}\small\item\em A block statement \{ \mbox{[}statements... \mbox{]} \}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structExpressionStatementNode}{Expression\+Statement\+Node}}
+\begin{DoxyCompactList}\small\item\em A wrapper around a expression (but it is a statement) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structIntegerLiteralNode}{Integer\+Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em A integer literal. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structStringLiteralNode}{String\+Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em A string literal. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structFloatLiteralNode}{Float\+Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em A float literal. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structBooleanLiteralNode}{Boolean\+Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em A boolean literal (true or false) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structArrayLiteralNode}{Array\+Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em An array literal (e.\+g., \mbox{[}1, 2, 3\mbox{]}) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDictLiteralNode}{Dict\+Literal\+Node}}
+\begin{DoxyCompactList}\small\item\em A dictionary literal (e.\+g., \{key\+: value, key2\+: value2\}) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structBinaryExpressionNode}{Binary\+Expression\+Node}}
+\begin{DoxyCompactList}\small\item\em A binary expression (e.\+g., a + b, x == y, etc.) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUnaryExpressionNode}{Unary\+Expression\+Node}}
+\begin{DoxyCompactList}\small\item\em A unary expression (e.\+g., !x, -\/y, etc.) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structIfElseExpressionNode}{If\+Else\+Expression\+Node}}
+\begin{DoxyCompactList}\small\item\em An if-\/else expression (e.\+g., if condition \{ then\+\_\+expr \} else \{ else\+\_\+expr \}) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structAssignmentExpressionNode}{Assignment\+Expression\+Node}}
+\begin{DoxyCompactList}\small\item\em An assignment expression (e.\+g., x = 5, y = func()) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum class \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} 
+enum class \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \{ \newline
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a}{IDENTIFIER}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc}{VARIABLE\+\_\+\+STATEMENT}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a}{RETURN\+\_\+\+STATEMENT}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974}{EXPRESSION\+\_\+\+STATEMENT}}
+, \newline
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a2f7cbe826c3ec8261b113b0bf2920b05}{PROGRAM\+\_\+\+ROOT}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c}{BLOCK\+\_\+\+STATEMENT}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6}{WHILE\+\_\+\+LOOP\+\_\+\+STATEMENT}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1}{FOR\+\_\+\+LOOP\+\_\+\+STATEMENT}}
+, \newline
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aaa0615dffdeb6b9dfddb402460d4e4e7}{INTEGER\+\_\+\+LITERAL}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a544c390254a29bd232dfb1ff2bcf7c12}{STRING\+\_\+\+LITERAL}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad6a575baa5f147de1f44992b210c5620}{FLOAT\+\_\+\+LITERAL}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7e84be69d68b803821c8d1af14149321}{BOOLEAN\+\_\+\+LITERAL}}
+, \newline
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a90ca1b1d37898b07c278fc10e1a08bd1}{ARRAY\+\_\+\+LITERAL}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6675afd30c440dfce2977a8859f14691}{DICT\+\_\+\+LITERAL}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a75832c2ddfe13f917645df6b7dba0336}{BINARY\+\_\+\+EXPRESSION}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46}{UNARY\+\_\+\+EXPRESSION}}
+, \newline
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1}{IF\+\_\+\+ELSE\+\_\+\+EXPRESSION}}
+, \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abb99a3f6386ed1965ed3ae17ec3b0584}{ASSIGNMENT\+\_\+\+EXPRESSION}}
+ \}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract Syntax Tree node definitions for the PEBBL language. 
+
 
 
 \doxysubsection{Enumeration Type Documentation}
@@ -32,3 +115,77 @@ enum class \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}
 \doxysubsubsection{\texorpdfstring{ASTType}{ASTType}}
 {\footnotesize\ttfamily enum class \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}}\hspace{0.3cm}{\ttfamily [strong]}}
 
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDENTIFIER@{IDENTIFIER}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!IDENTIFIER@{IDENTIFIER}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a} 
+IDENTIFIER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VARIABLE\_STATEMENT@{VARIABLE\_STATEMENT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!VARIABLE\_STATEMENT@{VARIABLE\_STATEMENT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc} 
+VARIABLE\+\_\+\+STATEMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RETURN\_STATEMENT@{RETURN\_STATEMENT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!RETURN\_STATEMENT@{RETURN\_STATEMENT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a} 
+RETURN\+\_\+\+STATEMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPRESSION\_STATEMENT@{EXPRESSION\_STATEMENT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!EXPRESSION\_STATEMENT@{EXPRESSION\_STATEMENT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974} 
+EXPRESSION\+\_\+\+STATEMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PROGRAM\_ROOT@{PROGRAM\_ROOT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!PROGRAM\_ROOT@{PROGRAM\_ROOT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a2f7cbe826c3ec8261b113b0bf2920b05}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a2f7cbe826c3ec8261b113b0bf2920b05} 
+PROGRAM\+\_\+\+ROOT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLOCK\_STATEMENT@{BLOCK\_STATEMENT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!BLOCK\_STATEMENT@{BLOCK\_STATEMENT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c} 
+BLOCK\+\_\+\+STATEMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WHILE\_LOOP\_STATEMENT@{WHILE\_LOOP\_STATEMENT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!WHILE\_LOOP\_STATEMENT@{WHILE\_LOOP\_STATEMENT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6} 
+WHILE\+\_\+\+LOOP\+\_\+\+STATEMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FOR\_LOOP\_STATEMENT@{FOR\_LOOP\_STATEMENT}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!FOR\_LOOP\_STATEMENT@{FOR\_LOOP\_STATEMENT}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1} 
+FOR\+\_\+\+LOOP\+\_\+\+STATEMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INTEGER\_LITERAL@{INTEGER\_LITERAL}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!INTEGER\_LITERAL@{INTEGER\_LITERAL}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aaa0615dffdeb6b9dfddb402460d4e4e7}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aaa0615dffdeb6b9dfddb402460d4e4e7} 
+INTEGER\+\_\+\+LITERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING\_LITERAL@{STRING\_LITERAL}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!STRING\_LITERAL@{STRING\_LITERAL}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a544c390254a29bd232dfb1ff2bcf7c12}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a544c390254a29bd232dfb1ff2bcf7c12} 
+STRING\+\_\+\+LITERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOAT\_LITERAL@{FLOAT\_LITERAL}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!FLOAT\_LITERAL@{FLOAT\_LITERAL}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad6a575baa5f147de1f44992b210c5620}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad6a575baa5f147de1f44992b210c5620} 
+FLOAT\+\_\+\+LITERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOLEAN\_LITERAL@{BOOLEAN\_LITERAL}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!BOOLEAN\_LITERAL@{BOOLEAN\_LITERAL}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7e84be69d68b803821c8d1af14149321}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7e84be69d68b803821c8d1af14149321} 
+BOOLEAN\+\_\+\+LITERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARRAY\_LITERAL@{ARRAY\_LITERAL}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!ARRAY\_LITERAL@{ARRAY\_LITERAL}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a90ca1b1d37898b07c278fc10e1a08bd1}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a90ca1b1d37898b07c278fc10e1a08bd1} 
+ARRAY\+\_\+\+LITERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DICT\_LITERAL@{DICT\_LITERAL}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!DICT\_LITERAL@{DICT\_LITERAL}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6675afd30c440dfce2977a8859f14691}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6675afd30c440dfce2977a8859f14691} 
+DICT\+\_\+\+LITERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BINARY\_EXPRESSION@{BINARY\_EXPRESSION}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!BINARY\_EXPRESSION@{BINARY\_EXPRESSION}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a75832c2ddfe13f917645df6b7dba0336}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a75832c2ddfe13f917645df6b7dba0336} 
+BINARY\+\_\+\+EXPRESSION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNARY\_EXPRESSION@{UNARY\_EXPRESSION}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!UNARY\_EXPRESSION@{UNARY\_EXPRESSION}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46} 
+UNARY\+\_\+\+EXPRESSION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IF\_ELSE\_EXPRESSION@{IF\_ELSE\_EXPRESSION}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!IF\_ELSE\_EXPRESSION@{IF\_ELSE\_EXPRESSION}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1} 
+IF\+\_\+\+ELSE\+\_\+\+EXPRESSION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASSIGNMENT\_EXPRESSION@{ASSIGNMENT\_EXPRESSION}!ast.hpp@{ast.hpp}}\index{ast.hpp@{ast.hpp}!ASSIGNMENT\_EXPRESSION@{ASSIGNMENT\_EXPRESSION}}}\Hypertarget{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abb99a3f6386ed1965ed3ae17ec3b0584}\label{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abb99a3f6386ed1965ed3ae17ec3b0584} 
+ASSIGNMENT\+\_\+\+EXPRESSION&\\
+\hline
+
+\end{DoxyEnumFields}

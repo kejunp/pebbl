@@ -1,0 +1,34 @@
+<map id="src/parser/ast_generation/ast_generator.hpp" name="src/parser/ast_generation/ast_generator.hpp">
+<area shape="rect" id="Node000001" title="Recursive descent parser for generating Abstract Syntax Trees from tokens." alt="" coords="201,5,388,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="409,174,487,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,44,429,162,425,166,311,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,255,64,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,48,167,66,118,91,74,125,56,145,41,168,34,186,31,204,33,241,27,241,26,204,29,184,36,165,52,142,70,121,115,86,165,61,213,43"/>
+<area shape="rect" id="Node000004" href="$lexer_8hpp.html" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="150,93,279,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="277,47,238,85,235,82,273,44"/>
+<area shape="rect" id="Node000012" href="$ast_8hpp.html" title="Abstract Syntax Tree node definitions for the PEBBL language." alt="" coords="450,93,521,119"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="341,43,446,86,444,91,339,48"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="153,121,106,139,85,152,66,168,54,185,46,204,39,242,33,241,41,203,50,183,62,165,81,148,104,134,151,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="77,174,137,199"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="200,121,135,168,132,164,197,117"/>
+<area shape="rect" id="Node000006" href="$common_8hpp.html" title="Common definitions and utilities used throughout the PEBBL project." alt="" coords="161,174,268,199"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="217,119,217,160,212,160,212,119"/>
+<area shape="rect" id="Node000010" href="$tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="292,174,385,199"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="234,117,310,164,307,169,232,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="89,255,159,280"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="203,202,149,248,146,244,200,197"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="184,255,251,280"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="218,199,219,241,214,241,212,200"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="275,255,355,280"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="231,197,291,244,287,248,228,202"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="305,202,281,209,181,233,78,257,77,252,180,228,279,204,303,197"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="422,255,546,280"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="361,197,452,246,449,250,359,202"/>
+<area shape="poly" id="edge15_Node000012_Node000002" title=" " alt="" coords="482,120,462,163,457,160,477,118"/>
+<area shape="poly" id="edge18_Node000012_Node000010" title=" " alt="" coords="465,121,374,170,371,165,462,116"/>
+<area shape="poly" id="edge17_Node000012_Node000011" title=" " alt="" coords="491,118,501,166,501,207,494,242,489,241,496,206,496,167,486,120"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="561,167,716,207"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="509,116,591,158,588,163,507,121"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="741,174,803,199"/>
+<area shape="poly" id="edge16_Node000012_Node000014" title=" " alt="" coords="521,112,616,132,729,164,735,166,734,172,727,169,615,138,520,117"/>
+</map>

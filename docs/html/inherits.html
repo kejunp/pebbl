@@ -75,28 +75,91 @@ $(function() {
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" usemap="#aASTNode" alt=""/>
+<tr><td><img src="inherit_graph_0.png" border="0" usemap="#aASTGenerator" alt=""/>
+<map name="aASTGenerator" id="aASTGenerator">
+<area shape="rect" href="classASTGenerator.html" title="Recursive descent parser for generating AST from tokens." alt="" coords="5,5,117,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_1.png" border="0" usemap="#aASTNode" alt=""/>
 <map name="aASTNode" id="aASTNode">
-<area shape="rect" href="structASTNode.html" title="Base class of all AST nodes." alt="" coords="5,31,87,56"/>
-<area shape="rect" href="structExpressionNode.html" title="Base class for all expressions." alt="" coords="135,5,261,31"/>
-<area shape="poly" title=" " alt="" coords="100,32,134,26,135,31,101,37"/>
-<area shape="rect" href="structStatementNode.html" title="Base class for all statements." alt="" coords="136,55,260,80"/>
-<area shape="poly" title=" " alt="" coords="101,49,136,55,135,60,100,54"/>
+<area shape="rect" href="structASTNode.html" title="Base class of all AST nodes." alt="" coords="5,277,87,303"/>
+<area shape="rect" href="structExpressionNode.html" title="Base class for all expressions." alt="" coords="135,153,261,179"/>
+<area shape="poly" title=" " alt="" coords="72,266,179,177,183,181,75,271"/>
+<area shape="rect" href="structProgramNode.html" title="The root of all ASTs (sorta like a block statement, but the block is global)" alt="" coords="143,277,253,303"/>
+<area shape="poly" title=" " alt="" coords="101,287,142,287,142,293,101,293"/>
+<area shape="rect" href="structStatementNode.html" title="Base class for all statements." alt="" coords="136,400,260,425"/>
+<area shape="poly" title=" " alt="" coords="75,310,182,398,179,402,72,314"/>
+<area shape="rect" href="structAssignmentExpressionNode.html" title="An assignment expression (e.g., x = 5, y = func())" alt="" coords="309,5,513,31"/>
+<area shape="poly" title=" " alt="" coords="212,140,251,89,278,62,308,40,333,28,335,33,311,44,281,66,255,92,216,143"/>
+<area shape="rect" href="structBinaryExpressionNode.html" title="A binary expression (e.g., a + b, x == y, etc.)" alt="" coords="327,55,496,80"/>
+<area shape="poly" title=" " alt="" coords="223,142,262,115,308,89,341,78,343,83,310,94,265,119,227,147"/>
+<area shape="rect" href="structIdentifierNode.html" title="A identifier." alt="" coords="354,104,469,129"/>
+<area shape="poly" title=" " alt="" coords="266,148,355,127,356,132,267,153"/>
+<area shape="rect" href="structIfElseExpressionNode.html" title="An if&#45;else expression (e.g., if condition { then_expr } else { else_expr })" alt="" coords="330,153,493,179"/>
+<area shape="poly" title=" " alt="" coords="275,163,330,163,330,169,275,169"/>
+<area shape="rect" href="structLiteralNode.html" title="Base class for all literals." alt="" coords="363,203,460,228"/>
+<area shape="poly" title=" " alt="" coords="267,179,363,202,362,207,266,184"/>
+<area shape="rect" href="structUnaryExpressionNode.html" title="A unary expression (e.g., !x, &#45;y, etc.)" alt="" coords="328,252,495,277"/>
+<area shape="poly" title=" " alt="" coords="227,185,265,212,310,237,346,249,345,254,308,242,262,217,224,189"/>
+<area shape="rect" href="structArrayLiteralNode.html" title="An array literal (e.g., [1, 2, 3])" alt="" coords="571,80,703,105"/>
+<area shape="poly" title=" " alt="" coords="473,205,493,198,512,188,528,171,535,153,543,134,560,115,580,103,582,108,563,119,548,136,540,155,532,174,515,192,495,203,474,210"/>
+<area shape="rect" href="structBooleanLiteralNode.html" title="A boolean literal (true or false)" alt="" coords="561,129,712,155"/>
+<area shape="poly" title=" " alt="" coords="473,200,512,188,560,164,591,152,593,157,562,168,514,192,474,205"/>
+<area shape="rect" href="structDictLiteralNode.html" title="A dictionary literal (e.g., {key: value, key2: value2})" alt="" coords="575,179,698,204"/>
+<area shape="poly" title=" " alt="" coords="474,206,575,195,576,200,474,211"/>
+<area shape="rect" href="structFloatLiteralNode.html" title="A float literal." alt="" coords="571,228,702,253"/>
+<area shape="poly" title=" " alt="" coords="474,220,571,231,571,236,474,225"/>
+<area shape="rect" href="structIntegerLiteralNode.html" title="A integer literal." alt="" coords="565,277,708,303"/>
+<area shape="poly" title=" " alt="" coords="474,225,514,237,539,249,562,262,596,275,594,280,560,267,536,254,512,242,472,230"/>
+<area shape="rect" href="structStringLiteralNode.html" title="A string literal." alt="" coords="569,327,704,352"/>
+<area shape="poly" title=" " alt="" coords="474,220,495,226,515,237,532,256,540,275,548,294,563,312,585,324,582,329,560,316,543,297,535,277,528,259,512,241,493,231,473,225"/>
+<area shape="rect" href="structBlockStatementNode.html" title="A block statement { [statements... ] }." alt="" coords="331,301,491,327"/>
+<area shape="poly" title=" " alt="" coords="223,389,262,361,308,336,341,324,343,329,310,340,265,366,227,393"/>
+<area shape="rect" href="structExpressionStatementNode.html" title="A wrapper around a expression (but it is a statement)" alt="" coords="314,351,509,376"/>
+<area shape="poly" title=" " alt="" coords="266,394,355,373,356,379,267,399"/>
+<area shape="rect" href="structForLoopStatementNode.html" title=" " alt="" coords="324,400,499,425"/>
+<area shape="poly" title=" " alt="" coords="274,410,324,410,324,415,274,415"/>
+<area shape="rect" href="structReturnStatementNode.html" title="A return statement (different from a implicit return, e.g. 5; will become a expression statement,..." alt="" coords="328,449,495,475"/>
+<area shape="poly" title=" " alt="" coords="267,426,356,447,355,452,266,431"/>
+<area shape="rect" href="structVariableStatementNode.html" title="A variable declaration/definition: let immut = 5; var mut = 5; etc." alt="" coords="323,499,500,524"/>
+<area shape="poly" title=" " alt="" coords="227,432,265,460,310,485,343,496,341,501,308,490,262,464,223,436"/>
+<area shape="rect" href="structWhileLoopStatementNode.html" title="A while loop (e.g., while x &lt; y { let x = 5 let y = 4;})" alt="" coords="315,548,507,573"/>
+<area shape="poly" title=" " alt="" coords="216,435,255,486,281,512,311,534,335,545,333,550,308,539,278,516,251,490,212,438"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" usemap="#aChunk" alt=""/>
-<map name="aChunk" id="aChunk">
-<area shape="rect" href="classChunk.html" title=" " alt="" coords="5,5,68,31"/>
+<tr><td><img src="inherit_graph_2.png" border="0" usemap="#aGCHeap" alt=""/>
+<map name="aGCHeap" id="aGCHeap">
+<area shape="rect" href="classGCHeap.html" title="Garbage collection heap manager." alt="" coords="5,5,80,31"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" usemap="#aLexer" alt=""/>
+<tr><td><img src="inherit_graph_3.png" border="0" usemap="#aGCObject" alt=""/>
+<map name="aGCObject" id="aGCObject">
+<area shape="rect" href="structGCObject.html" title="Base class for all garbage&#45;collected objects." alt="" coords="5,5,88,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_4.png" border="0" usemap="#aLexer" alt=""/>
 <map name="aLexer" id="aLexer">
 <area shape="rect" href="classLexer.html" title="Token stream implementation." alt="" coords="5,5,63,31"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" usemap="#aToken" alt=""/>
+<tr><td><img src="inherit_graph_5.png" border="0" usemap="#aPEBBLObject" alt=""/>
+<map name="aPEBBLObject" id="aPEBBLObject">
+<area shape="rect" href="structPEBBLObject.html" title="A value type that uses NaN&#45;boxing to store different types efficiently." alt="" coords="5,5,111,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_6.png" border="0" usemap="#aRootHandle" alt=""/>
+<map name="aRootHandle" id="aRootHandle">
+<area shape="rect" href="classRootHandle.html" title="RAII handle for managing GC roots." alt="" coords="5,5,104,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aToken" alt=""/>
 <map name="aToken" id="aToken">
 <area shape="rect" href="structToken.html" title=" " alt="" coords="5,5,64,31"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_8.png" border="0" usemap="#aTracer" alt=""/>
+<map name="aTracer" id="aTracer">
+<area shape="rect" href="classTracer.html" title="Tracer for marking reachable objects during garbage collection." alt="" coords="5,5,67,31"/>
 </map>
 </td></tr>
 </table>

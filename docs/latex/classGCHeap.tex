@@ -1,0 +1,234 @@
+\doxysection{GCHeap Class Reference}
+\hypertarget{classGCHeap}{}\label{classGCHeap}\index{GCHeap@{GCHeap}}
+
+
+Garbage collection heap manager.  
+
+
+
+
+{\ttfamily \#include $<$gc.\+hpp$>$}
+
+
+
+Collaboration diagram for GCHeap\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classGCHeap__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGCHeap_a8da24272a35a3a4c45c60bbdc4d9fa54}{GCHeap}} ()
+\begin{DoxyCompactList}\small\item\em Constructor initializes empty heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGCHeap_a26dd24ce862b0a82add8165763197865}{\texorpdfstring{$\sim$}{\string~}\+GCHeap}} ()
+\begin{DoxyCompactList}\small\item\em Destructor cleans up all remaining objects. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename... Args$>$ }\\\mbox{\hyperlink{gc_8hpp_ad791b40e4c777fb92c33a1e9aa364331}{GCRef}}$<$ T $>$ \mbox{\hyperlink{classGCHeap_ab1fa78330f0d67914b3bd7e0bc257eeb}{allocate}} (Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em Allocate a new garbage-\/collected object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGCHeap_acc5003e175344127b5fe3a1d26e37dd6}{add\+\_\+root}} (\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ref)
+\begin{DoxyCompactList}\small\item\em Add a root reference to the GC system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGCHeap_ac939b5b46022555fedcf65cb175a50d6}{remove\+\_\+root}} (\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ref)
+\begin{DoxyCompactList}\small\item\em Remove a root reference from the GC system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGCHeap_adce58b9833e82a314a626d43234c335c}{collect}} ()
+\begin{DoxyCompactList}\small\item\em Trigger a garbage collection cycle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGCHeap_a33732177e157859c4b1833320175f3d7}{mark}} ()
+\begin{DoxyCompactList}\small\item\em Mark phase of garbage collection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGCHeap_ab78442507b6ab9b24af862ef97d7e7d8}{sweep}} ()
+\begin{DoxyCompactList}\small\item\em Sweep phase of garbage collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGCHeap_a5abfbd848632c24558e47b4bdd7bedc8}{objects\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Linked list of all allocated objects. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classGCHeap_ab5cdc22c1704939684c8d3668f3ac1d2}{object\+\_\+count\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Current number of allocated objects. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classGCHeap_a3223a10a6729ea3c9f5e6236794a3277}{next\+\_\+gc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Threshold for triggering next collection. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classGCHeap_a88622e22138bf593b95cf078180c449b}{roots\+\_\+}}
+\begin{DoxyCompactList}\small\item\em List of registered root references. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classGCHeap_aff74742682b919f520e6b327035acc20}{Root\+Handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Garbage collection heap manager. 
+
+\doxylink{classGCHeap}{GCHeap} manages allocation and collection of garbage-\/collected objects. It uses a mark-\/and-\/sweep algorithm triggered when allocation thresholds are reached. Objects are tracked in a linked list for efficient traversal. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classGCHeap_a8da24272a35a3a4c45c60bbdc4d9fa54}\label{classGCHeap_a8da24272a35a3a4c45c60bbdc4d9fa54} 
+\index{GCHeap@{GCHeap}!GCHeap@{GCHeap}}
+\index{GCHeap@{GCHeap}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{GCHeap()}{GCHeap()}}
+{\footnotesize\ttfamily GCHeap\+::\+GCHeap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor initializes empty heap. 
+
+\Hypertarget{classGCHeap_a26dd24ce862b0a82add8165763197865}\label{classGCHeap_a26dd24ce862b0a82add8165763197865} 
+\index{GCHeap@{GCHeap}!````~GCHeap@{\texorpdfstring{$\sim$}{\string~}GCHeap}}
+\index{````~GCHeap@{\texorpdfstring{$\sim$}{\string~}GCHeap}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GCHeap()}{\string~GCHeap()}}
+{\footnotesize\ttfamily GCHeap\+::\texorpdfstring{$\sim$}{\string~}\+GCHeap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor cleans up all remaining objects. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGCHeap_acc5003e175344127b5fe3a1d26e37dd6}\label{classGCHeap_acc5003e175344127b5fe3a1d26e37dd6} 
+\index{GCHeap@{GCHeap}!add\_root@{add\_root}}
+\index{add\_root@{add\_root}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{add\_root()}{add\_root()}}
+{\footnotesize\ttfamily void GCHeap\+::add\+\_\+root (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ref }\end{DoxyParamCaption})}
+
+
+
+Add a root reference to the GC system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref} & Pointer to a \doxylink{structGCObject}{GCObject} pointer to register as a root \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGCHeap_ab1fa78330f0d67914b3bd7e0bc257eeb}\label{classGCHeap_ab1fa78330f0d67914b3bd7e0bc257eeb} 
+\index{GCHeap@{GCHeap}!allocate@{allocate}}
+\index{allocate@{allocate}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{allocate()}{allocate()}}
+{\footnotesize\ttfamily template$<$typename T , typename... Args$>$ \\
+\mbox{\hyperlink{gc_8hpp_ad791b40e4c777fb92c33a1e9aa364331}{GCRef}}$<$ T $>$ GCHeap\+::allocate (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Allocate a new garbage-\/collected object. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type to allocate (must derive from \doxylink{structGCObject}{GCObject}) \\
+\hline
+{\em Args} & Constructor argument types \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Arguments to forward to the constructor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly allocated object
+\end{DoxyReturn}
+This method allocates a new object of type T and adds it to the GC-\/managed object list. If the allocation threshold is reached, a garbage collection cycle is triggered. \Hypertarget{classGCHeap_adce58b9833e82a314a626d43234c335c}\label{classGCHeap_adce58b9833e82a314a626d43234c335c} 
+\index{GCHeap@{GCHeap}!collect@{collect}}
+\index{collect@{collect}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{collect()}{collect()}}
+{\footnotesize\ttfamily void GCHeap\+::collect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Trigger a garbage collection cycle. 
+
+Performs a full mark-\/and-\/sweep garbage collection, freeing all unreachable objects and updating collection thresholds. \Hypertarget{classGCHeap_a33732177e157859c4b1833320175f3d7}\label{classGCHeap_a33732177e157859c4b1833320175f3d7} 
+\index{GCHeap@{GCHeap}!mark@{mark}}
+\index{mark@{mark}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{mark()}{mark()}}
+{\footnotesize\ttfamily void GCHeap\+::mark (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Mark phase of garbage collection. 
+
+Marks all reachable objects starting from registered roots. \Hypertarget{classGCHeap_ac939b5b46022555fedcf65cb175a50d6}\label{classGCHeap_ac939b5b46022555fedcf65cb175a50d6} 
+\index{GCHeap@{GCHeap}!remove\_root@{remove\_root}}
+\index{remove\_root@{remove\_root}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{remove\_root()}{remove\_root()}}
+{\footnotesize\ttfamily void GCHeap\+::remove\+\_\+root (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ref }\end{DoxyParamCaption})}
+
+
+
+Remove a root reference from the GC system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref} & Pointer to a \doxylink{structGCObject}{GCObject} pointer to unregister as a root \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGCHeap_ab78442507b6ab9b24af862ef97d7e7d8}\label{classGCHeap_ab78442507b6ab9b24af862ef97d7e7d8} 
+\index{GCHeap@{GCHeap}!sweep@{sweep}}
+\index{sweep@{sweep}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{sweep()}{sweep()}}
+{\footnotesize\ttfamily void GCHeap\+::sweep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sweep phase of garbage collection. 
+
+Deallocates all unmarked objects and resets mark flags. 
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classGCHeap_aff74742682b919f520e6b327035acc20}\label{classGCHeap_aff74742682b919f520e6b327035acc20} 
+\index{GCHeap@{GCHeap}!RootHandle@{RootHandle}}
+\index{RootHandle@{RootHandle}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{RootHandle}{RootHandle}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classRootHandle}{Root\+Handle}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classGCHeap_a3223a10a6729ea3c9f5e6236794a3277}\label{classGCHeap_a3223a10a6729ea3c9f5e6236794a3277} 
+\index{GCHeap@{GCHeap}!next\_gc\_@{next\_gc\_}}
+\index{next\_gc\_@{next\_gc\_}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{next\_gc\_}{next\_gc\_}}
+{\footnotesize\ttfamily size\+\_\+t GCHeap\+::next\+\_\+gc\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Threshold for triggering next collection. 
+
+\Hypertarget{classGCHeap_ab5cdc22c1704939684c8d3668f3ac1d2}\label{classGCHeap_ab5cdc22c1704939684c8d3668f3ac1d2} 
+\index{GCHeap@{GCHeap}!object\_count\_@{object\_count\_}}
+\index{object\_count\_@{object\_count\_}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{object\_count\_}{object\_count\_}}
+{\footnotesize\ttfamily size\+\_\+t GCHeap\+::object\+\_\+count\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current number of allocated objects. 
+
+\Hypertarget{classGCHeap_a5abfbd848632c24558e47b4bdd7bedc8}\label{classGCHeap_a5abfbd848632c24558e47b4bdd7bedc8} 
+\index{GCHeap@{GCHeap}!objects\_@{objects\_}}
+\index{objects\_@{objects\_}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{objects\_}{objects\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGCObject}{GCObject}}\texorpdfstring{$\ast$}{*} GCHeap\+::objects\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Linked list of all allocated objects. 
+
+\Hypertarget{classGCHeap_a88622e22138bf593b95cf078180c449b}\label{classGCHeap_a88622e22138bf593b95cf078180c449b} 
+\index{GCHeap@{GCHeap}!roots\_@{roots\_}}
+\index{roots\_@{roots\_}!GCHeap@{GCHeap}}
+\doxysubsubsection{\texorpdfstring{roots\_}{roots\_}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structGCObject}{GCObject}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}$>$ GCHeap\+::roots\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of registered root references. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/runtime/\mbox{\hyperlink{gc_8hpp}{gc.\+hpp}}\item 
+src/runtime/\mbox{\hyperlink{gc_8cpp}{gc.\+cpp}}\end{DoxyCompactItemize}

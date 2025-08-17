@@ -1,0 +1,128 @@
+\doxysection{GCObject Struct Reference}
+\hypertarget{structGCObject}{}\label{structGCObject}\index{GCObject@{GCObject}}
+
+
+Base class for all garbage-\/collected objects.  
+
+
+
+
+{\ttfamily \#include $<$gc.\+hpp$>$}
+
+
+
+Collaboration diagram for GCObject\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{structGCObject__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structGCObject_ae66224d8eab8262dabef8685be66bd73}{GCObject}} (\mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}{GCTag}} t)
+\begin{DoxyCompactList}\small\item\em Constructor that sets the object type tag. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structGCObject_a92ed0e23925277fa520a69d5eaa4b87f}{\texorpdfstring{$\sim$}{\string~}\+GCObject}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for proper cleanup. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{structGCObject_a6daee7ed3b0b566d7074fe0dbc3d5083}{trace}} (\mbox{\hyperlink{classTracer}{Tracer}} \&tracer)=0
+\begin{DoxyCompactList}\small\item\em Trace method for marking reachable objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structGCObject_a1279a78425557f3becddf3e01a9463ac}{marked}} = false
+\begin{DoxyCompactList}\small\item\em Mark flag for garbage collection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}{GCTag}} \mbox{\hyperlink{structGCObject_a230915377c2e7a38457cc395fde3f26a}{tag}}
+\begin{DoxyCompactList}\small\item\em Type tag for this object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structGCObject_ada46f984810ae3794a07c7a77b95fb93}{next}} = nullptr
+\begin{DoxyCompactList}\small\item\em Next object in the allocation list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for all garbage-\/collected objects. 
+
+All objects that need to be managed by the garbage collector must inherit from this class. The GC uses a mark-\/and-\/sweep algorithm with a linked list of all allocated objects. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structGCObject_ae66224d8eab8262dabef8685be66bd73}\label{structGCObject_ae66224d8eab8262dabef8685be66bd73} 
+\index{GCObject@{GCObject}!GCObject@{GCObject}}
+\index{GCObject@{GCObject}!GCObject@{GCObject}}
+\doxysubsubsection{\texorpdfstring{GCObject()}{GCObject()}}
+{\footnotesize\ttfamily GCObject\+::\+GCObject (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}{GCTag}}}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor that sets the object type tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The type tag for this object \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structGCObject_a92ed0e23925277fa520a69d5eaa4b87f}\label{structGCObject_a92ed0e23925277fa520a69d5eaa4b87f} 
+\index{GCObject@{GCObject}!````~GCObject@{\texorpdfstring{$\sim$}{\string~}GCObject}}
+\index{````~GCObject@{\texorpdfstring{$\sim$}{\string~}GCObject}!GCObject@{GCObject}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GCObject()}{\string~GCObject()}}
+{\footnotesize\ttfamily virtual GCObject\+::\texorpdfstring{$\sim$}{\string~}\+GCObject (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual destructor for proper cleanup. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structGCObject_a6daee7ed3b0b566d7074fe0dbc3d5083}\label{structGCObject_a6daee7ed3b0b566d7074fe0dbc3d5083} 
+\index{GCObject@{GCObject}!trace@{trace}}
+\index{trace@{trace}!GCObject@{GCObject}}
+\doxysubsubsection{\texorpdfstring{trace()}{trace()}}
+{\footnotesize\ttfamily virtual void GCObject\+::trace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTracer}{Tracer}} \&}]{tracer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Trace method for marking reachable objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tracer} & The tracer object to use for marking\\
+\hline
+\end{DoxyParams}
+Each \doxylink{structGCObject}{GCObject} subclass must implement this method to mark any other GCObjects that this object references. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structGCObject_a1279a78425557f3becddf3e01a9463ac}\label{structGCObject_a1279a78425557f3becddf3e01a9463ac} 
+\index{GCObject@{GCObject}!marked@{marked}}
+\index{marked@{marked}!GCObject@{GCObject}}
+\doxysubsubsection{\texorpdfstring{marked}{marked}}
+{\footnotesize\ttfamily bool GCObject\+::marked = false}
+
+
+
+Mark flag for garbage collection. 
+
+\Hypertarget{structGCObject_ada46f984810ae3794a07c7a77b95fb93}\label{structGCObject_ada46f984810ae3794a07c7a77b95fb93} 
+\index{GCObject@{GCObject}!next@{next}}
+\index{next@{next}!GCObject@{GCObject}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGCObject}{GCObject}}\texorpdfstring{$\ast$}{*} GCObject\+::next = nullptr}
+
+
+
+Next object in the allocation list. 
+
+\Hypertarget{structGCObject_a230915377c2e7a38457cc395fde3f26a}\label{structGCObject_a230915377c2e7a38457cc395fde3f26a} 
+\index{GCObject@{GCObject}!tag@{tag}}
+\index{tag@{tag}!GCObject@{GCObject}}
+\doxysubsubsection{\texorpdfstring{tag}{tag}}
+{\footnotesize\ttfamily \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}{GCTag}} GCObject\+::tag}
+
+
+
+Type tag for this object. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/runtime/\mbox{\hyperlink{gc_8hpp}{gc.\+hpp}}\end{DoxyCompactItemize}

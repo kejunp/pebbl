@@ -16,13 +16,12 @@ Inheritance diagram for Statement\+Node\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=173pt]{structStatementNode__inherit__graph}
+\includegraphics[width=350pt]{structStatementNode__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Statement\+Node\+:
-\nopagebreak
+Collaboration diagram for Statement\+Node\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,9 +34,9 @@ Collaboration diagram for Statement\+Node\+:
 \item 
 virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
 \item 
-virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structASTNode_a7c95573c2712fd7c0c57002f854343dd}{type}} () const =0
+virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{type}} () const noexcept=0
 \begin{DoxyCompactList}\small\item\em Gives the type of the AST node. \end{DoxyCompactList}\item 
-virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff}{get\+\_\+token}} () const
+virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{get\+\_\+token}} () const noexcept
 \begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -46,4 +45,4 @@ Base class for all statements.
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

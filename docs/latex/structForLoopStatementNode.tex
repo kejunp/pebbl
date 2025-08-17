@@ -1,0 +1,118 @@
+\doxysection{For\+Loop\+Statement\+Node Struct Reference}
+\hypertarget{structForLoopStatementNode}{}\label{structForLoopStatementNode}\index{ForLoopStatementNode@{ForLoopStatementNode}}
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for For\+Loop\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{structForLoopStatementNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for For\+Loop\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{structForLoopStatementNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structForLoopStatementNode_a2d7a1aebfaa4a9ecddf810157b791dc8}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structForLoopStatementNode_aea760db529ed75606409b45a943eb118}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structForLoopStatementNode_a477e91e5dc56b0cf07322694550fc4f1}{token}}
+\begin{DoxyCompactList}\small\item\em Always a token with \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588}{Token\+Type\+::\+FOR} and lexeme "{}for"{}. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}} $>$ \mbox{\hyperlink{structForLoopStatementNode_aeed0f81ea5b6dcc5d9db0c003770a11c}{identifier}}
+\begin{DoxyCompactList}\small\item\em The iterator (e.\+g. for \mbox{[}identifier\mbox{]} in range..) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structForLoopStatementNode_a30767d0e977a47f4c3b79b0c4da0379f}{iterable}}
+\begin{DoxyCompactList}\small\item\em The thing to iterate over (e.\+g., a list) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structForLoopStatementNode_aea760db529ed75606409b45a943eb118}\label{structForLoopStatementNode_aea760db529ed75606409b45a943eb118} 
+\index{ForLoopStatementNode@{ForLoopStatementNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!ForLoopStatementNode@{ForLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} For\+Loop\+Statement\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structForLoopStatementNode_a2d7a1aebfaa4a9ecddf810157b791dc8}\label{structForLoopStatementNode_a2d7a1aebfaa4a9ecddf810157b791dc8} 
+\index{ForLoopStatementNode@{ForLoopStatementNode}!type@{type}}
+\index{type@{type}!ForLoopStatementNode@{ForLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} For\+Loop\+Statement\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1}{ASTType\+::\+FOR\+\_\+\+LOOP\+\_\+\+STATEMENT} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structForLoopStatementNode_aeed0f81ea5b6dcc5d9db0c003770a11c}\label{structForLoopStatementNode_aeed0f81ea5b6dcc5d9db0c003770a11c} 
+\index{ForLoopStatementNode@{ForLoopStatementNode}!identifier@{identifier}}
+\index{identifier@{identifier}!ForLoopStatementNode@{ForLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{identifier}{identifier}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}}$>$ For\+Loop\+Statement\+Node\+::identifier}
+
+
+
+The iterator (e.\+g. for \mbox{[}identifier\mbox{]} in range..) 
+
+\Hypertarget{structForLoopStatementNode_a30767d0e977a47f4c3b79b0c4da0379f}\label{structForLoopStatementNode_a30767d0e977a47f4c3b79b0c4da0379f} 
+\index{ForLoopStatementNode@{ForLoopStatementNode}!iterable@{iterable}}
+\index{iterable@{iterable}!ForLoopStatementNode@{ForLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{iterable}{iterable}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ For\+Loop\+Statement\+Node\+::iterable}
+
+
+
+The thing to iterate over (e.\+g., a list) 
+
+\Hypertarget{structForLoopStatementNode_a477e91e5dc56b0cf07322694550fc4f1}\label{structForLoopStatementNode_a477e91e5dc56b0cf07322694550fc4f1} 
+\index{ForLoopStatementNode@{ForLoopStatementNode}!token@{token}}
+\index{token@{token}!ForLoopStatementNode@{ForLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} For\+Loop\+Statement\+Node\+::token}
+
+
+
+Always a token with \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a7885ad399f9cab93cb42befbe402c588}{Token\+Type\+::\+FOR} and lexeme "{}for"{}. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

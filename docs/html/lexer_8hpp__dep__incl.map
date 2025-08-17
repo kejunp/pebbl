@@ -1,5 +1,12 @@
-<map id="parser/lexer/lexer.hpp" name="parser/lexer/lexer.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,168,31"/>
-<area shape="rect" id="Node000002" href="$lexer_8cpp.html" title=" " alt="" coords="6,79,167,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,44,89,79,84,79,84,44"/>
+<map id="src/parser/lexer/lexer.hpp" name="src/parser/lexer/lexer.hpp">
+<area shape="rect" id="Node000001" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="96,5,281,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title="Main entry point and testing for the PEBBL language compiler." alt="" coords="5,174,111,199"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,38,111,56,85,80,73,104,65,130,60,174,55,174,60,129,68,102,81,77,108,52,140,34"/>
+<area shape="rect" id="Node000003" href="$ast__generator_8hpp.html" title="Recursive descent parser for generating Abstract Syntax Trees from tokens." alt="" coords="95,79,282,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,44,191,79,186,79,186,44"/>
+<area shape="rect" id="Node000005" href="$lexer_8cpp.html" title="Implementation of the lexical analyzer for PEBBL source code." alt="" coords="306,86,490,111"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="233,33,368,83,367,88,231,38"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="150,129,77,176,74,172,147,124"/>
+<area shape="rect" id="Node000004" href="$ast__generator_8cpp.html" title="Implementation of the recursive descent parser for generating ASTs." alt="" coords="135,167,322,207"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="206,130,222,165,217,168,201,132"/>
 </map>

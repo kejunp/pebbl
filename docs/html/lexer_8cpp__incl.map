@@ -1,21 +1,24 @@
-<map id="parser/lexer/lexer.cpp" name="parser/lexer/lexer.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="196,5,357,31"/>
-<area shape="rect" id="Node000002" href="$lexer_8hpp.html" title=" " alt="" coords="188,79,269,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,33,246,69,242,66,267,30"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="293,79,359,104"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="287,29,312,66,308,69,283,33"/>
-<area shape="rect" id="Node000003" href="$common_8hpp.html" title=" " alt="" coords="114,152,221,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="221,106,188,143,184,140,217,103"/>
-<area shape="rect" id="Node000007" href="$tokens_8hpp.html" title=" " alt="" coords="278,152,371,177"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="246,102,299,141,296,146,243,106"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,225,76,251"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,180,75,221,72,216,146,175"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="101,225,167,251"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="164,179,148,214,143,212,159,177"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="191,225,271,251"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="180,176,214,213,210,217,176,179"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="295,225,354,251"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="327,178,327,212,322,212,322,178"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="379,225,503,251"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="345,175,411,216,409,220,342,180"/>
+<map id="src/parser/lexer/lexer.cpp" name="src/parser/lexer/lexer.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the lexical analyzer for PEBBL source code." alt="" coords="84,5,268,31"/>
+<area shape="rect" id="Node000002" href="$lexer_8hpp.html" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="87,79,169,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,33,146,69,141,66,166,30"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="193,79,258,104"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="186,29,212,66,207,69,182,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,225,64,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,106,63,125,48,138,37,153,29,182,31,211,26,212,24,182,32,151,44,134,60,121,94,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="47,152,107,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="122,106,96,142,91,139,117,103"/>
+<area shape="rect" id="Node000005" href="$common_8hpp.html" title="Common definitions and utilities used throughout the PEBBL project." alt="" coords="287,152,393,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="163,101,294,145,292,150,161,107"/>
+<area shape="rect" id="Node000009" href="$tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="132,152,225,177"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="139,103,165,139,160,142,134,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="355,225,426,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="351,176,377,213,372,216,346,179"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="451,225,517,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="364,175,449,217,447,221,362,180"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="251,225,331,251"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="334,179,309,216,304,213,330,176"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="157,180,72,221,69,217,154,175"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="102,225,226,251"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="179,178,172,212,167,211,174,177"/>
 </map>

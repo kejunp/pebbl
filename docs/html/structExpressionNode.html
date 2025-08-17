@@ -84,9 +84,33 @@ Inheritance diagram for ExpressionNode:</div>
 <div class="dyncontent">
 <div class="center"><img src="structExpressionNode__inherit__graph.png" border="0" usemap="#aExpressionNode_inherit__map" alt="Inheritance graph"/></div>
 <map name="aExpressionNode_inherit__map" id="aExpressionNode_inherit__map">
-<area shape="rect" title="Base class for all expressions." alt="" coords="5,79,132,104"/>
-<area shape="rect" href="structASTNode.html" title="Base class of all AST nodes." alt="" coords="28,5,109,31"/>
-<area shape="poly" title=" " alt="" coords="71,44,71,79,66,79,66,44"/>
+<area shape="rect" title="Base class for all expressions." alt="" coords="135,129,261,155"/>
+<area shape="rect" href="structAssignmentExpressionNode.html" title="An assignment expression (e.g., x = 5, y = func())" alt="" coords="309,5,513,31"/>
+<area shape="poly" title=" " alt="" coords="217,117,256,77,281,57,308,40,336,28,338,33,311,44,284,61,260,81,220,121"/>
+<area shape="rect" href="structBinaryExpressionNode.html" title="A binary expression (e.g., a + b, x == y, etc.)" alt="" coords="327,55,496,80"/>
+<area shape="poly" title=" " alt="" coords="234,121,308,89,347,77,349,83,310,94,237,126"/>
+<area shape="rect" href="structIdentifierNode.html" title="A identifier." alt="" coords="354,104,469,129"/>
+<area shape="poly" title=" " alt="" coords="274,130,353,121,354,126,275,136"/>
+<area shape="rect" href="structIfElseExpressionNode.html" title="An if&#45;else expression (e.g., if condition { then_expr } else { else_expr })" alt="" coords="330,153,493,179"/>
+<area shape="poly" title=" " alt="" coords="275,148,330,154,330,160,275,153"/>
+<area shape="rect" href="structLiteralNode.html" title="Base class for all literals." alt="" coords="363,203,460,228"/>
+<area shape="poly" title=" " alt="" coords="237,158,310,189,363,203,362,208,308,194,235,163"/>
+<area shape="rect" href="structUnaryExpressionNode.html" title="A unary expression (e.g., !x, &#45;y, etc.)" alt="" coords="328,252,495,277"/>
+<area shape="poly" title=" " alt="" coords="220,163,260,202,284,222,311,238,338,250,336,254,308,243,281,226,256,206,217,167"/>
+<area shape="rect" href="structASTNode.html" title="Base class of all AST nodes." alt="" coords="5,129,87,155"/>
+<area shape="poly" title=" " alt="" coords="100,139,134,139,134,145,100,145"/>
+<area shape="rect" href="structArrayLiteralNode.html" title="An array literal (e.g., [1, 2, 3])" alt="" coords="571,79,703,104"/>
+<area shape="poly" title=" " alt="" coords="473,206,493,199,512,189,528,172,535,153,543,133,560,113,580,102,582,106,563,117,547,136,540,155,532,175,515,193,495,204,474,211"/>
+<area shape="rect" href="structBooleanLiteralNode.html" title="A boolean literal (true or false)" alt="" coords="561,128,712,153"/>
+<area shape="poly" title=" " alt="" coords="472,201,512,189,536,177,560,164,594,151,596,156,562,168,539,181,514,194,474,206"/>
+<area shape="rect" href="structDictLiteralNode.html" title="A dictionary literal (e.g., {key: value, key2: value2})" alt="" coords="575,177,698,203"/>
+<area shape="poly" title=" " alt="" coords="474,206,575,194,576,199,474,211"/>
+<area shape="rect" href="structFloatLiteralNode.html" title="A float literal." alt="" coords="571,227,702,252"/>
+<area shape="poly" title=" " alt="" coords="474,219,571,230,571,235,474,225"/>
+<area shape="rect" href="structIntegerLiteralNode.html" title="A integer literal." alt="" coords="565,276,708,301"/>
+<area shape="poly" title=" " alt="" coords="474,226,514,238,562,262,593,273,591,278,560,267,512,243,473,231"/>
+<area shape="rect" href="structStringLiteralNode.html" title="A string literal." alt="" coords="569,325,704,351"/>
+<area shape="poly" title=" " alt="" coords="474,220,495,228,515,239,532,257,540,276,548,294,563,312,582,323,580,328,560,316,543,297,535,278,528,260,512,243,493,233,473,226"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -105,17 +129,17 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_methods_structASTNode"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structASTNode')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structASTNode.html">ASTNode</a></td></tr>
 <tr class="memitem:a578124183c58a444f3fd7668848ea887 inherit pub_methods_structASTNode" id="r_a578124183c58a444f3fd7668848ea887"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structASTNode.html#a578124183c58a444f3fd7668848ea887">~ASTNode</a> ()=default</td></tr>
 <tr class="separator:a578124183c58a444f3fd7668848ea887 inherit pub_methods_structASTNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c95573c2712fd7c0c57002f854343dd inherit pub_methods_structASTNode" id="r_a7c95573c2712fd7c0c57002f854343dd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1">ASTType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structASTNode.html#a7c95573c2712fd7c0c57002f854343dd">type</a> () const =0</td></tr>
-<tr class="memdesc:a7c95573c2712fd7c0c57002f854343dd inherit pub_methods_structASTNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the type of the AST node.  <br /></td></tr>
-<tr class="separator:a7c95573c2712fd7c0c57002f854343dd inherit pub_methods_structASTNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac155be5203ab97e5a4f13d9bca44f9ff inherit pub_methods_structASTNode" id="r_ac155be5203ab97e5a4f13d9bca44f9ff"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structToken.html">Token</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structASTNode.html#ac155be5203ab97e5a4f13d9bca44f9ff">get_token</a> () const</td></tr>
-<tr class="memdesc:ac155be5203ab97e5a4f13d9bca44f9ff inherit pub_methods_structASTNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives a pointer to the token, if no meaningful token, return nullptr.  <br /></td></tr>
-<tr class="separator:ac155be5203ab97e5a4f13d9bca44f9ff inherit pub_methods_structASTNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa2c9208b3223c3eb9843f3ac88d8b1 inherit pub_methods_structASTNode" id="r_a5fa2c9208b3223c3eb9843f3ac88d8b1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1">ASTType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structASTNode.html#a5fa2c9208b3223c3eb9843f3ac88d8b1">type</a> () const noexcept=0</td></tr>
+<tr class="memdesc:a5fa2c9208b3223c3eb9843f3ac88d8b1 inherit pub_methods_structASTNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the type of the AST node.  <br /></td></tr>
+<tr class="separator:a5fa2c9208b3223c3eb9843f3ac88d8b1 inherit pub_methods_structASTNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d46b9fdc8b734d633622ce6008b35ef inherit pub_methods_structASTNode" id="r_a0d46b9fdc8b734d633622ce6008b35ef"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structToken.html">Token</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structASTNode.html#a0d46b9fdc8b734d633622ce6008b35ef">get_token</a> () const noexcept</td></tr>
+<tr class="memdesc:a0d46b9fdc8b734d633622ce6008b35ef inherit pub_methods_structASTNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives a pointer to the token, if no meaningful token, return nullptr.  <br /></td></tr>
+<tr class="separator:a0d46b9fdc8b734d633622ce6008b35ef inherit pub_methods_structASTNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all expressions. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>parser/ast_generation/<a class="el" href="ast_8hpp_source.html">ast.hpp</a></li>
+<li>src/parser/ast_generation/<a class="el" href="ast_8hpp_source.html">ast.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

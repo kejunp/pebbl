@@ -1,0 +1,19 @@
+<map id="LiteralNode" name="LiteralNode">
+<area shape="rect" id="Node000001" title="Base class for all literals." alt="" coords="309,129,407,155"/>
+<area shape="rect" id="Node000004" href="$structArrayLiteralNode.html" title="An array literal (e.g., [1, 2, 3])" alt="" coords="464,5,596,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="374,116,408,77,453,40,477,28,479,33,456,44,412,81,379,120"/>
+<area shape="rect" id="Node000005" href="$structBooleanLiteralNode.html" title="A boolean literal (true or false)" alt="" coords="455,55,605,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="391,120,454,89,484,78,486,83,456,94,394,125"/>
+<area shape="rect" id="Node000006" href="$structDictLiteralNode.html" title="A dictionary literal (e.g., {key: value, key2: value2})" alt="" coords="469,104,591,129"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="420,130,468,123,468,128,421,136"/>
+<area shape="rect" id="Node000007" href="$structFloatLiteralNode.html" title="A float literal." alt="" coords="465,153,595,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="421,148,465,154,464,160,420,153"/>
+<area shape="rect" id="Node000008" href="$structIntegerLiteralNode.html" title="A integer literal." alt="" coords="459,203,601,228"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="395,159,456,189,486,200,484,205,454,194,393,164"/>
+<area shape="rect" id="Node000009" href="$structStringLiteralNode.html" title="A string literal." alt="" coords="463,252,597,277"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="379,164,412,202,456,238,479,250,477,254,453,243,409,206,375,168"/>
+<area shape="rect" id="Node000002" href="$structExpressionNode.html" title="Base class for all expressions." alt="" coords="135,129,261,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,139,309,139,309,145,275,145"/>
+<area shape="rect" id="Node000003" href="$structASTNode.html" title="Base class of all AST nodes." alt="" coords="5,129,87,155"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,139,134,139,134,145,100,145"/>
+</map>

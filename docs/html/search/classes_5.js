@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['token_0',['Token',['../structToken.html',1,'']]]
+  ['gcheap_0',['GCHeap',['../classGCHeap.html',1,'']]],
+  ['gcobject_1',['GCObject',['../structGCObject.html',1,'']]]
 ];

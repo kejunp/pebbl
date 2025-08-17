@@ -1,0 +1,20 @@
+<map id="src/runtime/object/object.cpp" name="src/runtime/object/object.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the PEBBLObject NaN&#45;boxing system." alt="" coords="138,5,278,45"/>
+<area shape="rect" id="Node000002" href="$object_8hpp.html" title="Runtime object system using NaN&#45;boxing for efficient value representation." alt="" coords="37,93,128,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,48,114,88,111,84,176,43"/>
+<area shape="rect" id="Node000004" href="$gc_8hpp.html" title="Garbage collection system for the PEBBL runtime." alt="" coords="175,93,241,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="211,46,211,79,205,79,205,46"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="265,93,332,119"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="232,44,277,82,273,86,228,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,72,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,120,55,156,51,154,73,118"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="182,121,80,164,78,159,180,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="97,167,167,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="198,121,156,159,153,155,194,117"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="192,167,269,192"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="214,118,225,153,220,154,209,120"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="294,167,386,192"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="230,116,308,158,305,162,228,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="410,167,473,192"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="242,115,397,162,396,167,240,120"/>
+</map>

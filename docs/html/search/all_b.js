@@ -1,16 +1,15 @@
 var searchData=
 [
-  ['op_5fadd_0',['OP_ADD',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ad3a0f825f42df18a5e4f006151a92edb',1,'opcodes.hpp']]],
-  ['op_5fconstant_1',['OP_CONSTANT',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a4570d48c219ebcd3bbcbaae7868f05cc',1,'opcodes.hpp']]],
-  ['op_5fconstant_5flong_2',['OP_CONSTANT_LONG',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaa6026f4fd60d657d641608d5247de92',1,'opcodes.hpp']]],
-  ['op_5fdivide_3',['OP_DIVIDE',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a8ccf2a35e9a489b9c254fa6a647f015c',1,'opcodes.hpp']]],
-  ['op_5fmultiply_4',['OP_MULTIPLY',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1aaeceb42ade16241e38ee0bb92b8e2368',1,'opcodes.hpp']]],
-  ['op_5fnegate_5',['OP_NEGATE',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ac27199a83b24026548fba4f2812d8dad',1,'opcodes.hpp']]],
-  ['op_5freturn_6',['OP_RETURN',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1a363d1d84be9bc81ab8eee593247f457a',1,'opcodes.hpp']]],
-  ['op_5fsubtract_7',['OP_SUBTRACT',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1ace427290b4c713526909baa1fbde54e6',1,'opcodes.hpp']]],
-  ['opcode_8',['Opcode',['../opcodes_8hpp.html#a7e03c1168c8bc0a433a4cbbab207eec1',1,'opcodes.hpp']]],
-  ['opcode_5fto_5fstring_9',['opcode_to_string',['../opcodes_8hpp.html#afc649788bf0d2c1f996b29a2c112bdb4',1,'opcodes.hpp']]],
-  ['opcodes_2ehpp_10',['opcodes.hpp',['../opcodes_8hpp.html',1,'']]],
-  ['operator_3e_3e_11',['operator&gt;&gt;',['../classLexer.html#ac2a7c376612cd061da1d01c8543ea821',1,'Lexer']]],
-  ['or_12',['OR',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616',1,'tokens.hpp']]]
+  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
+  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['make_5fbool_2',['make_bool',['../structPEBBLObject.html#af3a319d43f91c0a90b979eed3d2ea62a',1,'PEBBLObject']]],
+  ['make_5fdouble_3',['make_double',['../structPEBBLObject.html#aa17d9c5f5145d36bfc412b7d31558a5b',1,'PEBBLObject']]],
+  ['make_5fgc_5fptr_4',['make_gc_ptr',['../structPEBBLObject.html#ac69367821a5d12496433f7a164c07edd',1,'PEBBLObject']]],
+  ['make_5fint32_5',['make_int32',['../structPEBBLObject.html#aad0990be76e14eb227cb7ec116e9f767',1,'PEBBLObject']]],
+  ['make_5fnull_6',['make_null',['../structPEBBLObject.html#ab89d15e402acacdc6e2ad8f809b50e6f',1,'PEBBLObject']]],
+  ['make_5ftoken_7',['make_token',['../classLexer.html#a3e2e069afa2176cc23d314736df53cfb',1,'Lexer::make_token(TokenType type, std::string &amp;&amp;lexeme)'],['../classLexer.html#aabe0e0f5afa8767af534621653d71e32',1,'Lexer::make_token(TokenType type, const std::string &amp;lexeme)']]],
+  ['make_5fundefined_8',['make_undefined',['../structPEBBLObject.html#a05ff01cfdf4188119e278f61d34f47a9',1,'PEBBLObject']]],
+  ['mark_9',['mark',['../classGCHeap.html#a33732177e157859c4b1833320175f3d7',1,'GCHeap::mark()'],['../classTracer.html#a81885e30cdeeec4ef5fc0cfa5a225054',1,'Tracer::mark()']]],
+  ['marked_10',['marked',['../structGCObject.html#a1279a78425557f3becddf3e01a9463ac',1,'GCObject']]],
+  ['minus_11',['MINUS',['../tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81',1,'tokens.hpp']]]
 ];

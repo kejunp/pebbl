@@ -1,0 +1,69 @@
+\doxysection{object.\+hpp}
+\hypertarget{object_8hpp_source}{}\label{object_8hpp_source}\index{src/runtime/object/object.hpp@{src/runtime/object/object.hpp}}
+\mbox{\hyperlink{object_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structGCObject}{GCObject}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \{}
+\DoxyCodeLine{00026\ \ \ uint64\_t\ \mbox{\hyperlink{structPEBBLObject_a3f220f81dbafc3d6a40571e8eeeff785}{bits}};\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ \mbox{\hyperlink{structPEBBLObject_aaed043729e302c5cb065e9fa40827830}{EXP\_MASK}}\ \ \ \ \ =\ 0x7FF0'0000'0000'0000ULL;}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ \mbox{\hyperlink{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d}{QNAN\_MASK}}\ \ \ \ =\ 0x0008'0000'0000'0000ULL;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ \mbox{\hyperlink{structPEBBLObject_a8d87e5047ce94ec2476bf7d46dd9d52f}{BOXED\_BASE}}\ \ \ =\ \mbox{\hyperlink{structPEBBLObject_aaed043729e302c5cb065e9fa40827830}{EXP\_MASK}}\ |\ \mbox{\hyperlink{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d}{QNAN\_MASK}};}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ \mbox{\hyperlink{structPEBBLObject_a448ab4350b38a6da9ad3ffc0a2bdbfd8}{TAG\_MASK}}\ \ \ \ \ =\ 0x0007'0000'0000'0000ULL;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \mbox{\hyperlink{structPEBBLObject_a280b438d49c3f8143cceba66be9f031f}{TAG\_SHIFT}}\ \ \ \ =\ 48;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ uint64\_t\ \mbox{\hyperlink{structPEBBLObject_a2f7cf4e6866cd940b47c75e039c40d74}{PAYLOAD\_MASK}}\ =\ 0x0000'FFFF'FFFF'FFFFULL;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}{Tag}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc45c8463a42ed0d29b8af6d95dca113}{GC\_PTR}}\ =\ 1,\ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a6495adba09844fac8eeb0aba86e6f1bf}{INT32}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16aa97b2c144243b2b9d2c593ec268b62f5}{BOOL}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc0b1e8b63f3f00318eee5aeabc14255}{NIL}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a0db45d2a4141101bdfe48e3314cfbca3}{UNDEFINED}}\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{structPEBBLObject_af6aef4c8b7ea7403901d1405ffbb223d}{PEBBLObject}}()\ :\ \mbox{\hyperlink{structPEBBLObject_a3f220f81dbafc3d6a40571e8eeeff785}{bits}}(0)\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \mbox{\hyperlink{structPEBBLObject_aa17d9c5f5145d36bfc412b7d31558a5b}{make\_double}}(\textcolor{keywordtype}{double}\ value);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \mbox{\hyperlink{structPEBBLObject_aad0990be76e14eb227cb7ec116e9f767}{make\_int32}}(int32\_t\ value);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \mbox{\hyperlink{structPEBBLObject_af3a319d43f91c0a90b979eed3d2ea62a}{make\_bool}}(\textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \mbox{\hyperlink{structPEBBLObject_ab89d15e402acacdc6e2ad8f809b50e6f}{make\_null}}();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \mbox{\hyperlink{structPEBBLObject_a05ff01cfdf4188119e278f61d34f47a9}{make\_undefined}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}}\ \mbox{\hyperlink{structPEBBLObject_ac69367821a5d12496433f7a164c07edd}{make\_gc\_ptr}}(\mbox{\hyperlink{structGCObject}{GCObject}}*\ ptr);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_a1d9ab8e0e8d04f6c12cd463e6fe470d4}{is\_double}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_ae1d01c64edecf55eb94caffb23baca70}{is\_boxed}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}{Tag}}\ \mbox{\hyperlink{structPEBBLObject_aaffddc94da72d65328614639fb7eed76}{get\_tag}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_abd023558030c7a4b02f96827b7c9b83a}{is\_int32}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_ad4f69157fda33dde06f0b3f0606fe7e8}{is\_bool}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_ae1db357e06c915538d897935c12dc58c}{is\_null}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_a74efffbcf57816e6bcb6615602320fc6}{is\_undefined}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_ac184d5d6d141cd3391af0e88b49a7127}{is\_gc\_ptr}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structPEBBLObject_a615ffa268613c6fa2cda0820a5102019}{as\_double}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ int32\_t\ \mbox{\hyperlink{structPEBBLObject_ae86481d168d050f2f3b44170b900494a}{as\_int32}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPEBBLObject_a8a2d0914e9880fc123144e27a32e924c}{as\_bool}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00167\ \ \ \mbox{\hyperlink{structGCObject}{GCObject}}*\ \mbox{\hyperlink{structPEBBLObject_ab86678b756778a9f22a300ff230563a4}{as\_gc\_ptr}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00168\ \};}
+
+\end{DoxyCode}

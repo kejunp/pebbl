@@ -1,0 +1,484 @@
+\doxysection{PEBBLObject Struct Reference}
+\hypertarget{structPEBBLObject}{}\label{structPEBBLObject}\index{PEBBLObject@{PEBBLObject}}
+
+
+A value type that uses Na\+N-\/boxing to store different types efficiently.  
+
+
+
+
+{\ttfamily \#include $<$object.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}{Tag}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc45c8463a42ed0d29b8af6d95dca113}{GC\+\_\+\+PTR}} = 1
+, \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a6495adba09844fac8eeb0aba86e6f1bf}{INT32}}
+, \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16aa97b2c144243b2b9d2c593ec268b62f5}{BOOL}}
+, \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc0b1e8b63f3f00318eee5aeabc14255}{NIL}}
+, \newline
+\mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a0db45d2a4141101bdfe48e3314cfbca3}{UNDEFINED}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type tags for boxed values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structPEBBLObject_af6aef4c8b7ea7403901d1405ffbb223d}{PEBBLObject}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor creates a double value of 0.\+0. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_a1d9ab8e0e8d04f6c12cd463e6fe470d4}{is\+\_\+double}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object contains a double value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_ae1d01c64edecf55eb94caffb23baca70}{is\+\_\+boxed}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object is using the boxed representation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}{Tag}} \mbox{\hyperlink{structPEBBLObject_aaffddc94da72d65328614639fb7eed76}{get\+\_\+tag}} () const
+\begin{DoxyCompactList}\small\item\em Get the type tag for boxed values. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_abd023558030c7a4b02f96827b7c9b83a}{is\+\_\+int32}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object contains a 32-\/bit integer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_ad4f69157fda33dde06f0b3f0606fe7e8}{is\+\_\+bool}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object contains a boolean value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_ae1db357e06c915538d897935c12dc58c}{is\+\_\+null}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object contains a null/nil value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_a74efffbcf57816e6bcb6615602320fc6}{is\+\_\+undefined}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object contains an undefined value. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_ac184d5d6d141cd3391af0e88b49a7127}{is\+\_\+gc\+\_\+ptr}} () const
+\begin{DoxyCompactList}\small\item\em Check if this object contains a garbage-\/collected pointer. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structPEBBLObject_a615ffa268613c6fa2cda0820a5102019}{as\+\_\+double}} () const
+\begin{DoxyCompactList}\small\item\em Extract the double value from this object. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{structPEBBLObject_ae86481d168d050f2f3b44170b900494a}{as\+\_\+int32}} () const
+\begin{DoxyCompactList}\small\item\em Extract the 32-\/bit integer value from this object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structPEBBLObject_a8a2d0914e9880fc123144e27a32e924c}{as\+\_\+bool}} () const
+\begin{DoxyCompactList}\small\item\em Extract the boolean value from this object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPEBBLObject_ab86678b756778a9f22a300ff230563a4}{as\+\_\+gc\+\_\+ptr}} () const
+\begin{DoxyCompactList}\small\item\em Extract the garbage-\/collected pointer from this object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \mbox{\hyperlink{structPEBBLObject_aa17d9c5f5145d36bfc412b7d31558a5b}{make\+\_\+double}} (double value)
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a double value. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \mbox{\hyperlink{structPEBBLObject_aad0990be76e14eb227cb7ec116e9f767}{make\+\_\+int32}} (int32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a 32-\/bit signed integer. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \mbox{\hyperlink{structPEBBLObject_af3a319d43f91c0a90b979eed3d2ea62a}{make\+\_\+bool}} (bool value)
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a boolean value. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \mbox{\hyperlink{structPEBBLObject_ab89d15e402acacdc6e2ad8f809b50e6f}{make\+\_\+null}} ()
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a null/nil value. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \mbox{\hyperlink{structPEBBLObject_a05ff01cfdf4188119e278f61d34f47a9}{make\+\_\+undefined}} ()
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{structPEBBLObject}{PEBBLObject} containing an undefined value. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \mbox{\hyperlink{structPEBBLObject_ac69367821a5d12496433f7a164c07edd}{make\+\_\+gc\+\_\+ptr}} (\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}ptr)
+\begin{DoxyCompactList}\small\item\em Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a garbage-\/collected pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structPEBBLObject_a3f220f81dbafc3d6a40571e8eeeff785}{bits}}
+\begin{DoxyCompactList}\small\item\em The raw 64-\/bit representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint64\+\_\+t \mbox{\hyperlink{structPEBBLObject_aaed043729e302c5cb065e9fa40827830}{EXP\+\_\+\+MASK}} = 0x7\+FF0\textquotesingle{}0000\textquotesingle{}0000\textquotesingle{}0000\+ULL
+\begin{DoxyCompactList}\small\item\em IEEE 754 exponent mask (bits 63-\/52) \end{DoxyCompactList}\item 
+static constexpr uint64\+\_\+t \mbox{\hyperlink{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d}{QNAN\+\_\+\+MASK}} = 0x0008\textquotesingle{}0000\textquotesingle{}0000\textquotesingle{}0000\+ULL
+\begin{DoxyCompactList}\small\item\em Quiet NaN mask (bit 51) \end{DoxyCompactList}\item 
+static constexpr uint64\+\_\+t \mbox{\hyperlink{structPEBBLObject_a8d87e5047ce94ec2476bf7d46dd9d52f}{BOXED\+\_\+\+BASE}} = \mbox{\hyperlink{structPEBBLObject_aaed043729e302c5cb065e9fa40827830}{EXP\+\_\+\+MASK}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d}{QNAN\+\_\+\+MASK}}
+\begin{DoxyCompactList}\small\item\em Base pattern for boxed values (EXP\+\_\+\+MASK \texorpdfstring{$\vert$}{|} QNAN\+\_\+\+MASK) \end{DoxyCompactList}\item 
+static constexpr uint64\+\_\+t \mbox{\hyperlink{structPEBBLObject_a448ab4350b38a6da9ad3ffc0a2bdbfd8}{TAG\+\_\+\+MASK}} = 0x0007\textquotesingle{}0000\textquotesingle{}0000\textquotesingle{}0000\+ULL
+\begin{DoxyCompactList}\small\item\em Mask for extracting type tag (bits 50-\/48) \end{DoxyCompactList}\item 
+static constexpr int \mbox{\hyperlink{structPEBBLObject_a280b438d49c3f8143cceba66be9f031f}{TAG\+\_\+\+SHIFT}} = 48
+\begin{DoxyCompactList}\small\item\em Bit shift amount for type tag. \end{DoxyCompactList}\item 
+static constexpr uint64\+\_\+t \mbox{\hyperlink{structPEBBLObject_a2f7cf4e6866cd940b47c75e039c40d74}{PAYLOAD\+\_\+\+MASK}} = 0x0000\textquotesingle{}FFFF\textquotesingle{}FFFF\textquotesingle{}FFFFULL
+\begin{DoxyCompactList}\small\item\em Mask for extracting payload data (bits 47-\/0) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A value type that uses Na\+N-\/boxing to store different types efficiently. 
+
+\doxylink{structPEBBLObject}{PEBBLObject} uses IEEE 754 double precision floating point Na\+N-\/boxing to store different value types in a single 64-\/bit word. Regular doubles are stored directly, while other types use the quiet NaN space with type tags.
+
+The bit layout for boxed values is\+:
+\begin{DoxyItemize}
+\item Bits 63-\/52\+: Exponent (all 1s for NaN)
+\item Bit 51\+: Quiet NaN bit (always 1)
+\item Bits 50-\/48\+: Type tag
+\item Bits 47-\/0\+: Payload data 
+\end{DoxyItemize}
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}\label{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16} 
+\index{PEBBLObject@{PEBBLObject}!Tag@{Tag}}
+\index{Tag@{Tag}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{Tag}{Tag}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}{PEBBLObject\+::\+Tag}} \+: uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Type tags for boxed values. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GC\_PTR@{GC\_PTR}!PEBBLObject@{PEBBLObject}}\index{PEBBLObject@{PEBBLObject}!GC\_PTR@{GC\_PTR}}}\Hypertarget{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc45c8463a42ed0d29b8af6d95dca113}\label{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc45c8463a42ed0d29b8af6d95dca113} 
+GC\+\_\+\+PTR&Garbage-\/collected pointer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INT32@{INT32}!PEBBLObject@{PEBBLObject}}\index{PEBBLObject@{PEBBLObject}!INT32@{INT32}}}\Hypertarget{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a6495adba09844fac8eeb0aba86e6f1bf}\label{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a6495adba09844fac8eeb0aba86e6f1bf} 
+INT32&32-\/bit signed integer \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOL@{BOOL}!PEBBLObject@{PEBBLObject}}\index{PEBBLObject@{PEBBLObject}!BOOL@{BOOL}}}\Hypertarget{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16aa97b2c144243b2b9d2c593ec268b62f5}\label{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16aa97b2c144243b2b9d2c593ec268b62f5} 
+BOOL&Boolean value. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NIL@{NIL}!PEBBLObject@{PEBBLObject}}\index{PEBBLObject@{PEBBLObject}!NIL@{NIL}}}\Hypertarget{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc0b1e8b63f3f00318eee5aeabc14255}\label{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16abc0b1e8b63f3f00318eee5aeabc14255} 
+NIL&Null/nil value. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDEFINED@{UNDEFINED}!PEBBLObject@{PEBBLObject}}\index{PEBBLObject@{PEBBLObject}!UNDEFINED@{UNDEFINED}}}\Hypertarget{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a0db45d2a4141101bdfe48e3314cfbca3}\label{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16a0db45d2a4141101bdfe48e3314cfbca3} 
+UNDEFINED&Undefined value. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structPEBBLObject_af6aef4c8b7ea7403901d1405ffbb223d}\label{structPEBBLObject_af6aef4c8b7ea7403901d1405ffbb223d} 
+\index{PEBBLObject@{PEBBLObject}!PEBBLObject@{PEBBLObject}}
+\index{PEBBLObject@{PEBBLObject}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{PEBBLObject()}{PEBBLObject()}}
+{\footnotesize\ttfamily PEBBLObject\+::\+PEBBLObject (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor creates a double value of 0.\+0. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structPEBBLObject_a8a2d0914e9880fc123144e27a32e924c}\label{structPEBBLObject_a8a2d0914e9880fc123144e27a32e924c} 
+\index{PEBBLObject@{PEBBLObject}!as\_bool@{as\_bool}}
+\index{as\_bool@{as\_bool}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{as\_bool()}{as\_bool()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::as\+\_\+bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Extract the boolean value from this object. 
+
+\begin{DoxyReturn}{Returns}
+The boolean value (undefined behavior if not a boolean) 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_a615ffa268613c6fa2cda0820a5102019}\label{structPEBBLObject_a615ffa268613c6fa2cda0820a5102019} 
+\index{PEBBLObject@{PEBBLObject}!as\_double@{as\_double}}
+\index{as\_double@{as\_double}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{as\_double()}{as\_double()}}
+{\footnotesize\ttfamily double PEBBLObject\+::as\+\_\+double (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Extract the double value from this object. 
+
+\begin{DoxyReturn}{Returns}
+The double value (undefined behavior if not a double) 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ab86678b756778a9f22a300ff230563a4}\label{structPEBBLObject_ab86678b756778a9f22a300ff230563a4} 
+\index{PEBBLObject@{PEBBLObject}!as\_gc\_ptr@{as\_gc\_ptr}}
+\index{as\_gc\_ptr@{as\_gc\_ptr}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{as\_gc\_ptr()}{as\_gc\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*} PEBBLObject\+::as\+\_\+gc\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Extract the garbage-\/collected pointer from this object. 
+
+\begin{DoxyReturn}{Returns}
+The GC pointer (undefined behavior if not a GC pointer) 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ae86481d168d050f2f3b44170b900494a}\label{structPEBBLObject_ae86481d168d050f2f3b44170b900494a} 
+\index{PEBBLObject@{PEBBLObject}!as\_int32@{as\_int32}}
+\index{as\_int32@{as\_int32}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{as\_int32()}{as\_int32()}}
+{\footnotesize\ttfamily int32\+\_\+t PEBBLObject\+::as\+\_\+int32 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Extract the 32-\/bit integer value from this object. 
+
+\begin{DoxyReturn}{Returns}
+The integer value (undefined behavior if not an int32) 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_aaffddc94da72d65328614639fb7eed76}\label{structPEBBLObject_aaffddc94da72d65328614639fb7eed76} 
+\index{PEBBLObject@{PEBBLObject}!get\_tag@{get\_tag}}
+\index{get\_tag@{get\_tag}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{get\_tag()}{get\_tag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject_af708d6afd2ab0ed5a3f070327fe26d16}{PEBBLObject\+::\+Tag}} PEBBLObject\+::get\+\_\+tag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the type tag for boxed values. 
+
+\begin{DoxyReturn}{Returns}
+The type tag (only valid if \doxylink{structPEBBLObject_ae1d01c64edecf55eb94caffb23baca70}{is\+\_\+boxed()} returns true) 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ad4f69157fda33dde06f0b3f0606fe7e8}\label{structPEBBLObject_ad4f69157fda33dde06f0b3f0606fe7e8} 
+\index{PEBBLObject@{PEBBLObject}!is\_bool@{is\_bool}}
+\index{is\_bool@{is\_bool}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_bool()}{is\_bool()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object contains a boolean value. 
+
+\begin{DoxyReturn}{Returns}
+true if the object contains a boolean, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ae1d01c64edecf55eb94caffb23baca70}\label{structPEBBLObject_ae1d01c64edecf55eb94caffb23baca70} 
+\index{PEBBLObject@{PEBBLObject}!is\_boxed@{is\_boxed}}
+\index{is\_boxed@{is\_boxed}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_boxed()}{is\_boxed()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+boxed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object is using the boxed representation. 
+
+\begin{DoxyReturn}{Returns}
+true if the object is boxed, false if it\textquotesingle{}s a regular double 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_a1d9ab8e0e8d04f6c12cd463e6fe470d4}\label{structPEBBLObject_a1d9ab8e0e8d04f6c12cd463e6fe470d4} 
+\index{PEBBLObject@{PEBBLObject}!is\_double@{is\_double}}
+\index{is\_double@{is\_double}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_double()}{is\_double()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+double (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object contains a double value. 
+
+\begin{DoxyReturn}{Returns}
+true if the object contains a double, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ac184d5d6d141cd3391af0e88b49a7127}\label{structPEBBLObject_ac184d5d6d141cd3391af0e88b49a7127} 
+\index{PEBBLObject@{PEBBLObject}!is\_gc\_ptr@{is\_gc\_ptr}}
+\index{is\_gc\_ptr@{is\_gc\_ptr}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_gc\_ptr()}{is\_gc\_ptr()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+gc\+\_\+ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object contains a garbage-\/collected pointer. 
+
+\begin{DoxyReturn}{Returns}
+true if the object contains a GC pointer, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_abd023558030c7a4b02f96827b7c9b83a}\label{structPEBBLObject_abd023558030c7a4b02f96827b7c9b83a} 
+\index{PEBBLObject@{PEBBLObject}!is\_int32@{is\_int32}}
+\index{is\_int32@{is\_int32}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_int32()}{is\_int32()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+int32 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object contains a 32-\/bit integer. 
+
+\begin{DoxyReturn}{Returns}
+true if the object contains an int32, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ae1db357e06c915538d897935c12dc58c}\label{structPEBBLObject_ae1db357e06c915538d897935c12dc58c} 
+\index{PEBBLObject@{PEBBLObject}!is\_null@{is\_null}}
+\index{is\_null@{is\_null}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_null()}{is\_null()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object contains a null/nil value. 
+
+\begin{DoxyReturn}{Returns}
+true if the object contains null, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_a74efffbcf57816e6bcb6615602320fc6}\label{structPEBBLObject_a74efffbcf57816e6bcb6615602320fc6} 
+\index{PEBBLObject@{PEBBLObject}!is\_undefined@{is\_undefined}}
+\index{is\_undefined@{is\_undefined}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{is\_undefined()}{is\_undefined()}}
+{\footnotesize\ttfamily bool PEBBLObject\+::is\+\_\+undefined (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if this object contains an undefined value. 
+
+\begin{DoxyReturn}{Returns}
+true if the object contains undefined, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_af3a319d43f91c0a90b979eed3d2ea62a}\label{structPEBBLObject_af3a319d43f91c0a90b979eed3d2ea62a} 
+\index{PEBBLObject@{PEBBLObject}!make\_bool@{make\_bool}}
+\index{make\_bool@{make\_bool}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{make\_bool()}{make\_bool()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} PEBBLObject\+::make\+\_\+bool (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a boolean value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The boolean value to store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{structPEBBLObject}{PEBBLObject} containing the boolean value 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_aa17d9c5f5145d36bfc412b7d31558a5b}\label{structPEBBLObject_aa17d9c5f5145d36bfc412b7d31558a5b} 
+\index{PEBBLObject@{PEBBLObject}!make\_double@{make\_double}}
+\index{make\_double@{make\_double}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{make\_double()}{make\_double()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} PEBBLObject\+::make\+\_\+double (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a double value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The double value to store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{structPEBBLObject}{PEBBLObject} containing the double value 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ac69367821a5d12496433f7a164c07edd}\label{structPEBBLObject_ac69367821a5d12496433f7a164c07edd} 
+\index{PEBBLObject@{PEBBLObject}!make\_gc\_ptr@{make\_gc\_ptr}}
+\index{make\_gc\_ptr@{make\_gc\_ptr}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{make\_gc\_ptr()}{make\_gc\_ptr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} PEBBLObject\+::make\+\_\+gc\+\_\+ptr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a garbage-\/collected pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Pointer to a \doxylink{structGCObject}{GCObject} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{structPEBBLObject}{PEBBLObject} containing the GC pointer 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_aad0990be76e14eb227cb7ec116e9f767}\label{structPEBBLObject_aad0990be76e14eb227cb7ec116e9f767} 
+\index{PEBBLObject@{PEBBLObject}!make\_int32@{make\_int32}}
+\index{make\_int32@{make\_int32}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{make\_int32()}{make\_int32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} PEBBLObject\+::make\+\_\+int32 (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a 32-\/bit signed integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The integer value to store \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{structPEBBLObject}{PEBBLObject} containing the integer value 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_ab89d15e402acacdc6e2ad8f809b50e6f}\label{structPEBBLObject_ab89d15e402acacdc6e2ad8f809b50e6f} 
+\index{PEBBLObject@{PEBBLObject}!make\_null@{make\_null}}
+\index{make\_null@{make\_null}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{make\_null()}{make\_null()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} PEBBLObject\+::make\+\_\+null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{structPEBBLObject}{PEBBLObject} containing a null/nil value. 
+
+\begin{DoxyReturn}{Returns}
+A \doxylink{structPEBBLObject}{PEBBLObject} containing null 
+\end{DoxyReturn}
+\Hypertarget{structPEBBLObject_a05ff01cfdf4188119e278f61d34f47a9}\label{structPEBBLObject_a05ff01cfdf4188119e278f61d34f47a9} 
+\index{PEBBLObject@{PEBBLObject}!make\_undefined@{make\_undefined}}
+\index{make\_undefined@{make\_undefined}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{make\_undefined()}{make\_undefined()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} PEBBLObject\+::make\+\_\+undefined (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Create a \doxylink{structPEBBLObject}{PEBBLObject} containing an undefined value. 
+
+\begin{DoxyReturn}{Returns}
+A \doxylink{structPEBBLObject}{PEBBLObject} containing undefined 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structPEBBLObject_a3f220f81dbafc3d6a40571e8eeeff785}\label{structPEBBLObject_a3f220f81dbafc3d6a40571e8eeeff785} 
+\index{PEBBLObject@{PEBBLObject}!bits@{bits}}
+\index{bits@{bits}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{bits}{bits}}
+{\footnotesize\ttfamily uint64\+\_\+t PEBBLObject\+::bits}
+
+
+
+The raw 64-\/bit representation. 
+
+\Hypertarget{structPEBBLObject_a8d87e5047ce94ec2476bf7d46dd9d52f}\label{structPEBBLObject_a8d87e5047ce94ec2476bf7d46dd9d52f} 
+\index{PEBBLObject@{PEBBLObject}!BOXED\_BASE@{BOXED\_BASE}}
+\index{BOXED\_BASE@{BOXED\_BASE}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{BOXED\_BASE}{BOXED\_BASE}}
+{\footnotesize\ttfamily constexpr uint64\+\_\+t PEBBLObject\+::\+BOXED\+\_\+\+BASE = \mbox{\hyperlink{structPEBBLObject_aaed043729e302c5cb065e9fa40827830}{EXP\+\_\+\+MASK}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d}{QNAN\+\_\+\+MASK}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Base pattern for boxed values (EXP\+\_\+\+MASK \texorpdfstring{$\vert$}{|} QNAN\+\_\+\+MASK) 
+
+\Hypertarget{structPEBBLObject_aaed043729e302c5cb065e9fa40827830}\label{structPEBBLObject_aaed043729e302c5cb065e9fa40827830} 
+\index{PEBBLObject@{PEBBLObject}!EXP\_MASK@{EXP\_MASK}}
+\index{EXP\_MASK@{EXP\_MASK}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{EXP\_MASK}{EXP\_MASK}}
+{\footnotesize\ttfamily constexpr uint64\+\_\+t PEBBLObject\+::\+EXP\+\_\+\+MASK = 0x7\+FF0\textquotesingle{}0000\textquotesingle{}0000\textquotesingle{}0000\+ULL\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+IEEE 754 exponent mask (bits 63-\/52) 
+
+\Hypertarget{structPEBBLObject_a2f7cf4e6866cd940b47c75e039c40d74}\label{structPEBBLObject_a2f7cf4e6866cd940b47c75e039c40d74} 
+\index{PEBBLObject@{PEBBLObject}!PAYLOAD\_MASK@{PAYLOAD\_MASK}}
+\index{PAYLOAD\_MASK@{PAYLOAD\_MASK}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{PAYLOAD\_MASK}{PAYLOAD\_MASK}}
+{\footnotesize\ttfamily constexpr uint64\+\_\+t PEBBLObject\+::\+PAYLOAD\+\_\+\+MASK = 0x0000\textquotesingle{}FFFF\textquotesingle{}FFFF\textquotesingle{}FFFFULL\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Mask for extracting payload data (bits 47-\/0) 
+
+\Hypertarget{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d}\label{structPEBBLObject_af5b0fa4f9a2923d3ec1a8a07cfce769d} 
+\index{PEBBLObject@{PEBBLObject}!QNAN\_MASK@{QNAN\_MASK}}
+\index{QNAN\_MASK@{QNAN\_MASK}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{QNAN\_MASK}{QNAN\_MASK}}
+{\footnotesize\ttfamily constexpr uint64\+\_\+t PEBBLObject\+::\+QNAN\+\_\+\+MASK = 0x0008\textquotesingle{}0000\textquotesingle{}0000\textquotesingle{}0000\+ULL\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Quiet NaN mask (bit 51) 
+
+\Hypertarget{structPEBBLObject_a448ab4350b38a6da9ad3ffc0a2bdbfd8}\label{structPEBBLObject_a448ab4350b38a6da9ad3ffc0a2bdbfd8} 
+\index{PEBBLObject@{PEBBLObject}!TAG\_MASK@{TAG\_MASK}}
+\index{TAG\_MASK@{TAG\_MASK}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{TAG\_MASK}{TAG\_MASK}}
+{\footnotesize\ttfamily constexpr uint64\+\_\+t PEBBLObject\+::\+TAG\+\_\+\+MASK = 0x0007\textquotesingle{}0000\textquotesingle{}0000\textquotesingle{}0000\+ULL\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Mask for extracting type tag (bits 50-\/48) 
+
+\Hypertarget{structPEBBLObject_a280b438d49c3f8143cceba66be9f031f}\label{structPEBBLObject_a280b438d49c3f8143cceba66be9f031f} 
+\index{PEBBLObject@{PEBBLObject}!TAG\_SHIFT@{TAG\_SHIFT}}
+\index{TAG\_SHIFT@{TAG\_SHIFT}!PEBBLObject@{PEBBLObject}}
+\doxysubsubsection{\texorpdfstring{TAG\_SHIFT}{TAG\_SHIFT}}
+{\footnotesize\ttfamily constexpr int PEBBLObject\+::\+TAG\+\_\+\+SHIFT = 48\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Bit shift amount for type tag. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/runtime/object/\mbox{\hyperlink{object_8hpp}{object.\+hpp}}\item 
+src/runtime/object/\mbox{\hyperlink{object_8cpp}{object.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,9 @@
+<map id="RootHandle" name="RootHandle">
+<area shape="rect" id="Node000001" title="RAII handle for managing GC roots." alt="" coords="9,181,108,207"/>
+<area shape="rect" id="Node000002" href="$classGCHeap.html" title="Garbage collection heap manager." alt="" coords="79,93,153,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,132,69,182,64,179,98,129"/>
+<area shape="rect" id="Node000003" href="$structGCObject.html" title="Base class for all garbage&#45;collected objects." alt="" coords="5,5,88,31"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="44,45,39,80,40,118,48,152,57,180,52,182,42,153,35,119,34,80,38,44"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,40,108,91,104,94,63,43"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="102,9,111,12,115,18,106,26,88,29,88,23,104,21,109,18,108,16,101,14"/>
+</map>

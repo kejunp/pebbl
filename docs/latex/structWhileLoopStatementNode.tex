@@ -1,0 +1,126 @@
+\doxysection{While\+Loop\+Statement\+Node Struct Reference}
+\hypertarget{structWhileLoopStatementNode}{}\label{structWhileLoopStatementNode}\index{WhileLoopStatementNode@{WhileLoopStatementNode}}
+
+
+A while loop (e.\+g., while x \texorpdfstring{$<$}{<} y \{ let x = 5 let y = 4;\})  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for While\+Loop\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{structWhileLoopStatementNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for While\+Loop\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{structWhileLoopStatementNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structWhileLoopStatementNode_a646c69ef9c222944a5ac8183a217dff2}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structWhileLoopStatementNode_a92c366c422c1cfbb45bd600c169e80f1}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structWhileLoopStatementNode_a9e2bfeeed0a187f23a9e83198c170040}{token}}
+\begin{DoxyCompactList}\small\item\em Always a token with \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15}{Token\+Type\+::\+WHILE} and lexeme "{}while"{}. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structWhileLoopStatementNode_ac43900cd1d23d9269122d66efff23f6d}{condition}}
+\begin{DoxyCompactList}\small\item\em The condition. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structBlockStatementNode}{Block\+Statement\+Node}} $>$ \mbox{\hyperlink{structWhileLoopStatementNode_a7723052f7ff0740a5cca8b6c68d9620e}{block}}
+\begin{DoxyCompactList}\small\item\em If the condition is true, this happens. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A while loop (e.\+g., while x \texorpdfstring{$<$}{<} y \{ let x = 5 let y = 4;\}) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structWhileLoopStatementNode_a92c366c422c1cfbb45bd600c169e80f1}\label{structWhileLoopStatementNode_a92c366c422c1cfbb45bd600c169e80f1} 
+\index{WhileLoopStatementNode@{WhileLoopStatementNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!WhileLoopStatementNode@{WhileLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} While\+Loop\+Statement\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structWhileLoopStatementNode_a646c69ef9c222944a5ac8183a217dff2}\label{structWhileLoopStatementNode_a646c69ef9c222944a5ac8183a217dff2} 
+\index{WhileLoopStatementNode@{WhileLoopStatementNode}!type@{type}}
+\index{type@{type}!WhileLoopStatementNode@{WhileLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} While\+Loop\+Statement\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6}{ASTType\+::\+WHILE\+\_\+\+LOOP\+\_\+\+STATEMENT} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structWhileLoopStatementNode_a7723052f7ff0740a5cca8b6c68d9620e}\label{structWhileLoopStatementNode_a7723052f7ff0740a5cca8b6c68d9620e} 
+\index{WhileLoopStatementNode@{WhileLoopStatementNode}!block@{block}}
+\index{block@{block}!WhileLoopStatementNode@{WhileLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{block}{block}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structBlockStatementNode}{Block\+Statement\+Node}}$>$ While\+Loop\+Statement\+Node\+::block}
+
+
+
+If the condition is true, this happens. 
+
+\Hypertarget{structWhileLoopStatementNode_ac43900cd1d23d9269122d66efff23f6d}\label{structWhileLoopStatementNode_ac43900cd1d23d9269122d66efff23f6d} 
+\index{WhileLoopStatementNode@{WhileLoopStatementNode}!condition@{condition}}
+\index{condition@{condition}!WhileLoopStatementNode@{WhileLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{condition}{condition}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ While\+Loop\+Statement\+Node\+::condition}
+
+
+
+The condition. 
+
+\Hypertarget{structWhileLoopStatementNode_a9e2bfeeed0a187f23a9e83198c170040}\label{structWhileLoopStatementNode_a9e2bfeeed0a187f23a9e83198c170040} 
+\index{WhileLoopStatementNode@{WhileLoopStatementNode}!token@{token}}
+\index{token@{token}!WhileLoopStatementNode@{WhileLoopStatementNode}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} While\+Loop\+Statement\+Node\+::token}
+
+
+
+Always a token with \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ac0ca84371abbc18f52fd48e32195cd15}{Token\+Type\+::\+WHILE} and lexeme "{}while"{}. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

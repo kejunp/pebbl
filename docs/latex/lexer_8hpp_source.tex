@@ -1,5 +1,5 @@
 \doxysection{lexer.\+hpp}
-\hypertarget{lexer_8hpp_source}{}\label{lexer_8hpp_source}\index{parser/lexer/lexer.hpp@{parser/lexer/lexer.hpp}}
+\hypertarget{lexer_8hpp_source}{}\label{lexer_8hpp_source}\index{src/parser/lexer/lexer.hpp@{src/parser/lexer/lexer.hpp}}
 \mbox{\hyperlink{lexer_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{comment}{/*}}
@@ -18,39 +18,58 @@
 \DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ limitations\ under\ the\ License.}}
 \DoxyCodeLine{00015\ \textcolor{comment}{*/}}
 \DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8hpp}{common.hpp}}"{}}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tokens_8hpp}{tokens.hpp}}"{}}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLexer}{Lexer}}\ \{}
-\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classLexer}{Lexer}}(std::string\&\&\ input)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <utility>}}
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{structToken}{Token}}\ \mbox{\hyperlink{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}{next\_token}}();}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classLexer}{Lexer}}\&\ \mbox{\hyperlink{classLexer_ac2a7c376612cd061da1d01c8543ea821}{operator>>}}(\mbox{\hyperlink{structToken}{Token}}\&\ token)\ \{}
-\DoxyCodeLine{00033\ \ \ \ \ token\ =\ \mbox{\hyperlink{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}{next\_token}}();}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00035\ \ \ \}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00038\ \ \ std::string\ \mbox{\hyperlink{classLexer_a51abb9473a2b9e613ac54d9c2ad0813b}{input\_}};\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00039\ \ \ std::size\_t\ \mbox{\hyperlink{classLexer_a2f69348cf62831ecba6d1803e683a22c}{position\_}};\ \ \ \ \ \ \ }
-\DoxyCodeLine{00040\ \ \ std::size\_t\ \mbox{\hyperlink{classLexer_a57a7f02b2e483ae54041e7ccc29f143b}{read\_position\_}};\ \ }
-\DoxyCodeLine{00041\ \ \ std::size\_t\ \mbox{\hyperlink{classLexer_add5cb6f5a87a005b09d9587895280913}{line\_}};\ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classLexer_ad458f3280a7cc36dd092f111ca5f1e7a}{current\_char\_}};\ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLexer_a57a2fac872bf34cac35dee09d7333141}{consume\_char}}();}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00052\ \ \ [[nodiscard]]}
-\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classLexer_abc2bd6b00b8481e13a76810b7f24b985}{peek\_char}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00059\ \ \ std::string\ \mbox{\hyperlink{classLexer_a90997b73a74196097baa4c88ea2512ce}{read\_identifier}}();}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00065\ \ \ std::string\ \mbox{\hyperlink{classLexer_a81d7def7173e9451a55936bf30186b3b}{read\_number}}();}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLexer_a80fec456cf22a51ad96eac59894bbda6}{consume\_whitespace}}();}
-\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8hpp}{common.hpp}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tokens_8hpp}{tokens.hpp}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLexer}{Lexer}}\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classLexer}{Lexer}}(std::string\&\&\ input)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{structToken}{Token}}\ \mbox{\hyperlink{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}{next\_token}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classLexer}{Lexer}}\&\ \mbox{\hyperlink{classLexer_ac2a7c376612cd061da1d01c8543ea821}{operator>>}}(\mbox{\hyperlink{structToken}{Token}}\&\ token)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ token\ =\ \mbox{\hyperlink{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}{next\_token}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ std::string\ \mbox{\hyperlink{classLexer_a51abb9473a2b9e613ac54d9c2ad0813b}{input\_}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ std::size\_t\ \mbox{\hyperlink{classLexer_a2f69348cf62831ecba6d1803e683a22c}{position\_}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ std::size\_t\ \mbox{\hyperlink{classLexer_a57a7f02b2e483ae54041e7ccc29f143b}{read\_position\_}};\ \ }
+\DoxyCodeLine{00049\ \ \ std::size\_t\ \mbox{\hyperlink{classLexer_add5cb6f5a87a005b09d9587895280913}{line\_}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classLexer_ad458f3280a7cc36dd092f111ca5f1e7a}{current\_char\_}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLexer_a57a2fac872bf34cac35dee09d7333141}{consume\_char}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ [[nodiscard]]}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classLexer_abc2bd6b00b8481e13a76810b7f24b985}{peek\_char}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ std::string\ \mbox{\hyperlink{classLexer_a90997b73a74196097baa4c88ea2512ce}{read\_identifier}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ std::pair<TokenType,\ std::string>\ \mbox{\hyperlink{classLexer_ae235fbcd9d30a28e9b71200f92da0dff}{read\_number}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ std::string\ \mbox{\hyperlink{classLexer_a07c40e61f32ba4d028d1a94c3c655d33}{read\_string}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLexer_a80fec456cf22a51ad96eac59894bbda6}{consume\_whitespace}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{structToken}{Token}}\ \mbox{\hyperlink{classLexer_a3e2e069afa2176cc23d314736df53cfb}{make\_token}}(\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{TokenType}}\ type,\ std::string\&\&\ lexeme)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ lexeme.length();\ ++i)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \mbox{\hyperlink{classLexer_a57a2fac872bf34cac35dee09d7333141}{consume\_char}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structToken}{Token}}\{.\mbox{\hyperlink{structToken_a67919af9f3a80dc0b28a0ab1e6d5bf8a}{type}}\ =\ type,\ .lexeme\ =\ std::move(lexeme),\ .line\ =\ \mbox{\hyperlink{classLexer_add5cb6f5a87a005b09d9587895280913}{line\_}}\};}
+\DoxyCodeLine{00094\ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{structToken}{Token}}\ \mbox{\hyperlink{classLexer_aabe0e0f5afa8767af534621653d71e32}{make\_token}}(\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{TokenType}}\ type,\ \textcolor{keyword}{const}\ std::string\&\ lexeme)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ lexeme.length();\ ++i)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \mbox{\hyperlink{classLexer_a57a2fac872bf34cac35dee09d7333141}{consume\_char}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structToken}{Token}}\{.\mbox{\hyperlink{structToken_a67919af9f3a80dc0b28a0ab1e6d5bf8a}{type}}\ =\ type,\ .lexeme\ =\ lexeme,\ .line\ =\ \mbox{\hyperlink{classLexer_add5cb6f5a87a005b09d9587895280913}{line\_}}\};}
+\DoxyCodeLine{00104\ \ \ \}}
+\DoxyCodeLine{00105\ \};}
 
 \end{DoxyCode}

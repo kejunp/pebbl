@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pebbl: parser/ast_generation/ast.hpp File Reference</title>
+<title>pebbl: src/parser/ast_generation/ast.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_572890c148f68441e050f6560d78312b.html">parser</a></li><li class="navelem"><a class="el" href="dir_7f8d9154f40b684c72c7367fcc8122d8.html">ast_generation</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6cd8491d143eb218b70983dbdb3c58bc.html">parser</a></li><li class="navelem"><a class="el" href="dir_9722df9a997872902d743a3c4c2bf3cb.html">ast_generation</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -79,19 +79,47 @@ $(function() {
   <div class="headertitle"><div class="title">ast.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="tokens_8hpp_source.html">tokens.hpp</a>&quot;</code><br />
+
+<p>Abstract Syntax Tree node definitions for the PEBBL language.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;boost/multiprecision/cpp_int.hpp&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &quot;<a class="el" href="tokens_8hpp_source.html">tokens.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ast.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="ast_8hpp__incl.png" border="0" usemap="#aparser_2ast__generation_2ast_8hpp" alt=""/></div>
-<map name="aparser_2ast__generation_2ast_8hpp" id="aparser_2ast__generation_2ast_8hpp">
-<area shape="rect" title=" " alt="" coords="10,5,174,45"/>
-<area shape="rect" href="tokens_8hpp.html" title=" " alt="" coords="45,93,139,119"/>
-<area shape="poly" title=" " alt="" coords="95,46,95,79,89,79,89,46"/>
-<area shape="rect" title=" " alt="" coords="5,167,64,192"/>
-<area shape="poly" title=" " alt="" coords="85,121,55,158,51,154,80,117"/>
-<area shape="rect" title=" " alt="" coords="89,167,213,192"/>
-<area shape="poly" title=" " alt="" coords="104,117,135,155,131,158,100,121"/>
+<div class="center"><img src="ast_8hpp__incl.png" border="0" usemap="#asrc_2parser_2ast__generation_2ast_8hpp" alt=""/></div>
+<map name="asrc_2parser_2ast__generation_2ast_8hpp" id="asrc_2parser_2ast__generation_2ast_8hpp">
+<area shape="rect" title="Abstract Syntax Tree node definitions for the PEBBL language." alt="" coords="224,5,411,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,160,133"/>
+<area shape="poly" title=" " alt="" coords="267,48,148,91,146,86,265,43"/>
+<area shape="rect" title=" " alt="" coords="184,101,261,126"/>
+<area shape="poly" title=" " alt="" coords="298,48,248,93,244,89,295,44"/>
+<area shape="rect" title=" " alt="" coords="286,101,349,126"/>
+<area shape="poly" title=" " alt="" coords="320,46,320,87,315,87,315,46"/>
+<area shape="rect" title=" " alt="" coords="325,181,449,207"/>
+<area shape="poly" title=" " alt="" coords="335,44,364,92,377,131,385,167,380,168,372,132,359,94,330,47"/>
+<area shape="rect" href="tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="424,101,517,126"/>
+<area shape="poly" title=" " alt="" coords="352,43,440,92,437,96,350,48"/>
+<area shape="poly" title=" " alt="" coords="460,128,411,174,407,170,456,124"/>
+<area shape="rect" title=" " alt="" coords="473,181,532,207"/>
+<area shape="poly" title=" " alt="" coords="478,125,495,167,490,169,473,127"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="ast_8hpp__dep__incl.png" border="0" usemap="#asrc_2parser_2ast__generation_2ast_8hppdep" alt=""/></div>
+<map name="asrc_2parser_2ast__generation_2ast_8hppdep" id="asrc_2parser_2ast__generation_2ast_8hppdep">
+<area shape="rect" title="Abstract Syntax Tree node definitions for the PEBBL language." alt="" coords="50,5,237,45"/>
+<area shape="rect" href="ast__generator_8hpp.html" title="Recursive descent parser for generating Abstract Syntax Trees from tokens." alt="" coords="50,93,237,133"/>
+<area shape="poly" title=" " alt="" coords="146,59,146,93,141,93,141,59"/>
+<area shape="rect" href="main_8cpp.html" title="Main entry point and testing for the PEBBL language compiler." alt="" coords="5,189,111,214"/>
+<area shape="poly" title=" " alt="" coords="117,145,72,190,68,186,113,141"/>
+<area shape="rect" href="ast__generator_8cpp.html" title="Implementation of the recursive descent parser for generating ASTs." alt="" coords="135,181,322,221"/>
+<area shape="poly" title=" " alt="" coords="174,141,212,179,208,183,170,145"/>
 </map>
 </div>
 </div>
@@ -108,13 +136,95 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExpressionNode.html">ExpressionNode</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for all expressions.  <a href="structExpressionNode.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLiteralNode.html">LiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for all literals.  <a href="structLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProgramNode.html">ProgramNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The root of all ASTs (sorta like a block statement, but the block is global)  <a href="structProgramNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIdentifierNode.html">IdentifierNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A identifier.  <a href="structIdentifierNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVariableStatementNode.html">VariableStatementNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A variable declaration/definition: let immut = 5; var mut = 5; etc.  <a href="structVariableStatementNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structReturnStatementNode.html">ReturnStatementNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A return statement (different from a implicit return, e.g. 5; will become a expression statement, return 5; will become this)  <a href="structReturnStatementNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structForLoopStatementNode.html">ForLoopStatementNode</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structWhileLoopStatementNode.html">WhileLoopStatementNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A while loop (e.g., while x &lt; y { let x = 5 let y = 4;})  <a href="structWhileLoopStatementNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBlockStatementNode.html">BlockStatementNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A block statement { [statements... ] }.  <a href="structBlockStatementNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structExpressionStatementNode.html">ExpressionStatementNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper around a expression (but it is a statement)  <a href="structExpressionStatementNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIntegerLiteralNode.html">IntegerLiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A integer literal.  <a href="structIntegerLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStringLiteralNode.html">StringLiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string literal.  <a href="structStringLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFloatLiteralNode.html">FloatLiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A float literal.  <a href="structFloatLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBooleanLiteralNode.html">BooleanLiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A boolean literal (true or false)  <a href="structBooleanLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structArrayLiteralNode.html">ArrayLiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array literal (e.g., [1, 2, 3])  <a href="structArrayLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDictLiteralNode.html">DictLiteralNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dictionary literal (e.g., {key: value, key2: value2})  <a href="structDictLiteralNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBinaryExpressionNode.html">BinaryExpressionNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A binary expression (e.g., a + b, x == y, etc.)  <a href="structBinaryExpressionNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structUnaryExpressionNode.html">UnaryExpressionNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unary expression (e.g., !x, -y, etc.)  <a href="structUnaryExpressionNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structIfElseExpressionNode.html">IfElseExpressionNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An if-else expression (e.g., if condition { then_expr } else { else_expr })  <a href="structIfElseExpressionNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAssignmentExpressionNode.html">AssignmentExpressionNode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An assignment expression (e.g., x = 5, y = func())  <a href="structAssignmentExpressionNode.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a79651fcda7a7a8e0caf509aefc4016f1" id="r_a79651fcda7a7a8e0caf509aefc4016f1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1">ASTType</a> </td></tr>
+<tr class="memitem:a79651fcda7a7a8e0caf509aefc4016f1" id="r_a79651fcda7a7a8e0caf509aefc4016f1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1">ASTType</a> { <br />
+&#160;&#160;<a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a">IDENTIFIER</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc">VARIABLE_STATEMENT</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a">RETURN_STATEMENT</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974">EXPRESSION_STATEMENT</a>
+, <br />
+&#160;&#160;<a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a2f7cbe826c3ec8261b113b0bf2920b05">PROGRAM_ROOT</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c">BLOCK_STATEMENT</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6">WHILE_LOOP_STATEMENT</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1">FOR_LOOP_STATEMENT</a>
+, <br />
+&#160;&#160;<a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1aaa0615dffdeb6b9dfddb402460d4e4e7">INTEGER_LITERAL</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a544c390254a29bd232dfb1ff2bcf7c12">STRING_LITERAL</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1ad6a575baa5f147de1f44992b210c5620">FLOAT_LITERAL</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a7e84be69d68b803821c8d1af14149321">BOOLEAN_LITERAL</a>
+, <br />
+&#160;&#160;<a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a90ca1b1d37898b07c278fc10e1a08bd1">ARRAY_LITERAL</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a6675afd30c440dfce2977a8859f14691">DICT_LITERAL</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a75832c2ddfe13f917645df6b7dba0336">BINARY_EXPRESSION</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46">UNARY_EXPRESSION</a>
+, <br />
+&#160;&#160;<a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1">IF_ELSE_EXPRESSION</a>
+, <a class="el" href="ast_8hpp.html#a79651fcda7a7a8e0caf509aefc4016f1abb99a3f6386ed1965ed3ae17ec3b0584">ASSIGNMENT_EXPRESSION</a>
+<br />
+ }</td></tr>
 <tr class="separator:a79651fcda7a7a8e0caf509aefc4016f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract Syntax Tree node definitions for the PEBBL language. </p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a79651fcda7a7a8e0caf509aefc4016f1" name="a79651fcda7a7a8e0caf509aefc4016f1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79651fcda7a7a8e0caf509aefc4016f1">&#9670;&#160;</a></span>ASTType</h2>
 
@@ -134,6 +244,26 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a" name="a79651fcda7a7a8e0caf509aefc4016f1a6fcc416051346daca31c571646af127a"></a>IDENTIFIER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc" name="a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc"></a>VARIABLE_STATEMENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a" name="a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a"></a>RETURN_STATEMENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974" name="a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974"></a>EXPRESSION_STATEMENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a2f7cbe826c3ec8261b113b0bf2920b05" name="a79651fcda7a7a8e0caf509aefc4016f1a2f7cbe826c3ec8261b113b0bf2920b05"></a>PROGRAM_ROOT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c" name="a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c"></a>BLOCK_STATEMENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6" name="a79651fcda7a7a8e0caf509aefc4016f1abde8d8f37c1b5a466bf83a8080b2d3b6"></a>WHILE_LOOP_STATEMENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1" name="a79651fcda7a7a8e0caf509aefc4016f1ad817bcd906b5edb11fa7cc0a613212a1"></a>FOR_LOOP_STATEMENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1aaa0615dffdeb6b9dfddb402460d4e4e7" name="a79651fcda7a7a8e0caf509aefc4016f1aaa0615dffdeb6b9dfddb402460d4e4e7"></a>INTEGER_LITERAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a544c390254a29bd232dfb1ff2bcf7c12" name="a79651fcda7a7a8e0caf509aefc4016f1a544c390254a29bd232dfb1ff2bcf7c12"></a>STRING_LITERAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1ad6a575baa5f147de1f44992b210c5620" name="a79651fcda7a7a8e0caf509aefc4016f1ad6a575baa5f147de1f44992b210c5620"></a>FLOAT_LITERAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a7e84be69d68b803821c8d1af14149321" name="a79651fcda7a7a8e0caf509aefc4016f1a7e84be69d68b803821c8d1af14149321"></a>BOOLEAN_LITERAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a90ca1b1d37898b07c278fc10e1a08bd1" name="a79651fcda7a7a8e0caf509aefc4016f1a90ca1b1d37898b07c278fc10e1a08bd1"></a>ARRAY_LITERAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a6675afd30c440dfce2977a8859f14691" name="a79651fcda7a7a8e0caf509aefc4016f1a6675afd30c440dfce2977a8859f14691"></a>DICT_LITERAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a75832c2ddfe13f917645df6b7dba0336" name="a79651fcda7a7a8e0caf509aefc4016f1a75832c2ddfe13f917645df6b7dba0336"></a>BINARY_EXPRESSION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46" name="a79651fcda7a7a8e0caf509aefc4016f1a7f669fa1f9c86cf5c69c0b542529cb46"></a>UNARY_EXPRESSION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1" name="a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1"></a>IF_ELSE_EXPRESSION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a79651fcda7a7a8e0caf509aefc4016f1abb99a3f6386ed1965ed3ae17ec3b0584" name="a79651fcda7a7a8e0caf509aefc4016f1abb99a3f6386ed1965ed3ae17ec3b0584"></a>ASSIGNMENT_EXPRESSION&#160;</td><td class="fielddoc"></td></tr>
+</table>
 
 </div>
 </div>

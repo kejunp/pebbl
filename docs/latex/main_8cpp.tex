@@ -1,18 +1,36 @@
-\doxysection{interpreter/main.cpp File Reference}
-\hypertarget{main_8cpp}{}\label{main_8cpp}\index{interpreter/main.cpp@{interpreter/main.cpp}}
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Main entry point and testing for the PEBBL language compiler.  
+
+
 {\ttfamily \#include $<$iostream$>$}\newline
-Include dependency graph for main.\+cpp\+:\nopagebreak
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}lexer.\+hpp"{}}\newline
+{\ttfamily \#include "{}ast\+\_\+generator.\+hpp"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=196pt]{main_8cpp__incl}
+\includegraphics[width=350pt]{main_8cpp__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{main_8cpp_aa0268c2f9e0be4779eb9a1d9a35225df}{test\+\_\+array\+\_\+parsing}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a843f69babe2ba6b7065860334be7b53a}{test\+\_\+dict\+\_\+parsing}} ()
+\item 
 int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main entry point and testing for the PEBBL language compiler. 
+
 
 
 \doxysubsection{Function Documentation}
@@ -21,4 +39,16 @@ int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \index{main@{main}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_aa0268c2f9e0be4779eb9a1d9a35225df}\label{main_8cpp_aa0268c2f9e0be4779eb9a1d9a35225df} 
+\index{main.cpp@{main.cpp}!test\_array\_parsing@{test\_array\_parsing}}
+\index{test\_array\_parsing@{test\_array\_parsing}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_array\_parsing()}{test\_array\_parsing()}}
+{\footnotesize\ttfamily void test\+\_\+array\+\_\+parsing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_a843f69babe2ba6b7065860334be7b53a}\label{main_8cpp_a843f69babe2ba6b7065860334be7b53a} 
+\index{main.cpp@{main.cpp}!test\_dict\_parsing@{test\_dict\_parsing}}
+\index{test\_dict\_parsing@{test\_dict\_parsing}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_dict\_parsing()}{test\_dict\_parsing()}}
+{\footnotesize\ttfamily void test\+\_\+dict\+\_\+parsing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pebbl: interpreter/main.cpp File Reference</title>
+<title>pebbl: src/main.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f2c8af9107d7604b778bd4ea9fe0debe.html">interpreter</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -78,24 +78,70 @@ $(function() {
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main entry point and testing for the PEBBL language compiler.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="lexer_8hpp_source.html">lexer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ast__generator_8hpp_source.html">ast_generator.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#ainterpreter_2main_8cpp" alt=""/></div>
-<map name="ainterpreter_2main_8cpp" id="ainterpreter_2main_8cpp">
-<area shape="rect" title=" " alt="" coords="5,5,160,31"/>
-<area shape="rect" title=" " alt="" coords="43,79,123,104"/>
-<area shape="poly" title=" " alt="" coords="85,31,85,65,80,65,80,31"/>
+<div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#asrc_2main_8cpp" alt=""/></div>
+<map name="asrc_2main_8cpp" id="asrc_2main_8cpp">
+<area shape="rect" title="Main entry point and testing for the PEBBL language compiler." alt="" coords="221,5,326,31"/>
+<area shape="rect" title=" " alt="" coords="5,313,85,339"/>
+<area shape="poly" title=" " alt="" coords="260,33,224,64,175,109,124,164,80,227,63,264,53,300,48,299,58,262,75,224,120,161,171,105,220,60,256,29"/>
+<area shape="rect" title=" " alt="" coords="359,313,417,339"/>
+<area shape="poly" title=" " alt="" coords="273,31,267,74,264,135,267,168,273,202,284,234,301,264,324,287,351,305,348,309,321,291,297,267,279,237,268,203,261,169,259,135,262,73,268,31"/>
+<area shape="rect" href="lexer_8hpp.html" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="286,152,367,177"/>
+<area shape="poly" title=" " alt="" coords="280,30,320,138,315,140,275,32"/>
+<area shape="rect" href="ast__generator_8hpp.html" title="Recursive descent parser for generating Abstract Syntax Trees from tokens." alt="" coords="351,79,489,104"/>
+<area shape="poly" title=" " alt="" coords="298,28,385,70,383,75,296,33"/>
+<area shape="poly" title=" " alt="" coords="323,179,308,218,306,242,312,264,329,287,352,304,349,309,325,291,307,266,301,242,303,217,318,177"/>
+<area shape="rect" title=" " alt="" coords="322,233,382,258"/>
+<area shape="poly" title=" " alt="" coords="333,177,347,219,342,221,328,178"/>
+<area shape="rect" href="common_8hpp.html" title="Common definitions and utilities used throughout the PEBBL project." alt="" coords="89,233,196,258"/>
+<area shape="poly" title=" " alt="" coords="301,180,183,230,181,225,299,175"/>
+<area shape="rect" href="tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="457,233,551,258"/>
+<area shape="poly" title=" " alt="" coords="354,175,467,225,465,230,351,180"/>
+<area shape="poly" title=" " alt="" coords="130,260,72,307,69,303,127,256"/>
+<area shape="rect" title=" " alt="" coords="110,313,181,339"/>
+<area shape="poly" title=" " alt="" coords="146,258,147,299,142,300,140,258"/>
+<area shape="rect" title=" " alt="" coords="205,313,272,339"/>
+<area shape="poly" title=" " alt="" coords="159,256,216,303,212,307,155,260"/>
+<area shape="poly" title=" " alt="" coords="488,260,418,308,415,303,485,256"/>
+<area shape="rect" title=" " alt="" coords="473,313,597,339"/>
+<area shape="poly" title=" " alt="" coords="511,257,528,299,523,301,506,259"/>
+<area shape="poly" title=" " alt="" coords="421,105,394,300,389,299,416,104"/>
+<area shape="poly" title=" " alt="" coords="407,106,354,146,351,141,403,102"/>
+<area shape="rect" title=" " alt="" coords="892,233,969,258"/>
+<area shape="poly" title=" " alt="" coords="487,101,585,121,694,149,803,188,893,225,891,230,802,193,693,155,584,127,486,107"/>
+<area shape="rect" href="ast_8hpp.html" title="Abstract Syntax Tree node definitions for the PEBBL language." alt="" coords="610,152,681,177"/>
+<area shape="poly" title=" " alt="" coords="457,101,598,146,596,151,455,107"/>
+<area shape="poly" title=" " alt="" coords="626,180,538,228,536,224,623,175"/>
+<area shape="poly" title=" " alt="" coords="640,179,553,303,549,300,635,176"/>
+<area shape="poly" title=" " alt="" coords="682,171,772,193,881,223,889,226,888,231,879,228,771,198,680,176"/>
+<area shape="rect" title=" " alt="" coords="625,225,780,265"/>
+<area shape="poly" title=" " alt="" coords="656,176,683,213,679,216,652,179"/>
+<area shape="rect" title=" " alt="" coords="805,233,867,258"/>
+<area shape="poly" title=" " alt="" coords="675,175,793,223,798,225,796,230,791,228,673,180"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aa0268c2f9e0be4779eb9a1d9a35225df" id="r_aa0268c2f9e0be4779eb9a1d9a35225df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa0268c2f9e0be4779eb9a1d9a35225df">test_array_parsing</a> ()</td></tr>
+<tr class="separator:aa0268c2f9e0be4779eb9a1d9a35225df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a843f69babe2ba6b7065860334be7b53a" id="r_a843f69babe2ba6b7065860334be7b53a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a843f69babe2ba6b7065860334be7b53a">test_dict_parsing</a> ()</td></tr>
+<tr class="separator:a843f69babe2ba6b7065860334be7b53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main entry point and testing for the PEBBL language compiler. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
 
@@ -104,6 +150,40 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0268c2f9e0be4779eb9a1d9a35225df" name="aa0268c2f9e0be4779eb9a1d9a35225df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0268c2f9e0be4779eb9a1d9a35225df">&#9670;&#160;</a></span>test_array_parsing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_array_parsing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a843f69babe2ba6b7065860334be7b53a" name="a843f69babe2ba6b7065860334be7b53a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a843f69babe2ba6b7065860334be7b53a">&#9670;&#160;</a></span>test_dict_parsing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_dict_parsing </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

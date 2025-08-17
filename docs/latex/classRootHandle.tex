@@ -1,0 +1,126 @@
+\doxysection{Root\+Handle Class Reference}
+\hypertarget{classRootHandle}{}\label{classRootHandle}\index{RootHandle@{RootHandle}}
+
+
+RAII handle for managing GC roots.  
+
+
+
+
+{\ttfamily \#include $<$gc.\+hpp$>$}
+
+
+
+Collaboration diagram for Root\+Handle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{classRootHandle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRootHandle_a61b0fd368745f59d0eb8aee0fa2db972}{Root\+Handle}} (\mbox{\hyperlink{classGCHeap}{GCHeap}} \&heap, \mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\&ref)
+\begin{DoxyCompactList}\small\item\em Constructor that registers a GC root. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRootHandle_a7f22143fb59317e080c50c589abacac7}{\texorpdfstring{$\sim$}{\string~}\+Root\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Destructor that unregisters the GC root. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRootHandle_a6db1eb3932662cd4b627f8f9b059968f}{Root\+Handle}} (const \mbox{\hyperlink{classRootHandle}{Root\+Handle}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRootHandle}{Root\+Handle}} \& \mbox{\hyperlink{classRootHandle_ac6bee67cc96f5a5bcee142389b4b75bb}{operator=}} (const \mbox{\hyperlink{classRootHandle}{Root\+Handle}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy assignment operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGCHeap}{GCHeap}} \& \mbox{\hyperlink{classRootHandle_a29161bcae4ab51e8ad3cee3bae7f7b1c}{heap\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Reference to the GC heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classRootHandle_a6fb0937ae7692eee00efb3f44946ea68}{ref\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Reference to the managed pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RAII handle for managing GC roots. 
+
+\doxylink{classRootHandle}{Root\+Handle} provides automatic registration and deregistration of GC roots. When created, it registers a reference as a root with the GC heap. When destroyed, it automatically removes the root registration. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classRootHandle_a61b0fd368745f59d0eb8aee0fa2db972}\label{classRootHandle_a61b0fd368745f59d0eb8aee0fa2db972} 
+\index{RootHandle@{RootHandle}!RootHandle@{RootHandle}}
+\index{RootHandle@{RootHandle}!RootHandle@{RootHandle}}
+\doxysubsubsection{\texorpdfstring{RootHandle()}{RootHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Root\+Handle\+::\+Root\+Handle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGCHeap}{GCHeap}} \&}]{heap,  }\item[{\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}\&}]{ref }\end{DoxyParamCaption})}
+
+
+
+Constructor that registers a GC root. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & The GC heap to register with \\
+\hline
+{\em ref} & Reference to the GC pointer to register as a root \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRootHandle_a7f22143fb59317e080c50c589abacac7}\label{classRootHandle_a7f22143fb59317e080c50c589abacac7} 
+\index{RootHandle@{RootHandle}!````~RootHandle@{\texorpdfstring{$\sim$}{\string~}RootHandle}}
+\index{````~RootHandle@{\texorpdfstring{$\sim$}{\string~}RootHandle}!RootHandle@{RootHandle}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RootHandle()}{\string~RootHandle()}}
+{\footnotesize\ttfamily Root\+Handle\+::\texorpdfstring{$\sim$}{\string~}\+Root\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor that unregisters the GC root. 
+
+\Hypertarget{classRootHandle_a6db1eb3932662cd4b627f8f9b059968f}\label{classRootHandle_a6db1eb3932662cd4b627f8f9b059968f} 
+\index{RootHandle@{RootHandle}!RootHandle@{RootHandle}}
+\index{RootHandle@{RootHandle}!RootHandle@{RootHandle}}
+\doxysubsubsection{\texorpdfstring{RootHandle()}{RootHandle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Root\+Handle\+::\+Root\+Handle (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRootHandle}{Root\+Handle}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRootHandle_ac6bee67cc96f5a5bcee142389b4b75bb}\label{classRootHandle_ac6bee67cc96f5a5bcee142389b4b75bb} 
+\index{RootHandle@{RootHandle}!operator=@{operator=}}
+\index{operator=@{operator=}!RootHandle@{RootHandle}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRootHandle}{Root\+Handle}} \& Root\+Handle\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRootHandle}{Root\+Handle}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Deleted copy assignment operator. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classRootHandle_a29161bcae4ab51e8ad3cee3bae7f7b1c}\label{classRootHandle_a29161bcae4ab51e8ad3cee3bae7f7b1c} 
+\index{RootHandle@{RootHandle}!heap\_@{heap\_}}
+\index{heap\_@{heap\_}!RootHandle@{RootHandle}}
+\doxysubsubsection{\texorpdfstring{heap\_}{heap\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGCHeap}{GCHeap}}\& Root\+Handle\+::heap\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the GC heap. 
+
+\Hypertarget{classRootHandle_a6fb0937ae7692eee00efb3f44946ea68}\label{classRootHandle_a6fb0937ae7692eee00efb3f44946ea68} 
+\index{RootHandle@{RootHandle}!ref\_@{ref\_}}
+\index{ref\_@{ref\_}!RootHandle@{RootHandle}}
+\doxysubsubsection{\texorpdfstring{ref\_}{ref\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGCObject}{GCObject}}\texorpdfstring{$\ast$}{*}\& Root\+Handle\+::ref\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the managed pointer. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/runtime/\mbox{\hyperlink{gc_8hpp}{gc.\+hpp}}\item 
+src/runtime/\mbox{\hyperlink{gc_8cpp}{gc.\+cpp}}\end{DoxyCompactItemize}

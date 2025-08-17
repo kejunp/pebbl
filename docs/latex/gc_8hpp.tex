@@ -1,0 +1,126 @@
+\doxysection{src/runtime/gc.hpp File Reference}
+\hypertarget{gc_8hpp}{}\label{gc_8hpp}\index{src/runtime/gc.hpp@{src/runtime/gc.hpp}}
+
+
+Garbage collection system for the PEBBL runtime.  
+
+
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for gc.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gc_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{gc_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structGCObject}{GCObject}}
+\begin{DoxyCompactList}\small\item\em Base class for all garbage-\/collected objects. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classRootHandle}{Root\+Handle}}
+\begin{DoxyCompactList}\small\item\em RAII handle for managing GC roots. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classGCHeap}{GCHeap}}
+\begin{DoxyCompactList}\small\item\em Garbage collection heap manager. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classTracer}{Tracer}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classTracer}{Tracer} for marking reachable objects during garbage collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Concepts}
+\begin{DoxyCompactItemize}
+\item 
+concept \mbox{\hyperlink{conceptGCManaged}{GCManaged}}
+\begin{DoxyCompactList}\small\item\em Concept to ensure types are garbage-\/collectible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{conceptGCManaged}{GCManaged}} T$>$ }\\using \mbox{\hyperlink{gc_8hpp_ad791b40e4c777fb92c33a1e9aa364331}{GCRef}} = T \texorpdfstring{$\ast$}{*}
+\begin{DoxyCompactList}\small\item\em A wrapper around a raw pointer for garbage-\/collected objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}{GCTag}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dba63b588d5559f64f89a416e656880b949}{STRING}}
+, \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbacb4fb1757fb37c43cded35d3eb857c43}{ARRAY}}
+, \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbad7f73f951e7f6c4ed5e17c4204f4032e}{DICT}}
+, \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbab27025b4b0dce496c519e0d5c69acaf8}{CLOSURE}}
+, \newline
+\mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbac24465ccaa62ea56305df0848e0f55ed}{UPVALUE}}
+, \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dba6a72a6a776662a244f82d31e9274a07b}{FUNCTION}}
+ \}
+\begin{DoxyCompactList}\small\item\em Tags identifying different types of garbage-\/collected objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Garbage collection system for the PEBBL runtime. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{gc_8hpp_ad791b40e4c777fb92c33a1e9aa364331}\label{gc_8hpp_ad791b40e4c777fb92c33a1e9aa364331} 
+\index{gc.hpp@{gc.hpp}!GCRef@{GCRef}}
+\index{GCRef@{GCRef}!gc.hpp@{gc.hpp}}
+\doxysubsubsection{\texorpdfstring{GCRef}{GCRef}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{conceptGCManaged}{GCManaged}} T$>$ \\
+using \mbox{\hyperlink{gc_8hpp_ad791b40e4c777fb92c33a1e9aa364331}{GCRef}} =  T\texorpdfstring{$\ast$}{*}}
+
+
+
+A wrapper around a raw pointer for garbage-\/collected objects. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type (must be inherited from \doxylink{structGCObject}{GCObject}) \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db} 
+\index{gc.hpp@{gc.hpp}!GCTag@{GCTag}}
+\index{GCTag@{GCTag}!gc.hpp@{gc.hpp}}
+\doxysubsubsection{\texorpdfstring{GCTag}{GCTag}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4db}{GCTag}} \+: uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Tags identifying different types of garbage-\/collected objects. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!gc.hpp@{gc.hpp}}\index{gc.hpp@{gc.hpp}!STRING@{STRING}}}\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dba63b588d5559f64f89a416e656880b949}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dba63b588d5559f64f89a416e656880b949} 
+STRING&String object. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARRAY@{ARRAY}!gc.hpp@{gc.hpp}}\index{gc.hpp@{gc.hpp}!ARRAY@{ARRAY}}}\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbacb4fb1757fb37c43cded35d3eb857c43}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbacb4fb1757fb37c43cded35d3eb857c43} 
+ARRAY&Array object ~\newline
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DICT@{DICT}!gc.hpp@{gc.hpp}}\index{gc.hpp@{gc.hpp}!DICT@{DICT}}}\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbad7f73f951e7f6c4ed5e17c4204f4032e}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbad7f73f951e7f6c4ed5e17c4204f4032e} 
+DICT&Dictionary object. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLOSURE@{CLOSURE}!gc.hpp@{gc.hpp}}\index{gc.hpp@{gc.hpp}!CLOSURE@{CLOSURE}}}\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbab27025b4b0dce496c519e0d5c69acaf8}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbab27025b4b0dce496c519e0d5c69acaf8} 
+CLOSURE&Closure object. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UPVALUE@{UPVALUE}!gc.hpp@{gc.hpp}}\index{gc.hpp@{gc.hpp}!UPVALUE@{UPVALUE}}}\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbac24465ccaa62ea56305df0848e0f55ed}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dbac24465ccaa62ea56305df0848e0f55ed} 
+UPVALUE&Upvalue object. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FUNCTION@{FUNCTION}!gc.hpp@{gc.hpp}}\index{gc.hpp@{gc.hpp}!FUNCTION@{FUNCTION}}}\Hypertarget{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dba6a72a6a776662a244f82d31e9274a07b}\label{gc_8hpp_ad47f9bc93431f4e02b6b22820b3ee4dba6a72a6a776662a244f82d31e9274a07b} 
+FUNCTION&Function object. \\
+\hline
+
+\end{DoxyEnumFields}

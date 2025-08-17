@@ -1,0 +1,141 @@
+\doxysection{Variable\+Statement\+Node Struct Reference}
+\hypertarget{structVariableStatementNode}{}\label{structVariableStatementNode}\index{VariableStatementNode@{VariableStatementNode}}
+
+
+A variable declaration/definition\+: let immut = 5; var mut = 5; etc.  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Variable\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{structVariableStatementNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Variable\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{structVariableStatementNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structVariableStatementNode_aaabcee6642d6d48cf81d109991ff76ac}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structVariableStatementNode_aa5d6a0f805effeae91aed26e6471cca2}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structVariableStatementNode_aaf458a24b78999016815ba057fce36a3}{is\+\_\+mutible}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Is the variable mutable? \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structVariableStatementNode_aef6460df0eb47382e82bf558a1d3b7b0}{token}}
+\begin{DoxyCompactList}\small\item\em Either let or var. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}} $>$ \mbox{\hyperlink{structVariableStatementNode_ab8809715f0d368472ea49de27f78cad6}{name}}
+\begin{DoxyCompactList}\small\item\em The identifier ( let \mbox{[}name\mbox{]} = 25;) \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structVariableStatementNode_a959f3c3f64b5549b8a47cf5436481679}{value}}
+\begin{DoxyCompactList}\small\item\em The expression that you are assigning to ( let x = \mbox{[}value\mbox{]}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A variable declaration/definition\+: let immut = 5; var mut = 5; etc. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structVariableStatementNode_aa5d6a0f805effeae91aed26e6471cca2}\label{structVariableStatementNode_aa5d6a0f805effeae91aed26e6471cca2} 
+\index{VariableStatementNode@{VariableStatementNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!VariableStatementNode@{VariableStatementNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} Variable\+Statement\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structVariableStatementNode_aaf458a24b78999016815ba057fce36a3}\label{structVariableStatementNode_aaf458a24b78999016815ba057fce36a3} 
+\index{VariableStatementNode@{VariableStatementNode}!is\_mutible@{is\_mutible}}
+\index{is\_mutible@{is\_mutible}!VariableStatementNode@{VariableStatementNode}}
+\doxysubsubsection{\texorpdfstring{is\_mutible()}{is\_mutible()}}
+{\footnotesize\ttfamily bool Variable\+Statement\+Node\+::is\+\_\+mutible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Is the variable mutable? 
+
+\begin{DoxyReturn}{Returns}
+True if the variable is mutable, and vise versa 
+\end{DoxyReturn}
+\Hypertarget{structVariableStatementNode_aaabcee6642d6d48cf81d109991ff76ac}\label{structVariableStatementNode_aaabcee6642d6d48cf81d109991ff76ac} 
+\index{VariableStatementNode@{VariableStatementNode}!type@{type}}
+\index{type@{type}!VariableStatementNode@{VariableStatementNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} Variable\+Statement\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1aea7dcdd517ba45833696da63d93dc3fc}{ASTType\+::\+VARIABLE\+\_\+\+STATEMENT} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structVariableStatementNode_ab8809715f0d368472ea49de27f78cad6}\label{structVariableStatementNode_ab8809715f0d368472ea49de27f78cad6} 
+\index{VariableStatementNode@{VariableStatementNode}!name@{name}}
+\index{name@{name}!VariableStatementNode@{VariableStatementNode}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}}$>$ Variable\+Statement\+Node\+::name}
+
+
+
+The identifier ( let \mbox{[}name\mbox{]} = 25;) 
+
+\Hypertarget{structVariableStatementNode_aef6460df0eb47382e82bf558a1d3b7b0}\label{structVariableStatementNode_aef6460df0eb47382e82bf558a1d3b7b0} 
+\index{VariableStatementNode@{VariableStatementNode}!token@{token}}
+\index{token@{token}!VariableStatementNode@{VariableStatementNode}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Variable\+Statement\+Node\+::token}
+
+
+
+Either let or var. 
+
+\Hypertarget{structVariableStatementNode_a959f3c3f64b5549b8a47cf5436481679}\label{structVariableStatementNode_a959f3c3f64b5549b8a47cf5436481679} 
+\index{VariableStatementNode@{VariableStatementNode}!value@{value}}
+\index{value@{value}!VariableStatementNode@{VariableStatementNode}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ Variable\+Statement\+Node\+::value}
+
+
+
+The expression that you are assigning to ( let x = \mbox{[}value\mbox{]}) 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

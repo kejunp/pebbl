@@ -1,0 +1,98 @@
+\doxysection{Expression\+Statement\+Node Struct Reference}
+\hypertarget{structExpressionStatementNode}{}\label{structExpressionStatementNode}\index{ExpressionStatementNode@{ExpressionStatementNode}}
+
+
+A wrapper around a expression (but it is a statement)  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Expression\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{structExpressionStatementNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Expression\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{structExpressionStatementNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structExpressionStatementNode_ab6dfe80c3cd9a9dcd926b31d493d726f}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structExpressionStatementNode_aa16c7852db034c03dec553079ea04af3}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structExpressionStatementNode_a75d342aefc9dab12a0ea81d314a9a66b}{expression}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A wrapper around a expression (but it is a statement) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structExpressionStatementNode_aa16c7852db034c03dec553079ea04af3}\label{structExpressionStatementNode_aa16c7852db034c03dec553079ea04af3} 
+\index{ExpressionStatementNode@{ExpressionStatementNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!ExpressionStatementNode@{ExpressionStatementNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} Expression\+Statement\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structExpressionStatementNode_ab6dfe80c3cd9a9dcd926b31d493d726f}\label{structExpressionStatementNode_ab6dfe80c3cd9a9dcd926b31d493d726f} 
+\index{ExpressionStatementNode@{ExpressionStatementNode}!type@{type}}
+\index{type@{type}!ExpressionStatementNode@{ExpressionStatementNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} Expression\+Statement\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab5dad3ab8a03327323c5bf7d2a7f4974}{ASTType\+::\+EXPRESSION\+\_\+\+STATEMENT} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structExpressionStatementNode_a75d342aefc9dab12a0ea81d314a9a66b}\label{structExpressionStatementNode_a75d342aefc9dab12a0ea81d314a9a66b} 
+\index{ExpressionStatementNode@{ExpressionStatementNode}!expression@{expression}}
+\index{expression@{expression}!ExpressionStatementNode@{ExpressionStatementNode}}
+\doxysubsubsection{\texorpdfstring{expression}{expression}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ Expression\+Statement\+Node\+::expression}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,138 @@
+\doxysection{If\+Else\+Expression\+Node Struct Reference}
+\hypertarget{structIfElseExpressionNode}{}\label{structIfElseExpressionNode}\index{IfElseExpressionNode@{IfElseExpressionNode}}
+
+
+An if-\/else expression (e.\+g., if condition \{ then\+\_\+expr \} else \{ else\+\_\+expr \})  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for If\+Else\+Expression\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{structIfElseExpressionNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for If\+Else\+Expression\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{structIfElseExpressionNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structIfElseExpressionNode_a983a1c24a6a51d080ff6a3cf232c0af7}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structIfElseExpressionNode_ab20b58781c53f266f1dd5fc925acae75}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structIfElseExpressionNode_a1b957d4ccb3b8c8306053ba85bfd90fe}{token}}
+\begin{DoxyCompactList}\small\item\em The IF token. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structIfElseExpressionNode_aa9f1c05743f9de64e831757336f7993f}{condition}}
+\begin{DoxyCompactList}\small\item\em The condition to evaluate. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structIfElseExpressionNode_a965ace361ee57f9c4be335139da5edc4}{then\+\_\+expression}}
+\begin{DoxyCompactList}\small\item\em Expression to evaluate if condition is true. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structIfElseExpressionNode_aea623096627b6d2d3e6ce374d6515147}{else\+\_\+expression}}
+\begin{DoxyCompactList}\small\item\em Expression to evaluate if condition is false (optional) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An if-\/else expression (e.\+g., if condition \{ then\+\_\+expr \} else \{ else\+\_\+expr \}) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structIfElseExpressionNode_ab20b58781c53f266f1dd5fc925acae75}\label{structIfElseExpressionNode_ab20b58781c53f266f1dd5fc925acae75} 
+\index{IfElseExpressionNode@{IfElseExpressionNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!IfElseExpressionNode@{IfElseExpressionNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} If\+Else\+Expression\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structIfElseExpressionNode_a983a1c24a6a51d080ff6a3cf232c0af7}\label{structIfElseExpressionNode_a983a1c24a6a51d080ff6a3cf232c0af7} 
+\index{IfElseExpressionNode@{IfElseExpressionNode}!type@{type}}
+\index{type@{type}!IfElseExpressionNode@{IfElseExpressionNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} If\+Else\+Expression\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6f4864d1dd60c2d4f0817496d9eb87a1}{ASTType\+::\+IF\+\_\+\+ELSE\+\_\+\+EXPRESSION} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structIfElseExpressionNode_aa9f1c05743f9de64e831757336f7993f}\label{structIfElseExpressionNode_aa9f1c05743f9de64e831757336f7993f} 
+\index{IfElseExpressionNode@{IfElseExpressionNode}!condition@{condition}}
+\index{condition@{condition}!IfElseExpressionNode@{IfElseExpressionNode}}
+\doxysubsubsection{\texorpdfstring{condition}{condition}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ If\+Else\+Expression\+Node\+::condition}
+
+
+
+The condition to evaluate. 
+
+\Hypertarget{structIfElseExpressionNode_aea623096627b6d2d3e6ce374d6515147}\label{structIfElseExpressionNode_aea623096627b6d2d3e6ce374d6515147} 
+\index{IfElseExpressionNode@{IfElseExpressionNode}!else\_expression@{else\_expression}}
+\index{else\_expression@{else\_expression}!IfElseExpressionNode@{IfElseExpressionNode}}
+\doxysubsubsection{\texorpdfstring{else\_expression}{else\_expression}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ If\+Else\+Expression\+Node\+::else\+\_\+expression}
+
+
+
+Expression to evaluate if condition is false (optional) 
+
+\Hypertarget{structIfElseExpressionNode_a965ace361ee57f9c4be335139da5edc4}\label{structIfElseExpressionNode_a965ace361ee57f9c4be335139da5edc4} 
+\index{IfElseExpressionNode@{IfElseExpressionNode}!then\_expression@{then\_expression}}
+\index{then\_expression@{then\_expression}!IfElseExpressionNode@{IfElseExpressionNode}}
+\doxysubsubsection{\texorpdfstring{then\_expression}{then\_expression}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ If\+Else\+Expression\+Node\+::then\+\_\+expression}
+
+
+
+Expression to evaluate if condition is true. 
+
+\Hypertarget{structIfElseExpressionNode_a1b957d4ccb3b8c8306053ba85bfd90fe}\label{structIfElseExpressionNode_a1b957d4ccb3b8c8306053ba85bfd90fe} 
+\index{IfElseExpressionNode@{IfElseExpressionNode}!token@{token}}
+\index{token@{token}!IfElseExpressionNode@{IfElseExpressionNode}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} If\+Else\+Expression\+Node\+::token}
+
+
+
+The IF token. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

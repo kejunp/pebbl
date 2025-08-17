@@ -27,10 +27,16 @@ char \mbox{\hyperlink{classLexer_abc2bd6b00b8481e13a76810b7f24b985}{peek\+\_\+ch
 \begin{DoxyCompactList}\small\item\em Returns the next character from the source code. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classLexer_a90997b73a74196097baa4c88ea2512ce}{read\+\_\+identifier}} ()
 \begin{DoxyCompactList}\small\item\em Consumes the characters until the section isn\textquotesingle{}t a valid identifier, then returns the identifier. \end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{classLexer_a81d7def7173e9451a55936bf30186b3b}{read\+\_\+number}} ()
-\begin{DoxyCompactList}\small\item\em Consumes the characters until the section isn\textquotesingle{}t a valid number, then returns the number. \end{DoxyCompactList}\item 
+std\+::pair$<$ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}, std\+::string $>$ \mbox{\hyperlink{classLexer_ae235fbcd9d30a28e9b71200f92da0dff}{read\+\_\+number}} ()
+\begin{DoxyCompactList}\small\item\em Consumes the characters until the section isn\textquotesingle{}t a valid number, then returns the type of the number (a \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c}{Token\+Type\+::\+INTEGER} or \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}{Token\+Type\+::\+FLOAT}) and the number. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classLexer_a07c40e61f32ba4d028d1a94c3c655d33}{read\+\_\+string}} ()
+\begin{DoxyCompactList}\small\item\em Consumes the characters until the section isn\textquotesingle{}t a valid string, then returns the string. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLexer_a80fec456cf22a51ad96eac59894bbda6}{consume\+\_\+whitespace}} ()
-\begin{DoxyCompactList}\small\item\em Skips all whitespace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Skips all whitespace. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{classLexer_a3e2e069afa2176cc23d314736df53cfb}{make\+\_\+token}} (\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} type, std\+::string \&\&lexeme)
+\begin{DoxyCompactList}\small\item\em Creates a token. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{classLexer_aabe0e0f5afa8767af534621653d71e32}{make\+\_\+token}} (\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} type, const std\+::string \&lexeme)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -79,6 +85,22 @@ Consumes a character and goes to the next one.
 
 Skips all whitespace. 
 
+\Hypertarget{classLexer_aabe0e0f5afa8767af534621653d71e32}\label{classLexer_aabe0e0f5afa8767af534621653d71e32} 
+\index{Lexer@{Lexer}!make\_token@{make\_token}}
+\index{make\_token@{make\_token}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{make\_token()}{make\_token()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Lexer\+::make\+\_\+token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}}]{type,  }\item[{const std\+::string \&}]{lexeme }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \Hypertarget{classLexer_a3e2e069afa2176cc23d314736df53cfb}\label{classLexer_a3e2e069afa2176cc23d314736df53cfb} 
+\index{Lexer@{Lexer}!make\_token@{make\_token}}
+\index{make\_token@{make\_token}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{make\_token()}{make\_token()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Lexer\+::make\+\_\+token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}}]{type,  }\item[{std\+::string \&\&}]{lexeme }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Creates a token. 
+
 \Hypertarget{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c}\label{classLexer_a7fcfd2eb03ec5b00bda2b7722d42f68c} 
 \index{Lexer@{Lexer}!next\_token@{next\_token}}
 \index{next\_token@{next\_token}!Lexer@{Lexer}}
@@ -115,15 +137,25 @@ Returns the next character from the source code.
 
 Consumes the characters until the section isn\textquotesingle{}t a valid identifier, then returns the identifier. 
 
-\Hypertarget{classLexer_a81d7def7173e9451a55936bf30186b3b}\label{classLexer_a81d7def7173e9451a55936bf30186b3b} 
+\Hypertarget{classLexer_ae235fbcd9d30a28e9b71200f92da0dff}\label{classLexer_ae235fbcd9d30a28e9b71200f92da0dff} 
 \index{Lexer@{Lexer}!read\_number@{read\_number}}
 \index{read\_number@{read\_number}!Lexer@{Lexer}}
 \doxysubsubsection{\texorpdfstring{read\_number()}{read\_number()}}
-{\footnotesize\ttfamily std\+::string Lexer\+::read\+\_\+number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::pair$<$ \mbox{\hyperlink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}, std\+::string $>$ Lexer\+::read\+\_\+number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Consumes the characters until the section isn\textquotesingle{}t a valid number, then returns the number. 
+Consumes the characters until the section isn\textquotesingle{}t a valid number, then returns the type of the number (a \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c}{Token\+Type\+::\+INTEGER} or \doxylink{tokens_8hpp_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}{Token\+Type\+::\+FLOAT}) and the number. 
+
+\Hypertarget{classLexer_a07c40e61f32ba4d028d1a94c3c655d33}\label{classLexer_a07c40e61f32ba4d028d1a94c3c655d33} 
+\index{Lexer@{Lexer}!read\_string@{read\_string}}
+\index{read\_string@{read\_string}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{read\_string()}{read\_string()}}
+{\footnotesize\ttfamily std\+::string Lexer\+::read\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Consumes the characters until the section isn\textquotesingle{}t a valid string, then returns the string. 
 
 
 
@@ -182,5 +214,5 @@ The next position the lexer is going to read.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-parser/lexer/\mbox{\hyperlink{lexer_8hpp}{lexer.\+hpp}}\item 
-parser/lexer/\mbox{\hyperlink{lexer_8cpp}{lexer.\+cpp}}\end{DoxyCompactItemize}
+src/parser/lexer/\mbox{\hyperlink{lexer_8hpp}{lexer.\+hpp}}\item 
+src/parser/lexer/\mbox{\hyperlink{lexer_8cpp}{lexer.\+cpp}}\end{DoxyCompactItemize}

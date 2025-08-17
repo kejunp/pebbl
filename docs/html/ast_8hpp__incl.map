@@ -1,9 +1,16 @@
-<map id="parser/ast_generation/ast.hpp" name="parser/ast_generation/ast.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="10,5,174,45"/>
-<area shape="rect" id="Node000002" href="$tokens_8hpp.html" title=" " alt="" coords="45,93,139,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,46,95,79,89,79,89,46"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,64,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,121,55,158,51,154,80,117"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="89,167,213,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="104,117,135,155,131,158,100,121"/>
+<map id="src/parser/ast_generation/ast.hpp" name="src/parser/ast_generation/ast.hpp">
+<area shape="rect" id="Node000001" title="Abstract Syntax Tree node definitions for the PEBBL language." alt="" coords="224,5,411,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,160,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="267,48,148,91,146,86,265,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="184,101,261,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="298,48,248,93,244,89,295,44"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="286,101,349,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="320,46,320,87,315,87,315,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="325,181,449,207"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="335,44,364,92,377,131,385,167,380,168,372,132,359,94,330,47"/>
+<area shape="rect" id="Node000006" href="$tokens_8hpp.html" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="424,101,517,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="352,43,440,92,437,96,350,48"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="460,128,411,174,407,170,456,124"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="473,181,532,207"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="478,125,495,167,490,169,473,127"/>
 </map>

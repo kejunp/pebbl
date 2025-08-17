@@ -1,0 +1,7 @@
+<map id="BinaryExpressionNode" name="BinaryExpressionNode">
+<area shape="rect" id="Node000001" title="A binary expression (e.g., a + b, x == y, etc.)" alt="" coords="5,152,175,177"/>
+<area shape="rect" id="Node000002" href="$structExpressionNode.html" title="Base class for all expressions." alt="" coords="27,79,153,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,118,93,152,87,152,87,118"/>
+<area shape="rect" id="Node000003" href="$structASTNode.html" title="Base class of all AST nodes." alt="" coords="49,5,131,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,44,93,79,87,79,87,44"/>
+</map>

@@ -1,0 +1,81 @@
+\doxysection{Block\+Statement\+Node Struct Reference}
+\hypertarget{structBlockStatementNode}{}\label{structBlockStatementNode}\index{BlockStatementNode@{BlockStatementNode}}
+
+
+A block statement \{ \mbox{[}statements... \mbox{]} \}.  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Block\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{structBlockStatementNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Block\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{structBlockStatementNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structBlockStatementNode_a0f17ac7da7acc6fab82a201f2f26f8bf}{type}} () const noexcept override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\item 
+virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{get\+\_\+token}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structStatementNode}{Statement\+Node}} $>$ $>$ \mbox{\hyperlink{structBlockStatementNode_a2c1db8c389af2505086a4059cc621a36}{statements}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A block statement \{ \mbox{[}statements... \mbox{]} \}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structBlockStatementNode_a0f17ac7da7acc6fab82a201f2f26f8bf}\label{structBlockStatementNode_a0f17ac7da7acc6fab82a201f2f26f8bf} 
+\index{BlockStatementNode@{BlockStatementNode}!type@{type}}
+\index{type@{type}!BlockStatementNode@{BlockStatementNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} Block\+Statement\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1ab0c732723303482d8b9fa3668e770c2c}{ASTType\+::\+BLOCK\+\_\+\+STATEMENT} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structBlockStatementNode_a2c1db8c389af2505086a4059cc621a36}\label{structBlockStatementNode_a2c1db8c389af2505086a4059cc621a36} 
+\index{BlockStatementNode@{BlockStatementNode}!statements@{statements}}
+\index{statements@{statements}!BlockStatementNode@{BlockStatementNode}}
+\doxysubsubsection{\texorpdfstring{statements}{statements}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structStatementNode}{Statement\+Node}}$>$ $>$ Block\+Statement\+Node\+::statements}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

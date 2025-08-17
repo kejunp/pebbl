@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pebbl: parser/lexer/tokens.hpp File Reference</title>
+<title>pebbl: src/parser/lexer/tokens.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_572890c148f68441e050f6560d78312b.html">parser</a></li><li class="navelem"><a class="el" href="dir_7ad20b283e5b50d73f94074a40c54377.html">lexer</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6cd8491d143eb218b70983dbdb3c58bc.html">parser</a></li><li class="navelem"><a class="el" href="dir_7a43006265ec3b3dc577f500dd09a803.html">lexer</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -80,32 +80,43 @@ $(function() {
   <div class="headertitle"><div class="title">tokens.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="structToken.html">Token</a> definitions and utilities for the PEBBL lexer.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tokens.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="tokens_8hpp__incl.png" border="0" usemap="#aparser_2lexer_2tokens_8hpp" alt=""/></div>
-<map name="aparser_2lexer_2tokens_8hpp" id="aparser_2lexer_2tokens_8hpp">
-<area shape="rect" title=" " alt="" coords="5,5,180,31"/>
-<area shape="rect" title=" " alt="" coords="6,79,65,104"/>
-<area shape="poly" title=" " alt="" coords="85,33,55,70,51,66,81,29"/>
-<area shape="rect" title=" " alt="" coords="89,79,213,104"/>
-<area shape="poly" title=" " alt="" coords="104,29,135,67,131,70,100,33"/>
+<div class="center"><img src="tokens_8hpp__incl.png" border="0" usemap="#asrc_2parser_2lexer_2tokens_8hpp" alt=""/></div>
+<map name="asrc_2parser_2lexer_2tokens_8hpp" id="asrc_2parser_2lexer_2tokens_8hpp">
+<area shape="rect" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="5,5,203,31"/>
+<area shape="rect" title=" " alt="" coords="17,79,76,104"/>
+<area shape="poly" title=" " alt="" coords="97,33,67,70,63,66,92,29"/>
+<area shape="rect" title=" " alt="" coords="101,79,225,104"/>
+<area shape="poly" title=" " alt="" coords="116,29,147,67,143,70,112,33"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="tokens_8hpp__dep__incl.png" border="0" usemap="#aparser_2lexer_2tokens_8hppdep" alt=""/></div>
-<map name="aparser_2lexer_2tokens_8hppdep" id="aparser_2lexer_2tokens_8hppdep">
-<area shape="rect" title=" " alt="" coords="93,5,268,31"/>
-<area shape="rect" href="ast_8hpp.html" title=" " alt="" coords="5,79,169,119"/>
-<area shape="poly" title=" " alt="" coords="158,42,112,81,108,76,155,38"/>
-<area shape="rect" href="lexer_8hpp.html" title=" " alt="" coords="194,86,357,111"/>
-<area shape="poly" title=" " alt="" coords="207,38,263,84,260,88,204,42"/>
-<area shape="rect" href="lexer_8cpp.html" title=" " alt="" coords="195,167,356,192"/>
-<area shape="poly" title=" " alt="" coords="278,125,278,166,273,166,273,125"/>
+<div class="center"><img src="tokens_8hpp__dep__incl.png" border="0" usemap="#asrc_2parser_2lexer_2tokens_8hppdep" alt=""/></div>
+<map name="asrc_2parser_2lexer_2tokens_8hppdep" id="asrc_2parser_2lexer_2tokens_8hppdep">
+<area shape="rect" title="Token definitions and utilities for the PEBBL lexer." alt="" coords="105,5,303,31"/>
+<area shape="rect" href="ast_8hpp.html" title="Abstract Syntax Tree node definitions for the PEBBL language." alt="" coords="5,79,192,119"/>
+<area shape="poly" title=" " alt="" coords="179,41,126,81,122,76,176,37"/>
+<area shape="rect" href="lexer_8hpp.html" title="Lexical analyzer for tokenizing PEBBL source code." alt="" coords="217,86,402,111"/>
+<area shape="poly" title=" " alt="" coords="232,37,295,84,292,88,229,41"/>
+<area shape="rect" href="ast__generator_8hpp.html" title="Recursive descent parser for generating Abstract Syntax Trees from tokens." alt="" coords="45,167,232,207"/>
+<area shape="poly" title=" " alt="" coords="116,130,132,165,127,168,111,132"/>
+<area shape="rect" href="main_8cpp.html" title="Main entry point and testing for the PEBBL language compiler." alt="" coords="237,262,342,287"/>
+<area shape="poly" title=" " alt="" coords="185,211,271,260,268,264,182,216"/>
+<area shape="rect" href="ast__generator_8cpp.html" title="Implementation of the recursive descent parser for generating ASTs." alt="" coords="25,255,212,295"/>
+<area shape="poly" title=" " alt="" coords="134,221,126,255,120,254,129,220"/>
+<area shape="poly" title=" " alt="" coords="275,120,178,169,175,164,273,115"/>
+<area shape="poly" title=" " alt="" coords="309,125,293,262,288,261,304,125"/>
+<area shape="rect" href="lexer_8cpp.html" title="Implementation of the lexical analyzer for PEBBL source code." alt="" coords="327,174,511,199"/>
+<area shape="poly" title=" " alt="" coords="337,118,405,172,402,176,333,122"/>
 </map>
 </div>
 </div>
@@ -124,28 +135,33 @@ Enumerations</h2></td></tr>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a">LBRACE</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290">RBRACE</a>
 , <br />
-&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751">COMMA</a>
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ad500138bf8f61d4b0b80413f4b76a82a">LBRACKET</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a270adbd249f9997adc3208e92a57e066">RBRACKET</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751">COMMA</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782">DOT</a>
+, <br />
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921af65f22e75defc168edfc6444e6aaf4f8">COLON</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5">SEMICOLON</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7">PLUS</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81">MINUS</a>
 , <br />
-&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81">MINUS</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63">ASTERISK</a>
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a71ad0fa6a6a3e480ec3446bce7073e63">ASTERISK</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a646da671ca01bb5d84dbb5fb2238dc8e">SLASH</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a489b3c14da5e92c8b256b195e92ae93a">BANG</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce">NOT_EQUAL</a>
 , <br />
-&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a4ea2d378cdec20f59330f113297bc1ce">NOT_EQUAL</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1">ASSIGN</a>
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921affd6976a2b4f6934eb075d0013316ff1">ASSIGN</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a969f331a87d8c958473c32b4d0e61a44">EQUAL</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a1798e8c3621ca53d9e3a80d257306000">LESS</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b">GREATER</a>
 , <br />
-&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ae7e72355289e404b762d4cf88824d23b">GREATER</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4">LESS_EQUAL</a>
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a8b4a5cd69b217bf93b054ada7f49abd4">LESS_EQUAL</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a">GREATER_EQUAL</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a">IDENTIFIER</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949">STRING</a>
 , <br />
-&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949">STRING</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396">NUMBER</a>
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c">INTEGER</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6">FLOAT</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532">AND</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616">OR</a>
 , <br />
@@ -160,14 +176,11 @@ Enumerations</h2></td></tr>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5">RETURN</a>
 , <br />
 &#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5">LET</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510">INHERITS</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb">CLASS</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea">SUPER</a>
-, <br />
-&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5">THIS</a>
+, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921ad6f4440b8633f973d33c78928bdac2e1">VAR</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255">NIL</a>
 , <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>
-, <a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb">EOF_TYPE</a>
+, <br />
+&#160;&#160;<a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb">EOF_TYPE</a>
 <br />
  }</td></tr>
 <tr class="separator:aa520fbf142ba1e7e659590c07da31921"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,7 +190,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a3986510f97a5d35792bb5bd57d07efbe" id="r_a3986510f97a5d35792bb5bd57d07efbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tokens_8hpp.html#aa520fbf142ba1e7e659590c07da31921">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tokens_8hpp.html#a3986510f97a5d35792bb5bd57d07efbe">lookup_identifier</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a3986510f97a5d35792bb5bd57d07efbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="structToken.html">Token</a> definitions and utilities for the PEBBL lexer. </p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="aa520fbf142ba1e7e659590c07da31921" name="aa520fbf142ba1e7e659590c07da31921"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa520fbf142ba1e7e659590c07da31921">&#9670;&#160;</a></span>TokenType</h2>
 
@@ -202,8 +217,11 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1" name="aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1"></a>RPAREN&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a" name="aa520fbf142ba1e7e659590c07da31921ad5e4de54911c050245979d940dc65c3a"></a>LBRACE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290" name="aa520fbf142ba1e7e659590c07da31921a7907975edd3cb3611c6808f3ea6bd290"></a>RBRACE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ad500138bf8f61d4b0b80413f4b76a82a" name="aa520fbf142ba1e7e659590c07da31921ad500138bf8f61d4b0b80413f4b76a82a"></a>LBRACKET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a270adbd249f9997adc3208e92a57e066" name="aa520fbf142ba1e7e659590c07da31921a270adbd249f9997adc3208e92a57e066"></a>RBRACKET&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751" name="aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751"></a>COMMA&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782" name="aa520fbf142ba1e7e659590c07da31921a40679521b5da0954b705341a2859f782"></a>DOT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921af65f22e75defc168edfc6444e6aaf4f8" name="aa520fbf142ba1e7e659590c07da31921af65f22e75defc168edfc6444e6aaf4f8"></a>COLON&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5" name="aa520fbf142ba1e7e659590c07da31921abaaceccc27b1d4e0968c999583f97de5"></a>SEMICOLON&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7" name="aa520fbf142ba1e7e659590c07da31921a883acd43c77567e1c3baced84ccf6ed7"></a>PLUS&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81" name="aa520fbf142ba1e7e659590c07da31921affc0d9b54a1fe677c4c9e6b050e67c81"></a>MINUS&#160;</td><td class="fielddoc"></td></tr>
@@ -219,7 +237,8 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a" name="aa520fbf142ba1e7e659590c07da31921a87e6b203bf40967d37a33f9a4438561a"></a>GREATER_EQUAL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a" name="aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a"></a>IDENTIFIER&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949" name="aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949"></a>STRING&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396" name="aa520fbf142ba1e7e659590c07da31921a34f55eca38e0605a84f169ff61a2a396"></a>NUMBER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c" name="aa520fbf142ba1e7e659590c07da31921a5d5cd46919fa987731fb2edefe0f2a0c"></a>INTEGER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6" name="aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6"></a>FLOAT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532" name="aa520fbf142ba1e7e659590c07da31921a558ffc8f5770d8e4f95f51d822685532"></a>AND&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616" name="aa520fbf142ba1e7e659590c07da31921a1d00e7dce692e8dc3f6877f035e3a616"></a>OR&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93" name="aa520fbf142ba1e7e659590c07da31921ade6ee2b5d856295add4d5e3631fbfb93"></a>IF&#160;</td><td class="fielddoc"></td></tr>
@@ -231,10 +250,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b" name="aa520fbf142ba1e7e659590c07da31921a1e49c8ad07b69571bfcafaf18ac9fa5b"></a>FUNC&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5" name="aa520fbf142ba1e7e659590c07da31921aa2bec276a54439fe011eb523b845dac5"></a>RETURN&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5" name="aa520fbf142ba1e7e659590c07da31921ada02466f9a4224e477bd63afbcf573c5"></a>LET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510" name="aa520fbf142ba1e7e659590c07da31921ac2d68ed74a46dea0c05192fe2de1d510"></a>INHERITS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb" name="aa520fbf142ba1e7e659590c07da31921ac18e8f1f430ea227dbd63d0d9a2bc5fb"></a>CLASS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea" name="aa520fbf142ba1e7e659590c07da31921afc91b14eef9c58c4cad8fdf87b4c0bea"></a>SUPER&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5" name="aa520fbf142ba1e7e659590c07da31921ac9f869114804f0a61ce9b03def9d71f5"></a>THIS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921ad6f4440b8633f973d33c78928bdac2e1" name="aa520fbf142ba1e7e659590c07da31921ad6f4440b8633f973d33c78928bdac2e1"></a>VAR&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255" name="aa520fbf142ba1e7e659590c07da31921abc0b1e8b63f3f00318eee5aeabc14255"></a>NIL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5" name="aa520fbf142ba1e7e659590c07da31921abb1ca97ec761fc37101737ba0aa2e7c5"></a>ERROR&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb" name="aa520fbf142ba1e7e659590c07da31921a3c9a1b7db6f263d681c1bcbb2348b2cb"></a>EOF_TYPE&#160;</td><td class="fielddoc"></td></tr>

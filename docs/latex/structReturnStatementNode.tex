@@ -1,0 +1,114 @@
+\doxysection{Return\+Statement\+Node Struct Reference}
+\hypertarget{structReturnStatementNode}{}\label{structReturnStatementNode}\index{ReturnStatementNode@{ReturnStatementNode}}
+
+
+A return statement (different from a implicit return, e.\+g. 5; will become a expression statement, return 5; will become this)  
+
+
+
+
+{\ttfamily \#include $<$ast.\+hpp$>$}
+
+
+
+Inheritance diagram for Return\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{structReturnStatementNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Return\+Statement\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{structReturnStatementNode__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structReturnStatementNode_af46d78ff38da728934d0856b31fdc699}{type}} () const noexcept override
+\item 
+const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structReturnStatementNode_a02abf6485693ffc3dd4724dff4bc7f6f}{get\+\_\+token}} () const noexcept override
+\begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{structASTNode}{ASTNode}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structToken}{Token}} \mbox{\hyperlink{structReturnStatementNode_aefa26e2c49cc1db0b36fa3935372a023}{token}}
+\begin{DoxyCompactList}\small\item\em Always a token with type RETURN, lexeme of return, kept here for line number. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structExpressionNode}{Expression\+Node}} $>$ \mbox{\hyperlink{structReturnStatementNode_accfeb2eeb7eca827f2c590aa1f4ad302}{return\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Expression to return. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A return statement (different from a implicit return, e.\+g. 5; will become a expression statement, return 5; will become this) 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structReturnStatementNode_a02abf6485693ffc3dd4724dff4bc7f6f}\label{structReturnStatementNode_a02abf6485693ffc3dd4724dff4bc7f6f} 
+\index{ReturnStatementNode@{ReturnStatementNode}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!ReturnStatementNode@{ReturnStatementNode}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} Return\+Statement\+Node\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Gives a pointer to the token, if no meaningful token, return nullptr. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{ASTNode}}.
+
+\Hypertarget{structReturnStatementNode_af46d78ff38da728934d0856b31fdc699}\label{structReturnStatementNode_af46d78ff38da728934d0856b31fdc699} 
+\index{ReturnStatementNode@{ReturnStatementNode}!type@{type}}
+\index{type@{type}!ReturnStatementNode@{ReturnStatementNode}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} Return\+Statement\+Node\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+Returns \doxylink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1a6848827306558abf17a4390e4c662b0a}{ASTType\+::\+RETURN\+\_\+\+STATEMENT} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{ASTNode}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structReturnStatementNode_accfeb2eeb7eca827f2c590aa1f4ad302}\label{structReturnStatementNode_accfeb2eeb7eca827f2c590aa1f4ad302} 
+\index{ReturnStatementNode@{ReturnStatementNode}!return\_value@{return\_value}}
+\index{return\_value@{return\_value}!ReturnStatementNode@{ReturnStatementNode}}
+\doxysubsubsection{\texorpdfstring{return\_value}{return\_value}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{structExpressionNode}{Expression\+Node}}$>$ Return\+Statement\+Node\+::return\+\_\+value}
+
+
+
+Expression to return. 
+
+\Hypertarget{structReturnStatementNode_aefa26e2c49cc1db0b36fa3935372a023}\label{structReturnStatementNode_aefa26e2c49cc1db0b36fa3935372a023} 
+\index{ReturnStatementNode@{ReturnStatementNode}!token@{token}}
+\index{token@{token}!ReturnStatementNode@{ReturnStatementNode}}
+\doxysubsubsection{\texorpdfstring{token}{token}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structToken}{Token}} Return\+Statement\+Node\+::token}
+
+
+
+Always a token with type RETURN, lexeme of return, kept here for line number. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}

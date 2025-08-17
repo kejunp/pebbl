@@ -1,9 +1,33 @@
 \doxysection{Class List}
 Here are the classes, structs, unions and interfaces with brief descriptions\+:\begin{DoxyCompactList}
+\item\contentsline{section}{\mbox{\hyperlink{structArrayLiteralNode}{Array\+Literal\+Node}} \\*An array literal (e.\+g., \mbox{[}1, 2, 3\mbox{]}) }{\pageref{structArrayLiteralNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structAssignmentExpressionNode}{Assignment\+Expression\+Node}} \\*An assignment expression (e.\+g., x = 5, y = func()) }{\pageref{structAssignmentExpressionNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{classASTGenerator}{ASTGenerator}} \\*Recursive descent parser for generating AST from tokens }{\pageref{classASTGenerator}}{}
 \item\contentsline{section}{\mbox{\hyperlink{structASTNode}{ASTNode}} \\*Base class of all AST nodes }{\pageref{structASTNode}}{}
-\item\contentsline{section}{\mbox{\hyperlink{classChunk}{Chunk}} }{\pageref{classChunk}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structBinaryExpressionNode}{Binary\+Expression\+Node}} \\*A binary expression (e.\+g., a + b, x == y, etc.) }{\pageref{structBinaryExpressionNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structBlockStatementNode}{Block\+Statement\+Node}} \\*A block statement \{ \mbox{[}statements... \mbox{]} \} }{\pageref{structBlockStatementNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structBooleanLiteralNode}{Boolean\+Literal\+Node}} \\*A boolean literal (true or false) }{\pageref{structBooleanLiteralNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structDictLiteralNode}{Dict\+Literal\+Node}} \\*A dictionary literal (e.\+g., \{key\+: value, key2\+: value2\}) }{\pageref{structDictLiteralNode}}{}
 \item\contentsline{section}{\mbox{\hyperlink{structExpressionNode}{Expression\+Node}} \\*Base class for all expressions }{\pageref{structExpressionNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structExpressionStatementNode}{Expression\+Statement\+Node}} \\*A wrapper around a expression (but it is a statement) }{\pageref{structExpressionStatementNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structFloatLiteralNode}{Float\+Literal\+Node}} \\*A float literal }{\pageref{structFloatLiteralNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structForLoopStatementNode}{For\+Loop\+Statement\+Node}} }{\pageref{structForLoopStatementNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{classGCHeap}{GCHeap}} \\*Garbage collection heap manager }{\pageref{classGCHeap}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structGCObject}{GCObject}} \\*Base class for all garbage-\/collected objects }{\pageref{structGCObject}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structIdentifierNode}{Identifier\+Node}} \\*A identifier }{\pageref{structIdentifierNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structIfElseExpressionNode}{If\+Else\+Expression\+Node}} \\*An if-\/else expression (e.\+g., if condition \{ then\+\_\+expr \} else \{ else\+\_\+expr \}) }{\pageref{structIfElseExpressionNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structIntegerLiteralNode}{Integer\+Literal\+Node}} \\*A integer literal }{\pageref{structIntegerLiteralNode}}{}
 \item\contentsline{section}{\mbox{\hyperlink{classLexer}{Lexer}} \\*\doxylink{structToken}{Token} stream implementation }{\pageref{classLexer}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structLiteralNode}{Literal\+Node}} \\*Base class for all literals }{\pageref{structLiteralNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structPEBBLObject}{PEBBLObject}} \\*A value type that uses Na\+N-\/boxing to store different types efficiently }{\pageref{structPEBBLObject}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structProgramNode}{Program\+Node}} \\*The root of all ASTs (sorta like a block statement, but the block is global) }{\pageref{structProgramNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structReturnStatementNode}{Return\+Statement\+Node}} \\*A return statement (different from a implicit return, e.\+g. 5; will become a expression statement, return 5; will become this) }{\pageref{structReturnStatementNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{classRootHandle}{Root\+Handle}} \\*RAII handle for managing GC roots }{\pageref{classRootHandle}}{}
 \item\contentsline{section}{\mbox{\hyperlink{structStatementNode}{Statement\+Node}} \\*Base class for all statements }{\pageref{structStatementNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structStringLiteralNode}{String\+Literal\+Node}} \\*A string literal }{\pageref{structStringLiteralNode}}{}
 \item\contentsline{section}{\mbox{\hyperlink{structToken}{Token}} }{\pageref{structToken}}{}
+\item\contentsline{section}{\mbox{\hyperlink{classTracer}{Tracer}} \\*\doxylink{classTracer}{Tracer} for marking reachable objects during garbage collection }{\pageref{classTracer}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structUnaryExpressionNode}{Unary\+Expression\+Node}} \\*A unary expression (e.\+g., !x, -\/y, etc.) }{\pageref{structUnaryExpressionNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structVariableStatementNode}{Variable\+Statement\+Node}} \\*A variable declaration/definition\+: let immut = 5; var mut = 5; etc }{\pageref{structVariableStatementNode}}{}
+\item\contentsline{section}{\mbox{\hyperlink{structWhileLoopStatementNode}{While\+Loop\+Statement\+Node}} \\*A while loop (e.\+g., while x \texorpdfstring{$<$}{<} y \{ let x = 5 let y = 4;\}) }{\pageref{structWhileLoopStatementNode}}{}
 \end{DoxyCompactList}

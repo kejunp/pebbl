@@ -1,0 +1,105 @@
+\doxysection{Tracer Class Reference}
+\hypertarget{classTracer}{}\label{classTracer}\index{Tracer@{Tracer}}
+
+
+\doxylink{classTracer}{Tracer} for marking reachable objects during garbage collection.  
+
+
+
+
+{\ttfamily \#include $<$gc.\+hpp$>$}
+
+
+
+Collaboration diagram for Tracer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classTracer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTracer_a27b316126186c63ae6e9c0e6510b914c}{Tracer}} (\mbox{\hyperlink{classGCHeap}{GCHeap}} \&heap)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTracer_a81885e30cdeeec4ef5fc0cfa5a225054}{mark}} (\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}obj)
+\begin{DoxyCompactList}\small\item\em Mark an object as reachable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGCHeap}{GCHeap}} \& \mbox{\hyperlink{classTracer_a7e283d54bcc204c7c2bc2e69450bb347}{heap\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Reference to the owning heap. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classTracer_a4a25ba2968fcd38f03222e0a9ed46996}{worklist\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Worklist of objects to trace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classTracer}{Tracer} for marking reachable objects during garbage collection. 
+
+The \doxylink{classTracer}{Tracer} class manages the marking phase of garbage collection, using a worklist algorithm to traverse the object graph and mark all reachable objects. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTracer_a27b316126186c63ae6e9c0e6510b914c}\label{classTracer_a27b316126186c63ae6e9c0e6510b914c} 
+\index{Tracer@{Tracer}!Tracer@{Tracer}}
+\index{Tracer@{Tracer}!Tracer@{Tracer}}
+\doxysubsubsection{\texorpdfstring{Tracer()}{Tracer()}}
+{\footnotesize\ttfamily Tracer\+::\+Tracer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGCHeap}{GCHeap}} \&}]{heap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heap} & The GC heap this tracer belongs to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTracer_a81885e30cdeeec4ef5fc0cfa5a225054}\label{classTracer_a81885e30cdeeec4ef5fc0cfa5a225054} 
+\index{Tracer@{Tracer}!mark@{mark}}
+\index{mark@{mark}!Tracer@{Tracer}}
+\doxysubsubsection{\texorpdfstring{mark()}{mark()}}
+{\footnotesize\ttfamily void Tracer\+::mark (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGCObject}{GCObject}} \texorpdfstring{$\ast$}{*}}]{obj }\end{DoxyParamCaption})}
+
+
+
+Mark an object as reachable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to mark (can be nullptr)\\
+\hline
+\end{DoxyParams}
+If the object is not null and not already marked, it will be marked and added to the worklist for further tracing. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classTracer_a7e283d54bcc204c7c2bc2e69450bb347}\label{classTracer_a7e283d54bcc204c7c2bc2e69450bb347} 
+\index{Tracer@{Tracer}!heap\_@{heap\_}}
+\index{heap\_@{heap\_}!Tracer@{Tracer}}
+\doxysubsubsection{\texorpdfstring{heap\_}{heap\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGCHeap}{GCHeap}}\& Tracer\+::heap\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the owning heap. 
+
+\Hypertarget{classTracer_a4a25ba2968fcd38f03222e0a9ed46996}\label{classTracer_a4a25ba2968fcd38f03222e0a9ed46996} 
+\index{Tracer@{Tracer}!worklist\_@{worklist\_}}
+\index{worklist\_@{worklist\_}!Tracer@{Tracer}}
+\doxysubsubsection{\texorpdfstring{worklist\_}{worklist\_}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structGCObject}{GCObject}}\texorpdfstring{$\ast$}{*}$>$ Tracer\+::worklist\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Worklist of objects to trace. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/runtime/\mbox{\hyperlink{gc_8hpp}{gc.\+hpp}}\item 
+src/runtime/\mbox{\hyperlink{gc_8cpp}{gc.\+cpp}}\end{DoxyCompactItemize}

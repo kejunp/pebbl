@@ -16,7 +16,7 @@ Inheritance diagram for ASTNode\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=286pt]{structASTNode__inherit__graph}
+\includegraphics[width=350pt]{structASTNode__inherit__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
@@ -24,9 +24,9 @@ Inheritance diagram for ASTNode\+:
 \item 
 virtual \mbox{\hyperlink{structASTNode_a578124183c58a444f3fd7668848ea887}{\texorpdfstring{$\sim$}{\string~}\+ASTNode}} ()=default
 \item 
-virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structASTNode_a7c95573c2712fd7c0c57002f854343dd}{type}} () const =0
+virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} \mbox{\hyperlink{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}{type}} () const noexcept=0
 \begin{DoxyCompactList}\small\item\em Gives the type of the AST node. \end{DoxyCompactList}\item 
-virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff}{get\+\_\+token}} () const
+virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}{get\+\_\+token}} () const noexcept
 \begin{DoxyCompactList}\small\item\em Gives a pointer to the token, if no meaningful token, return nullptr. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -43,34 +43,42 @@ Base class of all AST nodes.
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff}\label{structASTNode_ac155be5203ab97e5a4f13d9bca44f9ff} 
+\Hypertarget{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef}\label{structASTNode_a0d46b9fdc8b734d633622ce6008b35ef} 
 \index{ASTNode@{ASTNode}!get\_token@{get\_token}}
 \index{get\_token@{get\_token}!ASTNode@{ASTNode}}
 \doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}}
-{\footnotesize\ttfamily virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} ASTNode\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{structToken}{Token}} \texorpdfstring{$\ast$}{*} ASTNode\+::get\+\_\+token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
 Gives a pointer to the token, if no meaningful token, return nullptr. 
 
 \begin{DoxyReturn}{Returns}
-Returns a pointer to the token of the AST node (Binary\+Expression\+Node will return whatever the operator is, etc.) 
+Returns a pointer to the token of the AST node (\doxylink{structBinaryExpressionNode}{Binary\+Expression\+Node} will return whatever the operator is, etc.) 
 \end{DoxyReturn}
-\Hypertarget{structASTNode_a7c95573c2712fd7c0c57002f854343dd}\label{structASTNode_a7c95573c2712fd7c0c57002f854343dd} 
+
+
+Reimplemented in \mbox{\hyperlink{structIdentifierNode_a0349a14514d6e236ebefff3d6ee266f5}{Identifier\+Node}}, \mbox{\hyperlink{structVariableStatementNode_aa5d6a0f805effeae91aed26e6471cca2}{Variable\+Statement\+Node}}, \mbox{\hyperlink{structReturnStatementNode_a02abf6485693ffc3dd4724dff4bc7f6f}{Return\+Statement\+Node}}, \mbox{\hyperlink{structForLoopStatementNode_aea760db529ed75606409b45a943eb118}{For\+Loop\+Statement\+Node}}, \mbox{\hyperlink{structWhileLoopStatementNode_a92c366c422c1cfbb45bd600c169e80f1}{While\+Loop\+Statement\+Node}}, \mbox{\hyperlink{structExpressionStatementNode_aa16c7852db034c03dec553079ea04af3}{Expression\+Statement\+Node}}, \mbox{\hyperlink{structIntegerLiteralNode_a4d1d6c4739a93b5540f420594839bbd7}{Integer\+Literal\+Node}}, \mbox{\hyperlink{structStringLiteralNode_ade9c5c6bdae844a6d3f40e58d8c94ab7}{String\+Literal\+Node}}, \mbox{\hyperlink{structFloatLiteralNode_af83d74b9030c0eddefb2878981518fe7}{Float\+Literal\+Node}}, \mbox{\hyperlink{structBooleanLiteralNode_ac5342faded9255db8609e35babd3d317}{Boolean\+Literal\+Node}}, \mbox{\hyperlink{structArrayLiteralNode_a6bc86e9243aa22df3635bf88d3f9ec8e}{Array\+Literal\+Node}}, \mbox{\hyperlink{structDictLiteralNode_acf0137476023233807756aea74ed0f43}{Dict\+Literal\+Node}}, \mbox{\hyperlink{structBinaryExpressionNode_a223d30b11266a5370ede2af03f6fbcae}{Binary\+Expression\+Node}}, \mbox{\hyperlink{structUnaryExpressionNode_a67f2c394ec057abc68c41b1ef876e694}{Unary\+Expression\+Node}}, \mbox{\hyperlink{structIfElseExpressionNode_ab20b58781c53f266f1dd5fc925acae75}{If\+Else\+Expression\+Node}}, and \mbox{\hyperlink{structAssignmentExpressionNode_a8913ac1765138e6dff3f278380ea9266}{Assignment\+Expression\+Node}}.
+
+\Hypertarget{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1}\label{structASTNode_a5fa2c9208b3223c3eb9843f3ac88d8b1} 
 \index{ASTNode@{ASTNode}!type@{type}}
 \index{type@{type}!ASTNode@{ASTNode}}
 \doxysubsubsection{\texorpdfstring{type()}{type()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} ASTNode\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{ast_8hpp_a79651fcda7a7a8e0caf509aefc4016f1}{ASTType}} ASTNode\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
 
 
 
 Gives the type of the AST node. 
 
 \begin{DoxyReturn}{Returns}
-Returns a scoped enum called ASTType (e.\+g., Let\+Statement -\/\texorpdfstring{$>$}{>} ASTTYPE\+\_\+\+LET\+\_\+\+STATEMENT) 
+Returns a scoped enum called ASTType (e.\+g., \doxylink{structVariableStatementNode}{Variable\+Statement\+Node} -\/\texorpdfstring{$>$}{>} Ast\+Type\+::\+VARIABLE\+\_\+\+STATEMENT) 
 \end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{structProgramNode_af9943a553fe18e49337add6939b4d7d3}{Program\+Node}}, \mbox{\hyperlink{structIdentifierNode_a29f9d987eeb0aa61b369a023b12446a5}{Identifier\+Node}}, \mbox{\hyperlink{structVariableStatementNode_aaabcee6642d6d48cf81d109991ff76ac}{Variable\+Statement\+Node}}, \mbox{\hyperlink{structReturnStatementNode_af46d78ff38da728934d0856b31fdc699}{Return\+Statement\+Node}}, \mbox{\hyperlink{structForLoopStatementNode_a2d7a1aebfaa4a9ecddf810157b791dc8}{For\+Loop\+Statement\+Node}}, \mbox{\hyperlink{structWhileLoopStatementNode_a646c69ef9c222944a5ac8183a217dff2}{While\+Loop\+Statement\+Node}}, \mbox{\hyperlink{structBlockStatementNode_a0f17ac7da7acc6fab82a201f2f26f8bf}{Block\+Statement\+Node}}, \mbox{\hyperlink{structExpressionStatementNode_ab6dfe80c3cd9a9dcd926b31d493d726f}{Expression\+Statement\+Node}}, \mbox{\hyperlink{structIntegerLiteralNode_af362672ffdc13114b94b726c168c4c43}{Integer\+Literal\+Node}}, \mbox{\hyperlink{structStringLiteralNode_ad8d7e582e52b72c9b673c8f5fd8428b5}{String\+Literal\+Node}}, \mbox{\hyperlink{structFloatLiteralNode_af93082041ef1b3840fcf6d7b2ac33fac}{Float\+Literal\+Node}}, \mbox{\hyperlink{structBooleanLiteralNode_ab85da48b96f37e2ae82a8cf0a391ac09}{Boolean\+Literal\+Node}}, \mbox{\hyperlink{structArrayLiteralNode_aee9d94aab48520fd4d578dd2c0650c63}{Array\+Literal\+Node}}, \mbox{\hyperlink{structDictLiteralNode_ab0c5d4fe2c486c25fed41362dd23faa8}{Dict\+Literal\+Node}}, \mbox{\hyperlink{structBinaryExpressionNode_ac31704079fbf2c8d811e605aff008d49}{Binary\+Expression\+Node}}, \mbox{\hyperlink{structUnaryExpressionNode_a2304dc5ec27d8cde89cb6e3a3d2b4aa4}{Unary\+Expression\+Node}}, \mbox{\hyperlink{structIfElseExpressionNode_a983a1c24a6a51d080ff6a3cf232c0af7}{If\+Else\+Expression\+Node}}, and \mbox{\hyperlink{structAssignmentExpressionNode_a1c599714f1e05ca7034a60f18409385d}{Assignment\+Expression\+Node}}.
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}
+src/parser/ast\+\_\+generation/\mbox{\hyperlink{ast_8hpp}{ast.\+hpp}}\end{DoxyCompactItemize}
