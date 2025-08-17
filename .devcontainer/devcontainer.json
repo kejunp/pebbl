@@ -36,7 +36,8 @@
         "ms-vscode.cpptools",
         "ms-vscode.cmake-tools",
         "twxs.cmake",
-        "xaver.clang-format"
+        "xaver.clang-format",
+        "anthropic.claude-code"
       ]
     }
   }

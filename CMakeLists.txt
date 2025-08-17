@@ -15,6 +15,7 @@ set(HEADER_DIRS
   src/parser/lexer
   src/parser/ast_generation
   src/runtime
+  src/runtime/object
   src/
 )
 
