@@ -231,11 +231,23 @@ std::unique_ptr<ForLoopStatementNode> ASTGenerator::parse_for_statement() {
 
   stmt->identifier = parse_identifier();
 
-  if (!consume_token(TokenType::IDENTIFIER, "Expected 'in' keyword")) {
+  if (!consume_token(TokenType::IN, "Expected 'in' keyword")) {
     return nullptr;
   }
 
   stmt->iterable = parse_expression();
+  
+  if (!stmt->iterable) {
+    report_error("Expected expression after 'in'");
+    return nullptr;
+  }
+
+  stmt->body = parse_block_statement();
+  
+  if (!stmt->body) {
+    report_error("Expected block statement for for loop body");
+    return nullptr;
+  }
 
   return stmt;
 }
@@ -244,13 +256,11 @@ std::unique_ptr<ExpressionStatementNode> ASTGenerator::parse_expression_statemen
   auto stmt = std::make_unique<ExpressionStatementNode>();
   stmt->expression = parse_expression();
   
-  // Don't require semicolon for expression statements
-  // The parser will handle program completion detection separately
   if (!stmt->expression) {
     return nullptr;
   }
 
-  // Optionally consume semicolon if present, but don't require it
+  // Consume semicolon if present
   if (check_token(TokenType::SEMICOLON)) {
     advance_token();
   }
@@ -442,6 +452,10 @@ std::unique_ptr<ExpressionNode> ASTGenerator::parse_primary() {
       consume_token(TokenType::RPAREN, "Expected ')' after expression");
       return expr;
     }
+    // Semicolon and EOF indicate end of expression, not an error
+    case TokenType::SEMICOLON:
+    case TokenType::EOF_TYPE:
+      return nullptr;
     default:
       report_error("Unexpected token in expression");
       return nullptr;

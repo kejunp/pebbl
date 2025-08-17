@@ -166,6 +166,7 @@ struct ForLoopStatementNode final : StatementNode {
   Token token;  ///< Always a token with TokenType::FOR and lexeme "for"
   std::unique_ptr<IdentifierNode> identifier;  ///< The iterator (e.g. for [identifier] in range..)
   std::unique_ptr<ExpressionNode> iterable;    ///< The thing to iterate over (e.g., a list)
+  std::unique_ptr<BlockStatementNode> body;    ///< The loop body
 
   /**
    * @return Returns ASTType::FOR_LOOP_STATEMENT

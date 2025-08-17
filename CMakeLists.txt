@@ -9,6 +9,9 @@ set(SOURCES
   src/parser/lexer/lexer.cpp
   src/parser/ast_generation/ast_generator.cpp
   src/runtime/gc.cpp
+  src/runtime/object/object.cpp
+  src/runtime/evaluator/environment.cpp
+  src/runtime/evaluator/interpreter.cpp
 )
 
 set(HEADER_DIRS
@@ -16,6 +19,7 @@ set(HEADER_DIRS
   src/parser/ast_generation
   src/runtime
   src/runtime/object
+  src/runtime/evaluator
   src/
 )
 
