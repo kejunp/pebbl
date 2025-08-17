@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file tokens.hpp
+ * @brief Token definitions and utilities for the PEBBL lexer
+ */
+
 #pragma once
 
 #include <string>

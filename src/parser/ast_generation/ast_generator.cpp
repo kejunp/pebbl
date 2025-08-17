@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file ast_generator.cpp
+ * @brief Implementation of the recursive descent parser for generating ASTs
+ */
+
 #include "ast_generator.hpp"
 
 #include <iostream>

@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file common.hpp
+ * @brief Common definitions and utilities used throughout the PEBBL project
+ */
+
 #pragma once
 
 #include <cstddef>

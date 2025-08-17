@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Main entry point and testing for the PEBBL language compiler
+ */
+
 #include <iostream>
 #include <string>
 #include "lexer.hpp"

@@ -1,3 +1,8 @@
+/**
+ * @file object.cpp
+ * @brief Implementation of the PEBBLObject NaN-boxing system
+ */
+
 #include "object.hpp"
 #include "gc.hpp"
 #include <cstring>

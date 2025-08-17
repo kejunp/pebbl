@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file ast_generator.hpp
+ * @brief Recursive descent parser for generating Abstract Syntax Trees from tokens
+ */
+
 #pragma once
 
 #include <memory>

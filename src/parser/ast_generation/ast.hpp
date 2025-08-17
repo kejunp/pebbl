@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file ast.hpp
+ * @brief Abstract Syntax Tree node definitions for the PEBBL language
+ */
+
 #pragma once
 
 #include <boost/multiprecision/cpp_int.hpp>

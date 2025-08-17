@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file lexer.hpp
+ * @brief Lexical analyzer for tokenizing PEBBL source code
+ */
+
 #pragma once
 
 #include <string>

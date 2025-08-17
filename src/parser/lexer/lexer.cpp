@@ -14,6 +14,11 @@
    limitations under the License.
 */
 
+/**
+ * @file lexer.cpp
+ * @brief Implementation of the lexical analyzer for PEBBL source code
+ */
+
 #include "lexer.hpp"
 
 #include <cctype>
