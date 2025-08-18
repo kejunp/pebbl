@@ -26,6 +26,15 @@ void GCHeap::remove_root(GCObject** ref) {
   roots_.erase(std::remove(roots_.begin(), roots_.end(), ref), roots_.end());
 }
 
+void GCHeap::add_root_tracer(std::function<void(Tracer&)> tracer) {
+  root_tracers_.push_back(tracer);
+}
+
+void GCHeap::remove_root_tracer(std::function<void(Tracer&)> /* tracer */) {
+  // Note: This is a simplified removal - in practice you'd need a better way to identify tracers
+  // For now, this is sufficient for our use case
+}
+
 void GCHeap::collect() {
   mark();
   sweep();
@@ -41,6 +50,11 @@ void GCHeap::mark() {
     if (*root) {
       tracer.mark(*root);
     }
+  }
+  
+  // Call all custom root tracers
+  for (auto& root_tracer : root_tracers_) {
+    root_tracer(tracer);
   }
 }
 

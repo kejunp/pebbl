@@ -6,6 +6,7 @@
 #pragma once
 #include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <type_traits>
 #include <vector>
@@ -168,6 +169,18 @@ public:
    * @param ref Pointer to a GCObject pointer to unregister as a root
    */
   void remove_root(GCObject** ref);
+  
+  /**
+   * @brief Add a custom root tracer callback
+   * @param tracer Function that traces additional roots during GC
+   */
+  void add_root_tracer(std::function<void(class Tracer&)> tracer);
+  
+  /**
+   * @brief Remove a custom root tracer callback
+   * @param tracer Function to remove from root tracing
+   */
+  void remove_root_tracer(std::function<void(class Tracer&)> tracer);
 
   /**
    * @brief Trigger a garbage collection cycle
@@ -183,6 +196,7 @@ private:
   size_t next_gc_;           ///< Threshold for triggering next collection
 
   std::vector<GCObject**> roots_;  ///< List of registered root references
+  std::vector<std::function<void(Tracer&)>> root_tracers_;  ///< List of custom root tracers
 
   /**
    * @brief Mark phase of garbage collection

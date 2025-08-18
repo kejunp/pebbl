@@ -5,12 +5,19 @@
 
 #include "interpreter.hpp"
 #include "builtin_objects.hpp"
+#include "builtin_funcs.hpp"
 #include <sstream>
 #include <iostream>
 
 Interpreter::Interpreter(GCHeap& heap) : heap_(heap) {
   global_env_ = std::make_shared<Environment>();
   current_env_ = global_env_;
+  
+  // Register this interpreter as a GC root tracer
+  heap_.add_root_tracer([this](Tracer& tracer) {
+    this->trace_roots(tracer);
+  });
+  
   register_builtin_functions();
 }
 
@@ -742,166 +749,52 @@ void Interpreter::runtime_error(const std::string& message, const Token* token) 
 }
 
 void Interpreter::register_builtin_functions() {
-  // print function - prints arguments and returns null
-  auto print_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
-    for (size_t i = 0; i < args.size(); ++i) {
-      if (i > 0) std::cout << " ";
-      std::cout << interp.stringify(args[i]);
-    }
-    std::cout << std::endl;
-    return PEBBLObject::make_null();
-  };
-  auto* print_builtin = heap_.allocate<PEBBLBuiltinFunction>("print", SIZE_MAX, print_fn);
+  // Register print function (variable arguments)
+  auto* print_builtin = heap_.allocate<PEBBLBuiltinFunction>("print", SIZE_MAX, BuiltinFunctions::print_impl);
   global_env_->define("print", PEBBLObject::make_gc_ptr(print_builtin), false);
 
-  // length function - returns length of strings, arrays, or dicts
-  auto length_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
-    if (args.size() != 1) {
-      interp.runtime_error("length() expects exactly 1 argument, got " + std::to_string(args.size()));
-      return PEBBLObject::make_null();
-    }
-    
-    const auto& obj = args[0];
-    if (obj.is_gc_ptr()) {
-      auto* gc_obj = obj.as_gc_ptr();
-      switch (gc_obj->tag) {
-        case GCTag::STRING: {
-          auto* str = static_cast<PEBBLString*>(gc_obj);
-          return PEBBLObject::make_int32(static_cast<int32_t>(str->length()));
-        }
-        case GCTag::ARRAY: {
-          auto* arr = static_cast<PEBBLArray*>(gc_obj);
-          return PEBBLObject::make_int32(static_cast<int32_t>(arr->length()));
-        }
-        case GCTag::DICT: {
-          auto* dict = static_cast<PEBBLDict*>(gc_obj);
-          return PEBBLObject::make_int32(static_cast<int32_t>(dict->size()));
-        }
-        default:
-          break;
-      }
-    }
-    interp.runtime_error("length() can only be called on strings, arrays, or dictionaries");
-    return PEBBLObject::make_null();
-  };
-  auto* length_builtin = heap_.allocate<PEBBLBuiltinFunction>("length", 1, length_fn);
+  // Register length function
+  auto* length_builtin = heap_.allocate<PEBBLBuiltinFunction>("length", 1, BuiltinFunctions::length_impl);
   global_env_->define("length", PEBBLObject::make_gc_ptr(length_builtin), false);
 
-  // type function - returns the type of an object as a string
-  auto type_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
-    if (args.size() != 1) {
-      interp.runtime_error("type() expects exactly 1 argument, got " + std::to_string(args.size()));
-      return PEBBLObject::make_null();
-    }
-    
-    const auto& obj = args[0];
-    std::string type_name;
-    
-    if (obj.is_null()) {
-      type_name = "null";
-    } else if (obj.is_bool()) {
-      type_name = "boolean";
-    } else if (obj.is_int32()) {
-      type_name = "integer";
-    } else if (obj.is_double()) {
-      type_name = "float";
-    } else if (obj.is_gc_ptr()) {
-      auto* gc_obj = obj.as_gc_ptr();
-      switch (gc_obj->tag) {
-        case GCTag::STRING:
-          type_name = "string";
-          break;
-        case GCTag::ARRAY:
-          type_name = "array";
-          break;
-        case GCTag::DICT:
-          type_name = "dict";
-          break;
-        case GCTag::FUNCTION:
-          type_name = "function";
-          break;
-        case GCTag::BUILTIN_FUNCTION:
-          type_name = "builtin_function";
-          break;
-        default:
-          type_name = "object";
-          break;
-      }
-    } else {
-      type_name = "unknown";
-    }
-    
-    auto* str_obj = interp.heap_.allocate<PEBBLString>(type_name);
-    return PEBBLObject::make_gc_ptr(str_obj);
-  };
-  auto* type_builtin = heap_.allocate<PEBBLBuiltinFunction>("type", 1, type_fn);
+  // Register type function
+  auto* type_builtin = heap_.allocate<PEBBLBuiltinFunction>("type", 1, BuiltinFunctions::type_impl);
   global_env_->define("type", PEBBLObject::make_gc_ptr(type_builtin), false);
 
-  // str function - converts values to strings
-  auto str_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
-    if (args.size() != 1) {
-      interp.runtime_error("str() expects exactly 1 argument, got " + std::to_string(args.size()));
-      return PEBBLObject::make_null();
-    }
-    
-    std::string str_value = interp.stringify(args[0]);
-    auto* str_obj = interp.heap_.allocate<PEBBLString>(str_value);
-    return PEBBLObject::make_gc_ptr(str_obj);
-  };
-  auto* str_builtin = heap_.allocate<PEBBLBuiltinFunction>("str", 1, str_fn);
+  // Register str function
+  auto* str_builtin = heap_.allocate<PEBBLBuiltinFunction>("str", 1, BuiltinFunctions::str_impl);
   global_env_->define("str", PEBBLObject::make_gc_ptr(str_builtin), false);
 
-  // push function - adds element to array
-  auto push_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
-    if (args.size() != 2) {
-      interp.runtime_error("push() expects exactly 2 arguments, got " + std::to_string(args.size()));
-      return PEBBLObject::make_null();
-    }
-    
-    const auto& array_obj = args[0];
-    const auto& value = args[1];
-    
-    if (!array_obj.is_gc_ptr()) {
-      interp.runtime_error("push() first argument must be an array");
-      return PEBBLObject::make_null();
-    }
-    
-    auto* gc_obj = array_obj.as_gc_ptr();
-    if (gc_obj->tag != GCTag::ARRAY) {
-      interp.runtime_error("push() first argument must be an array");
-      return PEBBLObject::make_null();
-    }
-    
-    auto* array = static_cast<PEBBLArray*>(gc_obj);
-    array->push(value);
-    return PEBBLObject::make_null();
-  };
-  auto* push_builtin = heap_.allocate<PEBBLBuiltinFunction>("push", 2, push_fn);
+  // Register push function
+  auto* push_builtin = heap_.allocate<PEBBLBuiltinFunction>("push", 2, BuiltinFunctions::push_impl);
   global_env_->define("push", PEBBLObject::make_gc_ptr(push_builtin), false);
 
-  // pop function - removes and returns last element from array
-  auto pop_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
-    if (args.size() != 1) {
-      interp.runtime_error("pop() expects exactly 1 argument, got " + std::to_string(args.size()));
-      return PEBBLObject::make_null();
-    }
-    
-    const auto& array_obj = args[0];
-    
-    if (!array_obj.is_gc_ptr()) {
-      interp.runtime_error("pop() argument must be an array");
-      return PEBBLObject::make_null();
-    }
-    
-    auto* gc_obj = array_obj.as_gc_ptr();
-    if (gc_obj->tag != GCTag::ARRAY) {
-      interp.runtime_error("pop() argument must be an array");
-      return PEBBLObject::make_null();
-    }
-    
-    auto* array = static_cast<PEBBLArray*>(gc_obj);
-    return array->pop();
-  };
-  auto* pop_builtin = heap_.allocate<PEBBLBuiltinFunction>("pop", 1, pop_fn);
+  // Register pop function
+  auto* pop_builtin = heap_.allocate<PEBBLBuiltinFunction>("pop", 1, BuiltinFunctions::pop_impl);
   global_env_->define("pop", PEBBLObject::make_gc_ptr(pop_builtin), false);
+}
+
+void Interpreter::trace_roots(Tracer& tracer) {
+  // Trace all objects stored in the global environment
+  trace_environment_objects(global_env_, tracer);
+  
+  // Also trace the current environment if it's different from global
+  if (current_env_ != global_env_) {
+    trace_environment_objects(current_env_, tracer);
+  }
+  
+  // Trace the return value if it's a GC object
+  if (return_value_.is_gc_ptr()) {
+    tracer.mark(return_value_.as_gc_ptr());
+  }
+}
+
+void Interpreter::trace_environment_objects(std::shared_ptr<Environment> env, Tracer& tracer) {
+  if (!env) return;
+  
+  // Trace all objects in this environment
+  env->trace_objects(tracer);
+  
+  // Recursively trace parent environments
+  trace_environment_objects(env->get_parent(), tracer);
 }

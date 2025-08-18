@@ -68,6 +68,15 @@ public:
    * @return String representation of the value
    */
   std::string stringify(PEBBLObject value);
+  
+  // GC root tracing
+  void trace_roots(class Tracer& tracer);
+  
+  // Heap access for builtin functions
+  GCHeap& get_heap() const { return heap_; }
+  
+  // Public error reporting for builtin functions
+  void report_error(const std::string& message) { runtime_error(message); }
 
 private:
   GCHeap& heap_;
@@ -105,6 +114,9 @@ private:
   // Scope management
   void push_environment(std::shared_ptr<Environment> env);
   void pop_environment();
+  
+  // Helper method for tracing environment objects
+  void trace_environment_objects(std::shared_ptr<Environment> env, class Tracer& tracer);
   
   // Error reporting
   void runtime_error(const std::string& message, const Token* token = nullptr);

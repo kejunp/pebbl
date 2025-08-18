@@ -4,6 +4,7 @@
  */
 
 #include "environment.hpp"
+#include "gc.hpp"
 #include <stdexcept>
 
 Environment::Environment(std::shared_ptr<Environment> parent) 
@@ -54,4 +55,13 @@ bool Environment::exists(const std::string& name) const {
   }
   
   return false;
+}
+
+void Environment::trace_objects(Tracer& tracer) const {
+  // Trace all GC objects in this environment's variables
+  for (const auto& [name, variable] : variables_) {
+    if (variable.value.is_gc_ptr()) {
+      tracer.mark(variable.value.as_gc_ptr());
+    }
+  }
 }

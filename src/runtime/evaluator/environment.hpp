@@ -10,6 +10,8 @@
 #include <memory>
 #include "object.hpp"
 
+class Tracer;
+
 /**
  * @brief Environment for storing variables and managing scopes
  * 
@@ -61,6 +63,12 @@ public:
    * @return Shared pointer to parent environment (may be null)
    */
   std::shared_ptr<Environment> get_parent() const { return parent_; }
+  
+  /**
+   * @brief Trace all GC objects in this environment
+   * @param tracer GC tracer to mark objects
+   */
+  void trace_objects(class Tracer& tracer) const;
 
 private:
   struct Variable {
