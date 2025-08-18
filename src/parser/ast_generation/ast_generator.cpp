@@ -342,26 +342,51 @@ std::unique_ptr<ExpressionNode> ASTGenerator::parse_assignment() {
 }
 
 std::unique_ptr<ExpressionNode> ASTGenerator::parse_if_else() {
-  auto expr = parse_logical_or();
-
+  // Check for if-else expression: if condition { then } else { else }
   if (check_token(TokenType::IF)) {
     auto if_expr = std::make_unique<IfElseExpressionNode>();
     if_expr->token = current_token_;
-    if_expr->then_expression = std::move(expr);
-
+    
     advance_token();
-
-    if_expr->condition = parse_expression();
-
+    
+    // Parse condition
+    if_expr->condition = parse_logical_or();
+    
+    // Expect opening brace for then expression
+    if (!consume_token(TokenType::LBRACE, "Expected '{' after if condition")) {
+      return nullptr;
+    }
+    
+    // Parse then expression
+    if_expr->then_expression = parse_expression();
+    
+    // Expect closing brace
+    if (!consume_token(TokenType::RBRACE, "Expected '}' after then expression")) {
+      return nullptr;
+    }
+    
+    // Optional else clause
     if (check_token(TokenType::ELSE)) {
       advance_token();
-      if_expr->else_expression = parse_if_else();
+      
+      // Expect opening brace for else expression
+      if (!consume_token(TokenType::LBRACE, "Expected '{' after else")) {
+        return nullptr;
+      }
+      
+      // Parse else expression
+      if_expr->else_expression = parse_expression();
+      
+      // Expect closing brace
+      if (!consume_token(TokenType::RBRACE, "Expected '}' after else expression")) {
+        return nullptr;
+      }
     }
-
+    
     return if_expr;
   }
-
-  return expr;
+  
+  return parse_logical_or();
 }
 
 std::unique_ptr<ExpressionNode> ASTGenerator::parse_logical_or() {

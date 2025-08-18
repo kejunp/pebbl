@@ -540,7 +540,12 @@ PEBBLObject Interpreter::execute_for_statement(const ForLoopStatementNode& stmt)
         auto* array = static_cast<PEBBLArray*>(gc_obj);
         for (const auto& element : array->elements) {
           // Bind loop variable to current element
-          current_env_->define(stmt.identifier->name, element, true);
+          // Use define for first iteration, then set for subsequent ones
+          if (!current_env_->exists(stmt.identifier->name)) {
+            current_env_->define(stmt.identifier->name, element, true);
+          } else {
+            current_env_->set(stmt.identifier->name, element);
+          }
           
           // Execute loop body
           result = execute(*stmt.body);
@@ -556,7 +561,12 @@ PEBBLObject Interpreter::execute_for_statement(const ForLoopStatementNode& stmt)
         for (const auto& [key, value] : dict->entries) {
           // Bind loop variable to current key
           PEBBLObject key_obj = PEBBLObject::make_gc_ptr(heap_.allocate<PEBBLString>(key));
-          current_env_->define(stmt.identifier->name, key_obj, true);
+          // Use define for first iteration, then set for subsequent ones
+          if (!current_env_->exists(stmt.identifier->name)) {
+            current_env_->define(stmt.identifier->name, key_obj, true);
+          } else {
+            current_env_->set(stmt.identifier->name, key_obj);
+          }
           
           // Execute loop body
           result = execute(*stmt.body);
