@@ -11,6 +11,7 @@
 Interpreter::Interpreter(GCHeap& heap) : heap_(heap) {
   global_env_ = std::make_shared<Environment>();
   current_env_ = global_env_;
+  register_builtin_functions();
 }
 
 PEBBLObject Interpreter::execute(const ProgramNode& program) {
@@ -21,6 +22,8 @@ PEBBLObject Interpreter::execute(const ProgramNode& program) {
   return_value_ = PEBBLObject::make_null();
   
   for (const auto& statement : program.statements) {
+    // Ensure we're always in the global environment for top-level statements
+    current_env_ = global_env_;
     result = execute(*statement);
     if (has_return_) {
       break;
@@ -451,6 +454,14 @@ std::string Interpreter::stringify(PEBBLObject value) {
         ss << "}";
         return ss.str();
       }
+      case GCTag::FUNCTION: {
+        auto* func = static_cast<PEBBLFunction*>(gc_obj);
+        return "<function " + func->name + ">";
+      }
+      case GCTag::BUILTIN_FUNCTION: {
+        auto* builtin = static_cast<PEBBLBuiltinFunction*>(gc_obj);
+        return "<builtin " + builtin->name + ">";
+      }
       default:
         return "<object>";
     }
@@ -637,6 +648,26 @@ PEBBLObject Interpreter::evaluate_call(const CallExpressionNode& expr) {
   }
   
   auto* gc_obj = function.as_gc_ptr();
+
+  if (gc_obj->tag == GCTag::BUILTIN_FUNCTION) {
+    auto* builtin_func = static_cast<PEBBLBuiltinFunction*>(gc_obj);
+
+    // Check arity for functions that have fixed arity (SIZE_MAX means variable arguments)
+    if (builtin_func->arity != SIZE_MAX && expr.arguments.size() != builtin_func->arity) {
+      runtime_error("Wrong number of arguments. Expected " + std::to_string(builtin_func->arity) + 
+                    ", got " + std::to_string(expr.arguments.size()), expr.get_token());
+      return PEBBLObject::make_null();
+    }
+
+    // Evaluate arguments
+    std::vector<PEBBLObject> args;
+    for (const auto& arg : expr.arguments) {
+      args.push_back(evaluate(*arg));
+    }
+
+    return builtin_func->function(args, *this);
+  }
+
   if (gc_obj->tag != GCTag::FUNCTION) {
     runtime_error("Not a function", expr.get_token());
     return PEBBLObject::make_null();
@@ -708,4 +739,169 @@ void Interpreter::runtime_error(const std::string& message, const Token* token) 
   }
   std::cerr << ": " << message << std::endl;
   throw RuntimeError(message, token);
+}
+
+void Interpreter::register_builtin_functions() {
+  // print function - prints arguments and returns null
+  auto print_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
+    for (size_t i = 0; i < args.size(); ++i) {
+      if (i > 0) std::cout << " ";
+      std::cout << interp.stringify(args[i]);
+    }
+    std::cout << std::endl;
+    return PEBBLObject::make_null();
+  };
+  auto* print_builtin = heap_.allocate<PEBBLBuiltinFunction>("print", SIZE_MAX, print_fn);
+  global_env_->define("print", PEBBLObject::make_gc_ptr(print_builtin), false);
+
+  // length function - returns length of strings, arrays, or dicts
+  auto length_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
+    if (args.size() != 1) {
+      interp.runtime_error("length() expects exactly 1 argument, got " + std::to_string(args.size()));
+      return PEBBLObject::make_null();
+    }
+    
+    const auto& obj = args[0];
+    if (obj.is_gc_ptr()) {
+      auto* gc_obj = obj.as_gc_ptr();
+      switch (gc_obj->tag) {
+        case GCTag::STRING: {
+          auto* str = static_cast<PEBBLString*>(gc_obj);
+          return PEBBLObject::make_int32(static_cast<int32_t>(str->length()));
+        }
+        case GCTag::ARRAY: {
+          auto* arr = static_cast<PEBBLArray*>(gc_obj);
+          return PEBBLObject::make_int32(static_cast<int32_t>(arr->length()));
+        }
+        case GCTag::DICT: {
+          auto* dict = static_cast<PEBBLDict*>(gc_obj);
+          return PEBBLObject::make_int32(static_cast<int32_t>(dict->size()));
+        }
+        default:
+          break;
+      }
+    }
+    interp.runtime_error("length() can only be called on strings, arrays, or dictionaries");
+    return PEBBLObject::make_null();
+  };
+  auto* length_builtin = heap_.allocate<PEBBLBuiltinFunction>("length", 1, length_fn);
+  global_env_->define("length", PEBBLObject::make_gc_ptr(length_builtin), false);
+
+  // type function - returns the type of an object as a string
+  auto type_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
+    if (args.size() != 1) {
+      interp.runtime_error("type() expects exactly 1 argument, got " + std::to_string(args.size()));
+      return PEBBLObject::make_null();
+    }
+    
+    const auto& obj = args[0];
+    std::string type_name;
+    
+    if (obj.is_null()) {
+      type_name = "null";
+    } else if (obj.is_bool()) {
+      type_name = "boolean";
+    } else if (obj.is_int32()) {
+      type_name = "integer";
+    } else if (obj.is_double()) {
+      type_name = "float";
+    } else if (obj.is_gc_ptr()) {
+      auto* gc_obj = obj.as_gc_ptr();
+      switch (gc_obj->tag) {
+        case GCTag::STRING:
+          type_name = "string";
+          break;
+        case GCTag::ARRAY:
+          type_name = "array";
+          break;
+        case GCTag::DICT:
+          type_name = "dict";
+          break;
+        case GCTag::FUNCTION:
+          type_name = "function";
+          break;
+        case GCTag::BUILTIN_FUNCTION:
+          type_name = "builtin_function";
+          break;
+        default:
+          type_name = "object";
+          break;
+      }
+    } else {
+      type_name = "unknown";
+    }
+    
+    auto* str_obj = interp.heap_.allocate<PEBBLString>(type_name);
+    return PEBBLObject::make_gc_ptr(str_obj);
+  };
+  auto* type_builtin = heap_.allocate<PEBBLBuiltinFunction>("type", 1, type_fn);
+  global_env_->define("type", PEBBLObject::make_gc_ptr(type_builtin), false);
+
+  // str function - converts values to strings
+  auto str_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
+    if (args.size() != 1) {
+      interp.runtime_error("str() expects exactly 1 argument, got " + std::to_string(args.size()));
+      return PEBBLObject::make_null();
+    }
+    
+    std::string str_value = interp.stringify(args[0]);
+    auto* str_obj = interp.heap_.allocate<PEBBLString>(str_value);
+    return PEBBLObject::make_gc_ptr(str_obj);
+  };
+  auto* str_builtin = heap_.allocate<PEBBLBuiltinFunction>("str", 1, str_fn);
+  global_env_->define("str", PEBBLObject::make_gc_ptr(str_builtin), false);
+
+  // push function - adds element to array
+  auto push_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
+    if (args.size() != 2) {
+      interp.runtime_error("push() expects exactly 2 arguments, got " + std::to_string(args.size()));
+      return PEBBLObject::make_null();
+    }
+    
+    const auto& array_obj = args[0];
+    const auto& value = args[1];
+    
+    if (!array_obj.is_gc_ptr()) {
+      interp.runtime_error("push() first argument must be an array");
+      return PEBBLObject::make_null();
+    }
+    
+    auto* gc_obj = array_obj.as_gc_ptr();
+    if (gc_obj->tag != GCTag::ARRAY) {
+      interp.runtime_error("push() first argument must be an array");
+      return PEBBLObject::make_null();
+    }
+    
+    auto* array = static_cast<PEBBLArray*>(gc_obj);
+    array->push(value);
+    return PEBBLObject::make_null();
+  };
+  auto* push_builtin = heap_.allocate<PEBBLBuiltinFunction>("push", 2, push_fn);
+  global_env_->define("push", PEBBLObject::make_gc_ptr(push_builtin), false);
+
+  // pop function - removes and returns last element from array
+  auto pop_fn = [](const std::vector<PEBBLObject>& args, Interpreter& interp) -> PEBBLObject {
+    if (args.size() != 1) {
+      interp.runtime_error("pop() expects exactly 1 argument, got " + std::to_string(args.size()));
+      return PEBBLObject::make_null();
+    }
+    
+    const auto& array_obj = args[0];
+    
+    if (!array_obj.is_gc_ptr()) {
+      interp.runtime_error("pop() argument must be an array");
+      return PEBBLObject::make_null();
+    }
+    
+    auto* gc_obj = array_obj.as_gc_ptr();
+    if (gc_obj->tag != GCTag::ARRAY) {
+      interp.runtime_error("pop() argument must be an array");
+      return PEBBLObject::make_null();
+    }
+    
+    auto* array = static_cast<PEBBLArray*>(gc_obj);
+    return array->pop();
+  };
+  auto* pop_builtin = heap_.allocate<PEBBLBuiltinFunction>("pop", 1, pop_fn);
+  global_env_->define("pop", PEBBLObject::make_gc_ptr(pop_builtin), false);
 }

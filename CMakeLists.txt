@@ -12,6 +12,7 @@ set(SOURCES
   src/runtime/object/object.cpp
   src/runtime/evaluator/environment.cpp
   src/runtime/evaluator/interpreter.cpp
+  src/runtime/builtins/
 )
 
 set(HEADER_DIRS
@@ -20,6 +21,7 @@ set(HEADER_DIRS
   src/runtime
   src/runtime/object
   src/runtime/evaluator
+  src/runtime/builtins
   src/
 )
 

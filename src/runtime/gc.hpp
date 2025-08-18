@@ -37,7 +37,8 @@ enum class GCTag : uint8_t {
   DICT,     ///< Dictionary object
   CLOSURE,  ///< Closure object
   UPVALUE,  ///< Upvalue object
-  FUNCTION  ///< Function object
+  FUNCTION,  ///< Function object
+  BUILTIN_FUNCTION ///< Native function that can't be written in pure PEBBL
 };
 
 /**

@@ -108,4 +108,7 @@ private:
   
   // Error reporting
   void runtime_error(const std::string& message, const Token* token = nullptr);
+  
+  // Builtin function management
+  void register_builtin_functions();
 };

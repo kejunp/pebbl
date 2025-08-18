@@ -5,9 +5,11 @@
 
 #pragma once
 
+#include <functional>
 #include <string>
-#include <vector>
 #include <unordered_map>
+#include <vector>
+
 #include "gc.hpp"
 #include "object.hpp"
 
@@ -18,17 +20,19 @@ class PEBBLString : public GCObject {
 public:
   std::string value;
 
-  explicit PEBBLString(const std::string& str) 
-    : GCObject(GCTag::STRING), value(str) {}
+  explicit PEBBLString(const std::string& str) : GCObject(GCTag::STRING), value(str) {
+  }
 
-  explicit PEBBLString(std::string&& str) 
-    : GCObject(GCTag::STRING), value(std::move(str)) {}
+  explicit PEBBLString(std::string&& str) : GCObject(GCTag::STRING), value(std::move(str)) {
+  }
 
   void trace(Tracer& /* tracer */) override {
     // Strings contain no GC references
   }
 
-  std::size_t length() const { return value.length(); }
+  std::size_t length() const {
+    return value.length();
+  }
 };
 
 /**
@@ -38,8 +42,9 @@ class PEBBLArray : public GCObject {
 public:
   std::vector<PEBBLObject> elements;
 
-  explicit PEBBLArray(std::vector<PEBBLObject> elems = {})
-    : GCObject(GCTag::ARRAY), elements(std::move(elems)) {}
+  explicit PEBBLArray(std::vector<PEBBLObject> elems = {}) :
+      GCObject(GCTag::ARRAY), elements(std::move(elems)) {
+  }
 
   void trace(Tracer& tracer) override {
     for (const auto& element : elements) {
@@ -49,7 +54,9 @@ public:
     }
   }
 
-  std::size_t length() const { return elements.size(); }
+  std::size_t length() const {
+    return elements.size();
+  }
 
   PEBBLObject get(std::size_t index) const {
     if (index >= elements.size()) {
@@ -86,8 +93,9 @@ class PEBBLDict : public GCObject {
 public:
   std::unordered_map<std::string, PEBBLObject> entries;
 
-  explicit PEBBLDict(std::unordered_map<std::string, PEBBLObject> ents = {})
-    : GCObject(GCTag::DICT), entries(std::move(ents)) {}
+  explicit PEBBLDict(std::unordered_map<std::string, PEBBLObject> ents = {}) :
+      GCObject(GCTag::DICT), entries(std::move(ents)) {
+  }
 
   void trace(Tracer& tracer) override {
     for (const auto& [key, value] : entries) {
@@ -97,7 +105,9 @@ public:
     }
   }
 
-  std::size_t size() const { return entries.size(); }
+  std::size_t size() const {
+    return entries.size();
+  }
 
   PEBBLObject get(const std::string& key) const {
     auto it = entries.find(key);
@@ -139,17 +149,41 @@ public:
   std::shared_ptr<class Environment> closure;
   const class BlockStatementNode* body;
 
-  PEBBLFunction(const std::string& func_name, 
-                std::vector<std::string> params,
-                std::shared_ptr<class Environment> env,
-                const class BlockStatementNode* func_body)
-    : GCObject(GCTag::FUNCTION), name(func_name), parameters(std::move(params)), 
-      closure(env), body(func_body) {}
+  PEBBLFunction(
+      const std::string& func_name,
+      std::vector<std::string> params,
+      std::shared_ptr<class Environment> env,
+      const class BlockStatementNode* func_body) :
+      GCObject(GCTag::FUNCTION), name(func_name), parameters(std::move(params)), closure(env),
+      body(func_body) {
+  }
 
   void trace(Tracer& /* tracer */) override {
     // The closure environment is shared_ptr managed
     // The body is owned by the AST, not us
   }
 
-  std::size_t arity() const { return parameters.size(); }
+  std::size_t arity() const {
+    return parameters.size();
+  }
+};
+
+/**
+ * @brief Native C++ function callable from PEBBL
+ */
+class PEBBLBuiltinFunction : public GCObject {
+public:
+  using NativeFn = std::function<PEBBLObject(const std::vector<PEBBLObject>&, Interpreter&)>;
+
+  std::string name;
+  size_t arity;
+  NativeFn function;
+
+  PEBBLBuiltinFunction(const std::string& func_name, size_t param_count, NativeFn fn) :
+      GCObject(GCTag::BUILTIN_FUNCTION), name(func_name), arity(param_count), function(fn) {
+  }
+
+  void trace(Tracer& /* tracer */) override {
+    // Native functions contain no GC references
+  }
 };
