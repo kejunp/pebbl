@@ -213,7 +213,8 @@ private:
    * @brief Parses a call expression (function calls)
    * @return Call expression AST node
    */
-  std::unique_ptr<CallExpressionNode> parse_call_expression(std::unique_ptr<ExpressionNode> function);
+  std::unique_ptr<CallExpressionNode> parse_call_expression(
+      std::unique_ptr<ExpressionNode> function);
 
   // Literal parsing methods
   /**

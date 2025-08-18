@@ -5,10 +5,11 @@
 
 #pragma once
 
-#include "builtin_objects.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "builtin_objects.hpp"
 
 // Forward declaration
 class Interpreter;
@@ -44,7 +45,7 @@ inline PEBBLObject length_impl(const std::vector<PEBBLObject>& args, class Inter
     interp.report_error("length() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
   }
-  
+
   const auto& obj = args[0];
   if (obj.is_gc_ptr()) {
     auto* gc_obj = obj.as_gc_ptr();
@@ -80,10 +81,10 @@ inline PEBBLObject type_impl(const std::vector<PEBBLObject>& args, class Interpr
     interp.report_error("type() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
   }
-  
+
   const auto& obj = args[0];
   std::string type_name;
-  
+
   if (obj.is_null()) {
     type_name = "null";
   } else if (obj.is_bool()) {
@@ -117,7 +118,7 @@ inline PEBBLObject type_impl(const std::vector<PEBBLObject>& args, class Interpr
   } else {
     type_name = "unknown";
   }
-  
+
   auto* str_obj = interp.get_heap().allocate<PEBBLString>(type_name);
   return PEBBLObject::make_gc_ptr(str_obj);
 }
@@ -133,7 +134,7 @@ inline PEBBLObject str_impl(const std::vector<PEBBLObject>& args, class Interpre
     interp.report_error("str() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
   }
-  
+
   std::string str_value = interp.stringify(args[0]);
   auto* str_obj = interp.get_heap().allocate<PEBBLString>(str_value);
   return PEBBLObject::make_gc_ptr(str_obj);
@@ -150,21 +151,21 @@ inline PEBBLObject push_impl(const std::vector<PEBBLObject>& args, class Interpr
     interp.report_error("push() expects exactly 2 arguments, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
   }
-  
+
   const auto& array_obj = args[0];
   const auto& value = args[1];
-  
+
   if (!array_obj.is_gc_ptr()) {
     interp.report_error("push() first argument must be an array");
     return PEBBLObject::make_null();
   }
-  
+
   auto* gc_obj = array_obj.as_gc_ptr();
   if (gc_obj->tag != GCTag::ARRAY) {
     interp.report_error("push() first argument must be an array");
     return PEBBLObject::make_null();
   }
-  
+
   auto* array = static_cast<PEBBLArray*>(gc_obj);
   array->push(value);
   return PEBBLObject::make_null();
@@ -181,22 +182,22 @@ inline PEBBLObject pop_impl(const std::vector<PEBBLObject>& args, class Interpre
     interp.report_error("pop() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
   }
-  
+
   const auto& array_obj = args[0];
-  
+
   if (!array_obj.is_gc_ptr()) {
     interp.report_error("pop() argument must be an array");
     return PEBBLObject::make_null();
   }
-  
+
   auto* gc_obj = array_obj.as_gc_ptr();
   if (gc_obj->tag != GCTag::ARRAY) {
     interp.report_error("pop() argument must be an array");
     return PEBBLObject::make_null();
   }
-  
+
   auto* array = static_cast<PEBBLArray*>(gc_obj);
   return array->pop();
 }
 
-} // namespace BuiltinFunctions
+}  // namespace BuiltinFunctions

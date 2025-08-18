@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <vector>
+
 #include "ast.hpp"
 #include "environment.hpp"
 #include "gc.hpp"
@@ -17,10 +18,13 @@
  */
 class RuntimeError : public std::runtime_error {
 public:
-  RuntimeError(const std::string& message, const Token* token = nullptr)
-    : std::runtime_error(message), token_(token) {}
+  RuntimeError(const std::string& message, const Token* token = nullptr) :
+      std::runtime_error(message), token_(token) {
+  }
 
-  const Token* get_token() const { return token_; }
+  const Token* get_token() const {
+    return token_;
+  }
 
 private:
   const Token* token_;
@@ -28,7 +32,7 @@ private:
 
 /**
  * @brief Main interpreter for executing PEBBL programs
- * 
+ *
  * The Interpreter class evaluates AST nodes and executes PEBBL programs.
  * It manages environments for variable scoping and integrates with the
  * garbage collection system for memory management.
@@ -68,25 +72,29 @@ public:
    * @return String representation of the value
    */
   std::string stringify(PEBBLObject value);
-  
+
   // GC root tracing
   void trace_roots(class Tracer& tracer);
-  
+
   // Heap access for builtin functions
-  GCHeap& get_heap() const { return heap_; }
-  
+  GCHeap& get_heap() const {
+    return heap_;
+  }
+
   // Public error reporting for builtin functions
-  void report_error(const std::string& message) { runtime_error(message); }
+  void report_error(const std::string& message) {
+    runtime_error(message);
+  }
 
 private:
   GCHeap& heap_;
   std::shared_ptr<Environment> global_env_;
   std::shared_ptr<Environment> current_env_;
-  
+
   // Control flow flags
   bool has_return_ = false;
   PEBBLObject return_value_;
-  
+
   // Expression evaluation methods
   PEBBLObject evaluate_binary(const BinaryExpressionNode& expr);
   PEBBLObject evaluate_unary(const UnaryExpressionNode& expr);
@@ -110,17 +118,17 @@ private:
   // Utility methods
   bool is_truthy(PEBBLObject value);
   bool are_equal(PEBBLObject left, PEBBLObject right);
-  
+
   // Scope management
   void push_environment(std::shared_ptr<Environment> env);
   void pop_environment();
-  
+
   // Helper method for tracing environment objects
   void trace_environment_objects(std::shared_ptr<Environment> env, class Tracer& tracer);
-  
+
   // Error reporting
   void runtime_error(const std::string& message, const Token* token = nullptr);
-  
+
   // Builtin function management
   void register_builtin_functions();
 };

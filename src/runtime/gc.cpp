@@ -4,9 +4,11 @@
  */
 
 #include "gc.hpp"
+
 #include <algorithm>
 
-GCHeap::GCHeap() : objects_(nullptr), object_count_(0), next_gc_(8) {}
+GCHeap::GCHeap() : objects_(nullptr), object_count_(0), next_gc_(8) {
+}
 
 GCHeap::~GCHeap() {
   // Clean up all remaining objects
@@ -44,14 +46,14 @@ void GCHeap::collect() {
 
 void GCHeap::mark() {
   Tracer tracer(*this);
-  
+
   // Mark all objects reachable from roots
   for (GCObject** root : roots_) {
     if (*root) {
       tracer.mark(*root);
     }
   }
-  
+
   // Call all custom root tracers
   for (auto& root_tracer : root_tracers_) {
     root_tracer(tracer);
@@ -61,7 +63,7 @@ void GCHeap::mark() {
 void GCHeap::sweep() {
   GCObject** current = &objects_;
   size_t alive_count = 0;
-  
+
   // Walk through the object list, removing unmarked objects
   while (*current) {
     GCObject* obj = *current;
@@ -76,7 +78,7 @@ void GCHeap::sweep() {
       delete obj;
     }
   }
-  
+
   object_count_ = alive_count;
 }
 
@@ -84,11 +86,11 @@ void Tracer::mark(GCObject* obj) {
   if (!obj || obj->marked) {
     return;
   }
-  
+
   // Mark the object and add to worklist
   obj->marked = true;
   worklist_.push_back(obj);
-  
+
   // Process worklist until empty
   while (!worklist_.empty()) {
     GCObject* current = worklist_.back();

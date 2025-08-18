@@ -5,16 +5,17 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <unordered_map>
-#include <memory>
+
 #include "object.hpp"
 
 class Tracer;
 
 /**
  * @brief Environment for storing variables and managing scopes
- * 
+ *
  * The Environment class manages variable storage with lexical scoping.
  * Each environment can have a parent environment, forming a scope chain
  * for variable resolution.
@@ -45,7 +46,7 @@ public:
 
   /**
    * @brief Set a variable's value by name
-   * @param name Variable name  
+   * @param name Variable name
    * @param value New value
    * @throws std::runtime_error if variable is not found or immutable
    */
@@ -62,8 +63,10 @@ public:
    * @brief Get the parent environment
    * @return Shared pointer to parent environment (may be null)
    */
-  std::shared_ptr<Environment> get_parent() const { return parent_; }
-  
+  std::shared_ptr<Environment> get_parent() const {
+    return parent_;
+  }
+
   /**
    * @brief Trace all GC objects in this environment
    * @param tracer GC tracer to mark objects
@@ -74,8 +77,9 @@ private:
   struct Variable {
     PEBBLObject value;
     bool is_mutable;
-    
-    Variable(PEBBLObject val, bool mut) : value(val), is_mutable(mut) {}
+
+    Variable(PEBBLObject val, bool mut) : value(val), is_mutable(mut) {
+    }
   };
 
   std::shared_ptr<Environment> parent_;

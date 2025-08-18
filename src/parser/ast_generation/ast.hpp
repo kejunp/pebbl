@@ -23,8 +23,8 @@
 
 #include <boost/multiprecision/cpp_int.hpp>
 #include <memory>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 #include "tokens.hpp"
 
@@ -298,7 +298,7 @@ struct BooleanLiteralNode : LiteralNode {
 
 /// @brief An array literal (e.g., [1, 2, 3])
 struct ArrayLiteralNode : LiteralNode {
-  Token token;  ///< LBRACKET token ([)
+  Token token;                                            ///< LBRACKET token ([)
   std::vector<std::unique_ptr<ExpressionNode>> elements;  ///< Array elements
 
   /**
@@ -316,7 +316,8 @@ struct ArrayLiteralNode : LiteralNode {
 /// @brief A dictionary literal (e.g., {key: value, key2: value2})
 struct DictLiteralNode : LiteralNode {
   Token token;  ///< LBRACE token ({)
-  std::unordered_map<ExpressionNode*, std::unique_ptr<ExpressionNode>> entries;  ///< Dictionary entries (raw pointer key -> unique_ptr value)
+  std::unordered_map<ExpressionNode*, std::unique_ptr<ExpressionNode>>
+      entries;  ///< Dictionary entries (raw pointer key -> unique_ptr value)
   std::vector<std::unique_ptr<ExpressionNode>> keys;  ///< Storage for the key expressions
 
   /**
@@ -405,10 +406,10 @@ struct AssignmentExpressionNode : ExpressionNode {
 };
 
 struct FunctionStatementNode final : StatementNode {
-  Token token;  ///< Always a token with TokenType::FUNC and lexeme "func"
+  Token token;                           ///< Always a token with TokenType::FUNC and lexeme "func"
   std::unique_ptr<IdentifierNode> name;  ///< Function name
   std::vector<std::unique_ptr<IdentifierNode>> parameters;  ///< Parameter list
-  std::unique_ptr<BlockStatementNode> body;  ///< Function body
+  std::unique_ptr<BlockStatementNode> body;                 ///< Function body
 
   ASTType type() const noexcept override {
     return ASTType::FUNCTION_STATEMENT;
@@ -420,7 +421,7 @@ struct FunctionStatementNode final : StatementNode {
 };
 
 struct CallExpressionNode final : ExpressionNode {
-  Token token;  ///< The token where the call starts (function name)
+  Token token;                               ///< The token where the call starts (function name)
   std::unique_ptr<ExpressionNode> function;  ///< The function to call
   std::vector<std::unique_ptr<ExpressionNode>> arguments;  ///< Argument list
 
