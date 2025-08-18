@@ -87,6 +87,7 @@ private:
   PEBBLObject evaluate_if_else(const IfElseExpressionNode& expr);
   PEBBLObject evaluate_array_literal(const ArrayLiteralNode& expr);
   PEBBLObject evaluate_dict_literal(const DictLiteralNode& expr);
+  PEBBLObject evaluate_call(const CallExpressionNode& expr);
 
   // Statement execution methods
   PEBBLObject execute_expression_statement(const ExpressionStatementNode& stmt);
@@ -95,6 +96,7 @@ private:
   PEBBLObject execute_block_statement(const BlockStatementNode& stmt);
   PEBBLObject execute_while_statement(const WhileLoopStatementNode& stmt);
   PEBBLObject execute_for_statement(const ForLoopStatementNode& stmt);
+  PEBBLObject execute_function_statement(const FunctionStatementNode& stmt);
 
   // Utility methods
   bool is_truthy(PEBBLObject value);

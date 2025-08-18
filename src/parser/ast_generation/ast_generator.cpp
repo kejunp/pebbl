@@ -28,8 +28,10 @@
 #include "../../common.hpp"
 
 ASTGenerator::ASTGenerator(Lexer& lexer) : lexer_(lexer) {
-  advance_token();
-  advance_token();
+  // Initialize both current and peek tokens
+  // For proper two-token lookahead, we need to get the first two tokens
+  current_token_ = lexer_.next_token();
+  peek_token_ = lexer_.next_token();
 }
 
 std::unique_ptr<ProgramNode> ASTGenerator::parse_program() {
@@ -141,6 +143,8 @@ std::unique_ptr<StatementNode> ASTGenerator::parse_statement() {
       return parse_while_statement();
     case TokenType::FOR:
       return parse_for_statement();
+    case TokenType::FUNC:
+      return parse_function_statement();
     default:
       return parse_expression_statement();
   }
@@ -246,6 +250,54 @@ std::unique_ptr<ForLoopStatementNode> ASTGenerator::parse_for_statement() {
   
   if (!stmt->body) {
     report_error("Expected block statement for for loop body");
+    return nullptr;
+  }
+
+  return stmt;
+}
+
+std::unique_ptr<FunctionStatementNode> ASTGenerator::parse_function_statement() {
+  auto stmt = std::make_unique<FunctionStatementNode>();
+  stmt->token = current_token_;
+
+  advance_token();
+
+  if (!check_token(TokenType::IDENTIFIER)) {
+    report_error("Expected function name");
+    return nullptr;
+  }
+
+  stmt->name = parse_identifier();
+
+  if (!consume_token(TokenType::LPAREN, "Expected '(' after function name")) {
+    return nullptr;
+  }
+
+  // Parse parameter list
+  while (!check_token(TokenType::RPAREN) && current_token_.type != TokenType::EOF_TYPE) {
+    if (!check_token(TokenType::IDENTIFIER)) {
+      report_error("Expected parameter name");
+      return nullptr;
+    }
+
+    stmt->parameters.push_back(parse_identifier());
+
+    if (check_token(TokenType::COMMA)) {
+      advance_token();
+    } else if (!check_token(TokenType::RPAREN)) {
+      report_error("Expected ',' or ')' in parameter list");
+      return nullptr;
+    }
+  }
+
+  if (!consume_token(TokenType::RPAREN, "Expected ')' after parameter list")) {
+    return nullptr;
+  }
+
+  stmt->body = parse_block_statement();
+  
+  if (!stmt->body) {
+    report_error("Expected function body");
     return nullptr;
   }
 
@@ -426,7 +478,25 @@ std::unique_ptr<ExpressionNode> ASTGenerator::parse_unary() {
     return unary;
   }
 
-  return parse_primary();
+  return parse_call();
+}
+
+std::unique_ptr<ExpressionNode> ASTGenerator::parse_call() {
+  auto expr = parse_primary();
+  
+  if (!expr) {
+    return nullptr;
+  }
+  
+  // Handle function calls
+  while (check_token(TokenType::LPAREN)) {
+    expr = parse_call_expression(std::move(expr));
+    if (!expr) {
+      return nullptr;
+    }
+  }
+  
+  return expr;
 }
 
 std::unique_ptr<ExpressionNode> ASTGenerator::parse_primary() {
@@ -681,4 +751,40 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
 
   consume_token(TokenType::RBRACE, "Expected '}' after dictionary entries");
   return dict;
+}
+
+std::unique_ptr<CallExpressionNode> ASTGenerator::parse_call_expression(std::unique_ptr<ExpressionNode> function) {
+  auto call = std::make_unique<CallExpressionNode>();
+  call->token = current_token_;
+  call->function = std::move(function);
+
+  advance_token(); // consume '('
+
+  // Parse argument list
+  while (!check_token(TokenType::RPAREN) && current_token_.type != TokenType::EOF_TYPE) {
+    auto arg = parse_expression();
+    if (arg) {
+      call->arguments.push_back(std::move(arg));
+    } else {
+      // Skip to next comma or end on error
+      while (!check_token(TokenType::COMMA) && 
+             !check_token(TokenType::RPAREN) && 
+             current_token_.type != TokenType::EOF_TYPE) {
+        advance_token();
+      }
+    }
+
+    if (check_token(TokenType::COMMA)) {
+      advance_token();
+    } else if (!check_token(TokenType::RPAREN)) {
+      report_error("Expected ',' or ')' in argument list");
+      return nullptr;
+    }
+  }
+
+  if (!consume_token(TokenType::RPAREN, "Expected ')' after arguments")) {
+    return nullptr;
+  }
+
+  return call;
 }

@@ -37,6 +37,7 @@ enum class ASTType {
   BLOCK_STATEMENT,
   WHILE_LOOP_STATEMENT,
   FOR_LOOP_STATEMENT,
+  FUNCTION_STATEMENT,
   INTEGER_LITERAL,
   STRING_LITERAL,
   FLOAT_LITERAL,
@@ -46,7 +47,8 @@ enum class ASTType {
   BINARY_EXPRESSION,
   UNARY_EXPRESSION,
   IF_ELSE_EXPRESSION,
-  ASSIGNMENT_EXPRESSION
+  ASSIGNMENT_EXPRESSION,
+  CALL_EXPRESSION
 };
 
 /// @brief Base class of all AST nodes
@@ -137,7 +139,7 @@ struct VariableStatementNode final : StatementNode {
    * @brief Is the variable mutable?
    * @return True if the variable is mutable, and vise versa
    */
-  bool is_mutible() const noexcept {
+  bool is_mutable() const noexcept {
     return token.type == TokenType::VAR;
   }
 };
@@ -395,6 +397,35 @@ struct AssignmentExpressionNode : ExpressionNode {
    */
   ASTType type() const noexcept override {
     return ASTType::ASSIGNMENT_EXPRESSION;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+struct FunctionStatementNode final : StatementNode {
+  Token token;  ///< Always a token with TokenType::FUNC and lexeme "func"
+  std::unique_ptr<IdentifierNode> name;  ///< Function name
+  std::vector<std::unique_ptr<IdentifierNode>> parameters;  ///< Parameter list
+  std::unique_ptr<BlockStatementNode> body;  ///< Function body
+
+  ASTType type() const noexcept override {
+    return ASTType::FUNCTION_STATEMENT;
+  }
+
+  const Token* get_token() const noexcept override {
+    return &token;
+  }
+};
+
+struct CallExpressionNode final : ExpressionNode {
+  Token token;  ///< The token where the call starts (function name)
+  std::unique_ptr<ExpressionNode> function;  ///< The function to call
+  std::vector<std::unique_ptr<ExpressionNode>> arguments;  ///< Argument list
+
+  ASTType type() const noexcept override {
+    return ASTType::CALL_EXPRESSION;
   }
 
   const Token* get_token() const noexcept override {

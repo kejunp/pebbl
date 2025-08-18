@@ -121,7 +121,7 @@ std::pair<TokenType, std::string> Lexer::read_number() {
     consume_char();
   }
 
-  auto lexeme = input_.substr(start_position, read_position_ - start_position);
+  auto lexeme = input_.substr(start_position, position_ - start_position);
   return {type, lexeme};
 }
 
@@ -147,7 +147,7 @@ std::string Lexer::read_identifier() {
   while (std::isalnum(current_char_) || current_char_ == '_') {
     consume_char();
   }
-  return input_.substr(start_position, read_position_ - start_position);
+  return input_.substr(start_position, position_ - start_position);
 }
 
 std::string Lexer::read_string() {
@@ -156,7 +156,7 @@ std::string Lexer::read_string() {
     consume_char();
   } while (current_char_ != '"');
   consume_char();
-  return input_.substr(start_position, read_position_ - start_position);
+  return input_.substr(start_position, position_ - start_position);
 }
 
 void Lexer::consume_whitespace() {

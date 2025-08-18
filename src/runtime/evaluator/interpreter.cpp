@@ -16,6 +16,10 @@ Interpreter::Interpreter(GCHeap& heap) : heap_(heap) {
 PEBBLObject Interpreter::execute(const ProgramNode& program) {
   PEBBLObject result = PEBBLObject::make_null();
   
+  // Reset return state for each program execution
+  has_return_ = false;
+  return_value_ = PEBBLObject::make_null();
+  
   for (const auto& statement : program.statements) {
     result = execute(*statement);
     if (has_return_) {
@@ -55,6 +59,9 @@ PEBBLObject Interpreter::evaluate(const ExpressionNode& expr) {
     case ASTType::IF_ELSE_EXPRESSION:
       return evaluate_if_else(static_cast<const IfElseExpressionNode&>(expr));
     
+    case ASTType::CALL_EXPRESSION:
+      return evaluate_call(static_cast<const CallExpressionNode&>(expr));
+    
     default:
       runtime_error("Unknown expression type", expr.get_token());
       return PEBBLObject::make_null();
@@ -80,6 +87,9 @@ PEBBLObject Interpreter::execute(const StatementNode& stmt) {
     
     case ASTType::FOR_LOOP_STATEMENT:
       return execute_for_statement(static_cast<const ForLoopStatementNode&>(stmt));
+    
+    case ASTType::FUNCTION_STATEMENT:
+      return execute_function_statement(static_cast<const FunctionStatementNode&>(stmt));
     
     default:
       runtime_error("Unknown statement type", stmt.get_token());
@@ -454,7 +464,7 @@ PEBBLObject Interpreter::execute_expression_statement(const ExpressionStatementN
 
 PEBBLObject Interpreter::execute_variable_statement(const VariableStatementNode& stmt) {
   PEBBLObject value = evaluate(*stmt.value);
-  bool is_mutable = stmt.is_mutible();
+  bool is_mutable = stmt.is_mutable();
   
   current_env_->define(stmt.name->name, value, is_mutable);
   return PEBBLObject::make_null();
@@ -582,6 +592,103 @@ void Interpreter::pop_environment() {
   if (current_env_->get_parent()) {
     current_env_ = current_env_->get_parent();
   }
+}
+
+PEBBLObject Interpreter::execute_function_statement(const FunctionStatementNode& stmt) {
+  // Convert parameter nodes to strings
+  std::vector<std::string> param_names;
+  param_names.reserve(stmt.parameters.size());
+  for (const auto& param : stmt.parameters) {
+    param_names.push_back(param->name);
+  }
+  
+  // Create function object with current environment as closure
+  auto func = heap_.allocate<PEBBLFunction>(
+    stmt.name->name, 
+    std::move(param_names), 
+    current_env_, 
+    stmt.body.get()
+  );
+  
+  // Define function in current environment
+  PEBBLObject func_obj = PEBBLObject::make_gc_ptr(func);
+  current_env_->define(stmt.name->name, func_obj, false); // Functions are immutable by default
+  
+  return PEBBLObject::make_null();
+}
+
+PEBBLObject Interpreter::evaluate_call(const CallExpressionNode& expr) {
+  // Evaluate the function expression
+  PEBBLObject function = evaluate(*expr.function);
+  
+  if (!function.is_gc_ptr()) {
+    runtime_error("Not a function", expr.get_token());
+    return PEBBLObject::make_null();
+  }
+  
+  auto* gc_obj = function.as_gc_ptr();
+  if (gc_obj->tag != GCTag::FUNCTION) {
+    runtime_error("Not a function", expr.get_token());
+    return PEBBLObject::make_null();
+  }
+  
+  auto* func = static_cast<PEBBLFunction*>(gc_obj);
+  
+  // Check arity
+  if (expr.arguments.size() != func->arity()) {
+    runtime_error("Wrong number of arguments. Expected " + std::to_string(func->arity()) + 
+                  ", got " + std::to_string(expr.arguments.size()), expr.get_token());
+    return PEBBLObject::make_null();
+  }
+  
+  // Evaluate arguments
+  std::vector<PEBBLObject> arg_values;
+  arg_values.reserve(expr.arguments.size());
+  for (const auto& arg : expr.arguments) {
+    arg_values.push_back(evaluate(*arg));
+  }
+  
+  // Create new environment for function execution
+  auto call_env = std::make_shared<Environment>(func->closure);
+  
+  // Bind parameters to arguments
+  for (size_t i = 0; i < func->parameters.size(); ++i) {
+    call_env->define(func->parameters[i], arg_values[i], true);
+  }
+  
+  // Save current environment and switch to call environment
+  auto prev_env = current_env_;
+  auto prev_return = has_return_;
+  auto prev_return_value = return_value_;
+  
+  current_env_ = call_env;
+  has_return_ = false;
+  return_value_ = PEBBLObject::make_null();
+  
+  PEBBLObject result = PEBBLObject::make_null();
+  
+  try {
+    // Execute function body
+    result = execute(*func->body);
+    
+    // If function explicitly returned, use that value
+    if (has_return_) {
+      result = return_value_;
+    }
+  } catch (...) {
+    // Restore state on exception
+    current_env_ = prev_env;
+    has_return_ = prev_return;
+    return_value_ = prev_return_value;
+    throw;
+  }
+  
+  // Restore previous state
+  current_env_ = prev_env;
+  has_return_ = prev_return;
+  return_value_ = prev_return_value;
+  
+  return result;
 }
 
 void Interpreter::runtime_error(const std::string& message, const Token* token) {

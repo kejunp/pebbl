@@ -128,3 +128,28 @@ public:
     return result;
   }
 };
+
+/**
+ * @brief Garbage-collected function object
+ */
+class PEBBLFunction : public GCObject {
+public:
+  std::string name;
+  std::vector<std::string> parameters;
+  std::shared_ptr<class Environment> closure;
+  const class BlockStatementNode* body;
+
+  PEBBLFunction(const std::string& func_name, 
+                std::vector<std::string> params,
+                std::shared_ptr<class Environment> env,
+                const class BlockStatementNode* func_body)
+    : GCObject(GCTag::FUNCTION), name(func_name), parameters(std::move(params)), 
+      closure(env), body(func_body) {}
+
+  void trace(Tracer& /* tracer */) override {
+    // The closure environment is shared_ptr managed
+    // The body is owned by the AST, not us
+  }
+
+  std::size_t arity() const { return parameters.size(); }
+};

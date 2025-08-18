@@ -125,6 +125,12 @@ private:
   std::unique_ptr<ForLoopStatementNode> parse_for_statement();
 
   /**
+   * @brief Parses a function declaration statement
+   * @return Function statement AST node
+   */
+  std::unique_ptr<FunctionStatementNode> parse_function_statement();
+
+  /**
    * @brief Parses an expression statement
    * @return Expression statement AST node
    */
@@ -192,10 +198,22 @@ private:
   std::unique_ptr<ExpressionNode> parse_unary();
 
   /**
+   * @brief Parses a call expression chain (function calls)
+   * @return Expression AST node
+   */
+  std::unique_ptr<ExpressionNode> parse_call();
+
+  /**
    * @brief Parses a primary expression (literals, identifiers, parentheses)
    * @return Expression AST node
    */
   std::unique_ptr<ExpressionNode> parse_primary();
+
+  /**
+   * @brief Parses a call expression (function calls)
+   * @return Call expression AST node
+   */
+  std::unique_ptr<CallExpressionNode> parse_call_expression(std::unique_ptr<ExpressionNode> function);
 
   // Literal parsing methods
   /**
