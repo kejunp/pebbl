@@ -4,8 +4,10 @@
  */
 
 #include "object.hpp"
-#include "gc.hpp"
+
 #include <cstring>
+
+#include "gc.hpp"
 
 PEBBLObject PEBBLObject::make_double(double value) {
   PEBBLObject obj;
@@ -15,15 +17,14 @@ PEBBLObject PEBBLObject::make_double(double value) {
 
 PEBBLObject PEBBLObject::make_int32(int32_t value) {
   PEBBLObject obj;
-  obj.bits = BOXED_BASE | (static_cast<uint64_t>(Tag::INT32) << TAG_SHIFT) | 
+  obj.bits = BOXED_BASE | (static_cast<uint64_t>(Tag::INT32) << TAG_SHIFT) |
              (static_cast<uint64_t>(value) & PAYLOAD_MASK);
   return obj;
 }
 
 PEBBLObject PEBBLObject::make_bool(bool value) {
   PEBBLObject obj;
-  obj.bits = BOXED_BASE | (static_cast<uint64_t>(Tag::BOOL) << TAG_SHIFT) | 
-             (value ? 1ULL : 0ULL);
+  obj.bits = BOXED_BASE | (static_cast<uint64_t>(Tag::BOOL) << TAG_SHIFT) | (value ? 1ULL : 0ULL);
   return obj;
 }
 
@@ -41,7 +42,7 @@ PEBBLObject PEBBLObject::make_undefined() {
 
 PEBBLObject PEBBLObject::make_gc_ptr(GCObject* ptr) {
   PEBBLObject obj;
-  obj.bits = BOXED_BASE | (static_cast<uint64_t>(Tag::GC_PTR) << TAG_SHIFT) | 
+  obj.bits = BOXED_BASE | (static_cast<uint64_t>(Tag::GC_PTR) << TAG_SHIFT) |
              (reinterpret_cast<uintptr_t>(ptr) & PAYLOAD_MASK);
   return obj;
 }

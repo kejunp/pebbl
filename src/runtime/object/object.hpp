@@ -11,11 +11,11 @@ struct GCObject;
 
 /**
  * @brief A value type that uses NaN-boxing to store different types efficiently
- * 
+ *
  * PEBBLObject uses IEEE 754 double precision floating point NaN-boxing to store
  * different value types in a single 64-bit word. Regular doubles are stored directly,
  * while other types use the quiet NaN space with type tags.
- * 
+ *
  * The bit layout for boxed values is:
  * - Bits 63-52: Exponent (all 1s for NaN)
  * - Bit 51: Quiet NaN bit (always 1)
@@ -23,18 +23,18 @@ struct GCObject;
  * - Bits 47-0: Payload data
  */
 struct PEBBLObject {
-  uint64_t bits; ///< The raw 64-bit representation
+  uint64_t bits;  ///< The raw 64-bit representation
 
   /// IEEE 754 exponent mask (bits 63-52)
-  static constexpr uint64_t EXP_MASK     = 0x7FF0'0000'0000'0000ULL;
+  static constexpr uint64_t EXP_MASK = 0x7FF0'0000'0000'0000ULL;
   /// Quiet NaN mask (bit 51)
-  static constexpr uint64_t QNAN_MASK    = 0x0008'0000'0000'0000ULL;
+  static constexpr uint64_t QNAN_MASK = 0x0008'0000'0000'0000ULL;
   /// Base pattern for boxed values (EXP_MASK | QNAN_MASK)
-  static constexpr uint64_t BOXED_BASE   = EXP_MASK | QNAN_MASK;
+  static constexpr uint64_t BOXED_BASE = EXP_MASK | QNAN_MASK;
   /// Mask for extracting type tag (bits 50-48)
-  static constexpr uint64_t TAG_MASK     = 0x0007'0000'0000'0000ULL;
+  static constexpr uint64_t TAG_MASK = 0x0007'0000'0000'0000ULL;
   /// Bit shift amount for type tag
-  static constexpr int      TAG_SHIFT    = 48;
+  static constexpr int TAG_SHIFT = 48;
   /// Mask for extracting payload data (bits 47-0)
   static constexpr uint64_t PAYLOAD_MASK = 0x0000'FFFF'FFFF'FFFFULL;
 
@@ -42,17 +42,18 @@ struct PEBBLObject {
    * @brief Type tags for boxed values
    */
   enum class Tag : uint8_t {
-    GC_PTR = 1,   ///< Garbage-collected pointer
-    INT32,        ///< 32-bit signed integer
-    BOOL,         ///< Boolean value
-    NIL,          ///< Null/nil value
-    UNDEFINED     ///< Undefined value
+    GC_PTR = 1,  ///< Garbage-collected pointer
+    INT32,       ///< 32-bit signed integer
+    BOOL,        ///< Boolean value
+    NIL,         ///< Null/nil value
+    UNDEFINED    ///< Undefined value
   };
 
   /**
    * @brief Default constructor creates a double value of 0.0
    */
-  PEBBLObject() : bits(0) {}
+  PEBBLObject() : bits(0) {
+  }
 
   /**
    * @brief Create a PEBBLObject containing a double value

@@ -21,15 +21,17 @@
 
 #include "ast_generator.hpp"
 
+#include <cctype>
 #include <iostream>
 #include <sstream>
-#include <cctype>
 
 #include "../../common.hpp"
 
 ASTGenerator::ASTGenerator(Lexer& lexer) : lexer_(lexer) {
-  advance_token();
-  advance_token();
+  // Initialize both current and peek tokens
+  // For proper two-token lookahead, we need to get the first two tokens
+  current_token_ = lexer_.next_token();
+  peek_token_ = lexer_.next_token();
 }
 
 std::unique_ptr<ProgramNode> ASTGenerator::parse_program() {
@@ -39,7 +41,7 @@ std::unique_ptr<ProgramNode> ASTGenerator::parse_program() {
     auto stmt = parse_statement();
     if (stmt) {
       program->statements.push_back(std::move(stmt));
-      
+
       // Check if program is complete after successful parsing
       if (is_program_complete()) {
         break;
@@ -49,7 +51,7 @@ std::unique_ptr<ProgramNode> ASTGenerator::parse_program() {
       if (should_terminate_parsing()) {
         break;
       }
-      
+
       // Try to recover by advancing token
       advance_token();
     }
@@ -63,7 +65,7 @@ bool ASTGenerator::is_program_complete() const {
   if (current_token_.type == TokenType::EOF_TYPE) {
     return true;
   }
-  
+
   // If current token is a leftover separator that cannot start a new statement,
   // consider the program complete (these are remnants from array/dict parsing)
   return is_leftover_separator_token();
@@ -77,12 +79,10 @@ bool ASTGenerator::should_terminate_parsing() const {
 bool ASTGenerator::is_leftover_separator_token() const {
   // These tokens cannot start a statement and are likely leftovers from parsing
   // Also check for any token that clearly indicates parsing artifacts
-  return current_token_.type == TokenType::COMMA || 
-         current_token_.type == TokenType::COLON ||
-         current_token_.type == TokenType::RBRACE ||
-         current_token_.type == TokenType::RBRACKET ||
+  return current_token_.type == TokenType::COMMA || current_token_.type == TokenType::COLON ||
+         current_token_.type == TokenType::RBRACE || current_token_.type == TokenType::RBRACKET ||
          current_token_.lexeme == ":" ||  // Explicit check for colon lexeme
-         current_token_.lexeme == "," ||  // Explicit check for comma lexeme  
+         current_token_.lexeme == "," ||  // Explicit check for comma lexeme
          current_token_.lexeme == "}" ||  // Explicit check for right brace lexeme
          current_token_.lexeme == "]";    // Explicit check for right bracket lexeme
 }
@@ -90,10 +90,10 @@ bool ASTGenerator::is_leftover_separator_token() const {
 void ASTGenerator::advance_token() {
   current_token_ = peek_token_;
   peek_token_ = lexer_.next_token();
-  
+
   // Skip empty or whitespace-only tokens
-  while (current_token_.type != TokenType::EOF_TYPE && 
-         (current_token_.lexeme.empty() || 
+  while (current_token_.type != TokenType::EOF_TYPE &&
+         (current_token_.lexeme.empty() ||
           (current_token_.lexeme.size() == 1 && std::isspace(current_token_.lexeme[0])))) {
     current_token_ = peek_token_;
     peek_token_ = lexer_.next_token();
@@ -109,7 +109,7 @@ bool ASTGenerator::consume_token(TokenType type, const std::string& error_messag
     advance_token();
     return true;
   }
-  
+
   // Report error but ALWAYS advance to prevent infinite loops
   report_error(error_message);
   advance_token();  // Critical fix: advance even on failure
@@ -118,14 +118,14 @@ bool ASTGenerator::consume_token(TokenType type, const std::string& error_messag
 
 void ASTGenerator::report_error(const std::string& message) const {
   // Don't report errors for empty tokens, whitespace, or leftover separator tokens
-  if (current_token_.lexeme.empty() || 
+  if (current_token_.lexeme.empty() ||
       (current_token_.lexeme.size() == 1 && std::isspace(current_token_.lexeme[0])) ||
       (message == "Unexpected token in expression" && is_leftover_separator_token())) {
     return;
   }
-  
-  std::cerr << "\033[31mpebbli: Error: Parse error at line " << current_token_.line << ": " << message << " (got '"
-            << current_token_.lexeme << "')\033[0m" << std::endl;
+
+  std::cerr << "\033[31mpebbli: Error: Parse error at line " << current_token_.line << ": "
+            << message << " (got '" << current_token_.lexeme << "')\033[0m" << std::endl;
 }
 
 std::unique_ptr<StatementNode> ASTGenerator::parse_statement() {
@@ -141,6 +141,8 @@ std::unique_ptr<StatementNode> ASTGenerator::parse_statement() {
       return parse_while_statement();
     case TokenType::FOR:
       return parse_for_statement();
+    case TokenType::FUNC:
+      return parse_function_statement();
     default:
       return parse_expression_statement();
   }
@@ -231,11 +233,71 @@ std::unique_ptr<ForLoopStatementNode> ASTGenerator::parse_for_statement() {
 
   stmt->identifier = parse_identifier();
 
-  if (!consume_token(TokenType::IDENTIFIER, "Expected 'in' keyword")) {
+  if (!consume_token(TokenType::IN, "Expected 'in' keyword")) {
     return nullptr;
   }
 
   stmt->iterable = parse_expression();
+
+  if (!stmt->iterable) {
+    report_error("Expected expression after 'in'");
+    return nullptr;
+  }
+
+  stmt->body = parse_block_statement();
+
+  if (!stmt->body) {
+    report_error("Expected block statement for for loop body");
+    return nullptr;
+  }
+
+  return stmt;
+}
+
+std::unique_ptr<FunctionStatementNode> ASTGenerator::parse_function_statement() {
+  auto stmt = std::make_unique<FunctionStatementNode>();
+  stmt->token = current_token_;
+
+  advance_token();
+
+  if (!check_token(TokenType::IDENTIFIER)) {
+    report_error("Expected function name");
+    return nullptr;
+  }
+
+  stmt->name = parse_identifier();
+
+  if (!consume_token(TokenType::LPAREN, "Expected '(' after function name")) {
+    return nullptr;
+  }
+
+  // Parse parameter list
+  while (!check_token(TokenType::RPAREN) && current_token_.type != TokenType::EOF_TYPE) {
+    if (!check_token(TokenType::IDENTIFIER)) {
+      report_error("Expected parameter name");
+      return nullptr;
+    }
+
+    stmt->parameters.push_back(parse_identifier());
+
+    if (check_token(TokenType::COMMA)) {
+      advance_token();
+    } else if (!check_token(TokenType::RPAREN)) {
+      report_error("Expected ',' or ')' in parameter list");
+      return nullptr;
+    }
+  }
+
+  if (!consume_token(TokenType::RPAREN, "Expected ')' after parameter list")) {
+    return nullptr;
+  }
+
+  stmt->body = parse_block_statement();
+
+  if (!stmt->body) {
+    report_error("Expected function body");
+    return nullptr;
+  }
 
   return stmt;
 }
@@ -243,14 +305,12 @@ std::unique_ptr<ForLoopStatementNode> ASTGenerator::parse_for_statement() {
 std::unique_ptr<ExpressionStatementNode> ASTGenerator::parse_expression_statement() {
   auto stmt = std::make_unique<ExpressionStatementNode>();
   stmt->expression = parse_expression();
-  
-  // Don't require semicolon for expression statements
-  // The parser will handle program completion detection separately
+
   if (!stmt->expression) {
     return nullptr;
   }
 
-  // Optionally consume semicolon if present, but don't require it
+  // Consume semicolon if present
   if (check_token(TokenType::SEMICOLON)) {
     advance_token();
   }
@@ -280,26 +340,51 @@ std::unique_ptr<ExpressionNode> ASTGenerator::parse_assignment() {
 }
 
 std::unique_ptr<ExpressionNode> ASTGenerator::parse_if_else() {
-  auto expr = parse_logical_or();
-
+  // Check for if-else expression: if condition { then } else { else }
   if (check_token(TokenType::IF)) {
     auto if_expr = std::make_unique<IfElseExpressionNode>();
     if_expr->token = current_token_;
-    if_expr->then_expression = std::move(expr);
 
     advance_token();
 
-    if_expr->condition = parse_expression();
+    // Parse condition
+    if_expr->condition = parse_logical_or();
 
+    // Expect opening brace for then expression
+    if (!consume_token(TokenType::LBRACE, "Expected '{' after if condition")) {
+      return nullptr;
+    }
+
+    // Parse then expression
+    if_expr->then_expression = parse_expression();
+
+    // Expect closing brace
+    if (!consume_token(TokenType::RBRACE, "Expected '}' after then expression")) {
+      return nullptr;
+    }
+
+    // Optional else clause
     if (check_token(TokenType::ELSE)) {
       advance_token();
-      if_expr->else_expression = parse_if_else();
+
+      // Expect opening brace for else expression
+      if (!consume_token(TokenType::LBRACE, "Expected '{' after else")) {
+        return nullptr;
+      }
+
+      // Parse else expression
+      if_expr->else_expression = parse_expression();
+
+      // Expect closing brace
+      if (!consume_token(TokenType::RBRACE, "Expected '}' after else expression")) {
+        return nullptr;
+      }
     }
 
     return if_expr;
   }
 
-  return expr;
+  return parse_logical_or();
 }
 
 std::unique_ptr<ExpressionNode> ASTGenerator::parse_logical_or() {
@@ -416,7 +501,25 @@ std::unique_ptr<ExpressionNode> ASTGenerator::parse_unary() {
     return unary;
   }
 
-  return parse_primary();
+  return parse_call();
+}
+
+std::unique_ptr<ExpressionNode> ASTGenerator::parse_call() {
+  auto expr = parse_primary();
+
+  if (!expr) {
+    return nullptr;
+  }
+
+  // Handle function calls
+  while (check_token(TokenType::LPAREN)) {
+    expr = parse_call_expression(std::move(expr));
+    if (!expr) {
+      return nullptr;
+    }
+  }
+
+  return expr;
 }
 
 std::unique_ptr<ExpressionNode> ASTGenerator::parse_primary() {
@@ -442,6 +545,10 @@ std::unique_ptr<ExpressionNode> ASTGenerator::parse_primary() {
       consume_token(TokenType::RPAREN, "Expected ')' after expression");
       return expr;
     }
+    // Semicolon and EOF indicate end of expression, not an error
+    case TokenType::SEMICOLON:
+    case TokenType::EOF_TYPE:
+      return nullptr;
     default:
       report_error("Unexpected token in expression");
       return nullptr;
@@ -507,7 +614,7 @@ std::unique_ptr<ArrayLiteralNode> ASTGenerator::parse_array_literal() {
     report_error("Expected '[' at start of array");
     return nullptr;
   }
-  
+
   consume_token(TokenType::LBRACKET, "Expected '['");
 
   // Handle empty array case
@@ -519,27 +626,26 @@ std::unique_ptr<ArrayLiteralNode> ASTGenerator::parse_array_literal() {
   // Parse array elements
   int element_count = 0;
   const int max_elements = 10000;  // Prevent runaway parsing
-  
+
   do {
     // Safety check to prevent infinite loops
     if (element_count++ > max_elements) {
       report_error("Array too large, stopping parse");
       break;
     }
-    
+
     // Skip any unexpected tokens gracefully
     if (current_token_.type == TokenType::EOF_TYPE) {
       report_error("Unexpected EOF in array");
       break;
     }
-    
+
     auto element = parse_expression();
     if (element) {
       array->elements.push_back(std::move(element));
     } else {
       // If we can't parse an element, skip to next comma or end
-      while (!check_token(TokenType::COMMA) && 
-             !check_token(TokenType::RBRACKET) && 
+      while (!check_token(TokenType::COMMA) && !check_token(TokenType::RBRACKET) &&
              current_token_.type != TokenType::EOF_TYPE) {
         advance_token();
       }
@@ -570,7 +676,7 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
     report_error("Expected '{' at start of dictionary");
     return nullptr;
   }
-  
+
   consume_token(TokenType::LBRACE, "Expected '{'");
 
   // Handle empty dictionary case
@@ -582,29 +688,27 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
   // Parse dictionary entries
   int entry_count = 0;
   const int max_entries = 10000;  // Prevent runaway parsing
-  
+
   do {
     // Safety check to prevent infinite loops
     if (entry_count++ > max_entries) {
       report_error("Dictionary too large, stopping parse");
       break;
     }
-    
+
     // Skip any unexpected tokens gracefully
     if (current_token_.type == TokenType::EOF_TYPE) {
       report_error("Unexpected EOF in dictionary");
       break;
     }
-    
+
     // Parse key
     auto key = parse_expression();
     if (!key) {
       report_error("Expected dictionary key");
       // Skip to next comma, colon, or end
-      while (!check_token(TokenType::COMMA) && 
-             !check_token(TokenType::COLON) &&
-             !check_token(TokenType::RBRACE) && 
-             current_token_.type != TokenType::EOF_TYPE) {
+      while (!check_token(TokenType::COMMA) && !check_token(TokenType::COLON) &&
+             !check_token(TokenType::RBRACE) && current_token_.type != TokenType::EOF_TYPE) {
         advance_token();
       }
       if (check_token(TokenType::COMMA)) {
@@ -619,8 +723,7 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
     // Parse colon separator
     if (!consume_token(TokenType::COLON, "Expected ':' after dictionary key")) {
       // Skip to next comma or end on error
-      while (!check_token(TokenType::COMMA) && 
-             !check_token(TokenType::RBRACE) && 
+      while (!check_token(TokenType::COMMA) && !check_token(TokenType::RBRACE) &&
              current_token_.type != TokenType::EOF_TYPE) {
         advance_token();
       }
@@ -630,14 +733,13 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
       }
       break;
     }
-    
+
     // Parse value
     auto value = parse_expression();
     if (!value) {
       report_error("Expected dictionary value");
       // Skip to next comma or end
-      while (!check_token(TokenType::COMMA) && 
-             !check_token(TokenType::RBRACE) && 
+      while (!check_token(TokenType::COMMA) && !check_token(TokenType::RBRACE) &&
              current_token_.type != TokenType::EOF_TYPE) {
         advance_token();
       }
@@ -667,4 +769,40 @@ std::unique_ptr<DictLiteralNode> ASTGenerator::parse_dict_literal() {
 
   consume_token(TokenType::RBRACE, "Expected '}' after dictionary entries");
   return dict;
+}
+
+std::unique_ptr<CallExpressionNode> ASTGenerator::parse_call_expression(
+    std::unique_ptr<ExpressionNode> function) {
+  auto call = std::make_unique<CallExpressionNode>();
+  call->token = current_token_;
+  call->function = std::move(function);
+
+  advance_token();  // consume '('
+
+  // Parse argument list
+  while (!check_token(TokenType::RPAREN) && current_token_.type != TokenType::EOF_TYPE) {
+    auto arg = parse_expression();
+    if (arg) {
+      call->arguments.push_back(std::move(arg));
+    } else {
+      // Skip to next comma or end on error
+      while (!check_token(TokenType::COMMA) && !check_token(TokenType::RPAREN) &&
+             current_token_.type != TokenType::EOF_TYPE) {
+        advance_token();
+      }
+    }
+
+    if (check_token(TokenType::COMMA)) {
+      advance_token();
+    } else if (!check_token(TokenType::RPAREN)) {
+      report_error("Expected ',' or ')' in argument list");
+      return nullptr;
+    }
+  }
+
+  if (!consume_token(TokenType::RPAREN, "Expected ')' after arguments")) {
+    return nullptr;
+  }
+
+  return call;
 }
