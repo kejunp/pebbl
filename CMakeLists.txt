@@ -59,4 +59,4 @@ else()
   )
 endif()
 
-install(TARGETS pebbli DESTINATION bin)
+install(TARGETS pebbli RUNTIME DESTINATION bin)

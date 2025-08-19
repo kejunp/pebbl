@@ -1,15 +1,11 @@
 name: Tests
-
 on:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -19,56 +15,48 @@ jobs:
       - name: Set up CMake
         uses: jwlawson/actions-setup-cmake@v1
 
-      - name: Configure
-        run: cmake -S . -B build
+      - name: Configure (Release)
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-      - name: Build
-        run: cmake --build build --config Release
+      - name: Build all
+        run: cmake --build build --config Release -j
 
-      # Hand off the compiled binary (whatever it’s called) to the test job
-      - name: Locate built binary
-        id: findbin
-        run: |
-          # find first executable in build dir (adjust the pattern if you know the exact name)
-          BIN_PATH="$(find build -maxdepth 3 -type f -executable | head -n1)"
-          if [ -z "$BIN_PATH" ]; then
-            echo "No executable found under build/. Failing."
-            exit 1
-          fi
-          echo "bin=$BIN_PATH" >> "$GITHUB_OUTPUT"
+      # ✅ Put real binaries under dist/bin via CMake install rules
+      - name: Install to prefix
+        run: cmake --install build --config Release --prefix "$PWD/dist"
 
-      - name: Upload artifact
+      - name: Show installed tree
+        run: find dist -maxdepth 3 -type f -print
+
+      - name: Upload installed binaries
         uses: actions/upload-artifact@v4
         with:
-          name: pebbli-bin
-          path: ${{ steps.findbin.outputs.bin }}
-          
+          name: pebbli-dist
+          path: dist/bin/*
+
   test:
     runs-on: ubuntu-latest
     needs: [build]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download artifact
+      - name: Download binaries
         uses: actions/download-artifact@v4
         with:
-          name: pebbli-bin
-          path: ./bin
+          name: pebbli-dist
+          path: ./dist/bin
 
-      # Find the actual executable we just downloaded (could be nested)
-      - name: Locate downloaded binary
+      - name: Locate binary
         id: bin
         shell: bash
         run: |
           set -euo pipefail
-          BIN="$(find ./bin -maxdepth 5 -type f -executable | head -n1)"
+          BIN="$(find ./dist/bin -maxdepth 1 -type f -executable | head -n1)"
           if [ -z "${BIN:-}" ]; then
-            echo "No executable found under ./bin"; ls -R ./bin || true
-            exit 1
+            echo "Nothing executable in dist/bin"; ls -lR ./dist || true; exit 1
           fi
-          echo "Found binary: $BIN"
           echo "path=$BIN" >> "$GITHUB_OUTPUT"
+          echo "Using: $BIN"
 
       - name: Make binary executable
         run: chmod +x "${{ steps.bin.outputs.path }}"
@@ -118,10 +106,10 @@ jobs:
           sed -E 's/^\s+|\s+$//g' expected.out > expected.norm
 
           awk 'NR==FNR{exp[NR]=$0; n=NR; next}
-              {gsub(/^\s+|\s+$/,"",$0); if($0!="") actual[++m]=$0}
-              END{
-                i=j=1
-                while(i<=n && j<=m){ if(actual[j]==exp[i]){i++; j++} else j++ }
-                if(i<=n){ print "Missing expected line:", exp[i] > "/dev/stderr"; exit 1 }
-              }' expected.norm actual.norm
+               {gsub(/^\s+|\s+$/,"",$0); if($0!="") actual[++m]=$0}
+               END{
+                 i=j=1
+                 while(i<=n && j<=m){ if(actual[j]==exp[i]){i++; j++} else j++ }
+                 if(i<=n){ print "Missing expected line:", exp[i] > "/dev/stderr"; exit 1 }
+               }' expected.norm actual.norm
           echo "All REPL checks passed."
