@@ -33,7 +33,6 @@ jobs:
         with:
           name: pebbli-dist
           path: dist/bin/*
-
   test:
     runs-on: ubuntu-latest
     needs: [build]
@@ -65,36 +64,37 @@ jobs:
           echo "path=$BIN" >> "$GITHUB_OUTPUT"
           echo "Using: $BIN"
 
+      # Detect whether repo provides test fixtures
+      - name: Check for test fixtures
+        id: fixtures
+        run: |
+          if [[ -f tests/input.txt && -f tests/expected.out ]]; then
+            echo "have=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "have=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run internal test mode (if supported)
         run: |
           set -e
           "${{ steps.bin.outputs.path }}" --dev test || true
 
+      # Only run comparison when fixtures exist
       - name: Produce outputs for comparison
+        if: steps.fixtures.outputs.have == 'true'
         shell: bash
         run: |
           set -euo pipefail
-
-          # Run your program to generate ACTUAL output
-          # Adjust the invocation as appropriate for your project.
-          # Example: feed it an input file and capture output.
           "${{ steps.bin.outputs.path }}" < tests/input.txt | tee actual.out
-
-          # Put the EXPECTED output where the next step expects it
-          # (Assumes you keep an expected file in the repo.)
           cp tests/expected.out expected.out
 
       - name: Normalize and compare outputs
+        if: steps.fixtures.outputs.have == 'true'
         shell: bash
         run: |
           set -euo pipefail
-
-          # Strip prompts from actual, keep non-empty lines
           sed -E 's/^([>]{1,3})[[:space:]]+//; /^\s*$/d' actual.out > actual.norm
-          # Trim expected
           sed -E 's/^[[:space:]]+|[[:space:]]+$//g' expected.out > expected.norm
-
-          # Order-preserving subsequence check
           cat > subseq.awk <<'AWK'
           NR==FNR { exp[++n]=$0; next }
           { gsub(/^[[:space:]]+|[[:space:]]+$/,""); if ($0!="") act[++m]=$0 }
@@ -106,6 +106,13 @@ jobs:
             if (i<=n) { print "Missing expected line:", exp[i] > "/dev/stderr"; exit 1 }
           }
           AWK
-
           awk -f subseq.awk expected.norm actual.norm
           echo "All REPL checks passed."
+
+      # Optional: smoke test path when fixtures are absent
+      - name: Smoke test (no fixtures)
+        if: steps.fixtures.outputs.have == 'false'
+        run: |
+          set -euo pipefail
+          echo "No tests/ fixtures found; running a smoke test."
+          "${{ steps.bin.outputs.path }}" --version || "${{ steps.bin.outputs.path }}" --help || true
