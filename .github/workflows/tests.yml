@@ -42,7 +42,7 @@ jobs:
         with:
           name: pebbli-bin
           path: ${{ steps.findbin.outputs.bin }}
-
+          
   test:
     runs-on: ubuntu-latest
     needs: [build]
@@ -56,16 +56,28 @@ jobs:
           name: pebbli-bin
           path: ./bin
 
-      - name: Make binary executable
-        run: chmod +x ./bin/*
+      # Find the actual executable we just downloaded (could be nested)
+      - name: Locate downloaded binary
+        id: bin
+        shell: bash
+        run: |
+          set -euo pipefail
+          BIN="$(find ./bin -maxdepth 5 -type f -executable | head -n1)"
+          if [ -z "${BIN:-}" ]; then
+            echo "No executable found under ./bin"; ls -R ./bin || true
+            exit 1
+          fi
+          echo "Found binary: $BIN"
+          echo "path=$BIN" >> "$GITHUB_OUTPUT"
 
-      # 1) If your interpreter supports an internal suite: run it
+      - name: Make binary executable
+        run: chmod +x "${{ steps.bin.outputs.path }}"
+
       - name: Run internal test mode (if supported)
         run: |
           set -e
-          ./bin/* --test || true   # don’t fail if --test isn’t supported; next step will validate
+          "${{ steps.bin.outputs.path }}" --dev test || true
 
-      # 2) Drive the REPL with your sample tests and assert outputs
       - name: Run REPL tests
         shell: bash
         run: |
@@ -85,10 +97,8 @@ jobs:
           let a = 5; let b = 10; a + b;
           EOF
 
-          # Run program; capture output
-          ./bin/* < input.pbl | tee actual.out
+          "${{ steps.bin.outputs.path }}" < input.pbl | tee actual.out
 
-          # Expected outputs (one per expression above).
           cat >expected.out <<'EOF'
           42
           3.140000
@@ -104,25 +114,14 @@ jobs:
           15
           EOF
 
-          # Normalize both (strip prompts like ">>> " and blank lines)
           sed -E 's/^>>> //; /^\s*$/d' actual.out > actual.norm
           sed -E 's/^\s+|\s+$//g' expected.out > expected.norm
 
-          # Check that expected lines appear in order in actual output
           awk 'NR==FNR{exp[NR]=$0; n=NR; next}
-               {
-                 gsub(/^\s+|\s+$/,"",$0);
-                 if ($0!="") actual[++m]=$0
-               }
-               END{
-                 i=j=1
-                 while (i<=n && j<=m){
-                   if (actual[j]==exp[i]) { i++; j++ } else { j++ }
-                 }
-                 if (i<=n){
-                   print "Missing expected line:", exp[i] > "/dev/stderr"
-                   exit 1
-                 }
-               }' expected.norm actual.norm
-
+              {gsub(/^\s+|\s+$/,"",$0); if($0!="") actual[++m]=$0}
+              END{
+                i=j=1
+                while(i<=n && j<=m){ if(actual[j]==exp[i]){i++; j++} else j++ }
+                if(i<=n){ print "Missing expected line:", exp[i] > "/dev/stderr"; exit 1 }
+              }' expected.norm actual.norm
           echo "All REPL checks passed."

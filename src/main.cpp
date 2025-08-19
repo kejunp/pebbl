@@ -132,20 +132,31 @@ int main(int argc, char* argv[]) {
     run_repl();
   } else if (argc == 2) {
     std::string arg = argv[1];
-    if (arg == "--test") {
-      test_interpreter();
-    } else if (arg == "--repl") {
+    if (arg == "--repl") {
       run_repl();
     } else {
       // Assume it's a filename
       run_file(arg);
     }
+  } else if (argc == 3) {
+    std::string arg1 = argv[1];
+    std::string arg2 = argv[2];
+    if (arg1 == "--dev" && arg2 == "test") {
+      test_interpreter();
+    } else {
+      std::cout << "Usage: " << argv[0] << " [--dev test|--repl|filename]" << std::endl;
+      std::cout << "  --dev test : Run interpreter tests" << std::endl;
+      std::cout << "  --repl     : Run interactive REPL" << std::endl;
+      std::cout << "  filename   : Execute a PEBBL source file" << std::endl;
+      std::cout << "  (no args)  : Start interactive REPL" << std::endl;
+      return 1;
+    }
   } else {
-    std::cout << "Usage: " << argv[0] << " [--test|--repl|filename]" << std::endl;
-    std::cout << "  --test    : Run interpreter tests" << std::endl;
-    std::cout << "  --repl    : Run interactive REPL" << std::endl;
-    std::cout << "  filename  : Execute a PEBBL source file" << std::endl;
-    std::cout << "  (no args) : Start interactive REPL" << std::endl;
+    std::cout << "Usage: " << argv[0] << " [--dev test|--repl|filename]" << std::endl;
+    std::cout << "  --dev test : Run interpreter tests" << std::endl;
+    std::cout << "  --repl     : Run interactive REPL" << std::endl;
+    std::cout << "  filename   : Execute a PEBBL source file" << std::endl;
+    std::cout << "  (no args)  : Start interactive REPL" << std::endl;
     return 1;
   }
 
