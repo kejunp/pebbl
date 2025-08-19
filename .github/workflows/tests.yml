@@ -70,6 +70,20 @@ jobs:
           set -e
           "${{ steps.bin.outputs.path }}" --dev test || true
 
+      - name: Produce outputs for comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Run your program to generate ACTUAL output
+          # Adjust the invocation as appropriate for your project.
+          # Example: feed it an input file and capture output.
+          "${{ steps.bin.outputs.path }}" < tests/input.txt | tee actual.out
+
+          # Put the EXPECTED output where the next step expects it
+          # (Assumes you keep an expected file in the repo.)
+          cp tests/expected.out expected.out
+
       - name: Normalize and compare outputs
         shell: bash
         run: |
