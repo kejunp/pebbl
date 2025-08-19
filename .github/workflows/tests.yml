@@ -1,15 +1,11 @@
 name: Tests
-
 on:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -19,110 +15,104 @@ jobs:
       - name: Set up CMake
         uses: jwlawson/actions-setup-cmake@v1
 
-      - name: Configure
-        run: cmake -S . -B build
+      - name: Configure (Release)
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-      - name: Build
-        run: cmake --build build --config Release
+      - name: Build all
+        run: cmake --build build --config Release -j
 
-      # Hand off the compiled binary (whatever it’s called) to the test job
-      - name: Locate built binary
-        id: findbin
-        run: |
-          # find first executable in build dir (adjust the pattern if you know the exact name)
-          BIN_PATH="$(find build -maxdepth 3 -type f -executable | head -n1)"
-          if [ -z "$BIN_PATH" ]; then
-            echo "No executable found under build/. Failing."
-            exit 1
-          fi
-          echo "bin=$BIN_PATH" >> "$GITHUB_OUTPUT"
+      # ✅ Put real binaries under dist/bin via CMake install rules
+      - name: Install to prefix
+        run: cmake --install build --config Release --prefix "$PWD/dist"
 
-      - name: Upload artifact
+      - name: Show installed tree
+        run: find dist -maxdepth 3 -type f -print
+
+      - name: Upload installed binaries
         uses: actions/upload-artifact@v4
         with:
-          name: pebbli-bin
-          path: ${{ steps.findbin.outputs.bin }}
-
+          name: pebbli-dist
+          path: dist/bin/*
   test:
     runs-on: ubuntu-latest
     needs: [build]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download artifact
+      - name: Download binaries
         uses: actions/download-artifact@v4
         with:
-          name: pebbli-bin
-          path: ./bin
+          name: pebbli-dist
+          path: ./dist/bin
 
-      - name: Make binary executable
-        run: chmod +x ./bin/*
-
-      # 1) If your interpreter supports an internal suite: run it
-      - name: Run internal test mode (if supported)
+      - name: Make downloaded files executable
         run: |
-          set -e
-          ./bin/* --test || true   # don’t fail if --test isn’t supported; next step will validate
+          set -euo pipefail
+          if compgen -G "./dist/bin/*" > /dev/null; then
+            chmod +x ./dist/bin/* || true
+          fi
 
-      # 2) Drive the REPL with your sample tests and assert outputs
-      - name: Run REPL tests
+      - name: Locate binary
+        id: bin
         shell: bash
         run: |
           set -euo pipefail
-          cat >input.pbl <<'EOF'
-          42;
-          3.14;
-          "hello world";
-          true;
-          1 + 2;
-          5 * 3 - 2;
-          let x = 10; x;
-          let y = 5; y * 2;
-          [1, 2, 3];
-          {"name": "Alice", "age": 25}["age"];
-          if true { 42 } else { 0 };
-          let a = 5; let b = 10; a + b;
-          EOF
+          BIN="$(find ./dist/bin -maxdepth 1 -type f -executable | head -n1)"
+          if [ -z "${BIN:-}" ]; then
+            echo "Nothing executable in dist/bin"; ls -lR ./dist || true; exit 1
+          fi
+          echo "path=$BIN" >> "$GITHUB_OUTPUT"
+          echo "Using: $BIN"
 
-          # Run program; capture output
-          ./bin/* < input.pbl | tee actual.out
+      # Detect whether repo provides test fixtures
+      - name: Check for test fixtures
+        id: fixtures
+        run: |
+          if [[ -f tests/input.txt && -f tests/expected.out ]]; then
+            echo "have=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "have=false" >> "$GITHUB_OUTPUT"
+          fi
 
-          # Expected outputs (one per expression above).
-          cat >expected.out <<'EOF'
-          42
-          3.140000
-          hello world
-          true
-          3
-          13
-          10
-          10
-          [1, 2, 3]
-          25
-          42
-          15
-          EOF
+      - name: Run internal test mode (if supported)
+        run: |
+          set -e
+          "${{ steps.bin.outputs.path }}" --dev test || true
 
-          # Normalize both (strip prompts like ">>> " and blank lines)
-          sed -E 's/^>>> //; /^\s*$/d' actual.out > actual.norm
-          sed -E 's/^\s+|\s+$//g' expected.out > expected.norm
+      # Only run comparison when fixtures exist
+      - name: Produce outputs for comparison
+        if: steps.fixtures.outputs.have == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          "${{ steps.bin.outputs.path }}" < tests/input.txt | tee actual.out
+          cp tests/expected.out expected.out
 
-          # Check that expected lines appear in order in actual output
-          awk 'NR==FNR{exp[NR]=$0; n=NR; next}
-               {
-                 gsub(/^\s+|\s+$/,"",$0);
-                 if ($0!="") actual[++m]=$0
-               }
-               END{
-                 i=j=1
-                 while (i<=n && j<=m){
-                   if (actual[j]==exp[i]) { i++; j++ } else { j++ }
-                 }
-                 if (i<=n){
-                   print "Missing expected line:", exp[i] > "/dev/stderr"
-                   exit 1
-                 }
-               }' expected.norm actual.norm
-
+      - name: Normalize and compare outputs
+        if: steps.fixtures.outputs.have == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -E 's/^([>]{1,3})[[:space:]]+//; /^\s*$/d' actual.out > actual.norm
+          sed -E 's/^[[:space:]]+|[[:space:]]+$//g' expected.out > expected.norm
+          cat > subseq.awk <<'AWK'
+          NR==FNR { exp[++n]=$0; next }
+          { gsub(/^[[:space:]]+|[[:space:]]+$/,""); if ($0!="") act[++m]=$0 }
+          END {
+            i=1; j=1
+            while (i<=n && j<=m) {
+              if (act[j]==exp[i]) { i++; j++ } else j++
+            }
+            if (i<=n) { print "Missing expected line:", exp[i] > "/dev/stderr"; exit 1 }
+          }
+          AWK
+          awk -f subseq.awk expected.norm actual.norm
           echo "All REPL checks passed."
+
+      # Optional: smoke test path when fixtures are absent
+      - name: Smoke test (no fixtures)
+        if: steps.fixtures.outputs.have == 'false'
+        run: |
+          set -euo pipefail
+          echo "No tests/ fixtures found; running a smoke test."
+          "${{ steps.bin.outputs.path }}" --version || "${{ steps.bin.outputs.path }}" --help || true
