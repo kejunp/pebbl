@@ -25,6 +25,9 @@ jobs:
       - name: Install to prefix
         run: cmake --install build --config Release --prefix "$PWD/dist"
 
+      - name: Make the pebbli file executable
+        run: chmod +x dist/bin/pebbli 
+
       - name: Show installed tree
         run: find dist -maxdepth 3 -type f -print
 
