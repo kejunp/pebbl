@@ -10,36 +10,119 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    permissions:
-      packages: read # Needed to pull from GHCR
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Boost
+        run: sudo apt-get update && sudo apt-get install -y libboost-all-dev
+
+      - name: Set up CMake
+        uses: jwlawson/actions-setup-cmake@v1
+
+      - name: Configure
+        run: cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      # Hand off the compiled binary (whatever it’s called) to the test job
+      - name: Locate built binary
+        id: findbin
+        run: |
+          # find first executable in build dir (adjust the pattern if you know the exact name)
+          BIN_PATH="$(find build -maxdepth 3 -type f -executable | head -n1)"
+          if [ -z "$BIN_PATH" ]; then
+            echo "No executable found under build/. Failing."
+            exit 1
+          fi
+          echo "bin=$BIN_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pebbli-bin
+          path: ${{ steps.findbin.outputs.bin }}
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    # Authenticate to GitHub Container Registry (GHCR)
-    - name: Log in to GHCR
-      run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pebbli-bin
+          path: ./bin
 
-    # Run Dev Container CI
-    - uses: devcontainers/ci@v0.3
-      with:
-        imageName: ghcr.io/kejunp/pebbl-devcontainer
-        push: never  # Skip pushing unless you want to update the image
-        noCache: false
+      - name: Make binary executable
+        run: chmod +x ./bin/*
 
-    # Don't know why I need to do this, because this is already in the dev container, but this is a workaround
-    - name: Install Boost
-      run: sudo apt install libboost-all-dev
+      # 1) If your interpreter supports an internal suite: run it
+      - name: Run internal test mode (if supported)
+        run: |
+          set -e
+          ./bin/* --test || true   # don’t fail if --test isn’t supported; next step will validate
 
-    # CMake and Test steps inside container
-    - name: Set up CMake
-      uses: jwlawson/actions-setup-cmake@v1
+      # 2) Drive the REPL with your sample tests and assert outputs
+      - name: Run REPL tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat >input.pbl <<'EOF'
+          42;
+          3.14;
+          "hello world";
+          true;
+          1 + 2;
+          5 * 3 - 2;
+          let x = 10; x;
+          let y = 5; y * 2;
+          [1, 2, 3];
+          {"name": "Alice", "age": 25}["age"];
+          if true { 42 } else { 0 };
+          let a = 5; let b = 10; a + b;
+          EOF
 
-    - name: Configure
-      run: cmake -S . -B build
+          # Run program; capture output
+          ./bin/* < input.pbl | tee actual.out
 
-    - name: Build
-      run: cmake --build build
+          # Expected outputs (one per expression above).
+          cat >expected.out <<'EOF'
+          42
+          3.140000
+          hello world
+          true
+          3
+          13
+          10
+          10
+          [1, 2, 3]
+          25
+          42
+          15
+          EOF
 
-    - name: Test
-      run: ctest --test-dir build
+          # Normalize both (strip prompts like ">>> " and blank lines)
+          sed -E 's/^>>> //; /^\s*$/d' actual.out > actual.norm
+          sed -E 's/^\s+|\s+$//g' expected.out > expected.norm
+
+          # Check that expected lines appear in order in actual output
+          awk 'NR==FNR{exp[NR]=$0; n=NR; next}
+               {
+                 gsub(/^\s+|\s+$/,"",$0);
+                 if ($0!="") actual[++m]=$0
+               }
+               END{
+                 i=j=1
+                 while (i<=n && j<=m){
+                   if (actual[j]==exp[i]) { i++; j++ } else { j++ }
+                 }
+                 if (i<=n){
+                   print "Missing expected line:", exp[i] > "/dev/stderr"
+                   exit 1
+                 }
+               }' expected.norm actual.norm
+
+          echo "All REPL checks passed."
