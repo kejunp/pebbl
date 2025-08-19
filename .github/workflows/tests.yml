@@ -25,9 +25,6 @@ jobs:
       - name: Install to prefix
         run: cmake --install build --config Release --prefix "$PWD/dist"
 
-      - name: Make the pebbli file executable
-        run: chmod +x dist/bin/pebbli 
-
       - name: Show installed tree
         run: find dist -maxdepth 3 -type f -print
 
@@ -49,6 +46,13 @@ jobs:
           name: pebbli-dist
           path: ./dist/bin
 
+      - name: Make downloaded files executable
+        run: |
+          set -euo pipefail
+          if compgen -G "./dist/bin/*" > /dev/null; then
+            chmod +x ./dist/bin/* || true
+          fi
+
       - name: Locate binary
         id: bin
         shell: bash
@@ -60,9 +64,6 @@ jobs:
           fi
           echo "path=$BIN" >> "$GITHUB_OUTPUT"
           echo "Using: $BIN"
-
-      - name: Make binary executable
-        run: chmod +x "${{ steps.bin.outputs.path }}"
 
       - name: Run internal test mode (if supported)
         run: |
