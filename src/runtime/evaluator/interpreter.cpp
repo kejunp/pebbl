@@ -10,34 +10,67 @@
 
 #include "builtin_funcs.hpp"
 #include "builtin_objects.hpp"
+#include "compiler.hpp"
+#include "vm.hpp"
 
-Interpreter::Interpreter(GCHeap& heap) : heap_(heap) {
+Interpreter::Interpreter(GCHeap& heap, bool use_bytecode) 
+    : heap_(heap), use_bytecode_(use_bytecode) {
   global_env_ = std::make_shared<Environment>();
   current_env_ = global_env_;
 
   // Register this interpreter as a GC root tracer
   heap_.add_root_tracer([this](Tracer& tracer) { this->trace_roots(tracer); });
 
+  // Initialize bytecode components if requested
+  if (use_bytecode_) {
+    compiler_ = std::make_unique<Compiler>(heap_);
+    vm_ = std::make_unique<VM>(heap_);
+  }
+
   register_builtin_functions();
 }
 
 PEBBLObject Interpreter::execute(const ProgramNode& program) {
-  PEBBLObject result = PEBBLObject::make_null();
-
-  // Reset return state for each program execution
-  has_return_ = false;
-  return_value_ = PEBBLObject::make_null();
-
-  for (const auto& statement : program.statements) {
-    // Ensure we're always in the global environment for top-level statements
-    current_env_ = global_env_;
-    result = execute(*statement);
-    if (has_return_) {
-      break;
+  if (use_bytecode_ && compiler_ && vm_) {
+    // Use bytecode compilation and execution
+    auto chunk = compiler_->compile(program);
+    if (!chunk) {
+      runtime_error("Failed to compile program to bytecode");
+      return PEBBLObject::make_null();
     }
-  }
+    
+    // Transfer global variables from interpreter environment to VM
+    sync_globals_to_vm();
+    
+    VMResult result = vm_->execute(*chunk);
+    if (result != VMResult::OK) {
+      runtime_error("VM execution failed: " + vm_->get_error());
+      return PEBBLObject::make_null();
+    }
+    
+    // Sync globals back from VM to interpreter
+    sync_globals_from_vm();
+    
+    return vm_->get_result();
+  } else {
+    // Use tree-walking interpretation (original behavior)
+    PEBBLObject result = PEBBLObject::make_null();
 
-  return result;
+    // Reset return state for each program execution
+    has_return_ = false;
+    return_value_ = PEBBLObject::make_null();
+
+    for (const auto& statement : program.statements) {
+      // Ensure we're always in the global environment for top-level statements
+      current_env_ = global_env_;
+      result = execute(*statement);
+      if (has_return_) {
+        break;
+      }
+    }
+
+    return result;
+  }
 }
 
 PEBBLObject Interpreter::evaluate(const ExpressionNode& expr) {
@@ -799,4 +832,37 @@ void Interpreter::trace_environment_objects(std::shared_ptr<Environment> env, Tr
 
   // Recursively trace parent environments
   trace_environment_objects(env->get_parent(), tracer);
+}
+
+void Interpreter::set_bytecode_mode(bool enable) {
+  use_bytecode_ = enable;
+  
+  if (enable && !compiler_) {
+    compiler_ = std::make_unique<Compiler>(heap_);
+  }
+  
+  if (enable && !vm_) {
+    vm_ = std::make_unique<VM>(heap_);
+  }
+}
+
+void Interpreter::sync_globals_to_vm() {
+  if (!vm_ || !global_env_) return;
+  
+  // For now, this is a simplified sync that only handles builtin functions
+  // A full implementation would need to iterate through all global variables
+  // and transfer them to the VM's global environment
+  
+  // TODO: Implement proper global variable synchronization
+  // This would require access to Environment's internal storage
+}
+
+void Interpreter::sync_globals_from_vm() {
+  if (!vm_ || !global_env_) return;
+  
+  // For now, this is a simplified sync
+  // A full implementation would need to sync variables modified by the VM
+  // back to the interpreter's environment
+  
+  // TODO: Implement proper global variable synchronization
 }

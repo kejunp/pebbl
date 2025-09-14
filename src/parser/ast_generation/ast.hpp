@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include <boost/multiprecision/cpp_int.hpp>
+// #include <boost/multiprecision/cpp_int.hpp> // Temporarily disabled for testing
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -231,7 +231,7 @@ struct ExpressionStatementNode final : StatementNode {
 /// @brief A integer literal
 struct IntegerLiteralNode : LiteralNode {
   Token token;
-  boost::multiprecision::cpp_int value;
+  int64_t value;  // Temporary replacement for boost::multiprecision::cpp_int
 
   /**
    * @return Returns ASTType::INTEGER_LITERAL

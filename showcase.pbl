@@ -1,0 +1,68 @@
+// PEBBL Language Showcase
+// Demonstrates various features of the PEBBL programming language
+
+// Variables and literals
+let name = "PEBBL";
+var version = 1.0;
+let isAwesome = true;
+
+// Basic arithmetic
+let x = 10;
+let y = 5;
+let sum = x + y;
+let product = x * y;
+
+// Arrays and dictionaries
+let numbers = [1, 2, 3, 4, 5];
+let person = {
+    "name": "Alice",
+    "age": 25,
+    "skills": ["programming", "design"]
+};
+
+// Functions
+func factorial(n) {
+    if n <= 1 {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    };
+};
+
+func greet(name) {
+    return "Hello, " + name + "!";
+};
+
+// Control flow examples
+let count = 0;
+while count < 3 {
+    count = count + 1;
+};
+
+// Conditional expressions
+let message = if x > y {
+    "x is greater";
+} else {
+    "y is greater or equal";
+};
+
+// Using functions
+let greeting = greet("World");
+let fact5 = factorial(5);
+
+// Boolean logic
+let canVote = person["age"] >= 18;
+let isValid = canVote and isAwesome;
+let hasErrors = false or !isValid;
+
+// Final results
+let results = {
+    "language": name,
+    "version": version,
+    "sum": sum,
+    "factorial_5": fact5,
+    "greeting": greeting,
+    "final_count": count,
+    "message": message,
+    "can_vote": canVote
+};

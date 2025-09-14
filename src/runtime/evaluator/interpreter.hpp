@@ -12,6 +12,8 @@
 #include "environment.hpp"
 #include "gc.hpp"
 #include "object.hpp"
+#include "compiler.hpp"
+#include "vm.hpp"
 
 /**
  * @brief Runtime exception for interpreter errors
@@ -42,8 +44,9 @@ public:
   /**
    * @brief Constructor
    * @param heap GC heap for object allocation
+   * @param use_bytecode Whether to use bytecode interpreter (default: false for tree-walker)
    */
-  explicit Interpreter(GCHeap& heap);
+  explicit Interpreter(GCHeap& heap, bool use_bytecode = false);
 
   /**
    * @brief Execute a program
@@ -85,6 +88,18 @@ public:
   void report_error(const std::string& message) {
     runtime_error(message);
   }
+  
+  /**
+   * @brief Enable or disable bytecode execution mode
+   * @param enable True to enable bytecode mode, false for tree-walking mode
+   */
+  void set_bytecode_mode(bool enable);
+  
+  /**
+   * @brief Check if bytecode mode is enabled
+   * @return True if using bytecode interpreter
+   */
+  bool is_bytecode_mode() const { return use_bytecode_; }
 
 private:
   GCHeap& heap_;
@@ -94,6 +109,11 @@ private:
   // Control flow flags
   bool has_return_ = false;
   PEBBLObject return_value_;
+  
+  // Bytecode execution components
+  bool use_bytecode_;
+  std::unique_ptr<Compiler> compiler_;
+  std::unique_ptr<VM> vm_;
 
   // Expression evaluation methods
   PEBBLObject evaluate_binary(const BinaryExpressionNode& expr);
@@ -131,4 +151,8 @@ private:
 
   // Builtin function management
   void register_builtin_functions();
+  
+  // Bytecode integration helpers
+  void sync_globals_to_vm();
+  void sync_globals_from_vm();
 };
