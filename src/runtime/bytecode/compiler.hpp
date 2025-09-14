@@ -75,8 +75,8 @@ private:
   void compile_for_statement(const ForLoopStatementNode& stmt);
   void compile_function_statement(const FunctionStatementNode& stmt);
 
-  // Compilation methods for expressions
-  void compile_expression(const ExpressionNode& expr);
+  // Compilation methods for expressions (private helpers)
+  void compile_expression_impl(const ExpressionNode& expr);
   void compile_literal(const LiteralNode& expr);
   void compile_identifier(const IdentifierNode& expr);
   void compile_binary_expression(const BinaryExpressionNode& expr);

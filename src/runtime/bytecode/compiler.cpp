@@ -9,6 +9,7 @@
 #include <stdexcept>
 
 #include "object.hpp"
+#include "../builtins/builtin_objects.hpp"
 
 Compiler::Compiler(GCHeap& heap) : heap_(heap), has_error_(false) {
 }
@@ -47,7 +48,7 @@ std::unique_ptr<Chunk> Compiler::compile_expression(const ExpressionNode& expr) 
   }
   push_scope(ScopeType::GLOBAL);
 
-  compile_expression(expr);
+  compile_expression_impl(expr);
 
   if (!has_error_) {
     emit_instruction(OpCode::HALT);
@@ -206,7 +207,7 @@ void Compiler::compile_function_statement(const FunctionStatementNode& stmt) {
   error("Function definitions not yet fully implemented in bytecode compiler", stmt.get_token());
 }
 
-void Compiler::compile_expression(const ExpressionNode& expr) {
+void Compiler::compile_expression_impl(const ExpressionNode& expr) {
   switch (expr.type()) {
     case ASTType::INTEGER_LITERAL:
     case ASTType::FLOAT_LITERAL:

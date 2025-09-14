@@ -15,6 +15,10 @@
 #include "gc.hpp"
 #include "object.hpp"
 
+// Forward declarations to avoid circular includes
+class PEBBLFunction;
+class PEBBLBuiltinFunction;
+
 /**
  * @brief Call frame for function calls
  */

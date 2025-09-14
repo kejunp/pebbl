@@ -98,6 +98,10 @@ struct VariableInfo {
   bool is_mutable;
   uint32_t index;  // Index in local variables or global environment
 
+  // Default constructor for std::unordered_map
+  VariableInfo() : name(""), is_mutable(false), index(0) {
+  }
+
   VariableInfo(const std::string& n, bool mut, uint32_t idx) :
       name(n), is_mutable(mut), index(idx) {
   }

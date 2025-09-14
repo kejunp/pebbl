@@ -10,9 +10,7 @@
 #include <vector>
 
 #include "builtin_objects.hpp"
-
-// Forward declaration
-class Interpreter;
+#include "../evaluator/interpreter.hpp"
 
 /**
  * @brief Namespace containing all builtin function implementations
@@ -25,7 +23,7 @@ namespace BuiltinFunctions {
  * @param interp Reference to interpreter for stringify calls
  * @return PEBBLObject null value
  */
-inline PEBBLObject print_impl(const std::vector<PEBBLObject>& args, class Interpreter& interp) {
+inline PEBBLObject print_impl(const std::vector<PEBBLObject>& args, Interpreter& interp) {
   for (size_t i = 0; i < args.size(); ++i) {
     if (i > 0) std::cout << " ";
     std::cout << interp.stringify(args[i]);
@@ -40,7 +38,7 @@ inline PEBBLObject print_impl(const std::vector<PEBBLObject>& args, class Interp
  * @param interp Reference to interpreter for error reporting
  * @return PEBBLObject containing length as int32
  */
-inline PEBBLObject length_impl(const std::vector<PEBBLObject>& args, class Interpreter& interp) {
+inline PEBBLObject length_impl(const std::vector<PEBBLObject>& args, Interpreter& interp) {
   if (args.size() != 1) {
     interp.report_error("length() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
@@ -76,7 +74,7 @@ inline PEBBLObject length_impl(const std::vector<PEBBLObject>& args, class Inter
  * @param interp Reference to interpreter for heap allocation
  * @return PEBBLObject containing type name as string
  */
-inline PEBBLObject type_impl(const std::vector<PEBBLObject>& args, class Interpreter& interp) {
+inline PEBBLObject type_impl(const std::vector<PEBBLObject>& args, Interpreter& interp) {
   if (args.size() != 1) {
     interp.report_error("type() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
@@ -129,7 +127,7 @@ inline PEBBLObject type_impl(const std::vector<PEBBLObject>& args, class Interpr
  * @param interp Reference to interpreter for stringify and heap allocation
  * @return PEBBLObject containing string representation
  */
-inline PEBBLObject str_impl(const std::vector<PEBBLObject>& args, class Interpreter& interp) {
+inline PEBBLObject str_impl(const std::vector<PEBBLObject>& args, Interpreter& interp) {
   if (args.size() != 1) {
     interp.report_error("str() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
@@ -146,7 +144,7 @@ inline PEBBLObject str_impl(const std::vector<PEBBLObject>& args, class Interpre
  * @param interp Reference to interpreter for error reporting
  * @return PEBBLObject null value
  */
-inline PEBBLObject push_impl(const std::vector<PEBBLObject>& args, class Interpreter& interp) {
+inline PEBBLObject push_impl(const std::vector<PEBBLObject>& args, Interpreter& interp) {
   if (args.size() != 2) {
     interp.report_error("push() expects exactly 2 arguments, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();
@@ -177,7 +175,7 @@ inline PEBBLObject push_impl(const std::vector<PEBBLObject>& args, class Interpr
  * @param interp Reference to interpreter for error reporting
  * @return PEBBLObject containing popped value or null
  */
-inline PEBBLObject pop_impl(const std::vector<PEBBLObject>& args, class Interpreter& interp) {
+inline PEBBLObject pop_impl(const std::vector<PEBBLObject>& args, Interpreter& interp) {
   if (args.size() != 1) {
     interp.report_error("pop() expects exactly 1 argument, got " + std::to_string(args.size()));
     return PEBBLObject::make_null();

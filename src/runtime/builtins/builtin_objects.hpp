@@ -13,6 +13,9 @@
 #include "gc.hpp"
 #include "object.hpp"
 
+// Forward declaration to avoid circular includes
+class Interpreter;
+
 /**
  * @brief Garbage-collected string object
  */
