@@ -101,7 +101,8 @@ void run_repl() {
 }
 
 void test_interpreter(bool use_bytecode = false) {
-  std::cout << "Testing PEBBL Interpreter (" << (use_bytecode ? "Bytecode" : "Tree-Walker") << " Mode)" << std::endl;
+  std::cout << "Testing PEBBL Interpreter (" << (use_bytecode ? "Bytecode" : "Tree-Walker")
+            << " Mode)" << std::endl;
   std::cout << "=========================" << std::endl;
 
   std::vector<std::string> test_cases = {
@@ -128,7 +129,7 @@ void test_interpreter(bool use_bytecode = false) {
 
 int main(int argc, char* argv[]) {
   bool use_bytecode = false;
-  
+
   // Check for --bytecode flag
   for (int i = 1; i < argc; ++i) {
     std::string arg = argv[i];
@@ -142,7 +143,7 @@ int main(int argc, char* argv[]) {
       break;
     }
   }
-  
+
   if (argc == 1) {
     // No arguments - run REPL
     run_repl();
@@ -160,7 +161,8 @@ int main(int argc, char* argv[]) {
     if (arg1 == "--dev" && arg2 == "test") {
       test_interpreter(use_bytecode);
     } else {
-      std::cout << "Usage: " << argv[0] << " [--bytecode] [--dev test|--repl|filename]" << std::endl;
+      std::cout << "Usage: " << argv[0] << " [--bytecode] [--dev test|--repl|filename]"
+                << std::endl;
       std::cout << "  --bytecode : Use bytecode interpreter instead of tree-walker" << std::endl;
       std::cout << "  --dev test : Run interpreter tests" << std::endl;
       std::cout << "  --repl     : Run interactive REPL" << std::endl;
