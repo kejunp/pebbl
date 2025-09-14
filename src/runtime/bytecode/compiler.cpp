@@ -280,6 +280,8 @@ void Compiler::compile_literal(const LiteralNode& expr) {
 }
 
 void Compiler::compile_identifier(const IdentifierNode& expr) {
+  // Treat all identifiers as variables (including builtin functions)
+  // The VM will resolve builtin functions from its global environment
   uint32_t var_index = resolve_variable(expr.name);
   emit_instruction(OpCode::LOAD_VAR, var_index);
 }
@@ -391,25 +393,45 @@ void Compiler::compile_call_expression(const CallExpressionNode& expr) {
 }
 
 void Compiler::emit_instruction(OpCode opcode) {
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return;
+  }
   current_chunk_->add_instruction(opcode);
 }
 
 void Compiler::emit_instruction(OpCode opcode, uint32_t operand) {
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return;
+  }
   current_chunk_->add_instruction(opcode, operand);
 }
 
 uint32_t Compiler::emit_jump(OpCode opcode) {
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return 0;
+  }
   uint32_t instruction_index = current_chunk_->get_instruction_count();
   current_chunk_->add_instruction(opcode, 0);  // Placeholder operand
   return instruction_index;
 }
 
 void Compiler::patch_jump(uint32_t instruction_index) {
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return;
+  }
   uint32_t jump_target = current_chunk_->get_instruction_count();
   current_chunk_->patch_jump(instruction_index, jump_target);
 }
 
 uint32_t Compiler::add_constant(PEBBLObject constant) {
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return 0;
+  }
   return current_chunk_->add_constant(constant);
 }
 
@@ -439,6 +461,10 @@ uint32_t Compiler::resolve_variable(const std::string& name) {
   }
 
   // For simplicity, return a name index for global lookup
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return 0;
+  }
   return current_chunk_->add_variable_name(name);
 }
 
@@ -446,6 +472,10 @@ uint32_t Compiler::define_variable(const std::string& name, bool is_mutable) {
   auto& scope = current_scope();
   uint32_t index = scope.variable_count++;
   scope.variables[name] = VariableInfo(name, is_mutable, index);
+  if (!current_chunk_) {
+    error("Compiler error: current_chunk_ is null");
+    return 0;
+  }
   return current_chunk_->add_variable_name(name);
 }
 
@@ -523,3 +553,4 @@ uint32_t Compiler::add_number_constant(int32_t value) {
 uint32_t Compiler::add_number_constant(double value) {
   return add_constant(PEBBLObject::make_double(value));
 }
+

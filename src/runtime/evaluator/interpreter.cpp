@@ -849,12 +849,32 @@ void Interpreter::set_bytecode_mode(bool enable) {
 void Interpreter::sync_globals_to_vm() {
   if (!vm_ || !global_env_) return;
 
-  // For now, this is a simplified sync that only handles builtin functions
-  // A full implementation would need to iterate through all global variables
-  // and transfer them to the VM's global environment
+  // Transfer builtin functions to VM
+  // Register print function (variable arguments)
+  auto* print_builtin =
+      heap_.allocate<PEBBLBuiltinFunction>("print", SIZE_MAX, BuiltinFunctions::print_impl);
+  vm_->set_global("print", PEBBLObject::make_gc_ptr(print_builtin));
 
-  // TODO: Implement proper global variable synchronization
-  // This would require access to Environment's internal storage
+  // Register length function
+  auto* length_builtin =
+      heap_.allocate<PEBBLBuiltinFunction>("length", 1, BuiltinFunctions::length_impl);
+  vm_->set_global("length", PEBBLObject::make_gc_ptr(length_builtin));
+
+  // Register type function
+  auto* type_builtin = heap_.allocate<PEBBLBuiltinFunction>("type", 1, BuiltinFunctions::type_impl);
+  vm_->set_global("type", PEBBLObject::make_gc_ptr(type_builtin));
+
+  // Register str function
+  auto* str_builtin = heap_.allocate<PEBBLBuiltinFunction>("str", 1, BuiltinFunctions::str_impl);
+  vm_->set_global("str", PEBBLObject::make_gc_ptr(str_builtin));
+
+  // Register push function
+  auto* push_builtin = heap_.allocate<PEBBLBuiltinFunction>("push", 2, BuiltinFunctions::push_impl);
+  vm_->set_global("push", PEBBLObject::make_gc_ptr(push_builtin));
+
+  // Register pop function
+  auto* pop_builtin = heap_.allocate<PEBBLBuiltinFunction>("pop", 1, BuiltinFunctions::pop_impl);
+  vm_->set_global("pop", PEBBLObject::make_gc_ptr(pop_builtin));
 }
 
 void Interpreter::sync_globals_from_vm() {
