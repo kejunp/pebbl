@@ -13,8 +13,8 @@
 #include "compiler.hpp"
 #include "vm.hpp"
 
-Interpreter::Interpreter(GCHeap& heap, bool use_bytecode) 
-    : heap_(heap), use_bytecode_(use_bytecode) {
+Interpreter::Interpreter(GCHeap& heap, bool use_bytecode) :
+    heap_(heap), use_bytecode_(use_bytecode) {
   global_env_ = std::make_shared<Environment>();
   current_env_ = global_env_;
 
@@ -38,19 +38,19 @@ PEBBLObject Interpreter::execute(const ProgramNode& program) {
       runtime_error("Failed to compile program to bytecode");
       return PEBBLObject::make_null();
     }
-    
+
     // Transfer global variables from interpreter environment to VM
     sync_globals_to_vm();
-    
+
     VMResult result = vm_->execute(*chunk);
     if (result != VMResult::OK) {
       runtime_error("VM execution failed: " + vm_->get_error());
       return PEBBLObject::make_null();
     }
-    
+
     // Sync globals back from VM to interpreter
     sync_globals_from_vm();
-    
+
     return vm_->get_result();
   } else {
     // Use tree-walking interpretation (original behavior)
@@ -836,11 +836,11 @@ void Interpreter::trace_environment_objects(std::shared_ptr<Environment> env, Tr
 
 void Interpreter::set_bytecode_mode(bool enable) {
   use_bytecode_ = enable;
-  
+
   if (enable && !compiler_) {
     compiler_ = std::make_unique<Compiler>(heap_);
   }
-  
+
   if (enable && !vm_) {
     vm_ = std::make_unique<VM>(heap_);
   }
@@ -848,21 +848,21 @@ void Interpreter::set_bytecode_mode(bool enable) {
 
 void Interpreter::sync_globals_to_vm() {
   if (!vm_ || !global_env_) return;
-  
+
   // For now, this is a simplified sync that only handles builtin functions
   // A full implementation would need to iterate through all global variables
   // and transfer them to the VM's global environment
-  
+
   // TODO: Implement proper global variable synchronization
   // This would require access to Environment's internal storage
 }
 
 void Interpreter::sync_globals_from_vm() {
   if (!vm_ || !global_env_) return;
-  
+
   // For now, this is a simplified sync
   // A full implementation would need to sync variables modified by the VM
   // back to the interpreter's environment
-  
+
   // TODO: Implement proper global variable synchronization
 }

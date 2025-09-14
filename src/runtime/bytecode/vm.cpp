@@ -4,31 +4,32 @@
  */
 
 #include "vm.hpp"
-#include "builtin_funcs.hpp"
-#include "builtin_objects.hpp"
+
 #include <iostream>
 #include <sstream>
 
+#include "builtin_funcs.hpp"
+#include "builtin_objects.hpp"
 
 VM::VM(GCHeap& heap) : heap_(heap), has_error_(false) {
   stack_.reserve(STACK_MAX);
   frames_.reserve(FRAMES_MAX);
-  
+
   global_env_ = std::make_shared<Environment>();
   current_env_ = global_env_;
-  
+
   // Register this VM as a GC root tracer
   heap_.add_root_tracer([this](Tracer& tracer) { this->trace_roots(tracer); });
-  
+
   // For now, skip builtin registration - will be handled during integration
 }
 
 VMResult VM::execute(const Chunk& chunk) {
   reset();
-  
+
   // Push initial call frame
   frames_.emplace_back(&chunk, 0, 0);
-  
+
   return run();
 }
 
@@ -51,7 +52,7 @@ VMResult VM::run() {
   while (!frames_.empty()) {
     CallFrame& frame = current_frame();
     const Chunk& chunk = *frame.chunk;
-    
+
     if (frame.instruction_pointer >= chunk.instructions.size()) {
       // End of chunk reached
       if (frames_.size() == 1) {
@@ -63,9 +64,9 @@ VMResult VM::run() {
         continue;
       }
     }
-    
+
     const Instruction& instruction = chunk.instructions[frame.instruction_pointer++];
-    
+
     switch (instruction.opcode) {
       case OpCode::LOAD_CONST:
         handle_load_const(instruction.operand);
@@ -160,15 +161,16 @@ VMResult VM::run() {
       case OpCode::HALT:
         return VMResult::OK;
       default:
-        runtime_error("Unknown instruction: " + std::to_string(static_cast<int>(instruction.opcode)));
+        runtime_error(
+            "Unknown instruction: " + std::to_string(static_cast<int>(instruction.opcode)));
         return VMResult::RUNTIME_ERROR;
     }
-    
+
     if (has_error_) {
       return VMResult::RUNTIME_ERROR;
     }
   }
-  
+
   return VMResult::OK;
 }
 
@@ -229,7 +231,7 @@ void VM::handle_load_var(uint32_t operand) {
     runtime_error("Invalid variable index: " + std::to_string(operand));
     return;
   }
-  
+
   const std::string& var_name = chunk.variable_names[operand];
   try {
     PEBBLObject value = current_env_->get(var_name);
@@ -245,10 +247,10 @@ void VM::handle_store_var(uint32_t operand) {
     runtime_error("Invalid variable index: " + std::to_string(operand));
     return;
   }
-  
+
   const std::string& var_name = chunk.variable_names[operand];
   PEBBLObject value = peek(0);  // Don't pop yet, assignment returns the value
-  
+
   try {
     current_env_->set(var_name, value);
   } catch (const std::runtime_error& e) {
@@ -262,10 +264,10 @@ void VM::handle_define_var(uint32_t operand) {
     runtime_error("Invalid variable index: " + std::to_string(operand));
     return;
   }
-  
+
   const std::string& var_name = chunk.variable_names[operand];
   PEBBLObject value = pop();
-  
+
   // For simplicity, assume all variables are mutable
   current_env_->define(var_name, value, true);
 }
@@ -274,7 +276,7 @@ void VM::handle_add() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_numeric_operation(left, right, OpCode::ADD, result)) {
     push(result);
   } else {
@@ -286,7 +288,7 @@ void VM::handle_subtract() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_numeric_operation(left, right, OpCode::SUBTRACT, result)) {
     push(result);
   } else {
@@ -298,7 +300,7 @@ void VM::handle_multiply() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_numeric_operation(left, right, OpCode::MULTIPLY, result)) {
     push(result);
   } else {
@@ -310,14 +312,14 @@ void VM::handle_divide() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   // Check for division by zero
   if ((right.is_int32() && right.as_int32() == 0) ||
       (right.is_double() && right.as_double() == 0.0)) {
     runtime_error("Division by zero");
     return;
   }
-  
+
   if (perform_numeric_operation(left, right, OpCode::DIVIDE, result)) {
     push(result);
   } else {
@@ -327,7 +329,7 @@ void VM::handle_divide() {
 
 void VM::handle_negate() {
   PEBBLObject operand = pop();
-  
+
   if (operand.is_int32()) {
     push(PEBBLObject::make_int32(-operand.as_int32()));
   } else if (operand.is_double()) {
@@ -353,7 +355,7 @@ void VM::handle_less() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_comparison_operation(left, right, OpCode::LESS, result)) {
     push(result);
   } else {
@@ -365,7 +367,7 @@ void VM::handle_greater() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_comparison_operation(left, right, OpCode::GREATER, result)) {
     push(result);
   } else {
@@ -377,7 +379,7 @@ void VM::handle_less_equal() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_comparison_operation(left, right, OpCode::LESS_EQUAL, result)) {
     push(result);
   } else {
@@ -389,7 +391,7 @@ void VM::handle_greater_equal() {
   PEBBLObject right = pop();
   PEBBLObject left = pop();
   PEBBLObject result;
-  
+
   if (perform_comparison_operation(left, right, OpCode::GREATER_EQUAL, result)) {
     push(result);
   } else {
@@ -434,14 +436,14 @@ void VM::handle_jump_if_true(uint32_t operand) {
 
 void VM::handle_call(uint32_t argc) {
   PEBBLObject function = peek(argc);  // Function is below the arguments
-  
+
   if (!function.is_gc_ptr()) {
     runtime_error("Not a function");
     return;
   }
-  
+
   auto* gc_obj = function.as_gc_ptr();
-  
+
   if (gc_obj->tag == GCTag::BUILTIN_FUNCTION) {
     call_builtin(static_cast<PEBBLBuiltinFunction*>(gc_obj), argc);
   } else if (gc_obj->tag == GCTag::FUNCTION) {
@@ -453,22 +455,22 @@ void VM::handle_call(uint32_t argc) {
 
 void VM::handle_return() {
   PEBBLObject result = pop();
-  
+
   if (frames_.size() <= 1) {
     // Returning from main program
     push(result);
     return;
   }
-  
+
   // Pop the call frame
   CallFrame frame = frames_.back();
   frames_.pop_back();
-  
+
   // Remove local variables from stack
   while (stack_.size() > frame.stack_base) {
     stack_.pop_back();
   }
-  
+
   // Push return value
   push(result);
 }
@@ -476,24 +478,24 @@ void VM::handle_return() {
 void VM::handle_build_array(uint32_t count) {
   std::vector<PEBBLObject> elements;
   elements.reserve(count);
-  
+
   // Pop elements in reverse order
   for (uint32_t i = 0; i < count; ++i) {
     elements.insert(elements.begin(), pop());
   }
-  
+
   auto* array_obj = heap_.allocate<PEBBLArray>(std::move(elements));
   push(PEBBLObject::make_gc_ptr(array_obj));
 }
 
 void VM::handle_build_dict(uint32_t count) {
   std::unordered_map<std::string, PEBBLObject> entries;
-  
+
   // Pop key-value pairs
   for (uint32_t i = 0; i < count; ++i) {
     PEBBLObject value = pop();
     PEBBLObject key = pop();
-    
+
     // Convert key to string
     if (key.is_gc_ptr() && key.as_gc_ptr()->tag == GCTag::STRING) {
       auto* str_obj = static_cast<PEBBLString*>(key.as_gc_ptr());
@@ -503,7 +505,7 @@ void VM::handle_build_dict(uint32_t count) {
       return;
     }
   }
-  
+
   auto* dict_obj = heap_.allocate<PEBBLDict>(std::move(entries));
   push(PEBBLObject::make_gc_ptr(dict_obj));
 }
@@ -578,7 +580,8 @@ void VM::runtime_error(const std::string& message, uint32_t instruction) {
   std::cerr << "Runtime Error at instruction " << instruction << ": " << message << std::endl;
 }
 
-bool VM::perform_numeric_operation(PEBBLObject left, PEBBLObject right, OpCode operation, PEBBLObject& result) {
+bool VM::perform_numeric_operation(
+    PEBBLObject left, PEBBLObject right, OpCode operation, PEBBLObject& result) {
   if (left.is_int32() && right.is_int32()) {
     int32_t a = left.as_int32();
     int32_t b = right.as_int32();
@@ -621,7 +624,8 @@ bool VM::perform_numeric_operation(PEBBLObject left, PEBBLObject right, OpCode o
   return false;
 }
 
-bool VM::perform_comparison_operation(PEBBLObject left, PEBBLObject right, OpCode operation, PEBBLObject& result) {
+bool VM::perform_comparison_operation(
+    PEBBLObject left, PEBBLObject right, OpCode operation, PEBBLObject& result) {
   if (left.is_int32() && right.is_int32()) {
     int32_t a = left.as_int32();
     int32_t b = right.as_int32();
@@ -666,12 +670,12 @@ bool VM::perform_comparison_operation(PEBBLObject left, PEBBLObject right, OpCod
 
 bool VM::call_function(PEBBLFunction* function, uint32_t argc) {
   if (argc != function->arity()) {
-    runtime_error("Wrong number of arguments. Expected " + 
-                  std::to_string(function->arity()) + ", got " + 
-                  std::to_string(argc));
+    runtime_error(
+        "Wrong number of arguments. Expected " + std::to_string(function->arity()) + ", got " +
+        std::to_string(argc));
     return false;
   }
-  
+
   // TODO: Implement user-defined function calls
   // This would require:
   // 1. Creating a new call frame
@@ -683,28 +687,28 @@ bool VM::call_function(PEBBLFunction* function, uint32_t argc) {
 
 bool VM::call_builtin(PEBBLBuiltinFunction* function, uint32_t argc) {
   if (function->arity != SIZE_MAX && argc != function->arity) {
-    runtime_error("Wrong number of arguments. Expected " + 
-                  std::to_string(function->arity) + ", got " + 
-                  std::to_string(argc));
+    runtime_error(
+        "Wrong number of arguments. Expected " + std::to_string(function->arity) + ", got " +
+        std::to_string(argc));
     return false;
   }
-  
+
   // Collect arguments
   std::vector<PEBBLObject> args;
   args.reserve(argc);
   for (uint32_t i = 0; i < argc; ++i) {
     args.insert(args.begin(), pop());
   }
-  
+
   // Pop the function from the stack
   pop();
-  
+
   // For now, we'll need to skip builtin function calls until we properly integrate
   // with the interpreter interface. This is a temporary limitation.
   runtime_error("Builtin function calls not yet implemented in VM: " + function->name);
   PEBBLObject result = PEBBLObject::make_null();
   push(result);
-  
+
   return !has_error_;
 }
 
@@ -727,7 +731,7 @@ void VM::trace_roots(Tracer& tracer) {
       tracer.mark(value.as_gc_ptr());
     }
   }
-  
+
   // Trace all objects in the global environment
   if (global_env_) {
     global_env_->trace_objects(tracer);
@@ -786,5 +790,3 @@ std::string VM::stringify(PEBBLObject value) {
   }
   return "<unknown>";
 }
-
-

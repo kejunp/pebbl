@@ -4,23 +4,25 @@
  */
 
 #include "compiler.hpp"
-#include "object.hpp"
+
 #include <iostream>
 #include <stdexcept>
 
+#include "object.hpp"
 
-Compiler::Compiler(GCHeap& heap) : heap_(heap), has_error_(false) {}
+Compiler::Compiler(GCHeap& heap) : heap_(heap), has_error_(false) {
+}
 
 std::unique_ptr<Chunk> Compiler::compile(const ProgramNode& program) {
   current_chunk_ = std::make_unique<Chunk>();
   has_error_ = false;
-  
+
   // Clear scope stack and push global scope
   while (!scope_stack_.empty()) {
     scope_stack_.pop();
   }
   push_scope(ScopeType::GLOBAL);
-  
+
   // Compile all statements
   for (const auto& statement : program.statements) {
     compile_statement(*statement);
@@ -28,10 +30,10 @@ std::unique_ptr<Chunk> Compiler::compile(const ProgramNode& program) {
       return nullptr;
     }
   }
-  
+
   // Add halt instruction at the end
   emit_instruction(OpCode::HALT);
-  
+
   pop_scope();
   return std::move(current_chunk_);
 }
@@ -39,24 +41,24 @@ std::unique_ptr<Chunk> Compiler::compile(const ProgramNode& program) {
 std::unique_ptr<Chunk> Compiler::compile_expression(const ExpressionNode& expr) {
   current_chunk_ = std::make_unique<Chunk>();
   has_error_ = false;
-  
+
   while (!scope_stack_.empty()) {
     scope_stack_.pop();
   }
   push_scope(ScopeType::GLOBAL);
-  
+
   compile_expression(expr);
-  
+
   if (!has_error_) {
     emit_instruction(OpCode::HALT);
   }
-  
+
   pop_scope();
-  
+
   if (has_error_) {
     return nullptr;
   }
-  
+
   return std::move(current_chunk_);
 }
 
@@ -99,7 +101,7 @@ void Compiler::compile_expression_statement(const ExpressionStatementNode& stmt)
 void Compiler::compile_variable_statement(const VariableStatementNode& stmt) {
   // Compile the initializer expression
   compile_expression(*stmt.value);
-  
+
   // Define the variable
   uint32_t var_index = define_variable(stmt.name->name, stmt.is_mutable());
   emit_instruction(OpCode::DEFINE_VAR, var_index);
@@ -116,91 +118,91 @@ void Compiler::compile_return_statement(const ReturnStatementNode& stmt) {
 
 void Compiler::compile_block_statement(const BlockStatementNode& stmt) {
   push_scope(ScopeType::BLOCK);
-  
+
   for (const auto& statement : stmt.statements) {
     compile_statement(*statement);
     if (has_error_) break;
   }
-  
+
   pop_scope();
 }
 
 void Compiler::compile_while_statement(const WhileLoopStatementNode& stmt) {
   push_scope(ScopeType::LOOP);
-  
+
   uint32_t loop_start = current_chunk_->get_instruction_count();
   current_scope().loop_start = loop_start;
-  
+
   // Compile condition
   compile_expression(*stmt.condition);
-  
+
   // Jump if false (to end of loop)
   uint32_t exit_jump = emit_jump(OpCode::JUMP_IF_FALSE);
   current_scope().loop_exit = exit_jump;
-  
+
   // Compile loop body
   compile_statement(*stmt.block);
-  
+
   // Jump back to condition
   emit_instruction(OpCode::JUMP, loop_start);
-  
+
   // Patch the exit jump
   patch_jump(exit_jump);
-  
+
   pop_scope();
 }
 
 void Compiler::compile_for_statement(const ForLoopStatementNode& stmt) {
   push_scope(ScopeType::LOOP);
-  
+
   // Compile the iterable expression
   compile_expression(*stmt.iterable);
-  
+
   // For now, we'll implement a simplified version that assumes array iteration
   // This would need to be extended for different iterable types
-  
+
   // TODO: Implement proper for-loop bytecode generation
   // This is a complex operation that would require:
   // 1. Runtime type checking of the iterable
   // 2. Iterator setup
   // 3. Loop condition checking
   // 4. Variable binding for each iteration
-  
+
   error("For loops not yet implemented in bytecode compiler", stmt.get_token());
-  
+
   pop_scope();
 }
 
 void Compiler::compile_function_statement(const FunctionStatementNode& stmt) {
   // For now, we'll store function definitions as constants
   // This is simplified - a full implementation would need proper closure handling
-  
+
   // Create a new chunk for the function body
   auto function_chunk = std::make_unique<Chunk>();
   auto saved_chunk = std::move(current_chunk_);
   current_chunk_ = std::move(function_chunk);
-  
+
   push_scope(ScopeType::FUNCTION);
-  
+
   // Define parameters as local variables
   for (const auto& param : stmt.parameters) {
     define_variable(param->name, true);
   }
-  
+
   // Compile function body
   compile_statement(*stmt.body);
-  
+
   // Ensure function returns null if no explicit return
   emit_instruction(OpCode::LOAD_NULL);
   emit_instruction(OpCode::RETURN);
-  
+
   pop_scope();
-  
+
   // TODO: Store the compiled function chunk as a constant
   // This would require extending the object system to handle compiled functions
-  
+
   current_chunk_ = std::move(saved_chunk);
-  
+
   error("Function definitions not yet fully implemented in bytecode compiler", stmt.get_token());
 }
 
@@ -285,7 +287,7 @@ void Compiler::compile_binary_expression(const BinaryExpressionNode& expr) {
   // Compile operands (left first, then right for stack order)
   compile_expression(*expr.left);
   compile_expression(*expr.right);
-  
+
   // Emit the appropriate operation
   OpCode opcode = binary_op_to_opcode(expr.operator_token.type);
   if (opcode != OpCode::HALT) {  // HALT is used as "invalid" opcode
@@ -298,7 +300,7 @@ void Compiler::compile_binary_expression(const BinaryExpressionNode& expr) {
 void Compiler::compile_unary_expression(const UnaryExpressionNode& expr) {
   // Compile operand
   compile_expression(*expr.operand);
-  
+
   // Emit the appropriate operation
   OpCode opcode = unary_op_to_opcode(expr.operator_token.type);
   if (opcode != OpCode::HALT) {
@@ -311,7 +313,7 @@ void Compiler::compile_unary_expression(const UnaryExpressionNode& expr) {
 void Compiler::compile_assignment_expression(const AssignmentExpressionNode& expr) {
   // Compile the value
   compile_expression(*expr.value);
-  
+
   // Handle assignment target
   if (expr.target->type() == ASTType::IDENTIFIER) {
     const auto& identifier = static_cast<const IdentifierNode&>(*expr.target);
@@ -327,23 +329,23 @@ void Compiler::compile_assignment_expression(const AssignmentExpressionNode& exp
 void Compiler::compile_if_else_expression(const IfElseExpressionNode& expr) {
   // Compile condition
   compile_expression(*expr.condition);
-  
+
   // Jump if false to else branch
   uint32_t else_jump = emit_jump(OpCode::JUMP_IF_FALSE);
-  
+
   // Compile then branch
   compile_expression(*expr.then_expression);
-  
+
   if (expr.else_expression) {
     // Jump over else branch
     uint32_t end_jump = emit_jump(OpCode::JUMP);
-    
+
     // Patch else jump
     patch_jump(else_jump);
-    
+
     // Compile else branch
     compile_expression(*expr.else_expression);
-    
+
     // Patch end jump
     patch_jump(end_jump);
   } else {
@@ -358,7 +360,7 @@ void Compiler::compile_array_literal(const ArrayLiteralNode& expr) {
   for (const auto& element : expr.elements) {
     compile_expression(*element);
   }
-  
+
   // Build array with the number of elements
   emit_instruction(OpCode::BUILD_ARRAY, static_cast<uint32_t>(expr.elements.size()));
 }
@@ -369,7 +371,7 @@ void Compiler::compile_dict_literal(const DictLiteralNode& expr) {
     compile_expression(*key_ptr);    // Key
     compile_expression(*value_ptr);  // Value
   }
-  
+
   // Build dictionary with the number of pairs
   emit_instruction(OpCode::BUILD_DICT, static_cast<uint32_t>(expr.entries.size()));
 }
@@ -377,12 +379,12 @@ void Compiler::compile_dict_literal(const DictLiteralNode& expr) {
 void Compiler::compile_call_expression(const CallExpressionNode& expr) {
   // Compile function expression
   compile_expression(*expr.function);
-  
+
   // Compile arguments
   for (const auto& arg : expr.arguments) {
     compile_expression(*arg);
   }
-  
+
   // Emit call instruction with argument count
   emit_instruction(OpCode::CALL, static_cast<uint32_t>(expr.arguments.size()));
 }
@@ -434,7 +436,7 @@ uint32_t Compiler::resolve_variable(const std::string& name) {
   if (it != scope.variables.end()) {
     return it->second.index;
   }
-  
+
   // For simplicity, return a name index for global lookup
   return current_chunk_->add_variable_name(name);
 }
@@ -468,27 +470,43 @@ void Compiler::error(const std::string& message, const Token* token) {
 
 OpCode Compiler::binary_op_to_opcode(TokenType token_type) {
   switch (token_type) {
-    case TokenType::PLUS:           return OpCode::ADD;
-    case TokenType::MINUS:          return OpCode::SUBTRACT;
-    case TokenType::ASTERISK:       return OpCode::MULTIPLY;
-    case TokenType::SLASH:          return OpCode::DIVIDE;
-    case TokenType::EQUAL:          return OpCode::EQUAL;
-    case TokenType::NOT_EQUAL:      return OpCode::NOT_EQUAL;
-    case TokenType::LESS:           return OpCode::LESS;
-    case TokenType::GREATER:        return OpCode::GREATER;
-    case TokenType::LESS_EQUAL:     return OpCode::LESS_EQUAL;
-    case TokenType::GREATER_EQUAL:  return OpCode::GREATER_EQUAL;
-    case TokenType::AND:            return OpCode::AND;
-    case TokenType::OR:             return OpCode::OR;
-    default:                        return OpCode::HALT; // Invalid
+    case TokenType::PLUS:
+      return OpCode::ADD;
+    case TokenType::MINUS:
+      return OpCode::SUBTRACT;
+    case TokenType::ASTERISK:
+      return OpCode::MULTIPLY;
+    case TokenType::SLASH:
+      return OpCode::DIVIDE;
+    case TokenType::EQUAL:
+      return OpCode::EQUAL;
+    case TokenType::NOT_EQUAL:
+      return OpCode::NOT_EQUAL;
+    case TokenType::LESS:
+      return OpCode::LESS;
+    case TokenType::GREATER:
+      return OpCode::GREATER;
+    case TokenType::LESS_EQUAL:
+      return OpCode::LESS_EQUAL;
+    case TokenType::GREATER_EQUAL:
+      return OpCode::GREATER_EQUAL;
+    case TokenType::AND:
+      return OpCode::AND;
+    case TokenType::OR:
+      return OpCode::OR;
+    default:
+      return OpCode::HALT;  // Invalid
   }
 }
 
 OpCode Compiler::unary_op_to_opcode(TokenType token_type) {
   switch (token_type) {
-    case TokenType::MINUS:  return OpCode::NEGATE;
-    case TokenType::BANG:   return OpCode::NOT;
-    default:                return OpCode::HALT; // Invalid
+    case TokenType::MINUS:
+      return OpCode::NEGATE;
+    case TokenType::BANG:
+      return OpCode::NOT;
+    default:
+      return OpCode::HALT;  // Invalid
   }
 }
 
@@ -504,4 +522,3 @@ uint32_t Compiler::add_number_constant(int32_t value) {
 uint32_t Compiler::add_number_constant(double value) {
   return add_constant(PEBBLObject::make_double(value));
 }
-

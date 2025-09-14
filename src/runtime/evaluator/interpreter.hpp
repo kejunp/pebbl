@@ -9,10 +9,10 @@
 #include <vector>
 
 #include "ast.hpp"
+#include "compiler.hpp"
 #include "environment.hpp"
 #include "gc.hpp"
 #include "object.hpp"
-#include "compiler.hpp"
 #include "vm.hpp"
 
 /**
@@ -88,18 +88,20 @@ public:
   void report_error(const std::string& message) {
     runtime_error(message);
   }
-  
+
   /**
    * @brief Enable or disable bytecode execution mode
    * @param enable True to enable bytecode mode, false for tree-walking mode
    */
   void set_bytecode_mode(bool enable);
-  
+
   /**
    * @brief Check if bytecode mode is enabled
    * @return True if using bytecode interpreter
    */
-  bool is_bytecode_mode() const { return use_bytecode_; }
+  bool is_bytecode_mode() const {
+    return use_bytecode_;
+  }
 
 private:
   GCHeap& heap_;
@@ -109,7 +111,7 @@ private:
   // Control flow flags
   bool has_return_ = false;
   PEBBLObject return_value_;
-  
+
   // Bytecode execution components
   bool use_bytecode_;
   std::unique_ptr<Compiler> compiler_;
@@ -151,7 +153,7 @@ private:
 
   // Builtin function management
   void register_builtin_functions();
-  
+
   // Bytecode integration helpers
   void sync_globals_to_vm();
   void sync_globals_from_vm();
