@@ -8,8 +8,8 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "object.hpp"
 #include "../builtins/builtin_objects.hpp"
+#include "object.hpp"
 
 Compiler::Compiler(GCHeap& heap) : heap_(heap), has_error_(false) {
 }

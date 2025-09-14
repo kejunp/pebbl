@@ -9,8 +9,8 @@
 #include <string>
 #include <vector>
 
-#include "builtin_objects.hpp"
 #include "../evaluator/interpreter.hpp"
+#include "builtin_objects.hpp"
 
 /**
  * @brief Namespace containing all builtin function implementations
