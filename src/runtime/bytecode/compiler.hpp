@@ -122,5 +122,4 @@ private:
   uint32_t add_string_constant(const std::string& value);
   uint32_t add_number_constant(int32_t value);
   uint32_t add_number_constant(double value);
-
 };

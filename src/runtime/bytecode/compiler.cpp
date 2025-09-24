@@ -553,4 +553,3 @@ uint32_t Compiler::add_number_constant(int32_t value) {
 uint32_t Compiler::add_number_constant(double value) {
   return add_constant(PEBBLObject::make_double(value));
 }
-
